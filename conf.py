@@ -19,8 +19,8 @@
 
 # -- Project information -----------------------------------------------------
 
-project = '講義資料名'
-copyright = '2022, kikagaku'
+project = '応用講座コース'
+copyright = '2023, kikagaku'
 author = 'kikagaku'
 
 # The short X.Y version
