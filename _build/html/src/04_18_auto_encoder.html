@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="ja" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>【補足】 異常部位検知 - AutoEncoder &mdash; 応用講座コース  ドキュメント</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="【補足】 実力テスト - 機械学習セクション" href="99_11ability-test2.html" />
+    <link rel="prev" title="【補足】 生成モデルによる異常部位検知" href="04_17_generation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 応用講座コース
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="00_title.html">– Python 速習とテーブルデータの操作 –</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_00_colab.html">Google Colaboratory 実習</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_01_00_data.html">データの理解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_01_00_python_basic.html">Python 速習とテーブルデータの基本操作</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_01_01_question.html">演習問題</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_04_exercise_classification.html">問題設定：Bank Marketing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_05_bankmarketing.html">実装例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_00title.html">– データの前処理と機械学習モデルの構築 –</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_01_create_feature.html">モデル構築のための特徴量作成</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_02_K-Fold.html">モデルの精度を保証する実装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_03_XAI.html">説明可能な AI (XAI)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_00title.html">– 時系列解析 –</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_01_timeseries_basic.html">時系列データの取り扱い方</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_02_timeseries_analysis.html">自己回帰型モデル</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_00title.html">– 異常検知 –</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_01.html">異常検知とは</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_02_outlier.html">外れ値検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_03_other_outlier.html">【補足】 外れ値検知 - その他の手法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_04_ml_base.html">機械学習を用いた異常検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_05_other_ml_base.html">【補足】機械学習を用いた異常検知 - その他の手法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_13_nearest_neighbers.html">変化点検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_17_generation.html">【補足】 生成モデルによる異常部位検知</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">【補足】 異常部位検知 - AutoEncoder</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#データセットの準備">データセットの準備</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#モデル構築">モデル構築</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#再構成誤差の目視確認">再構成誤差の目視確認</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="99_11ability-test2.html">【補足】 実力テスト - 機械学習セクション</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">応用講座コース</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>【補足】 異常部位検知 - AutoEncoder</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/src/04_18_auto_encoder.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt .copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+.jp-RenderedHTMLCommon table,
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+.jp-RenderedHTMLCommon thead,
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+.jp-RenderedHTMLCommon tr,
+.jp-RenderedHTMLCommon th,
+.jp-RenderedHTMLCommon td,
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+.jp-RenderedHTMLCommon th,
+div.rendered_html th {
+  font-weight: bold;
+}
+.jp-RenderedHTMLCommon tbody tr:nth-child(odd),
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+.jp-RenderedHTMLCommon tbody tr:hover,
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="【補足】-異常部位検知---AutoEncoder">
+<h1>【補足】 異常部位検知 - AutoEncoder<a class="headerlink" href="#【補足】-異常部位検知---AutoEncoder" title="この見出しへのパーマリンク"></a></h1>
+<div class="line-block">
+<div class="line">本章では AutoEncoder を用いた異常部位検知を紹介します。</div>
+<div class="line">モデルの学習に大幅な時間を要します。そのためリアルタイムの講義では実装のポイントのみお伝えします。講義終了後に復習も兼ねて実装に挑戦してみてください。</div>
+<div class="line">GPU 環境を推奨します。</div>
+</div>
+<img alt="09" src="../_images/09.png" />
+<p>今回はドイツのMVTec社が公開したデータセットを使用します。 <a class="reference external" href="https://www.mvtec.com/fileadmin/Redaktion/mvtec.com/company/research/mvtec_ad.pdf">解説論文</a>はコンピュータビジョンの世界トップ会議である CVPR 2019 で採択されています。</p>
+<div class="line-block">
+<div class="line">▼ データセット</div>
+<div class="line"><a class="reference external" href="https://drive.google.com/open?id=1TV-b-qdN7YjUnowIx9_GKAQiOBlK9TMB">URL</a></div>
+</div>
+<section id="データセットの準備">
+<h2>データセットの準備<a class="headerlink" href="#データセットの準備" title="この見出しへのパーマリンク"></a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Zip ファイル解凍
+!unzip -q ~~.zip
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from glob import glob
+train_img_paths = sorted(glob(&#39;/content/hazelnut/train/good/*.png&#39;))
+len(train_img_paths)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+391
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>train_img_paths[:3]
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&#39;/content/hazelnut/train/good/000.png&#39;,
+ &#39;/content/hazelnut/train/good/001.png&#39;,
+ &#39;/content/hazelnut/train/good/002.png&#39;]
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>test_dirs = glob(&#39;/content/hazelnut/test/*&#39;)
+test_img_paths = []
+for dir in test_dirs:
+    test_img_paths_ = sorted(glob(dir+&#39;/*.png&#39;))
+    test_img_paths.extend(test_img_paths_)
+len(test_img_paths)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+110
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>test_img_paths[:3]
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&#39;/content/hazelnut/test/cut/000.png&#39;,
+ &#39;/content/hazelnut/test/cut/001.png&#39;,
+ &#39;/content/hazelnut/test/cut/002.png&#39;]
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from PIL import Image
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 確認：正常データ
+Image.open(train_img_paths[0]).convert(&#39;RGB&#39;).resize((224, 224))
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/src_04_18_auto_encoder_13_0.png" src="../_images/src_04_18_auto_encoder_13_0.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 確認：異常データ
+Image.open(test_img_paths[0]).convert(&#39;RGB&#39;).resize((224, 224))
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/src_04_18_auto_encoder_14_0.png" src="../_images/src_04_18_auto_encoder_14_0.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import torch
+import torchvision.transforms as T
+from torch.utils.data import DataLoader, Dataset
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># データセット作成
+class Custom_Dataset(Dataset):
+
+  def __init__(self,img_list):
+    self.img_list = img_list
+    self.prepocess = T.Compose([T.Resize((224, 224)), T.ToTensor()])
+
+  def __getitem__(self,idx):
+    img = Image.open(self.img_list[idx]).convert(&#39;RGB&#39;)
+    img = self.prepocess(img)
+    return img
+
+  def __len__(self):
+    return len(self.img_list)
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 正常データのみを使用する
+train_list = train_img_paths[:int(len(train_img_paths)*0.8)]
+val_list = train_img_paths[int(len(train_img_paths)*0.8):]
+len(train_list), len(val_list)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(312, 79)
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[64]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>train_dataset = Custom_Dataset(train_list)
+val_dataset = Custom_Dataset(val_list)
+train_loader = DataLoader(train_dataset, batch_size=16)
+val_loader = DataLoader(val_dataset, batch_size=16)
+</pre></div>
+</div>
+</div>
+</section>
+<section id="モデル構築">
+<h2>モデル構築<a class="headerlink" href="#モデル構築" title="この見出しへのパーマリンク"></a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[65]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import torch.nn as nn
+import torch.nn.functional as F
+import torch.optim as optim
+from tqdm import tqdm
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[66]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class AutoEncoder(nn.Module):
+    def __init__(self):
+        super(AutoEncoder, self).__init__()
+        self.Encoder = nn.Sequential(self.create_convblock(3, 16),
+                                     nn.MaxPool2d((2, 2)),
+                                     self.create_convblock(16, 32),
+                                     nn.MaxPool2d((2,2)),
+                                     self.create_convblock(32, 64),
+                                     nn.MaxPool2d((2, 2)),
+                                     self.create_convblock(64, 128),
+                                     nn.MaxPool2d((2, 2)),
+                                     self.create_convblock(128, 256),
+                                     nn.MaxPool2d((2, 2)),
+                                     self.create_convblock(256, 512),
+                                    )
+        self.Decoder = nn.Sequential(self.create_deconvblock(512, 256),
+                                     self.create_convblock(256, 256),
+                                     self.create_deconvblock(256, 128),
+                                     self.create_convblock(128, 128),
+                                     self.create_deconvblock(128, 64),
+                                     self.create_convblock(64, 64),
+                                     self.create_deconvblock(64, 32),
+                                     self.create_convblock(32, 32),
+                                     self.create_deconvblock(32, 16),
+                                     self.create_convblock(16, 16),
+                                    )
+        self.last_layer = nn.Conv2d(16, 3, 1, 1)
+
+    def create_convblock(self,i_fn,o_fn):
+        conv_block = nn.Sequential(nn.Conv2d(i_fn, o_fn, 3, 1, 1),
+                                   nn.BatchNorm2d(o_fn),
+                                   nn.ReLU(),
+                                   nn.Conv2d(o_fn, o_fn, 3, 1, 1),
+                                   nn.BatchNorm2d(o_fn),
+                                   nn.ReLU()
+                                  )
+        return conv_block
+
+    def create_deconvblock(self, i_fn, o_fn):
+        deconv_block = nn.Sequential(nn.ConvTranspose2d(i_fn, o_fn, kernel_size=2, stride=2),
+                                      nn.BatchNorm2d(o_fn),
+                                      nn.ReLU())
+        return deconv_block
+
+    def forward(self,x):
+        x = self.Encoder(x)
+        x = self.Decoder(x)
+        x = self.last_layer(x)
+        return x
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[70]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from torchsummary import summary
+model = AutoEncoder().to(&#39;cuda&#39;)
+summary(model, input_size=(3, 224, 224))
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+----------------------------------------------------------------
+        Layer (type)               Output Shape         Param #
+================================================================
+            Conv2d-1         [-1, 16, 224, 224]             448
+       BatchNorm2d-2         [-1, 16, 224, 224]              32
+              ReLU-3         [-1, 16, 224, 224]               0
+            Conv2d-4         [-1, 16, 224, 224]           2,320
+       BatchNorm2d-5         [-1, 16, 224, 224]              32
+              ReLU-6         [-1, 16, 224, 224]               0
+         MaxPool2d-7         [-1, 16, 112, 112]               0
+            Conv2d-8         [-1, 32, 112, 112]           4,640
+       BatchNorm2d-9         [-1, 32, 112, 112]              64
+             ReLU-10         [-1, 32, 112, 112]               0
+           Conv2d-11         [-1, 32, 112, 112]           9,248
+      BatchNorm2d-12         [-1, 32, 112, 112]              64
+             ReLU-13         [-1, 32, 112, 112]               0
+        MaxPool2d-14           [-1, 32, 56, 56]               0
+           Conv2d-15           [-1, 64, 56, 56]          18,496
+      BatchNorm2d-16           [-1, 64, 56, 56]             128
+             ReLU-17           [-1, 64, 56, 56]               0
+           Conv2d-18           [-1, 64, 56, 56]          36,928
+      BatchNorm2d-19           [-1, 64, 56, 56]             128
+             ReLU-20           [-1, 64, 56, 56]               0
+        MaxPool2d-21           [-1, 64, 28, 28]               0
+           Conv2d-22          [-1, 128, 28, 28]          73,856
+      BatchNorm2d-23          [-1, 128, 28, 28]             256
+             ReLU-24          [-1, 128, 28, 28]               0
+           Conv2d-25          [-1, 128, 28, 28]         147,584
+      BatchNorm2d-26          [-1, 128, 28, 28]             256
+             ReLU-27          [-1, 128, 28, 28]               0
+        MaxPool2d-28          [-1, 128, 14, 14]               0
+           Conv2d-29          [-1, 256, 14, 14]         295,168
+      BatchNorm2d-30          [-1, 256, 14, 14]             512
+             ReLU-31          [-1, 256, 14, 14]               0
+           Conv2d-32          [-1, 256, 14, 14]         590,080
+      BatchNorm2d-33          [-1, 256, 14, 14]             512
+             ReLU-34          [-1, 256, 14, 14]               0
+        MaxPool2d-35            [-1, 256, 7, 7]               0
+           Conv2d-36            [-1, 512, 7, 7]       1,180,160
+      BatchNorm2d-37            [-1, 512, 7, 7]           1,024
+             ReLU-38            [-1, 512, 7, 7]               0
+           Conv2d-39            [-1, 512, 7, 7]       2,359,808
+      BatchNorm2d-40            [-1, 512, 7, 7]           1,024
+             ReLU-41            [-1, 512, 7, 7]               0
+  ConvTranspose2d-42          [-1, 256, 14, 14]         524,544
+      BatchNorm2d-43          [-1, 256, 14, 14]             512
+             ReLU-44          [-1, 256, 14, 14]               0
+           Conv2d-45          [-1, 256, 14, 14]         590,080
+      BatchNorm2d-46          [-1, 256, 14, 14]             512
+             ReLU-47          [-1, 256, 14, 14]               0
+           Conv2d-48          [-1, 256, 14, 14]         590,080
+      BatchNorm2d-49          [-1, 256, 14, 14]             512
+             ReLU-50          [-1, 256, 14, 14]               0
+  ConvTranspose2d-51          [-1, 128, 28, 28]         131,200
+      BatchNorm2d-52          [-1, 128, 28, 28]             256
+             ReLU-53          [-1, 128, 28, 28]               0
+           Conv2d-54          [-1, 128, 28, 28]         147,584
+      BatchNorm2d-55          [-1, 128, 28, 28]             256
+             ReLU-56          [-1, 128, 28, 28]               0
+           Conv2d-57          [-1, 128, 28, 28]         147,584
+      BatchNorm2d-58          [-1, 128, 28, 28]             256
+             ReLU-59          [-1, 128, 28, 28]               0
+  ConvTranspose2d-60           [-1, 64, 56, 56]          32,832
+      BatchNorm2d-61           [-1, 64, 56, 56]             128
+             ReLU-62           [-1, 64, 56, 56]               0
+           Conv2d-63           [-1, 64, 56, 56]          36,928
+      BatchNorm2d-64           [-1, 64, 56, 56]             128
+             ReLU-65           [-1, 64, 56, 56]               0
+           Conv2d-66           [-1, 64, 56, 56]          36,928
+      BatchNorm2d-67           [-1, 64, 56, 56]             128
+             ReLU-68           [-1, 64, 56, 56]               0
+  ConvTranspose2d-69         [-1, 32, 112, 112]           8,224
+      BatchNorm2d-70         [-1, 32, 112, 112]              64
+             ReLU-71         [-1, 32, 112, 112]               0
+           Conv2d-72         [-1, 32, 112, 112]           9,248
+      BatchNorm2d-73         [-1, 32, 112, 112]              64
+             ReLU-74         [-1, 32, 112, 112]               0
+           Conv2d-75         [-1, 32, 112, 112]           9,248
+      BatchNorm2d-76         [-1, 32, 112, 112]              64
+             ReLU-77         [-1, 32, 112, 112]               0
+  ConvTranspose2d-78         [-1, 16, 224, 224]           2,064
+      BatchNorm2d-79         [-1, 16, 224, 224]              32
+             ReLU-80         [-1, 16, 224, 224]               0
+           Conv2d-81         [-1, 16, 224, 224]           2,320
+      BatchNorm2d-82         [-1, 16, 224, 224]              32
+             ReLU-83         [-1, 16, 224, 224]               0
+           Conv2d-84         [-1, 16, 224, 224]           2,320
+      BatchNorm2d-85         [-1, 16, 224, 224]              32
+             ReLU-86         [-1, 16, 224, 224]               0
+           Conv2d-87          [-1, 3, 224, 224]              51
+================================================================
+Total params: 6,996,979
+Trainable params: 6,996,979
+Non-trainable params: 0
+----------------------------------------------------------------
+Input size (MB): 0.57
+Forward/backward pass size (MB): 183.27
+Params size (MB): 26.69
+Estimated Total Size (MB): 210.54
+----------------------------------------------------------------
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>epoch_num = 500
+device = &#39;cuda&#39;
+
+best_loss = None
+model = AutoEncoder().to(device)
+limit_epoch = 100
+
+optimizer = optim.Adam(model.parameters())
+criterion = nn.MSELoss()
+loss_list = {&#39;train&#39;: [], &#39;val&#39;: []}
+
+counter = 0
+for e in range(epoch_num):
+    total_loss = 0
+    model.train()
+    with tqdm(train_loader) as pbar:
+        for itr , data in enumerate(pbar):
+            optimizer.zero_grad()
+            data = data.to(device)
+            output = model(data)
+            loss = criterion(output , data)
+            total_loss += loss.detach().item()
+            pbar.set_description(f&#39;[train] Epoch {e+1:03}/{epoch_num:03} Itr {itr+1:02}/{len(pbar):02} Loss {total_loss/(itr+1):.3f}&#39;)
+            loss.backward()
+            optimizer.step()
+
+    loss_list[&#39;train&#39;].append(total_loss)
+    total_loss = 0
+    model.eval()
+    with tqdm(val_loader) as pbar:
+        for itr, data in enumerate(pbar):
+            data = data.to(device)
+            with torch.no_grad():
+                output = model(data)
+            loss = criterion(output , data)
+            total_loss += loss.detach().item()
+            pbar.set_description(f&#39;[ val ] Epoch {e+1:03}/{epoch_num:03} Itr {itr+1:02}/{len(pbar):02} Loss {total_loss/(itr+1):.3f}&#39;)
+
+    if best_loss is None or best_loss &gt; total_loss/(itr+1):
+        if best_loss is not None:
+            print(f&#39;update best_loss {best_loss:.6f} to {total_loss/(itr+1):.6f}&#39;)
+        best_loss = total_loss/(itr+1)
+        model_path = &#39;AutoEncoder_model.pth&#39;
+        torch.save(model.state_dict(), model_path)
+        counter = 0
+    else:
+        counter += 1
+        if limit_epoch &lt;= counter:
+            break
+    loss_list[&#39;val&#39;].append(total_loss)
+</pre></div>
+</div>
+</div>
+</section>
+<section id="再構成誤差の目視確認">
+<h2>再構成誤差の目視確認<a class="headerlink" href="#再構成誤差の目視確認" title="この見出しへのパーマリンク"></a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[72]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import cv2
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[74]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 推論：正常データ
+margin_w = 10
+
+pretrained_model = AutoEncoder().cuda()
+model_path = &#39;/content/AutoEncoder_model.pth&#39;
+pretrained_model.load_state_dict(torch.load(model_path))
+preprocess = T.Compose([T.Resize((224, 224)), T.ToTensor()])
+pretrained_model.eval()
+good_loss_list = []
+for path in tqdm(val_list):
+    img = Image.open(path).convert(&#39;RGB&#39;)
+    img = preprocess(img).unsqueeze(0).cuda()
+    with torch.no_grad():
+        output = pretrained_model(img)[0]
+    output = output.cpu().numpy().transpose(1, 2, 0)
+    output = np.uint8(np.maximum(np.minimum(output*255, 255), 0))
+    origin = np.uint8(img[0].cpu().numpy().transpose(1, 2, 0)*255)
+
+    # 再構成誤差
+    diff = np.uint8(np.abs(output.astype(np.float32) - origin.astype(np.float32)))
+    good_loss_list.append(np.sum(diff))
+
+    # 可視化
+    heatmap = cv2.applyColorMap(diff, cv2.COLORMAP_JET)
+    margin = np.ones((diff.shape[0], margin_w, 3))*255
+    result = np.concatenate([origin[:,:,::-1], margin, output[:,:,::-1], margin, heatmap], axis=1)
+    out_path = path.split(&#39;/&#39;)[-2] + &#39;_&#39; + path.split(&#39;/&#39;)[-1]
+    cv2.imwrite(out_path, result)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+100%|██████████| 79/79 [00:05&lt;00:00, 14.91it/s]
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[75]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 推論：異常データ
+margin_w = 10
+
+pretrained_model = AutoEncoder().cuda()
+model_path = &#39;/content/AutoEncoder_model.pth&#39;
+pretrained_model.load_state_dict(torch.load(model_path))
+preprocess = T.Compose([T.Resize((224, 224)), T.ToTensor()])
+pretrained_model.eval()
+anomaly_loss_list = []
+for path in tqdm(test_img_paths):
+    img = Image.open(path).convert(&#39;RGB&#39;)
+    img = preprocess(img).unsqueeze(0).cuda()
+    with torch.no_grad():
+        output = pretrained_model(img)[0]
+    output = output.cpu().numpy().transpose(1, 2, 0)
+    output = np.uint8(np.maximum(np.minimum(output*255, 255), 0))
+    origin = np.uint8(img[0].cpu().numpy().transpose(1, 2, 0)*255)
+
+    # 再構成誤差
+    diff = np.uint8(np.abs(output.astype(np.float32) - origin.astype(np.float32)))
+    anomaly_loss_list.append(np.sum(diff))
+
+    # 可視化
+    heatmap = cv2.applyColorMap(diff, cv2.COLORMAP_JET)
+    margin = np.ones((diff.shape[0], margin_w, 3))*255
+    result = np.concatenate([origin[:,:,::-1], margin, output[:,:,::-1], margin, heatmap], axis=1)
+    out_path = path.split(&#39;/&#39;)[-2] + &#39;_&#39; + path.split(&#39;/&#39;)[-1]
+    cv2.imwrite(out_path, result)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+100%|██████████| 110/110 [00:07&lt;00:00, 15.04it/s]
+</pre></div></div>
+</div>
+<p>以下のように異常データが入力された場合にうまく復元ができず、異常部位の再構成誤差が際立っていれば成功です。</p>
+<img alt="result" src="src/img/crack_008.png" />
+<div class="line-block">
+<div class="line">生成モデルを用いた異常検知は再構成誤差にしきい値を設けて、異常判定を行います。</div>
+<div class="line">再構成誤差の分布の確認や上画像のように目視によるチェックも必要なことを覚えておきましょう。</div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="04_17_generation.html" class="btn btn-neutral float-left" title="【補足】 生成モデルによる異常部位検知" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="99_11ability-test2.html" class="btn btn-neutral float-right" title="【補足】 実力テスト - 機械学習セクション" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, kikagaku.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

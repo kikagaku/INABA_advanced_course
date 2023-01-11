@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="ja" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Google Colaboratory 実習 &mdash; 応用講座コース  ドキュメント</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="データの理解" href="01_01_00_data.html" />
+    <link rel="prev" title="– Python 速習とテーブルデータの操作 –" href="00_title.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 応用講座コース
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="00_title.html">– Python 速習とテーブルデータの操作 –</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Google Colaboratory 実習</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#Google-Colaboratory-の基本">Google Colaboratory の基本</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#環境構築">環境構築</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Colab-を開く">Colab を開く</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#Colab-の基本的な使い方">Colab の基本的な使い方</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#コードセル">コードセル</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#テキストセル">テキストセル</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#ファイルの読み込みとダウンロード">ファイルの読み込みとダウンロード</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#ファイルをアップロードする方法">ファイルをアップロードする方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#アップロードしたファイルを読み込む">アップロードしたファイルを読み込む</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#データを書き出してダウンロードする方法">データを書き出してダウンロードする方法</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#ノートブックを共同編集する方法">ノートブックを共同編集する方法</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#プチ演習">プチ演習</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#GPU-を使用する">GPU を使用する</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#Tips">Tips</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id12">コードセル</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id13">テキストセル</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Colab-の便利なショートカット">Colab の便利なショートカット</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ファイルパスを取得する方法">ファイルパスを取得する方法</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="01_01_00_data.html">データの理解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_01_00_python_basic.html">Python 速習とテーブルデータの基本操作</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_01_01_question.html">演習問題</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_04_exercise_classification.html">問題設定：Bank Marketing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_05_bankmarketing.html">実装例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_00title.html">– データの前処理と機械学習モデルの構築 –</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_01_create_feature.html">モデル構築のための特徴量作成</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_02_K-Fold.html">モデルの精度を保証する実装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_03_XAI.html">説明可能な AI (XAI)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_00title.html">– 時系列解析 –</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_01_timeseries_basic.html">時系列データの取り扱い方</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_02_timeseries_analysis.html">自己回帰型モデル</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_00title.html">– 異常検知 –</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_01.html">異常検知とは</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_02_outlier.html">外れ値検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_03_other_outlier.html">【補足】 外れ値検知 - その他の手法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_04_ml_base.html">機械学習を用いた異常検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_05_other_ml_base.html">【補足】機械学習を用いた異常検知 - その他の手法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_13_nearest_neighbers.html">変化点検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_17_generation.html">【補足】 生成モデルによる異常部位検知</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_18_auto_encoder.html">【補足】 異常部位検知 - AutoEncoder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="99_11ability-test2.html">【補足】 実力テスト - 機械学習セクション</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">応用講座コース</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Google Colaboratory 実習</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/src/01_00_colab.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt .copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+.jp-RenderedHTMLCommon table,
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+.jp-RenderedHTMLCommon thead,
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+.jp-RenderedHTMLCommon tr,
+.jp-RenderedHTMLCommon th,
+.jp-RenderedHTMLCommon td,
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+.jp-RenderedHTMLCommon th,
+div.rendered_html th {
+  font-weight: bold;
+}
+.jp-RenderedHTMLCommon tbody tr:nth-child(odd),
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+.jp-RenderedHTMLCommon tbody tr:hover,
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="Google-Colaboratory-実習">
+<h1>Google Colaboratory 実習<a class="headerlink" href="#Google-Colaboratory-実習" title="この見出しへのパーマリンク"></a></h1>
+<section id="Google-Colaboratory-の基本">
+<h2>Google Colaboratory の基本<a class="headerlink" href="#Google-Colaboratory-の基本" title="この見出しへのパーマリンク"></a></h2>
+<p>本講義で使用するコードを実行するにあたって Google Colaboratory というサービスの利用を推奨します。</p>
+<p>Google Colaboratory（以下 Colab ）は、クラウド上で <a class="reference external" href="https://jupyter.org/">Jupyter Notebook</a> 環境を提供する Google のウェブサービスです。Jupyter Notebook はブラウザ上で主に以下のようなことが可能なオープンソースのウェブアプリケーションであり、データ分析の現場や研究、教育などで広く用いられています。</p>
+<ul class="simple">
+<li><p>プログラムの実行と、その結果の確認</p></li>
+<li><p>Markdown と呼ばれる文章を記述するためのマークアップ言語を使った、メモや解説などの記述の追加</p></li>
+</ul>
+<p>Colab では無料で GPU も使用することができますが、そのランタイムは最大 12 時間で消えてしまうため、長時間を要する処理などは別途環境を用意する必要があります。しかし学びはじめのうちは、数分から数時間程度で終わる処理がほとんどであるため、気にする必要はありませんが、本格的に使っていく場合は有料のクラウドサービスを利用するなどして、環境を整えるようにしましょう。有料版を検討される場合はキカガク技術ブログの記事（<a class="reference external" href="https://blog.kikagaku.co.jp/google-colab-newplan">Google Colab
+有料版の料金と内容は？</a>）を参考にして下さい。</p>
+<p>以降では、環境構築と基本的な使い方を説明します。</p>
+</section>
+<section id="環境構築">
+<h2>環境構築<a class="headerlink" href="#環境構築" title="この見出しへのパーマリンク"></a></h2>
+<p>ここではまず、<strong>Google Colaboratory</strong> の利用方法を説明します。必要な事前準備は下記 ２ 点です。</p>
+<ul class="simple">
+<li><p>Google アカウント（お持ちでない場合は<a class="reference external" href="https://accounts.google.com/signup/v2/webcreateaccount?flowName=GlifWebSignIn&amp;flowEntry=SignUp">こちら</a>から作成）</p></li>
+<li><p><a class="reference external" href="https://www.google.com/chrome/">Chrome</a> もしくは <a class="reference external" href="https://www.mozilla.org/ja/firefox/new/">Firefox</a> のインストール</p></li>
+</ul>
+<p>ブラウザはどちらでも大丈夫ですが、Chrome を推奨します。</p>
+<section id="Colab-を開く">
+<h3>Colab を開く<a class="headerlink" href="#Colab-を開く" title="この見出しへのパーマリンク"></a></h3>
+<p>まずは以下の URL にアクセスして、ブラウザで Google を開き、自分のアカウントにログインしてください。</p>
+<p><a class="reference external" href="https://www.google.com/">https://www.google.com/</a></p>
+<p>ログインが完了したら、下記に沿って、Google Drive のページに移動します。Google Drive とはファイルなどを保存することのできるオンラインストレージサービスになります。</p>
+<img alt="08" src="../_images/08.png" />
+<p>Google Drive の右上にある「新規」ボタンをクリックし、下記の手順に沿って、Google Colaboratory を使用できるようにアプリの追加を行います。</p>
+<img alt="09" src="../_images/09.png" />
+<img alt="10" src="../_images/10.png" />
+<img alt="11_1" src="../_images/11_1.png" />
+<div class="line-block">
+<div class="line">これで Google Drive から Colab を使用することができるようになりました。</div>
+<div class="line">Google Drive 内に作業フォルダを作業して、資料をアップロードしましょう。フォルダの作成やファイルのアップロードを行うためには画面上で右クリックすると、選択肢が表示されます。</div>
+</div>
+<img alt="12" src="../_images/12.png" />
+<img alt="13" src="../_images/13.png" />
+<p>アップロードしたファイルをクリックし、ファイルを開きます。下記の画面が表示されればプログラミングを開始することができます。</p>
+<img alt="14" src="../_images/14.png" />
+<p>プログラミングを開始するためには右上にある「接続」ボタンをクリックし、ノートブックをサーバーに接続します。</p>
+<p>もし、新規のノートブックを開く際には、下記の手順に沿ってファイルを作成します。</p>
+<img alt="15" src="../_images/15.png" />
+</section>
+</section>
+<section id="Colab-の基本的な使い方">
+<h2>Colab の基本的な使い方<a class="headerlink" href="#Colab-の基本的な使い方" title="この見出しへのパーマリンク"></a></h2>
+<p>Colab 上の Jupyter Notebook を以降、単に<strong>ノートブック</strong>と呼びます。</p>
+<p>ノートブックは、複数の<strong>セル</strong>と呼ばれるブロックを持つことができます。 新しいノートブックを作った直後では、何も書かれていないセルが一つだけ存在している状態になっています。 セルの内側のどこかをクリックすると、そのセルを選択することができます。</p>
+<p>セルには、<strong>コードセル</strong>と<strong>テキストセル</strong>の 2 種類があります。コードセルは Python のコードを書き込み、実行するためのセルであり、テキストセルは、Markdown 形式で文章を書くためのセルです。</p>
+<p>それぞれのセルタイプについてもう少し詳しく説明をします。</p>
+<section id="コードセル">
+<h3>コードセル<a class="headerlink" href="#コードセル" title="この見出しへのパーマリンク"></a></h3>
+<p>コードセルは、Python のコードを書き込み、実行することができるセルです。 実行するには、コードセルを選択した状態で、<code class="docutils literal notranslate"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">Enter</span></code> または <code class="docutils literal notranslate"><span class="pre">Shift</span> <span class="pre">+</span> <span class="pre">Enter</span></code> を押します。 試しに、下のセルを選択して、<code class="docutils literal notranslate"><span class="pre">Shift</span> <span class="pre">+</span> <span class="pre">Enter</span></code> を押してみてください。</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(&#39;Hello world!&#39;)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Hello world!
+</pre></div></div>
+</div>
+<p>すぐ下に、Hello world! という文字列が表示されました。上のセルに書き込まれているのは Python のコードで、与えられた文字列を表示する関数である <code class="docutils literal notranslate"><span class="pre">print()</span></code> に、<code class="docutils literal notranslate"><span class="pre">'Hello</span> <span class="pre">world!'</span></code> という文字列を渡しています。これを実行したため、その結果が下に表示されています。</p>
+</section>
+<section id="テキストセル">
+<h3>テキストセル<a class="headerlink" href="#テキストセル" title="この見出しへのパーマリンク"></a></h3>
+<p>テキストセルでは、Markdown 形式で記述された文章を扱います。試しに、このセルをダブルクリックしてみてください。テキストセルが編集モードになり、Markdown 形式で文章を装飾するための、先程までは表示されていなかった記号が見えるようになります。</p>
+<p>その状態で <code class="docutils literal notranslate"><span class="pre">Shift</span> <span class="pre">+</span> <span class="pre">Enter</span></code> を押してみましょう。元の文章の表示に戻ります。</p>
+<section id="ファイルの読み込みとダウンロード">
+<h4>ファイルの読み込みとダウンロード<a class="headerlink" href="#ファイルの読み込みとダウンロード" title="この見出しへのパーマリンク"></a></h4>
+</section>
+</section>
+<section id="ファイルをアップロードする方法">
+<h3>ファイルをアップロードする方法<a class="headerlink" href="#ファイルをアップロードする方法" title="この見出しへのパーマリンク"></a></h3>
+<div class="line-block">
+<div class="line">ノートブック上にファイルをアップロードする方法は非常に簡単です。</div>
+<div class="line">以下の csv ファイルをダウンロードし、ノートブック上へアップロードしてみましょう。</div>
+</div>
+<p>・ <a class="reference external" href="data/matrix_01.csv">matrix_01.csv</a></p>
+<p><strong>ノートブック上に直接アップロード</strong></p>
+<p>資料では、画像ファイルのアップロードを行いますが、CSV やテキストなどのファイルも基本的に同じ方法でアップロードできます。</p>
+<ol class="arabic">
+<li><div class="line-block">
+<div class="line">左サイドバーに表示されているファイルマークをクリックします。</div>
+<div class="line"><img alt="05_1" src="../_images/05_1.png" /></div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line">表示されたサイドバーに、ファイルをドラッグ &amp; ドロップしましょう。</div>
+<div class="line">（画像ファイルで行っていますが、csv ファイルも同じ方法でアップロードできます。）</div>
+<div class="line"><img alt="05_2" src="../_images/05_2.gif" /></div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line">アップロードが完了すると下図のようにファイル名が表示されます。</div>
+<div class="line"><img alt="05_3" src="../_images/05_3.png" /></div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line">中身を確認したい時は、ファイルをクリックしましょう。右サイドバーでファイルの中身が確認できます。</div>
+<div class="line"><img alt="05_4" src="../_images/05_4.png" /></div>
+</div>
+</li>
+</ol>
+<p><strong>【参考】Google Drive にマウントする方法</strong></p>
+<ol class="arabic">
+<li><div class="line-block">
+<div class="line">左サイドバーに表示されているファイルマークをクリックします。</div>
+<div class="line"><img alt="05_5" src="../_images/05_5.png" /></div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line">Google Drive のマークをクリックします。</div>
+<div class="line"><img alt="05_6" src="../_images/05_6.png" /></div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line">Google Drive へのアクセスを許可します。</div>
+<div class="line"><img alt="05_7" src="../_images/05_7.png" /></div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line">「コードを実行して下さい。」というメッセージが出たらコードを実行して下さい。</div>
+<div class="line">（表示されない場合はそのまま次のステップへ進んで下さい。）</div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line">サイドバー内に Drive が表示されていれば接続ができており、ドライブ内のファイルが確認できます。</div>
+<div class="line"><img alt="05_9" src="../_images/05_9.png" /></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="アップロードしたファイルを読み込む">
+<h3>アップロードしたファイルを読み込む<a class="headerlink" href="#アップロードしたファイルを読み込む" title="この見出しへのパーマリンク"></a></h3>
+<p>アップロードできたファイルをノートブック上で読み込んでみましょう。</p>
+<p><strong>csv ファイルの読み込み</strong></p>
+<p>ノートブック上で以下のコードを実行すると df という変数名で csv データの読み込みを行うことができます。</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import pandas as pd
+df = pd.read_csv(&#39;matrix_01.csv&#39;)
+</pre></div>
+</div>
+</div>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">pd.read_csv('ファイルパス')</span></code> で読み込むことができます。</div>
+<div class="line">ファイルパスの取得方法は本講義資料 Tips の「ファイルパスを取得する方法」を参考にして下さい。</div>
+<div class="line">Excel ファイルを読み込みたい場合は <code class="docutils literal notranslate"><span class="pre">pd.read_excel('ファイルパス')</span></code> を使用します。読み込みを行う際の詳細な設定については以下の参考資料に記入しています。</div>
+<div class="line">【参考：<a class="reference external" href="https://blog.kikagaku.co.jp/python-excel">Python でExcel を読み込む方法</a>】</div>
+</div>
+<div class="line-block">
+<div class="line">では、読み込んだデータを表示させてみましょう。</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">df.head()</span></code> で先頭 5 行を表示させることができます。</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>df.head()
+</pre></div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">データがノートブック上で読み込めていることを確認できました。</div>
+<div class="line">読み込んだデータは距離行列のデータとなっています。詳しい見方はルート最適化を行う際に解説しますが、各地点ごとの距離を表しているデータです。</div>
+</div>
+</section>
+<section id="データを書き出してダウンロードする方法">
+<h3>データを書き出してダウンロードする方法<a class="headerlink" href="#データを書き出してダウンロードする方法" title="この見出しへのパーマリンク"></a></h3>
+<p>ノートブックで扱ったデータを csv ファイルとして書き出して、サイドバーからダウンロードすることができます。</p>
+<p><strong>データの書き出し</strong></p>
+<div class="line-block">
+<div class="line">まずは、データの書き出しを行います。</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">df.to_csv('ファイル名.csv')</span></code> でデータを csv ファイルとして書き出すことができます。</div>
+<div class="line">Excel ファイルとして書き出したい場合は <code class="docutils literal notranslate"><span class="pre">df.to_excel('ファイル名.excel')</span></code> を実行します。</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>df.to_csv(&#39;test.csv&#39;, index=None)
+</pre></div>
+</div>
+</div>
+<p>test.csv という名前のファイルがサイドバーに表示されていれば書き出すことができています。</p>
+<p><strong>書き出したデータのダウンロード</strong></p>
+<p>書き出したデータをダウンロードする手順を解説します。</p>
+<ol class="arabic">
+<li><div class="line-block">
+<div class="line">サイドバー上のファイル名にカーソルを当てます。</div>
+<div class="line">すると、3 つのドットが縦に並んだアイコンが表示されるので、そちらをクリックしましょう。</div>
+<div class="line"><img alt="06_1" src="../_images/06_1.png" /></div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line">「ダウンロード」をクリックすると、ファイルをダウンロードできます。</div>
+<div class="line"><img alt="06_2" src="../_images/06_2.png" /></div>
+</div>
+</li>
+</ol>
+<p><strong>コードまとめ</strong></p>
+<p>ファイルの読み込みから書き出しのコードです。</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 32%" />
+<col style="width: 68%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>説明</p></th>
+<th class="head"><p>コード</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>csv ファイル読み込み</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">pd.read_csv('ファイルパス')</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Excel ファイル読み込み</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">pd.read_excel('ファイルパス')</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>csv ファイル書き出し</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">変数名.to_csv('ファイル名.csv',</span> <span class="pre">index=None)</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Excel ファイル書き出し</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">変数名.to_excel('ファイル名.xlsx')</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<section id="ノートブックを共同編集する方法">
+<h4>ノートブックを共同編集する方法<a class="headerlink" href="#ノートブックを共同編集する方法" title="この見出しへのパーマリンク"></a></h4>
+<p>作成したノートブックを共有または、共同編集することもできます。</p>
+<ol class="arabic">
+<li><div class="line-block">
+<div class="line">共有をクリックします。</div>
+<div class="line"><img alt="07_1" src="../_images/07_1.png" /></div>
+</div>
+</li>
+<li><p>一般的なアクセスを「リンクを知っている全員」に変更します。</p></li>
+<li><div class="line-block">
+<div class="line">役割を「編集者」に変更します。</div>
+<div class="line">（閲覧者を選択すると閲覧だけの権限で共有することができます。）</div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line">リンクをコピーをクリックしてコピーされたリンクを共有するだけでリンクを知っている人が共同編集することが可能になります。</div>
+<div class="line"><img alt="07_2" src="../_images/07_2.png" /></div>
+</div>
+</li>
+</ol>
+<div class="line-block">
+<div class="line">本講義では使用しませんが、以下画像の赤枠内に相手を追加することで指定した相手とだけ共同編集を可能にすることもできます。</div>
+<div class="line"><img alt="07_3" src="../_images/07_3.png" /></div>
+</div>
+</section>
+<section id="プチ演習">
+<h4>プチ演習<a class="headerlink" href="#プチ演習" title="この見出しへのパーマリンク"></a></h4>
+<p>先程使用した <code class="docutils literal notranslate"><span class="pre">matrix_01.csv</span></code> ファイルを手順の内容を行い提出をして下さい。</p>
+<div class="line-block">
+<div class="line"><strong>手順</strong></div>
+<div class="line">1. <code class="docutils literal notranslate"><span class="pre">matrix_01.csv</span></code> ファイルを <code class="docutils literal notranslate"><span class="pre">df</span></code> として読み込む</div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>データを各地点の距離から時間に変更し <code class="docutils literal notranslate"><span class="pre">df_time</span></code> という変数名で定義する</p></li>
+</ol>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># 時速 40 km で各地点間を移動した場合の時間へ変更
+df_time = df / 40
+</pre></div>
+</div>
+<ol class="arabic" start="3">
+<li><p><code class="docutils literal notranslate"><span class="pre">df_time</span></code> に格納したデータを <code class="docutils literal notranslate"><span class="pre">matrix_氏名.csv</span></code> として書き出す</p></li>
+<li><div class="line-block">
+<div class="line">以下の内容を指定した Teams の指定されたスレッド内に提出する</div>
+<div class="line">　・書き出された <code class="docutils literal notranslate"><span class="pre">matrix_氏名.csv</span></code> ファイル</div>
+<div class="line">　・コーディングを行ったノートブックの URL（編集権限を「リンクを知っている全員」に変更して下さい）</div>
+</div>
+</li>
+</ol>
+</section>
+<section id="GPU-を使用する">
+<h4>GPU を使用する<a class="headerlink" href="#GPU-を使用する" title="この見出しへのパーマリンク"></a></h4>
+<p>Colab では GPU を無料で使用することができます。初期設定では GPU を使用しない設定となっているため、GPU を使用する場合は設定を変更する必要があります。 GPU を使用する場合は、以下の手順で設定の変更を行って下さい。</p>
+<ol class="arabic">
+<li><div class="line-block">
+<div class="line">画面上部のタブの中の 「Runtime」 (または「ランタイム」) をクリックし、「Change runtime type」 (または「ランタイムのタイプを変更」)を選択します。</div>
+<div class="line"><img alt="15_5" src="../_images/15_5.png" /></div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line">下記の画像の様に 「Hardware accelerator」 (または「ハードウェアアクセラレータ」)を GPU に変更します。</div>
+<div class="line"><img alt="15_6" src="../_images/15_6.png" /></div>
+</div>
+</li>
+</ol>
+<p>これで Colab 上で GPU を使用できるようになりました。</p>
+</section>
+</section>
+</section>
+<section id="Tips">
+<h2>Tips<a class="headerlink" href="#Tips" title="この見出しへのパーマリンク"></a></h2>
+<div class="line-block">
+<div class="line">テキストセルとコードセルのどちらもメモを残すことができます。</div>
+<div class="line">コードセルのメモの残し方と、テキストセルの記入方法を紹介します。</div>
+</div>
+<section id="id12">
+<h3>コードセル<a class="headerlink" href="#id12" title="この見出しへのパーマリンク"></a></h3>
+<p>コメントアウトとは、コード中で実行時に無視したい行やコメントを選択した状態で行う操作です。 Python では、<code class="docutils literal notranslate"><span class="pre">#</span></code> の後に続く文字列は全てコメントとして無視され、実行時に評価されることはありません。</p>
+<p>コードに対してメモを残したい時など、コードセル内にコメントを残したい場合に使用します。</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># コメント
+</pre></div>
+</div>
+</div>
+</section>
+<section id="id13">
+<h3>テキストセル<a class="headerlink" href="#id13" title="この見出しへのパーマリンク"></a></h3>
+<div class="line-block">
+<div class="line">テキストセル内にもコメントを残すことができます。</div>
+<div class="line">コードセルとテキストセルの内容でもお伝えしましたが、テキストセルは Markdown 形式で記述された文章を扱います。マークダウンの詳しい書き方は<a class="reference external" href="https://www.markdownguide.org/cheat-sheet/">マークダウンガイド</a>をご確認ください。</div>
+<div class="line">ここでは、 ノートブックが読みやすくなる見出しと箇条書きを紹介します。</div>
+</div>
+<img alt="09_1" src="../_images/09_1.png" />
+<p>実行すると以下のように見出しを追加したらい箇条書きを表示できます。</p>
+<img alt="09_2" src="../_images/09_2.gif" />
+<section id="Colab-の便利なショートカット">
+<h4>Colab の便利なショートカット<a class="headerlink" href="#Colab-の便利なショートカット" title="この見出しへのパーマリンク"></a></h4>
+<p>最後に作業効率を向上するために<strong>ショートカットコマンド</strong>を紹介します。Colab を使用中に、セルのタイプの変更やセルの複製・追加などの操作をする場合は、メニューから該当する項目を選ぶ方法以外に、キーボードショートカットを利用する方法もあります。</p>
+<p>下記によく使うショートカットキーをまとめておきます。</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 61%" />
+<col style="width: 39%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>説明</p></th>
+<th class="head"><p>コマンド</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>セルの実行</p></td>
+<td><p>Shift + Enter</p></td>
+</tr>
+<tr class="row-odd"><td><p>コメントアウト</p></td>
+<td><p>Ctrl + /</p></td>
+</tr>
+<tr class="row-even"><td><p>コードの補完機能</p></td>
+<td><p>Ctrl + Space</p></td>
+</tr>
+<tr class="row-odd"><td><p>Markdownモードへ変更</p></td>
+<td><p>Ctrl + M → M</p></td>
+</tr>
+<tr class="row-even"><td><p>Codeモードへ変更</p></td>
+<td><p>Ctrl + M → Y</p></td>
+</tr>
+<tr class="row-odd"><td><p>セルを上に追加</p></td>
+<td><p>Ctrl + M → A</p></td>
+</tr>
+<tr class="row-even"><td><p>セルを下に追加</p></td>
+<td><p>Ctrl + M → B</p></td>
+</tr>
+<tr class="row-odd"><td><p>セルのコピー</p></td>
+<td><p>Ctrl + M → C</p></td>
+</tr>
+<tr class="row-even"><td><p>セルの貼り付け</p></td>
+<td><p>Ctrl + M → V</p></td>
+</tr>
+<tr class="row-odd"><td><p>セルの消去</p></td>
+<td><p>Ctrl + M → D</p></td>
+</tr>
+</tbody>
+</table>
+<p>Ctrl + M → となっているコマンドは<strong>二段階</strong>になっており、まず <code class="docutils literal notranslate"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">M</span></code> を押してから、それぞれの機能によって異なるコマンドを入力する形になっています。</p>
+<div class="line-block">
+<div class="line">紹介した他にも様々なショートカットキーがあります。ショートカットキーを使うことで作業効率も上がりますので興味がある方は参考の記事をご覧ください。</div>
+<div class="line">【参考：<a class="reference external" href="https://blog.kikagaku.co.jp/google-colaboratory-shortcut">作業が捗るショートカットキーを厳選して紹介！</a>】</div>
+</div>
+</section>
+<section id="ファイルパスを取得する方法">
+<h4>ファイルパスを取得する方法<a class="headerlink" href="#ファイルパスを取得する方法" title="この見出しへのパーマリンク"></a></h4>
+<p>ファイルパスの取得方法を紹介します。直接打ち込むことも可能ですが、タイプミスが起きやすいためこの後紹介する取得方法を推奨します。</p>
+<ol class="arabic">
+<li><div class="line-block">
+<div class="line">サイドバーを開きます。</div>
+<div class="line"><img alt="05_5" src="../_images/05_5.png" /></div>
+</div>
+</li>
+<li><p>パスを取得したいファイルにカーソルをあわせ「︙」をクリックして下さい。</p></li>
+<li><div class="line-block">
+<div class="line">「パスをコピー」をクリックするとファイルのパスを取得することができます。</div>
+<div class="line"><img alt="06_10" src="../_images/06_10.png" /></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="00_title.html" class="btn btn-neutral float-left" title="– Python 速習とテーブルデータの操作 –" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="01_01_00_data.html" class="btn btn-neutral float-right" title="データの理解" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, kikagaku.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

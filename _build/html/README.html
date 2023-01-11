@@ -41,7 +41,30 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="src/jupyter.html">初めてのsphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/00_title.html">– Python 速習とテーブルデータの操作 –</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/01_00_colab.html">Google Colaboratory 実習</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/01_01_00_data.html">データの理解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/01_01_00_python_basic.html">Python 速習とテーブルデータの基本操作</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/01_01_01_question.html">演習問題</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/01_04_exercise_classification.html">問題設定：Bank Marketing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/01_05_bankmarketing.html">実装例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/02_00title.html">– データの前処理と機械学習モデルの構築 –</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/02_01_create_feature.html">モデル構築のための特徴量作成</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/02_02_K-Fold.html">モデルの精度を保証する実装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/02_03_XAI.html">説明可能な AI (XAI)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/03_00title.html">– 時系列解析 –</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/03_01_timeseries_basic.html">時系列データの取り扱い方</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/03_02_timeseries_analysis.html">自己回帰型モデル</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/04_00title.html">– 異常検知 –</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/04_01.html">異常検知とは</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/04_02_outlier.html">外れ値検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/04_03_other_outlier.html">【補足】 外れ値検知 - その他の手法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/04_04_ml_base.html">機械学習を用いた異常検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/04_05_other_ml_base.html">【補足】機械学習を用いた異常検知 - その他の手法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/04_13_nearest_neighbers.html">変化点検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/04_17_generation.html">【補足】 生成モデルによる異常部位検知</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/04_18_auto_encoder.html">【補足】 異常部位検知 - AutoEncoder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/99_11ability-test2.html">【補足】 実力テスト - 機械学習セクション</a></li>
 </ul>
 
         </div>
@@ -92,52 +115,8 @@
     text-align: unset;
 }
 </style>
-<p># Sphinx Templates</p>
-<p>## テンプレートの使い方
-1. New Repository 作成時に Repository template で sphinx_template を選択
-2. clone
-3. src フォルダに必要な資料を ipynb で作成し、追加
-4. make html で ipynb -&gt; html に変換
-5. git hub に push
-※ git hub 側に Webhook の設定がなされているかを確認</p>
-<p>講義資料書き方ガイドライン
-講義資料の書き方については以下を参照してください。
-<a class="reference external" href="https://www.notion.so/9485605db012432582555f3688899801">https://www.notion.so/9485605db012432582555f3688899801</a></p>
-<p>## 種類</p>
-<ul class="simple">
-<li><p>markdown</p></li>
-<li><p>jupyter</p></li>
-<li><p>jupyter + markdown</p></li>
-</ul>
-<p>## インストールガイド</p>
-<p>Pythonをインストールしていることが前提となります。
-Pythonのインストール方法を下記で説明しています。</p>
-<ul class="simple">
-<li><p>[WindowsでPythonを使って『機械学習』を学ぶための環境構築](<a class="reference external" href="https://qiita.com/yoshizaki_kkgk/items/1057ed4dcc36ed9be7f5">https://qiita.com/yoshizaki_kkgk/items/1057ed4dcc36ed9be7f5</a>)</p></li>
-<li><p>[MacでPythonを使って『機械学習』を学ぶための環境構築](<a class="reference external" href="https://qiita.com/yoshizaki_kkgk/items/4663148a2b3ca078ddbc">https://qiita.com/yoshizaki_kkgk/items/4663148a2b3ca078ddbc</a>)</p></li>
-</ul>
-<p>### Windowsの方（Anacondaでインストールを前提）</p>
-<p><code class="docutils literal notranslate"><span class="pre">`bash</span>
-<span class="pre">python</span> <span class="pre">-m</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">sphinx</span>
-<span class="pre">python</span> <span class="pre">-m</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">nbsphinx</span>
-<span class="pre">python</span> <span class="pre">-m</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">sphinx_rtd_theme</span>
-<span class="pre">`</span></code></p>
-<p>### Macの方（Home Brewでインストールを前提）</p>
-<p><code class="docutils literal notranslate"><span class="pre">`bash</span>
-<span class="pre">pip3</span> <span class="pre">instal</span> <span class="pre">sphinx</span>
-<span class="pre">pip3</span> <span class="pre">install</span> <span class="pre">nbsphinx</span>
-<span class="pre">pip3</span> <span class="pre">install</span> <span class="pre">sphinx_rtd_theme</span>
-<span class="pre">`</span></code></p>
-<p>## ビルド手順</p>
-<p>HTMLファイルをビルドする手順は以下の通りです。</p>
-<p>### Windowsの方</p>
-<p><code class="docutils literal notranslate"><span class="pre">`bash</span>
-<span class="pre">./make.bat</span> <span class="pre">html</span>
-<span class="pre">`</span></code></p>
-<p>### Macの方</p>
-<p><code class="docutils literal notranslate"><span class="pre">`bash</span>
-<span class="pre">make</span> <span class="pre">html</span>
-<span class="pre">`</span></code></p>
+<p># 因幡電機産業応用講座コース（2023 年 1 月実施）</p>
+<p>2023 年 2 月開始の PBL 研修に向けて、自社の課題解決に必要な知識やスキルを習得するための研修（応用講座）</p>
 
 
            </div>

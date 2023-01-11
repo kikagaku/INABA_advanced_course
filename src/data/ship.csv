@@ -1,0 +1,12 @@
+ship_name,speed_knot,start_date,available,start_port_name
+A_ship,12.3,10,1,K_port
+B_ship,12.53,0,1,M_port
+C_ship,12.0,10,1,O_port
+D_ship,12.21,10,1,L_port
+E_ship,12.45,10,1,L_port
+F_ship,12.1,10,1,K_port
+G_ship,9.35,10,1,K_port
+H_ship,12.0,10,1,R_port
+I_ship,12.58,10,1,R_port
+J_ship,10.05,10,1,R_port
+K_ship,9.0,10,1,K_port

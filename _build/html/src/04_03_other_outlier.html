@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="ja" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>【補足】 外れ値検知 - その他の手法 &mdash; 応用講座コース  ドキュメント</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="機械学習を用いた異常検知入門" href="04_04_ml_base.html" />
+    <link rel="prev" title="外れ値検知入門" href="04_02_outlier.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 応用講座コース
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="00_title.html">– Python 速習とテーブルデータの操作 –</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_00_colab.html">Google Colaboratory 実習</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_01_00_data.html">データの理解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_01_00_python_basic.html">Python 速習とテーブルデータの基本操作</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_01_01_question.html">演習問題</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_04_exercise_classification.html">問題設定：Bank Marketing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_05_bankmarketing.html">実装例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_00title.html">– データの前処理と機械学習モデルの構築 –</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_01_create_feature.html">モデル構築のための特徴量作成</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_02_K-Fold.html">モデルの精度を保証する実装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_03_XAI.html">説明可能な AI (XAI)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_00title.html">– 時系列解析 –</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_01_timeseries_basic.html">時系列データの取り扱い方</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_02_timeseries_analysis.html">自己回帰型モデル</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_00title.html">– 異常検知 –</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_01.html">異常検知とは</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_02_outlier.html">外れ値検知入門</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">【補足】 外れ値検知 - その他の手法</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#統計値を用いた異常検知-2---IQR-method-/-Winsorizing-method">統計値を用いた異常検知 2 - IQR method / Winsorizing method</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#IQR-method">IQR method</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Winsorizing-method">Winsorizing method</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#Hypothesis-Testing-(Smirnov‐Grubbs-検定)">Hypothesis Testing (Smirnov‐Grubbs 検定)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="04_04_ml_base.html">機械学習を用いた異常検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_05_other_ml_base.html">【補足】機械学習を用いた異常検知 - その他の手法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_13_nearest_neighbers.html">変化点検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_17_generation.html">【補足】 生成モデルによる異常部位検知</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_18_auto_encoder.html">【補足】 異常部位検知 - AutoEncoder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="99_11ability-test2.html">【補足】 実力テスト - 機械学習セクション</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">応用講座コース</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>【補足】 外れ値検知 - その他の手法</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/src/04_03_other_outlier.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt .copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+.jp-RenderedHTMLCommon table,
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+.jp-RenderedHTMLCommon thead,
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+.jp-RenderedHTMLCommon tr,
+.jp-RenderedHTMLCommon th,
+.jp-RenderedHTMLCommon td,
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+.jp-RenderedHTMLCommon th,
+div.rendered_html th {
+  font-weight: bold;
+}
+.jp-RenderedHTMLCommon tbody tr:nth-child(odd),
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+.jp-RenderedHTMLCommon tbody tr:hover,
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="【補足】-外れ値検知---その他の手法">
+<h1>【補足】 外れ値検知 - その他の手法<a class="headerlink" href="#【補足】-外れ値検知---その他の手法" title="この見出しへのパーマリンク"></a></h1>
+<section id="統計値を用いた異常検知-2---IQR-method-/-Winsorizing-method">
+<h2>統計値を用いた異常検知 2 - IQR method / Winsorizing method<a class="headerlink" href="#統計値を用いた異常検知-2---IQR-method-/-Winsorizing-method" title="この見出しへのパーマリンク"></a></h2>
+<p>IQR method / Winsorizing method について触れます。これらも統計量を利用した異常検知の一つで、具体的には四分位数を利用したものです。Zscore method でも学習したような前提条件などがありますが、データの分布に従った理解のしやすい手法であるため押さえておきましょう。</p>
+<section id="IQR-method">
+<h3>IQR method<a class="headerlink" href="#IQR-method" title="この見出しへのパーマリンク"></a></h3>
+<p>IQR (Interquartile range) とは四分位範囲で、75 パーセンタイル（第3四分位数、Q3）から 25 パーセンタイル（第1四分位数、Q1）を引いた値で、データのばらつきを示すものです。通常 <strong>-1.5 × IQR</strong> から <strong>1.5 × IQR</strong> の範囲を超えた値は外れ値として扱われます。</p>
+<img alt="03" src="../_images/03.png" />
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+</pre></div>
+</div>
+</div>
+<p>今回もでもデータを用いて実装します。</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># データの準備
+np.random.seed(0)
+x = np.random.normal(0, 1, 1000)
+anomaly = np.array([-5, 5])
+data = np.concatenate([x, anomaly], axis=0)
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sns.displot(data)
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;seaborn.axisgrid.FacetGrid at 0x144b3dbb0&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/src_04_03_other_outlier_7_1.png" src="../_images/src_04_03_other_outlier_7_1.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 関数
+def iqr_outlier(x):
+    out = []
+    out_idx = []
+    q1 = np.quantile(x, q=.25)
+    q3 = np.quantile(x, q=.75)
+    iqr = q3-q1
+    Lower_tail = q1 - 1.5 * iqr
+    Upper_tail = q3 + 1.5 * iqr
+    for n, i in enumerate(x):
+        if i &gt; Upper_tail or i &lt; Lower_tail:
+            out.append(i)
+            out_idx.append(n)
+    return out, out_idx
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>out, out_idx = iqr_outlier(data)
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>out
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[-2.77259275642665,
+ -2.7396771671895563,
+ 2.6962240525635797,
+ -3.0461430547999266,
+ -2.8345545052747023,
+ 2.594424587768152,
+ 2.759355114021582,
+ -5.0,
+ 5.0]
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.scatter(range(len(data)), data)
+plt.scatter(out_idx, data[out_idx]);
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/src_04_03_other_outlier_11_0.png" src="../_images/src_04_03_other_outlier_11_0.png" />
+</div>
+</div>
+<p>上図のオレンジ色の点が以上と判断された点です。おおよそのデータが青色の固まりのようになっているにも関わらず検出されたものはそれらから外れていることがわかります。</p>
+</section>
+<section id="Winsorizing-method">
+<h3>Winsorizing method<a class="headerlink" href="#Winsorizing-method" title="この見出しへのパーマリンク"></a></h3>
+<p>この方法は IQR 法と非常に似た手法です。データの分布のうち、四分位範囲で、99 パーセンタイルを超える、または、 1 パーセンタイル以下の値を外れ値とみなします。</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 関数
+def winsorization_outliers(x):
+    out = []
+    out_idx = []
+    q1 = np.percentile(x, 1)
+    q3 = np.percentile(x, 99)
+    for n, i in enumerate(x):
+        if i &gt; q3 or i &lt; q1:
+            out.append(i)
+            out_idx.append(n)
+    return out, out_idx, q1, q3
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>out, out_idx, q1, q3 = winsorization_outliers(data)
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.scatter(range(len(data)), data)
+plt.scatter(out_idx, data[out_idx])
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;matplotlib.collections.PathCollection at 0x144dd2f40&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/src_04_03_other_outlier_16_1.png" src="../_images/src_04_03_other_outlier_16_1.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="Hypothesis-Testing-(Smirnov‐Grubbs-検定)">
+<h2>Hypothesis Testing (Smirnov‐Grubbs 検定)<a class="headerlink" href="#Hypothesis-Testing-(Smirnov‐Grubbs-検定)" title="この見出しへのパーマリンク"></a></h2>
+<p>次は同じ統計量を利用するものですが、その中でも仮説検定を利用する方法について触れます。</p>
+<p>仮説検定を扱うため帰無仮説 (<span class="math notranslate nohighlight">\(H_0\)</span>)、対立仮説 (<span class="math notranslate nohighlight">\(H_1\)</span>) を以下のように定義します。</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(H_0\)</span> : データセットに外れ値は存在しない</p></li>
+<li><p><span class="math notranslate nohighlight">\(H_1\)</span> : データセットに外れ値が 1 つ存在する</p></li>
+</ul>
+<p>計算された値が有意水準より大きければ、帰無仮説を棄却して、値の 1 つが異常値であると結論づけることができます。</p>
+<p>標本数を <span class="math notranslate nohighlight">\(n\)</span>、所要の有意水準を <span class="math notranslate nohighlight">\(\alpha\)</span>、自由度 <span class="math notranslate nohighlight">\(n-2\)</span> の <span class="math notranslate nohighlight">\(t\)</span> 分布の <span class="math notranslate nohighlight">\(\frac{\alpha}{n}\times100\)</span> パーセンタイルを <span class="math notranslate nohighlight">\(t\)</span> として、</p>
+<div class="math notranslate nohighlight">
+\[\tau = \frac{(n-1)t}{\sqrt{n(n-2)+nt^2}}\]</div>
+<div class="line-block">
+<div class="line">を有意点として、再帰的に使用します。</div>
+<div class="line">つまり、最も外れた 1 標本のみを検定し、それが外れ値と判断されたら、その外れ値を除外した <span class="math notranslate nohighlight">\(n-1\)</span> 個の標本を使って 2 番目の外れた標本を検定し、外れ値が検出されなくなるまで繰り返します。</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import numpy as np
+import scipy.stats as stats
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># サンプルデータ
+
+# 外れ値無し
+A = np.array([10, 11, 12, 17, 19, 21])
+# 外れ値有り
+B = np.array([10, 11, 12, 17, 19, 21, 43])
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 関数
+def grubbs_test_outlier(data, alpha=0.05):
+    x, outliers = list(data), []
+    while True:
+        global i_far
+        n = len(x)
+        t = stats.t.isf(q=(alpha/n)/2, df=n-2)
+        tau = (n-1) * t / np.sqrt(n*(n-2)+n*t*t)
+        i_min, i_max = np.argmin(x), np.argmax(x)
+        mean, std = np.mean(x), np.std(x, ddof=1)
+        if np.abs(x[i_max]-mean) &gt; np.abs(x[i_min]-mean):
+            i_far = i_max
+        else:
+            i_min
+        tau_far = np.abs((x[i_far]-mean)/std)
+        if tau_far &lt; tau:
+            break
+        outliers.append(x.pop(i_far))
+    return x, outliers
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># A:外れ値無しの場合
+_, out = grubbs_test_outlier(A)
+print(&#39;外れ値&#39;, out)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+外れ値 []
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># B:外れ値有りの場合
+_, out = grubbs_test_outlier(B)
+print(&#39;外れ値&#39;, out)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+外れ値 [43]
+</pre></div></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="04_02_outlier.html" class="btn btn-neutral float-left" title="外れ値検知入門" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="04_04_ml_base.html" class="btn btn-neutral float-right" title="機械学習を用いた異常検知入門" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, kikagaku.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

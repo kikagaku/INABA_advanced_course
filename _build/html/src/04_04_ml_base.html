@@ -1,0 +1,1409 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="ja" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>機械学習を用いた異常検知入門 &mdash; 応用講座コース  ドキュメント</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="【補足】機械学習を用いた異常検知 - その他の手法" href="04_05_other_ml_base.html" />
+    <link rel="prev" title="【補足】 外れ値検知 - その他の手法" href="04_03_other_outlier.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 応用講座コース
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="00_title.html">– Python 速習とテーブルデータの操作 –</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_00_colab.html">Google Colaboratory 実習</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_01_00_data.html">データの理解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_01_00_python_basic.html">Python 速習とテーブルデータの基本操作</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_01_01_question.html">演習問題</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_04_exercise_classification.html">問題設定：Bank Marketing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_05_bankmarketing.html">実装例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_00title.html">– データの前処理と機械学習モデルの構築 –</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_01_create_feature.html">モデル構築のための特徴量作成</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_02_K-Fold.html">モデルの精度を保証する実装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_03_XAI.html">説明可能な AI (XAI)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_00title.html">– 時系列解析 –</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_01_timeseries_basic.html">時系列データの取り扱い方</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_02_timeseries_analysis.html">自己回帰型モデル</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_00title.html">– 異常検知 –</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_01.html">異常検知とは</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_02_outlier.html">外れ値検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_03_other_outlier.html">【補足】 外れ値検知 - その他の手法</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">機械学習を用いた異常検知入門</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#k-Nearest-Neighbors">k-Nearest Neighbors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#OneClassSVM">OneClassSVM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Isolation-Forest">Isolation Forest</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="04_05_other_ml_base.html">【補足】機械学習を用いた異常検知 - その他の手法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_13_nearest_neighbers.html">変化点検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_17_generation.html">【補足】 生成モデルによる異常部位検知</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_18_auto_encoder.html">【補足】 異常部位検知 - AutoEncoder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="99_11ability-test2.html">【補足】 実力テスト - 機械学習セクション</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">応用講座コース</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>機械学習を用いた異常検知入門</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/src/04_04_ml_base.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt .copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+.jp-RenderedHTMLCommon table,
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+.jp-RenderedHTMLCommon thead,
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+.jp-RenderedHTMLCommon tr,
+.jp-RenderedHTMLCommon th,
+.jp-RenderedHTMLCommon td,
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+.jp-RenderedHTMLCommon th,
+div.rendered_html th {
+  font-weight: bold;
+}
+.jp-RenderedHTMLCommon tbody tr:nth-child(odd),
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+.jp-RenderedHTMLCommon tbody tr:hover,
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="機械学習を用いた異常検知入門">
+<h1>機械学習を用いた異常検知入門<a class="headerlink" href="#機械学習を用いた異常検知入門" title="この見出しへのパーマリンク"></a></h1>
+<div class="line-block">
+<div class="line">本章では、機械学習を用いて異常検知を行う方法について触れます。</div>
+<div class="line">前提として今回触れているのは時系列データではないテーブルデータに適用するパターンを想定しています。</div>
+</div>
+<p>ここでは以下の 3 つをご紹介します。</p>
+<ol class="arabic simple">
+<li><p>k-Nearest Neighbors</p></li>
+<li><p>OneClassSVM</p></li>
+<li><p>Isolation Forest</p></li>
+</ol>
+<section id="k-Nearest-Neighbors">
+<h2>k-Nearest Neighbors<a class="headerlink" href="#k-Nearest-Neighbors" title="この見出しへのパーマリンク"></a></h2>
+<p>こちらは、異常検知の手法として K- 近傍法を用いる方法です。</p>
+<p>k- 近傍法には、教師あり学習と教師なし学習があります。</p>
+<ul class="simple">
+<li><p>NearestNeighbors</p></li>
+<li><p>KNeighborsClassifier</p></li>
+<li><p>KNeighborsRegressor</p></li>
+</ul>
+<p>異常検知に使用する場合には、教師なし学習の <code class="docutils literal notranslate"><span class="pre">NearestNeighbors</span></code> を使用します。新しく入ってきたデータ(判別したいデータ)との距離が近いデータ k 個の中で異常データの割合から異常度を計算し、閾値を超えたら異常と判定するという手法です。</p>
+<img alt="06" src="../_images/06.png" />
+<div class="line-block">
+<div class="line"><strong>メリット</strong></div>
+<div class="line">1. データの分布に関する前提条件がいらない 2. 正常データが複数箇所でまとまっていても使用できる 3. 異常度の計算が簡単のため、実装が容易</div>
+</div>
+<div class="line-block">
+<div class="line"><strong>デメリット</strong></div>
+<div class="line">1. データの前提条件がないため、閾値が数式で求まらない 2. ハイパーパラメータ k の設定が難しい 3. 怠惰学習（※1）のため、新しいデータを分類するための計算量が毎回多い</div>
+</div>
+<p>サンプル数が多ければ多いほど推論フェーズでの計算時間が長くなるモデルです。そのため、目安としてサンプルデータ数が100,000以上、次元数10以上のデータの場合には計算量が増えてしまうため適さ無いとされています。</p>
+<p>＊怠惰学習：単純に教師データを丸暗記するタイプの学習アルゴリズム。計算しないでデータを取り込むのみ。</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+sns.set()
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># データの準備
+np.random.seed(0)
+x1 = np.random.normal(0, 1, 1000)
+x2 = x1 + np.random.normal(0, 0.3, 1000)
+normal = np.stack([x1, x2], axis=1)
+anomaly = np.array([[-4, -5], [-1.5, 2], [2.5, -2.5]])
+data = np.concatenate([normal, anomaly], axis=0)
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.scatter(data[:, 0], data[:, 1])
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;matplotlib.collections.PathCollection at 0x147e0a520&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/src_04_04_ml_base_7_1.png" src="../_images/src_04_04_ml_base_7_1.png" />
+</div>
+</div>
+<p>それでは実装しましょう。</p>
+<p><strong>【実装の流れ】</strong></p>
+<ul class="simple">
+<li><p>モデルを定義</p></li>
+<li><p>各データの異常度を計算</p></li>
+<li><p>閾値を設定</p></li>
+<li><p>閾値と異常度で異常判定</p></li>
+</ul>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from sklearn.neighbors import NearestNeighbors
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>nbrs = NearestNeighbors(n_neighbors=2)
+nbrs.fit(data)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+NearestNeighbors(n_neighbors=2)
+</pre></div></div>
+</div>
+<p>検知を行うためには、実際のそれぞれのデータの距離の情報が必要です。<code class="docutils literal notranslate"><span class="pre">kneighbors</span></code> メソッドで算出できるので算出します。</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 距離と近傍点
+distances, indices = nbrs.kneighbors(data)
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 距離
+distances
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([[0.        , 0.06539206],
+       [0.        , 0.01313276],
+       [0.        , 0.03627436],
+       ...,
+       [0.        , 2.32587152],
+       [0.        , 1.82371576],
+       [0.        , 2.90030391]])
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 近傍点
+indices
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([[   0,  742],
+       [   1,  531],
+       [   2,  145],
+       ...,
+       [1000,  589],
+       [1001,   54],
+       [1002,  446]])
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.scatter(range(len(distances)), distances[:, 1])
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;matplotlib.collections.PathCollection at 0x147f42a90&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/src_04_04_ml_base_15_1.png" src="../_images/src_04_04_ml_base_15_1.png" />
+</div>
+</div>
+<div class="line-block">
+<div class="line">異常なものだけが、検出できていることがわかります。</div>
+<div class="line">可視化して見やすくするためにデータフレームに格納した後、anomaly_score が一定を超えているデータをあぶり出し可視化します。</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>kn_data = pd.DataFrame(data, columns=[&#39;x1&#39;, &#39;x2&#39;])
+kn_data[&#39;anomaly_score&#39;] = distances[:, 1]
+kn_data
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>x1</th>
+      <th>x2</th>
+      <th>anomaly_score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1.764052</td>
+      <td>1.930841</td>
+      <td>0.065392</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.400157</td>
+      <td>0.667899</td>
+      <td>0.013133</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.978738</td>
+      <td>0.852044</td>
+      <td>0.036274</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2.240893</td>
+      <td>2.272307</td>
+      <td>0.028188</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1.867558</td>
+      <td>1.935974</td>
+      <td>0.060462</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>998</th>
+      <td>-1.147611</td>
+      <td>-1.490181</td>
+      <td>0.034806</td>
+    </tr>
+    <tr>
+      <th>999</th>
+      <td>-0.358114</td>
+      <td>-0.751405</td>
+      <td>0.019717</td>
+    </tr>
+    <tr>
+      <th>1000</th>
+      <td>-4.000000</td>
+      <td>-5.000000</td>
+      <td>2.325872</td>
+    </tr>
+    <tr>
+      <th>1001</th>
+      <td>-1.500000</td>
+      <td>2.000000</td>
+      <td>1.823716</td>
+    </tr>
+    <tr>
+      <th>1002</th>
+      <td>2.500000</td>
+      <td>-2.500000</td>
+      <td>2.900304</td>
+    </tr>
+  </tbody>
+</table>
+<p>1003 rows × 3 columns</p>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 正常データの割合（1 - 異常発生率）
+1 - (3 / 1003)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0.9970089730807578
+</pre></div></div>
+</div>
+<p>正常データの割合は約 99.8% であることがわかりました。つまり、ですので、データの約 99.8% が踏まれる分位点を取得すればそれをこえるものは異常であることがわかります。</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 閾値設定(0.2%分位点)
+threshold = np.percentile(distances[:, 1], 99.8)
+threshold
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+1.8177330404611793
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>kn_data[&#39;pred&#39;] = kn_data[&#39;anomaly_score&#39;].map(lambda x: 1 if x&gt;threshold else 0)
+kn_data
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>x1</th>
+      <th>x2</th>
+      <th>anomaly_score</th>
+      <th>pred</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1.764052</td>
+      <td>1.930841</td>
+      <td>0.065392</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.400157</td>
+      <td>0.667899</td>
+      <td>0.013133</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.978738</td>
+      <td>0.852044</td>
+      <td>0.036274</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2.240893</td>
+      <td>2.272307</td>
+      <td>0.028188</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1.867558</td>
+      <td>1.935974</td>
+      <td>0.060462</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>998</th>
+      <td>-1.147611</td>
+      <td>-1.490181</td>
+      <td>0.034806</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>999</th>
+      <td>-0.358114</td>
+      <td>-0.751405</td>
+      <td>0.019717</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1000</th>
+      <td>-4.000000</td>
+      <td>-5.000000</td>
+      <td>2.325872</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1001</th>
+      <td>-1.500000</td>
+      <td>2.000000</td>
+      <td>1.823716</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1002</th>
+      <td>2.500000</td>
+      <td>-2.500000</td>
+      <td>2.900304</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+<p>1003 rows × 4 columns</p>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sns.scatterplot(x=kn_data[&#39;x1&#39;], y=kn_data[&#39;x2&#39;], hue=kn_data[&#39;pred&#39;]);
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/src_04_04_ml_base_22_0.png" src="../_images/src_04_04_ml_base_22_0.png" />
+</div>
+</div>
+</section>
+<section id="OneClassSVM">
+<h2>OneClassSVM<a class="headerlink" href="#OneClassSVM" title="この見出しへのパーマリンク"></a></h2>
+<p>クラス分類問題に用いられるSVMは教師あり学習ですが、OneClassSVMは教師なし学習です。したがって、外れ値検出のための教師データは不要です。</p>
+<p>正常データとして1つのクラスを学習させ、識別境界を決定することで、その境界を基準として外れ値を検出します。異常がほとんど発生せず、異常クラスのデータを集めにくいようなシステムで異常検知を実現したい場合には有効な外れ値検知手法です。</p>
+<p>OneClassSVMでは、全ての学習データをクラスタ1とし、原点のみをクラスタ-1に属するようにカーネルトリックを用いて、高次元空間の特徴空間へデータを写像します。このとき、学習データは原点から遠くに配置されるように写像されるため、元の学習データと類似していないデータは原点の近くに集まるようになります。この性質を用いて正常および異常データの区別をすることができます。</p>
+<p>それでは実装を行います。<code class="docutils literal notranslate"><span class="pre">sklearn.svm</span></code> の <code class="docutils literal notranslate"><span class="pre">OneClassSVM</span></code> モジュールによって実装可能です。モデルを定義し、データの異常度を計算します。ハイパーパラメータ として、</p>
+<ol class="arabic simple">
+<li><p>kernel</p></li>
+<li><p>gamma</p></li>
+<li><p>nu</p></li>
+</ol>
+<p>を設定する必要があります。<code class="docutils literal notranslate"><span class="pre">kernel</span></code> とはどのように空間を歪めるかを意味し、基本は孤立した点とまとまった点を分けるように <code class="docutils literal notranslate"><span class="pre">rbf</span></code> を使用します。<code class="docutils literal notranslate"><span class="pre">gamma</span></code> は <code class="docutils literal notranslate"><span class="pre">rbf</span></code> のパラメータですが、sklearnのモジュールを使う際には <code class="docutils literal notranslate"><span class="pre">auto</span></code> と指定すると最適化されます。<code class="docutils literal notranslate"><span class="pre">nu</span></code> は異常データの割合を示しています。</p>
+<p>なおデータは先程用いたデータを再度利用します。</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 正常データのみを学習させる
+from sklearn.svm import OneClassSVM
+# 異常データの発生率は 1% とする（仮）
+clf = OneClassSVM(kernel=&#39;rbf&#39;, gamma=&#39;auto&#39;, nu=.01)
+clf.fit(normal)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+OneClassSVM(gamma=&#39;auto&#39;, nu=0.01)
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 異常度算出
+anomaly_scores = clf.decision_function(data)
+anomaly_scores
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([ 0.18909216,  0.27661899,  0.25456026, ..., -1.96315875,
+       -1.79306457, -2.04213086])
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.scatter(range(len(anomaly_scores)), anomaly_scores)
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;matplotlib.collections.PathCollection at 0x147e8eb50&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/src_04_04_ml_base_27_1.png" src="../_images/src_04_04_ml_base_27_1.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>oc_data = pd.DataFrame(data, columns=[&#39;x1&#39;, &#39;x2&#39;])
+oc_data[&#39;anomaly_score&#39;] = anomaly_scores
+oc_data
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>x1</th>
+      <th>x2</th>
+      <th>anomaly_score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1.764052</td>
+      <td>1.930841</td>
+      <td>0.189092</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.400157</td>
+      <td>0.667899</td>
+      <td>0.276619</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.978738</td>
+      <td>0.852044</td>
+      <td>0.254560</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2.240893</td>
+      <td>2.272307</td>
+      <td>0.229557</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1.867558</td>
+      <td>1.935974</td>
+      <td>0.208642</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>998</th>
+      <td>-1.147611</td>
+      <td>-1.490181</td>
+      <td>0.211222</td>
+    </tr>
+    <tr>
+      <th>999</th>
+      <td>-0.358114</td>
+      <td>-0.751405</td>
+      <td>0.150618</td>
+    </tr>
+    <tr>
+      <th>1000</th>
+      <td>-4.000000</td>
+      <td>-5.000000</td>
+      <td>-1.963159</td>
+    </tr>
+    <tr>
+      <th>1001</th>
+      <td>-1.500000</td>
+      <td>2.000000</td>
+      <td>-1.793065</td>
+    </tr>
+    <tr>
+      <th>1002</th>
+      <td>2.500000</td>
+      <td>-2.500000</td>
+      <td>-2.042131</td>
+    </tr>
+  </tbody>
+</table>
+<p>1003 rows × 3 columns</p>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 異常発生率
+3 / 1003
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0.0029910269192422734
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 閾値設定(0.2%分位点)
+threshold = np.percentile(anomaly_scores, .2)
+threshold
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 異常判定
+oc_data[&#39;pred&#39;] = oc_data[&#39;anomaly_score&#39;].map(lambda x: 1 if x&lt;threshold else 0)
+oc_data
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>x1</th>
+      <th>x2</th>
+      <th>anomaly_score</th>
+      <th>pred</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1.764052</td>
+      <td>1.930841</td>
+      <td>0.189092</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.400157</td>
+      <td>0.667899</td>
+      <td>0.276619</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.978738</td>
+      <td>0.852044</td>
+      <td>0.254560</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2.240893</td>
+      <td>2.272307</td>
+      <td>0.229557</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1.867558</td>
+      <td>1.935974</td>
+      <td>0.208642</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>998</th>
+      <td>-1.147611</td>
+      <td>-1.490181</td>
+      <td>0.211222</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>999</th>
+      <td>-0.358114</td>
+      <td>-0.751405</td>
+      <td>0.150618</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1000</th>
+      <td>-4.000000</td>
+      <td>-5.000000</td>
+      <td>-1.963159</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1001</th>
+      <td>-1.500000</td>
+      <td>2.000000</td>
+      <td>-1.793065</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1002</th>
+      <td>2.500000</td>
+      <td>-2.500000</td>
+      <td>-2.042131</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+<p>1003 rows × 4 columns</p>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sns.scatterplot(x=oc_data[&#39;x1&#39;], y=oc_data[&#39;x2&#39;], hue=oc_data[&#39;pred&#39;]);
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/src_04_04_ml_base_32_0.png" src="../_images/src_04_04_ml_base_32_0.png" />
+</div>
+</div>
+</section>
+<section id="Isolation-Forest">
+<h2>Isolation Forest<a class="headerlink" href="#Isolation-Forest" title="この見出しへのパーマリンク"></a></h2>
+<p>Isolation Forest はアンサンブルの決定木に属するクラスタリングアルゴリズムです。</p>
+<div class="line-block">
+<div class="line">分類木に基づいており、多変量のデータにも対応できます。</div>
+<div class="line">結果が -1 であれば外れ値であることを意味します。</div>
+</div>
+<img alt="05" src="../_images/05.png" />
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[53]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from sklearn.ensemble import IsolationForest
+# 関数
+def iforest_outliers(x):
+    iforest = IsolationForest()
+    preds = iforest.fit_predict(x)
+    return preds, iforest
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[54]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>preds, model = iforest_outliers(data)
+preds
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[54]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([-1,  1,  1, ..., -1, -1, -1])
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[55]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>np.unique(preds, return_counts=True)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[55]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(array([-1,  1]), array([189, 814]))
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[56]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>is_data = pd.DataFrame(data, columns=[&#39;x1&#39;, &#39;x2&#39;])
+is_data[&#39;pred&#39;] = preds
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[57]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sns.scatterplot(x=is_data[&#39;x1&#39;], y=is_data[&#39;x2&#39;], hue=is_data[&#39;pred&#39;]);
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/src_04_04_ml_base_40_0.png" src="../_images/src_04_04_ml_base_40_0.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[60]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from sklearn.tree import plot_tree
+
+estimator = model.estimators_[0]
+
+# 図のサイズ設定
+plt.figure(figsize=(30, 8))
+# plt.figure(figsize=(30, 8), dpi=100)
+
+# 決定木の可視化
+plot_tree(
+        estimator,
+        max_depth=3,
+        feature_names = is_data.columns[:2],
+        # proportion=True,
+        filled=True,
+        rounded=True,
+        precision=2,
+        fontsize=12,
+    )
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[60]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[Text(1088.1000000000001, 391.392, &#39;x2 &lt;= 1.46\nsquared_error = 0.08\nsamples = 256\nvalue = 0.47&#39;),
+ Text(669.6, 304.416, &#39;x1 &lt;= -0.57\nsquared_error = 0.08\nsamples = 244\nvalue = 0.46&#39;),
+ Text(334.8, 217.44, &#39;x1 &lt;= -1.45\nsquared_error = 0.09\nsamples = 79\nvalue = 0.46&#39;),
+ Text(167.4, 130.464, &#39;x1 &lt;= -3.02\nsquared_error = 0.06\nsamples = 18\nvalue = 0.42&#39;),
+ Text(83.7, 43.488, &#39;\n  (...)  \n&#39;),
+ Text(251.10000000000002, 43.488, &#39;\n  (...)  \n&#39;),
+ Text(502.20000000000005, 130.464, &#39;x2 &lt;= -1.74\nsquared_error = 0.09\nsamples = 61\nvalue = 0.47&#39;),
+ Text(418.5, 43.488, &#39;\n  (...)  \n&#39;),
+ Text(585.9, 43.488, &#39;\n  (...)  \n&#39;),
+ Text(1004.4000000000001, 217.44, &#39;x1 &lt;= -0.2\nsquared_error = 0.08\nsamples = 165\nvalue = 0.46&#39;),
+ Text(837.0, 130.464, &#39;x1 &lt;= -0.48\nsquared_error = 0.1\nsamples = 43\nvalue = 0.48&#39;),
+ Text(753.3000000000001, 43.488, &#39;\n  (...)  \n&#39;),
+ Text(920.7, 43.488, &#39;\n  (...)  \n&#39;),
+ Text(1171.8, 130.464, &#39;x2 &lt;= -0.35\nsquared_error = 0.07\nsamples = 122\nvalue = 0.46&#39;),
+ Text(1088.1000000000001, 43.488, &#39;\n  (...)  \n&#39;),
+ Text(1255.5, 43.488, &#39;\n  (...)  \n&#39;),
+ Text(1506.6000000000001, 304.416, &#39;x2 &lt;= 2.54\nsquared_error = 0.04\nsamples = 12\nvalue = 0.54&#39;),
+ Text(1422.9, 217.44, &#39;x1 &lt;= 1.34\nsquared_error = 0.05\nsamples = 11\nvalue = 0.54&#39;),
+ Text(1339.2, 130.464, &#39;squared_error = 0.0\nsamples = 1\nvalue = 0.81&#39;),
+ Text(1506.6000000000001, 130.464, &#39;x1 &lt;= 2.02\nsquared_error = 0.04\nsamples = 10\nvalue = 0.51&#39;),
+ Text(1422.9, 43.488, &#39;\n  (...)  \n&#39;),
+ Text(1590.3, 43.488, &#39;\n  (...)  \n&#39;),
+ Text(1590.3, 217.44, &#39;squared_error = 0.0\nsamples = 1\nvalue = 0.6&#39;)]
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/src_04_04_ml_base_41_1.png" src="../_images/src_04_04_ml_base_41_1.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="04_03_other_outlier.html" class="btn btn-neutral float-left" title="【補足】 外れ値検知 - その他の手法" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="04_05_other_ml_base.html" class="btn btn-neutral float-right" title="【補足】機械学習を用いた異常検知 - その他の手法" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, kikagaku.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

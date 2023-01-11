@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="ja" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>【補足】 生成モデルによる異常部位検知 &mdash; 応用講座コース  ドキュメント</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="【補足】 異常部位検知 - AutoEncoder" href="04_18_auto_encoder.html" />
+    <link rel="prev" title="変化点検知入門" href="04_13_nearest_neighbers.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 応用講座コース
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="00_title.html">– Python 速習とテーブルデータの操作 –</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_00_colab.html">Google Colaboratory 実習</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_01_00_data.html">データの理解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_01_00_python_basic.html">Python 速習とテーブルデータの基本操作</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_01_01_question.html">演習問題</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_04_exercise_classification.html">問題設定：Bank Marketing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_05_bankmarketing.html">実装例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_00title.html">– データの前処理と機械学習モデルの構築 –</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_01_create_feature.html">モデル構築のための特徴量作成</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_02_K-Fold.html">モデルの精度を保証する実装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_03_XAI.html">説明可能な AI (XAI)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_00title.html">– 時系列解析 –</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_01_timeseries_basic.html">時系列データの取り扱い方</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_02_timeseries_analysis.html">自己回帰型モデル</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_00title.html">– 異常検知 –</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_01.html">異常検知とは</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_02_outlier.html">外れ値検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_03_other_outlier.html">【補足】 外れ値検知 - その他の手法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_04_ml_base.html">機械学習を用いた異常検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_05_other_ml_base.html">【補足】機械学習を用いた異常検知 - その他の手法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_13_nearest_neighbers.html">変化点検知入門</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">【補足】 生成モデルによる異常部位検知</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#異常検知モデルの学習方法">異常検知モデルの学習方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#生成モデル">生成モデル</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="04_18_auto_encoder.html">【補足】 異常部位検知 - AutoEncoder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="99_11ability-test2.html">【補足】 実力テスト - 機械学習セクション</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">応用講座コース</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>【補足】 生成モデルによる異常部位検知</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/src/04_17_generation.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="【補足】-生成モデルによる異常部位検知">
+<h1>【補足】 生成モデルによる異常部位検知<a class="headerlink" href="#【補足】-生成モデルによる異常部位検知" title="この見出しへのパーマリンク"></a></h1>
+<section id="異常検知モデルの学習方法">
+<h2>異常検知モデルの学習方法<a class="headerlink" href="#異常検知モデルの学習方法" title="この見出しへのパーマリンク"></a></h2>
+<p>異常検知モデルの学習方法には、正常データのみ学習する方法と正常データと不良データを学習する方法の2つがあります。それぞれ適用するアルゴリズムが全く異なるものになります。</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 41%" />
+<col style="width: 19%" />
+<col style="width: 41%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>学習データ</strong></p></th>
+<th class="head"><p><strong>モデル</strong></p></th>
+<th class="head"><p><strong>適用アルゴリズム例</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>正常データのみ</p></td>
+<td><p>生成モデル</p></td>
+<td><p>AE, VAE, GAN</p></td>
+</tr>
+<tr class="row-odd"><td><p>正常データと不良データ</p></td>
+<td><p>識別モデル</p></td>
+<td><p>CNN</p></td>
+</tr>
+</tbody>
+</table>
+<p>各状況に応じて、どのモデルを使うのかを決定する必要がありますが、豊富にデータを準備できているなら、VGG16 や ResNet に代表される事前学習済みの識別モデルを使用し、不良データが十分に無いと判断すれば生成モデルを使用します。</p>
+</section>
+<section id="生成モデル">
+<h2>生成モデル<a class="headerlink" href="#生成モデル" title="この見出しへのパーマリンク"></a></h2>
+<p>各種アルゴリズムを学習していく前に、生成モデルとは何なのかを学習しておく必要があります。まず、抑えておきたいのは生成モデルと識別モデルは対のプロセスだということです。</p>
+<img alt="08" src="../_images/08.png" />
+<p>識別モデルは、入力があらかじめ指定されたクラスの中で最も当てはまる確率が高いものを出力にします。</p>
+<p>生成モデルでは、上図のように、入力と出力が同じになるようにニューラルネットワークを学習させるのです。</p>
+<p>まず Encoder と呼ばれるネットワークを通じて、潜在変数を抽出します。ここでの潜在変数とは入力変数を要約したもの（圧縮された特徴）です。例えば、花の種別を分類したいときに入力変数として「花弁の長さ」「ガクの長さ」などがあるとすると新たに「大きさ」という抽象的な尺度で表現し直すことを指します。入力変数は具体的な値で特定できることに対し、潜在変数は抽象的な表現というのがポイントです。</p>
+<p>そして Decoder では、Encoder で抽出された潜在変数を用い、入力データを復元していきます。</p>
+<p>学習フェーズでは正常データのみを用い、入力データを綺麗に復元できるように入力と出力との間に生じる再構成誤差 (Reconstruction Error) を少なくするように重みを更新します。推論フェーズでは生成モデル「学習していないことは復元できない」性質を用いて、入力データに傷や歪みなどの学習されてない情報があれば綺麗に復元できないようになっています。その結果、出力と入力の差分を確認して、綺麗に復元されていれば正常、復元されていない部位があれば異常と判断します。</p>
+<p>ここまでが基本的な生成モデルを用いた異常検知の流れです。</p>
+<div class="line-block">
+<div class="line">Step1 : データを用意する</div>
+<div class="line">Step2 : 正常データのみを使い、学習する</div>
+<div class="line">Step3 : 学習済みモデルを使い、推論する</div>
+<div class="line">Step4 : 推論結果から異常か正常か判断する</div>
+</div>
+<p>学習時に人が確認する際には、実際に復元された出力と入力の差分を目で見て確認しますが、実運用時は、モデルが推論時に返す誤差の大小で判断します。こちらで定めた閾値より誤差が大きいかどうかで判定するのです。</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="04_13_nearest_neighbers.html" class="btn btn-neutral float-left" title="変化点検知入門" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="04_18_auto_encoder.html" class="btn btn-neutral float-right" title="【補足】 異常部位検知 - AutoEncoder" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, kikagaku.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

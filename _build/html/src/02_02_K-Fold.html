@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="ja" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>モデルの精度を保証する実装 &mdash; 応用講座コース  ドキュメント</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="説明可能な AI (XAI)" href="02_03_XAI.html" />
+    <link rel="prev" title="モデル構築のための特徴量作成" href="02_01_create_feature.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 応用講座コース
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="00_title.html">– Python 速習とテーブルデータの操作 –</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_00_colab.html">Google Colaboratory 実習</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_01_00_data.html">データの理解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_01_00_python_basic.html">Python 速習とテーブルデータの基本操作</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_01_01_question.html">演習問題</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_04_exercise_classification.html">問題設定：Bank Marketing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_05_bankmarketing.html">実装例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_00title.html">– データの前処理と機械学習モデルの構築 –</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_01_create_feature.html">モデル構築のための特徴量作成</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">モデルの精度を保証する実装</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#Cross-Validation-とは">Cross Validation とは</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#LightGBM-による-CrossValidation-を用いた学習">LightGBM による CrossValidation を用いた学習</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#parameter-について">parameter について</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#データの準備">データの準備</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#特徴量重要度-(FeatureImporatnce)-の可視化">特徴量重要度 (FeatureImporatnce) の可視化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#学習済みモデルを用いた予測結果の確認">学習済みモデルを用いた予測結果の確認</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#予測値の分布を確認">予測値の分布を確認</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#【補足】-Permutation-Feature-Importance">【補足】 Permutation Feature Importance</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="02_03_XAI.html">説明可能な AI (XAI)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_00title.html">– 時系列解析 –</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_01_timeseries_basic.html">時系列データの取り扱い方</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_02_timeseries_analysis.html">自己回帰型モデル</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_00title.html">– 異常検知 –</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_01.html">異常検知とは</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_02_outlier.html">外れ値検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_03_other_outlier.html">【補足】 外れ値検知 - その他の手法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_04_ml_base.html">機械学習を用いた異常検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_05_other_ml_base.html">【補足】機械学習を用いた異常検知 - その他の手法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_13_nearest_neighbers.html">変化点検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_17_generation.html">【補足】 生成モデルによる異常部位検知</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_18_auto_encoder.html">【補足】 異常部位検知 - AutoEncoder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="99_11ability-test2.html">【補足】 実力テスト - 機械学習セクション</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">応用講座コース</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>モデルの精度を保証する実装</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/src/02_02_K-Fold.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt .copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+.jp-RenderedHTMLCommon table,
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+.jp-RenderedHTMLCommon thead,
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+.jp-RenderedHTMLCommon tr,
+.jp-RenderedHTMLCommon th,
+.jp-RenderedHTMLCommon td,
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+.jp-RenderedHTMLCommon th,
+div.rendered_html th {
+  font-weight: bold;
+}
+.jp-RenderedHTMLCommon tbody tr:nth-child(odd),
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+.jp-RenderedHTMLCommon tbody tr:hover,
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="モデルの精度を保証する実装">
+<h1>モデルの精度を保証する実装<a class="headerlink" href="#モデルの精度を保証する実装" title="この見出しへのパーマリンク"></a></h1>
+<p>本章では、機械学習モデルの構築のテクニックとして、Cross Validatioｎ（交差検証）と LightGBM の本格的な実装について触れます。LightGBM はテーブルデータを主に扱う際の手法として、予測精度では高い精度が出やすいと言われており、多くのコンペティションなどでも採用されるアルゴリズムです。</p>
+<p>本章では、その精度を向上させるためのテクニックと、精度を保証するために必要な Cross Validatioｎ の実装方法について触れます。</p>
+<p><strong>本章の目的</strong></p>
+<ul class="simple">
+<li><p>Cross Validation の実装方法を理解する</p></li>
+<li><p>LightGBM の実践的な実装方法を理解する</p></li>
+</ul>
+<p><strong>本章で使用するデータセット</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="data/adult2.csv">Adult Gensus Income</a></p></li>
+</ul>
+<section id="Cross-Validation-とは">
+<h2>Cross Validation とは<a class="headerlink" href="#Cross-Validation-とは" title="この見出しへのパーマリンク"></a></h2>
+<p>Cross Validation とは学習用のデータセットを複数に分割してそれぞれの分割で学習・検証のデータセットを作り、モデルの性能を見積もる枠組みのことです。</p>
+<p>一番有名なものは KFold と呼ばれるものです。これはランダムに学習データを分割します。 その他にターゲットの分布が同じになるように分割する Stratified と呼ばれる方法もあります。</p>
+<p>あとは「各分割で特定のグループが重ならないようにする」Group K Fold もよく使われます。</p>
+<p>その他にも時系列で区切る time split という方法もあります。どれを使えばよいかは test データがどのように構成されているか依存なので、データを見て決定します。</p>
+</section>
+<section id="LightGBM-による-CrossValidation-を用いた学習">
+<h2>LightGBM による CrossValidation を用いた学習<a class="headerlink" href="#LightGBM-による-CrossValidation-を用いた学習" title="この見出しへのパーマリンク"></a></h2>
+<p>今回は使う機械学習モデルとして lightGBM を使います。lightGBM は以下のような良い性質があります。</p>
+<ul class="simple">
+<li><p>欠損値が存在している場合にも、欠損を埋めることなく自然に取り扱うことができる</p></li>
+<li><p>特徴重要度をさっと出すことができる</p></li>
+<li><p>GBDT と呼ばれるアルゴリズムの一種で今回のタスクのようなテーブルデータで性能が高いことが知られている</p></li>
+<li><p>CPU 環境でも高速に学習・推論が行える</p></li>
+</ul>
+<p>他にも理由はありますが以下のような記事も参考になります。</p>
+<p>▼ <a class="reference external" href="https://upura.hatenablog.com/entry/2019/10/29/184617">「初手LightGBM」をする7つの理由</a></p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!pip install -q lightgbm
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import lightgbm as lgbm
+from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[57]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def fit_lgbm(X, t, cv, params: dict=None, verbose: int=50):
+
+    # パラメータがないときは、空の dict で置き換える
+    if params is None:
+        params = {}
+
+    models = []
+    # training data の target と同じだけのゼロ配列を用意
+    oof_pred = np.zeros_like(t, dtype=np.float)
+
+    # この部分が交差検証のところです。データセットを cv instance によって分割します
+    # training data を trian/val に分割
+    for i, (idx_train, idx_val) in enumerate(cv):
+        x_train, t_train = X.values[idx_train], t.values[idx_train]
+        x_val, t_val = X.values[idx_val], t.values[idx_val]
+
+        clf = lgbm.LGBMClassifier(**params)
+
+        clf.fit(x_train, t_train, eval_set=[(x_val, t_val)], early_stopping_rounds=100, verbose=verbose)
+
+        pred_i = clf.predict(x_val)
+        oof_pred[idx_val] = pred_i
+        models.append(clf)
+        print(f&#39;Fold {i}&#39;)
+        print(f&#39;Accuracy: {accuracy_score(t_val, pred_i) ** .5:.4f}&#39;)
+        print(f&#39;Precision: {precision_score(t_val, pred_i) ** .5:.4f}&#39;)
+        print(f&#39;Recall: {recall_score(t_val, pred_i) ** .5:.4f}&#39;)
+        print(f&#39;F1 Score: {f1_score(t_val, pred_i) ** .5:.4f}&#39;)
+
+    score = f1_score(t, oof_pred) ** .5
+    print(&#39;-&#39; * 50)
+    print(&#39;FINISHED | Whole F1 Score: {:.4f}&#39;.format(score))
+    return oof_pred, models
+</pre></div>
+</div>
+</div>
+<section id="parameter-について">
+<h3>parameter について<a class="headerlink" href="#parameter-について" title="この見出しへのパーマリンク"></a></h3>
+<p>LightGBM などの GBDT のパラメータは、内部的にどういう意味を持つのかを知っておくことで、課題設定ごとにどのようにパラメータを調整スべきかを感覚的に掴むことができます。</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://lightgbm.readthedocs.io/en/latest/Parameters-Tuning.html">Parameters Tuning</a></p></li>
+<li><p><a class="reference external" href="https://nykergoto.hatenablog.jp/entry/2019/03/29/%E5%8B%BE%E9%85%8D%E3%83%96%E3%83%BC%E3%82%B9%E3%83%86%E3%82%A3%E3%83%B3%E3%82%B0%E3%81%A7%E5%A4%A7%E4%BA%8B%E3%81%AA%E3%83%91%E3%83%A9%E3%83%A1%E3%83%BC%E3%82%BF%E3%81%AE%E6%B0%97%E6%8C%81%E3%81%A1">勾配ブースティングで大事なパラメータの気持ち</a></p></li>
+</ul>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[58]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>params = {
+    # 目的関数. 最小となるようなパラメータを探します.
+    &#39;objective&#39;: &#39;binary&#39;,
+
+     # 学習率. 小さいほどなめらかな決定境界が作られて性能向上に繋がる場合が多いです、がそれだけ木を作るため学習に時間がかかります
+    &#39;learning_rate&#39;: .1,
+
+    # L2 Reguralization
+    &#39;reg_lambda&#39;: 1.,
+    # L1
+    &#39;reg_alpha&#39;: .1,
+
+    # 木の深さ. 深い木を許容するほどより複雑な交互作用を考慮するようになります
+    &#39;max_depth&#39;: 5,
+
+    # 木の最大数. early_stopping という枠組みで木の数は制御されるようにしていますのでとても大きい値を指定しておきます.
+    &#39;n_estimators&#39;: 10000,
+
+    # 木を作る際に考慮する特徴量の割合. 1以下を指定すると特徴をランダムに欠落させます。小さくすることで, まんべんなく特徴を使うという効果があります.
+    &#39;colsample_bytree&#39;: .5,
+
+    # 最小分割でのデータ数. 小さいとより細かい粒度の分割方法を許容します.
+    &#39;min_child_samples&#39;: 10,
+
+    # bagging の頻度と割合
+    &#39;subsample_freq&#39;: 3,
+    &#39;subsample&#39;: .9,
+
+    # 特徴重要度計算のロジック
+    &#39;importance_type&#39;: &#39;gain&#39;,
+    &#39;random_state&#39;: 0,
+}
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+<section id="データの準備">
+<h2>データの準備<a class="headerlink" href="#データの準備" title="この見出しへのパーマリンク"></a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[59]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[60]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>df = pd.read_csv(&#39;adult2.csv&#39;)
+df.head(2)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[60]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+  <div id="df-663cc9d2-bc79-443d-9792-8c30ec1db4ad">
+    <div class="colab-df-container">
+      <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+      <th>education.num</th>
+      <th>capital.gain</th>
+      <th>capital.loss</th>
+      <th>hours.per.week</th>
+      <th>workclass_Federal-gov</th>
+      <th>workclass_Local-gov</th>
+      <th>workclass_Never-worked</th>
+      <th>workclass_Private</th>
+      <th>workclass_Self-emp-inc</th>
+      <th>...</th>
+      <th>race_Black</th>
+      <th>race_Other</th>
+      <th>race_White</th>
+      <th>sex_Female</th>
+      <th>sex_Male</th>
+      <th>marital-group_Married</th>
+      <th>marital-group_NotMarried</th>
+      <th>marital-group_Separated</th>
+      <th>marital-group_Widowed</th>
+      <th>target</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>90</td>
+      <td>9</td>
+      <td>0</td>
+      <td>4356</td>
+      <td>40</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>&lt;=50K</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>82</td>
+      <td>9</td>
+      <td>0</td>
+      <td>4356</td>
+      <td>18</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>&lt;=50K</td>
+    </tr>
+  </tbody>
+</table>
+<p>2 rows × 45 columns</p>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-663cc9d2-bc79-443d-9792-8c30ec1db4ad')"
+              title="Convert this dataframe to an interactive table."
+              style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"/>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
+  </svg>
+      </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-663cc9d2-bc79-443d-9792-8c30ec1db4ad button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-663cc9d2-bc79-443d-9792-8c30ec1db4ad');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[61]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>target_dict = {&#39;&lt;=50K&#39;:0, &#39;&gt;50K&#39;:1}
+x = df.drop(&#39;target&#39;, axis=1)
+t = df[&#39;target&#39;].map(target_dict)
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[62]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from sklearn.model_selection import KFold
+
+fold = KFold(n_splits=5, shuffle=True, random_state=0)
+cv = list(fold.split(x, t))
+
+oof, models = fit_lgbm(x, t, cv, params=params, verbose=500)
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/usr/local/lib/python3.7/dist-packages/ipykernel_launcher.py:9: DeprecationWarning: `np.float` is a deprecated alias for the builtin `float`. To silence this warning, use `float` by itself. Doing this will not modify any behavior and is safe. If you specifically wanted the numpy scalar type, use `np.float64` here.
+Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations
+  if __name__ == &#39;__main__&#39;:
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Training until validation scores don&#39;t improve for 100 rounds.
+Early stopping, best iteration is:
+[323]   valid_0&#39;s binary_logloss: 0.273191
+Fold 0
+Accuracy: 0.9359
+Precision: 0.8786
+Recall: 0.8193
+F1 Score: 0.8474
+Training until validation scores don&#39;t improve for 100 rounds.
+Early stopping, best iteration is:
+[263]   valid_0&#39;s binary_logloss: 0.26657
+Fold 1
+Accuracy: 0.9346
+Precision: 0.8804
+Recall: 0.8184
+F1 Score: 0.8477
+Training until validation scores don&#39;t improve for 100 rounds.
+Early stopping, best iteration is:
+[312]   valid_0&#39;s binary_logloss: 0.276577
+Fold 2
+Accuracy: 0.9338
+Precision: 0.8854
+Recall: 0.8070
+F1 Score: 0.8435
+Training until validation scores don&#39;t improve for 100 rounds.
+Early stopping, best iteration is:
+[289]   valid_0&#39;s binary_logloss: 0.269246
+Fold 3
+Accuracy: 0.9343
+Precision: 0.8846
+Recall: 0.8081
+F1 Score: 0.8438
+Training until validation scores don&#39;t improve for 100 rounds.
+Early stopping, best iteration is:
+[178]   valid_0&#39;s binary_logloss: 0.285566
+Fold 4
+Accuracy: 0.9325
+Precision: 0.8873
+Recall: 0.8005
+F1 Score: 0.8406
+--------------------------------------------------
+FINISHED | Whole F1 Score: 0.8446
+</pre></div></div>
+</div>
+</section>
+<section id="特徴量重要度-(FeatureImporatnce)-の可視化">
+<h2>特徴量重要度 (FeatureImporatnce) の可視化<a class="headerlink" href="#特徴量重要度-(FeatureImporatnce)-の可視化" title="この見出しへのパーマリンク"></a></h2>
+<p>LightGBM など木系のモデルではどの特徴量で分割を行ってどれだけ目的変数を説明しているかを特徴重要度 (feature importance) として出力することができます。これを見ることで</p>
+<ul class="simple">
+<li><p>どの特徴量が大事なのか</p></li>
+<li><p>どの特徴量はあまり大事ではないか</p></li>
+</ul>
+<p>といった特徴量に関する情報を得ることができます。これによって、例えば重要となった特徴量を使う別の特徴を考えたり、反対に大事ではない特徴を削ったりといったインサイトを得ることが可能です。</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def visualize_importance(models, df_train_feature):
+
+    feature_importance_df = pd.DataFrame()
+    for i, model in enumerate(models):
+        _df = pd.DataFrame()
+        _df[&#39;feature_importance&#39;] = model.feature_importances_
+        _df[&#39;column&#39;] = df_train_feature.columns
+        _df[&#39;fold&#39;] = i + 1
+        feature_importance_df = pd.concat([feature_importance_df, _df],
+                                          axis=0, ignore_index=True)
+
+    order = feature_importance_df.groupby(&#39;column&#39;)\
+        .sum()[[&#39;feature_importance&#39;]]\
+        .sort_values(&#39;feature_importance&#39;, ascending=False).index[:50]
+
+    fig, ax = plt.subplots(figsize=(8, max(6, len(order) * .25)))
+    sns.boxplot(data=feature_importance_df,
+                  x=&#39;feature_importance&#39;,
+                  y=&#39;column&#39;,
+                  order=order,
+                  ax=ax,
+                  palette=&#39;viridis&#39;,
+                  orient=&#39;h&#39;)
+    ax.tick_params(axis=&#39;x&#39;, rotation=90)
+    ax.set_title(&#39;Importance&#39;)
+    ax.grid()
+    fig.tight_layout()
+    return fig, ax, feature_importance_df
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>fig, ax, feature_importance_df = visualize_importance(models, df.drop(&#39;target&#39;, axis=1))
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/src_02_02_K-Fold_19_0.png" src="../_images/src_02_02_K-Fold_19_0.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>feature_importance_df.groupby(&#39;column&#39;).sum().sort_values(&#39;feature_importance&#39;, ascending=False).head(10)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+  <div id="df-922b6b74-3090-42f8-9159-a69e00b03b6f">
+    <div class="colab-df-container">
+      <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>feature_importance</th>
+      <th>fold</th>
+    </tr>
+    <tr>
+      <th>column</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>capital.gain</th>
+      <td>77382.412387</td>
+      <td>15</td>
+    </tr>
+    <tr>
+      <th>education.num</th>
+      <td>54119.537804</td>
+      <td>15</td>
+    </tr>
+    <tr>
+      <th>marital-group_Married</th>
+      <td>50938.390608</td>
+      <td>15</td>
+    </tr>
+    <tr>
+      <th>age</th>
+      <td>38741.040416</td>
+      <td>15</td>
+    </tr>
+    <tr>
+      <th>relationship_Husband</th>
+      <td>29218.304230</td>
+      <td>15</td>
+    </tr>
+    <tr>
+      <th>capital.loss</th>
+      <td>24718.682911</td>
+      <td>15</td>
+    </tr>
+    <tr>
+      <th>hours.per.week</th>
+      <td>20558.669582</td>
+      <td>15</td>
+    </tr>
+    <tr>
+      <th>marital-group_NotMarried</th>
+      <td>12624.540526</td>
+      <td>15</td>
+    </tr>
+    <tr>
+      <th>marital-group_Separated</th>
+      <td>11077.268367</td>
+      <td>15</td>
+    </tr>
+    <tr>
+      <th>occupation_Exec-managerial</th>
+      <td>9190.568434</td>
+      <td>15</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-922b6b74-3090-42f8-9159-a69e00b03b6f')"
+              title="Convert this dataframe to an interactive table."
+              style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"/>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
+  </svg>
+      </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-922b6b74-3090-42f8-9159-a69e00b03b6f button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-922b6b74-3090-42f8-9159-a69e00b03b6f');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div></div>
+</div>
+</section>
+<section id="学習済みモデルを用いた予測結果の確認">
+<h2>学習済みモデルを用いた予測結果の確認<a class="headerlink" href="#学習済みモデルを用いた予測結果の確認" title="この見出しへのパーマリンク"></a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>pred = np.array([model.predict(x) for model in models])
+pred = np.mean(pred, axis=0)
+</pre></div>
+</div>
+</div>
+</section>
+<section id="予測値の分布を確認">
+<h2>予測値の分布を確認<a class="headerlink" href="#予測値の分布を確認" title="この見出しへのパーマリンク"></a></h2>
+<p>あまりに大きくずれているときは実装がおかしい or 分布がずれている可能性が高いです。</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>fig, ax = plt.subplots(figsize=(8, 8))
+sns.histplot(pred, label=&#39;Test Predict&#39;, ax=ax, color=&#39;black&#39;)
+sns.histplot(oof, label=&#39;Out Of Fold&#39;, ax=ax, color=&#39;C1&#39;)
+ax.legend();
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/src_02_02_K-Fold_24_0.png" src="../_images/src_02_02_K-Fold_24_0.png" />
+</div>
+</div>
+</section>
+<section id="【補足】-Permutation-Feature-Importance">
+<h2>【補足】 Permutation Feature Importance<a class="headerlink" href="#【補足】-Permutation-Feature-Importance" title="この見出しへのパーマリンク"></a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from sklearn.inspection import permutation_importance
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[89]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def fit_lgbm(X, t, cv, params: dict=None, verbose: int=50):
+
+    # パラメータがないときは、空の dict で置き換える
+    if params is None:
+        params = {}
+
+    models = []
+    importance_list = []
+    # training data の target と同じだけのゼロ配列を用意
+    oof_pred = np.zeros_like(t, dtype=np.float)
+
+    # この部分が交差検証のところです。データセットを cv instance によって分割します
+    # training data を trian/val に分割
+    for i, (idx_train, idx_val) in enumerate(cv):
+        x_train, t_train = X.values[idx_train], t.values[idx_train]
+        x_val, t_val = X.values[idx_val], t.values[idx_val]
+
+        clf = lgbm.LGBMClassifier(**params)
+
+        clf.fit(x_train, t_train, eval_set=[(x_val, t_val)], early_stopping_rounds=100, verbose=verbose)
+
+        # PI の実装を追加
+        result = permutation_importance(clf, x_val, t_val, n_repeats=10, random_state=0)
+
+        importance_list.append(result.importances_mean)
+        pred_i = clf.predict(x_val)
+        oof_pred[idx_val] = pred_i
+        models.append(clf)
+        print(f&#39;Fold {i}&#39;)
+        print(f&#39;Accuracy: {accuracy_score(t_val, pred_i) ** .5:.4f}&#39;)
+        print(f&#39;Precision: {precision_score(t_val, pred_i) ** .5:.4f}&#39;)
+        print(f&#39;Recall: {recall_score(t_val, pred_i) ** .5:.4f}&#39;)
+        print(f&#39;F1 Score: {f1_score(t_val, pred_i) ** .5:.4f}&#39;)
+
+    score = f1_score(t, oof_pred) ** .5
+    print(&#39;-&#39; * 50)
+    print(&#39;FINISHED | Whole F1 Score: {:.4f}&#39;.format(score))
+    return oof_pred, models, importance_list
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[90]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from sklearn.model_selection import KFold
+
+fold = KFold(n_splits=5, shuffle=True, random_state=0)
+cv = list(fold.split(x, t))
+
+oof, models, importance_list = fit_lgbm(x, t, cv, params=params, verbose=500)
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/usr/local/lib/python3.7/dist-packages/ipykernel_launcher.py:10: DeprecationWarning: `np.float` is a deprecated alias for the builtin `float`. To silence this warning, use `float` by itself. Doing this will not modify any behavior and is safe. If you specifically wanted the numpy scalar type, use `np.float64` here.
+Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations
+  # Remove the CWD from sys.path while we load stuff.
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Training until validation scores don&#39;t improve for 100 rounds.
+Early stopping, best iteration is:
+[323]   valid_0&#39;s binary_logloss: 0.273191
+Fold 0
+Accuracy: 0.9359
+Precision: 0.8786
+Recall: 0.8193
+F1 Score: 0.8474
+Training until validation scores don&#39;t improve for 100 rounds.
+Early stopping, best iteration is:
+[263]   valid_0&#39;s binary_logloss: 0.26657
+Fold 1
+Accuracy: 0.9346
+Precision: 0.8804
+Recall: 0.8184
+F1 Score: 0.8477
+Training until validation scores don&#39;t improve for 100 rounds.
+Early stopping, best iteration is:
+[312]   valid_0&#39;s binary_logloss: 0.276577
+Fold 2
+Accuracy: 0.9338
+Precision: 0.8854
+Recall: 0.8070
+F1 Score: 0.8435
+Training until validation scores don&#39;t improve for 100 rounds.
+Early stopping, best iteration is:
+[289]   valid_0&#39;s binary_logloss: 0.269246
+Fold 3
+Accuracy: 0.9343
+Precision: 0.8846
+Recall: 0.8081
+F1 Score: 0.8438
+Training until validation scores don&#39;t improve for 100 rounds.
+Early stopping, best iteration is:
+[178]   valid_0&#39;s binary_logloss: 0.285566
+Fold 4
+Accuracy: 0.9325
+Precision: 0.8873
+Recall: 0.8005
+F1 Score: 0.8406
+--------------------------------------------------
+FINISHED | Whole F1 Score: 0.8446
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[95]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def visualize_importance(models, feature_list, df):
+
+    feature_importance_df = pd.DataFrame()
+    for i, model in enumerate(models):
+        _df = pd.DataFrame()
+        _df[&#39;feature_importance&#39;] = importance_list[i]
+        _df[&#39;column&#39;] = df.columns
+        _df[&#39;fold&#39;] = i + 1
+        feature_importance_df = pd.concat([feature_importance_df, _df],
+                                            axis=0, ignore_index=True)
+
+    order = feature_importance_df.groupby(&#39;column&#39;)\
+        .sum()[[&#39;feature_importance&#39;]]\
+        .sort_values(&#39;feature_importance&#39;, ascending=False).index[:50]
+
+    fig, ax = plt.subplots(figsize=(8, max(6, len(order) * .25)))
+    sns.boxplot(data=feature_importance_df,
+                  x=&#39;feature_importance&#39;,
+                  y=&#39;column&#39;,
+                  order=order,
+                  ax=ax,
+                  palette=&#39;viridis&#39;,
+                  orient=&#39;h&#39;)
+    ax.tick_params(axis=&#39;x&#39;, rotation=90)
+    ax.set_title(&#39;Importance&#39;)
+    ax.grid()
+    fig.tight_layout()
+    return fig, ax, feature_importance_df
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[96]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>fig, ax, feature_importance_df = visualize_importance(models, importance_list, df.drop(&#39;target&#39;, axis=1))
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/src_02_02_K-Fold_30_0.png" src="../_images/src_02_02_K-Fold_30_0.png" />
+</div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="02_01_create_feature.html" class="btn btn-neutral float-left" title="モデル構築のための特徴量作成" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="02_03_XAI.html" class="btn btn-neutral float-right" title="説明可能な AI (XAI)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, kikagaku.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

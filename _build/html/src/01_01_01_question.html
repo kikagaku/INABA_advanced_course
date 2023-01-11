@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="ja" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>演習問題 &mdash; 応用講座コース  ドキュメント</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="問題設定：Bank Marketing" href="01_04_exercise_classification.html" />
+    <link rel="prev" title="Python 速習とテーブルデータの基本操作" href="01_01_00_python_basic.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 応用講座コース
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="00_title.html">– Python 速習とテーブルデータの操作 –</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_00_colab.html">Google Colaboratory 実習</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_01_00_data.html">データの理解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_01_00_python_basic.html">Python 速習とテーブルデータの基本操作</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">演習問題</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#01.-データセット">01. データセット</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#02.-問題">02. 問題</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Q1">Q1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Q2">Q2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Q3">Q3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Q4">Q4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Q5">Q5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Q6">Q6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Q7">Q7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Q8">Q8</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Q9">Q9</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="01_04_exercise_classification.html">問題設定：Bank Marketing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_05_bankmarketing.html">実装例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_00title.html">– データの前処理と機械学習モデルの構築 –</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_01_create_feature.html">モデル構築のための特徴量作成</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_02_K-Fold.html">モデルの精度を保証する実装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_03_XAI.html">説明可能な AI (XAI)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_00title.html">– 時系列解析 –</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_01_timeseries_basic.html">時系列データの取り扱い方</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_02_timeseries_analysis.html">自己回帰型モデル</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_00title.html">– 異常検知 –</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_01.html">異常検知とは</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_02_outlier.html">外れ値検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_03_other_outlier.html">【補足】 外れ値検知 - その他の手法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_04_ml_base.html">機械学習を用いた異常検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_05_other_ml_base.html">【補足】機械学習を用いた異常検知 - その他の手法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_13_nearest_neighbers.html">変化点検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_17_generation.html">【補足】 生成モデルによる異常部位検知</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_18_auto_encoder.html">【補足】 異常部位検知 - AutoEncoder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="99_11ability-test2.html">【補足】 実力テスト - 機械学習セクション</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">応用講座コース</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>演習問題</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/src/01_01_01_question.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="演習問題">
+<h1>演習問題<a class="headerlink" href="#演習問題" title="この見出しへのパーマリンク"></a></h1>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">02.</span> <span class="pre">問題</span></code> に記載されている問題について、Python を使用したコーディングを実施して回答してください。</p></li>
+<li><p>Excel 上でのデータ操作もデータクレンジングに有効ですが、今回は Python でのデータ操作に限定します。（ただしデータの特徴を掴む上では一度 Excel で目を通すことは重要です。）</p></li>
+</ul>
+<section id="01.-データセット">
+<h2>01. データセット<a class="headerlink" href="#01.-データセット" title="この見出しへのパーマリンク"></a></h2>
+<p>本演習で使用するデータセットは以下に格納しております。</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://drive.google.com/drive/folders/1b7dfxbMqdEVYFYskTqkXMAOQOlHmh--I?usp=sharing">データセットリンク</a></p></li>
+</ul>
+<p>上記をダウンロードして使用していただいても、ご自身の drive にショートカットを作成して使用していただいても構いません。</p>
+</section>
+<section id="02.-問題">
+<h2>02. 問題<a class="headerlink" href="#02.-問題" title="この見出しへのパーマリンク"></a></h2>
+</section>
+<section id="Q1">
+<h2>Q1<a class="headerlink" href="#Q1" title="この見出しへのパーマリンク"></a></h2>
+<hr class="docutils" />
+<p>下記データについて<strong>欠損値のデータ数</strong>を算出できるコードを作成し、欠損値の数を確認しましょう。</p>
+<ul class="simple">
+<li><p>lego.csv</p></li>
+</ul>
+</section>
+<section id="Q2">
+<h2>Q2<a class="headerlink" href="#Q2" title="この見出しへのパーマリンク"></a></h2>
+<hr class="docutils" />
+<p>下記データについて<strong>重複しているデータ数（行）</strong>を算出できるコードを作成し、重複行の数を確認しましょう。</p>
+<ul class="simple">
+<li><p>lego.csv</p></li>
+</ul>
+<p>ただし以下のデータを例とした際、重複行の数は 1 となるようにカウントすること。（最初のデータは重複とみなさない）</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 57%" />
+<col style="width: 43%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>name</p></th>
+<th class="head"><p>age</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>太郎</p></td>
+<td><p>24</p></td>
+</tr>
+<tr class="row-odd"><td><p>次郎</p></td>
+<td><p>20</p></td>
+</tr>
+<tr class="row-even"><td><p>三郎</p></td>
+<td><p>15</p></td>
+</tr>
+<tr class="row-odd"><td><p>太郎</p></td>
+<td><p>24</p></td>
+</tr>
+<tr class="row-even"><td><p>花子</p></td>
+<td><p>20</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="Q3">
+<h2>Q3<a class="headerlink" href="#Q3" title="この見出しへのパーマリンク"></a></h2>
+<hr class="docutils" />
+<p>以下のデータセットには通常の欠損値（空白）だけでなく、<code class="docutils literal notranslate"><span class="pre">?</span></code> で補完されている欠損値が存在します。空白の欠損値と <code class="docutils literal notranslate"><span class="pre">?</span></code>の合計数を各列毎で確認してください。</p>
+<ul class="simple">
+<li><p>income.csv</p></li>
+</ul>
+</section>
+<section id="Q4">
+<h2>Q4<a class="headerlink" href="#Q4" title="この見出しへのパーマリンク"></a></h2>
+<hr class="docutils" />
+<p>以下のデータセットについて、多くの値は <code class="docutils literal notranslate"><span class="pre">United-States</span></code> となっており、その他の国に関してはあまり存在していません。こちらの列について、以下のように変換を行ってください。</p>
+<ul class="simple">
+<li><p>income.csv</p></li>
+</ul>
+<p><strong>処理内容</strong></p>
+<ul class="simple">
+<li><p>United-States を 0 と変換</p></li>
+<li><p>欠損値と ? は 1 に変換</p></li>
+<li><p>それ以外の値を 2 に変換</p></li>
+<li><p>ヒント</p></li>
+<li><p>? を nan に変換する際には <code class="docutils literal notranslate"><span class="pre">df</span> <span class="pre">=</span> <span class="pre">df.replace('</span> <span class="pre">?',</span> <span class="pre">np.nan)</span></code> で置き換えることができます</p></li>
+</ul>
+</section>
+<section id="Q5">
+<h2>Q5<a class="headerlink" href="#Q5" title="この見出しへのパーマリンク"></a></h2>
+<hr class="docutils" />
+<p>以下のデータセットについて、 <code class="docutils literal notranslate"><span class="pre">age</span></code> 列に対して、以下のように処理を行った新しい列 (age_label) を作成してください。</p>
+<ul class="simple">
+<li><p>income.csv</p></li>
+</ul>
+<p><strong>処理内容</strong></p>
+<ul class="simple">
+<li><p>0 ~ 20 であれば 0 を割り振る</p></li>
+<li><p>21 ~ 40 であれば 1 を割り振る</p></li>
+<li><p>41 ~ 60 であれば 2 を割り振る</p></li>
+<li><p>61 ~ 80 であれば 3 を割り振る</p></li>
+<li><p>81 ~ 100 であれば 4 を割り振る</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="Q6">
+<h2>Q6<a class="headerlink" href="#Q6" title="この見出しへのパーマリンク"></a></h2>
+<hr class="docutils" />
+<p>時系列データでは時間自体の欠損が発生することがよくあります。</p>
+<p>例：2020/04/01 の次のデータが 2020/04/03 になっており、2020/04/02 が欠けている。</p>
+<p>下記データについて頻度を日単位で見た時に、時間自体の欠損数はいくつあるか確認してください。</p>
+<ul class="simple">
+<li><p>toyota_stock.csv</p></li>
+</ul>
+</section>
+<section id="Q7">
+<h2>Q7<a class="headerlink" href="#Q7" title="この見出しへのパーマリンク"></a></h2>
+<hr class="docutils" />
+<p>以下のデータの <code class="docutils literal notranslate"><span class="pre">Timestamp</span></code> 列には日付データと時間のデータが同じ列に含まれています。</p>
+<ul class="simple">
+<li><p>network_analytics.csv</p></li>
+</ul>
+<p>以下のように変換してください。</p>
+<p><strong>変換前</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 41%" />
+<col style="width: 59%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Timestamp</p></th>
+<th class="head"><p>OutboundUtilzation (%)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>10/10/2017 7:01</p></td>
+<td><p>96.2442</p></td>
+</tr>
+<tr class="row-odd"><td><p>10/10/2017 7:21</p></td>
+<td><p>99.1131</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>変換後</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 28%" />
+<col style="width: 11%" />
+<col style="width: 61%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Timestamp</p></th>
+<th class="head"><p>Time</p></th>
+<th class="head"><p>OutboundUtilzation (%)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>10/10/2017</p></td>
+<td><p>7:01</p></td>
+<td><p>96.2442</p></td>
+</tr>
+<tr class="row-odd"><td><p>10/10/2017</p></td>
+<td><p>7:21</p></td>
+<td><p>99.1131</p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p>ヒント：データの分割は <code class="docutils literal notranslate"><span class="pre">split</span></code>メソッドを使用します。<code class="docutils literal notranslate"><span class="pre">df</span> <span class="pre">=</span> <span class="pre">df['変数'].str.split('</span> <span class="pre">',</span> <span class="pre">expand=True)</span></code></p></li>
+</ul>
+</section>
+<section id="Q8">
+<h2>Q8<a class="headerlink" href="#Q8" title="この見出しへのパーマリンク"></a></h2>
+<hr class="docutils" />
+<p>以下のデータは各国のコロナウイルスに関するデータセットである。以下のデータにおいて各国毎の <code class="docutils literal notranslate"><span class="pre">new_deaths</span></code> の欠損値が 200 個より多い国の数を確認してください。</p>
+<p>ただし、使用する日付はどの国も <strong>2021-05-22 からに設定してください。（国によっては 2021-05-22 より後の日付データしかない場合もありますが、開始日は揃えるようにしてください）</strong></p>
+<ul class="simple">
+<li><p>covid_data.csv</p></li>
+</ul>
+</section>
+<section id="Q9">
+<h2>Q9<a class="headerlink" href="#Q9" title="この見出しへのパーマリンク"></a></h2>
+<hr class="docutils" />
+<p>以下の 2 つのデータを hobby_id を参照して結合してください。</p>
+<ul class="simple">
+<li><p>primary_table.xlsx</p></li>
+</ul>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 38%" />
+<col style="width: 62%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>name</p></th>
+<th class="head"><p>hobby_id</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Bob</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>Alice</p></td>
+<td><p>2</p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p>hobby_table.xlsx</p></li>
+</ul>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>hobby_id</p></th>
+<th class="head"><p>hobby</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>baseball</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>cooking</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>変換後</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 24%" />
+<col style="width: 38%" />
+<col style="width: 38%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>name</p></th>
+<th class="head"><p>hobby_id</p></th>
+<th class="head"><p>hobby</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Bob</p></td>
+<td><p>1</p></td>
+<td><p>baseball</p></td>
+</tr>
+<tr class="row-odd"><td><p>Alice</p></td>
+<td><p>2</p></td>
+<td><p>cooking</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="01_01_00_python_basic.html" class="btn btn-neutral float-left" title="Python 速習とテーブルデータの基本操作" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="01_04_exercise_classification.html" class="btn btn-neutral float-right" title="問題設定：Bank Marketing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, kikagaku.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

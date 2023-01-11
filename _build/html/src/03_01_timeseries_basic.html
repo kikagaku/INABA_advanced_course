@@ -1,0 +1,1813 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="ja" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>時系列データの取り扱い方 &mdash; 応用講座コース  ドキュメント</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="自己回帰型モデル" href="03_02_timeseries_analysis.html" />
+    <link rel="prev" title="– 時系列解析 –" href="03_00title.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 応用講座コース
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="00_title.html">– Python 速習とテーブルデータの操作 –</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_00_colab.html">Google Colaboratory 実習</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_01_00_data.html">データの理解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_01_00_python_basic.html">Python 速習とテーブルデータの基本操作</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_01_01_question.html">演習問題</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_04_exercise_classification.html">問題設定：Bank Marketing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_05_bankmarketing.html">実装例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_00title.html">– データの前処理と機械学習モデルの構築 –</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_01_create_feature.html">モデル構築のための特徴量作成</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_02_K-Fold.html">モデルの精度を保証する実装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_03_XAI.html">説明可能な AI (XAI)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_00title.html">– 時系列解析 –</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">時系列データの取り扱い方</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#データの読み込み">データの読み込み</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#時間の単位の変更">時間の単位の変更</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#時系列データの構造">時系列データの構造</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#短期の自己相関">短期の自己相関</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#自己相関係数-(Autocorrelation-Function)">自己相関係数 (Autocorrelation Function)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#偏自己相関係数-(Partial-Autocorrelation-Function)">偏自己相関係数 (Partial Autocorrelation Function)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#周期性">周期性</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#トレンド性">トレンド性</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#外因性">外因性</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ホワイトノイズ">ホワイトノイズ</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#STL-分解">STL 分解</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#加法的時系列">加法的時系列</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#乗法的時系列">乗法的時系列</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#定常性と非定常性">定常性と非定常性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#定常過程の時系列を得るためには？">定常過程の時系列を得るためには？</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#和分過程">和分過程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#単位根過程">単位根過程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#差分変換">差分変換</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#対数変換">対数変換</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="03_02_timeseries_analysis.html">自己回帰型モデル</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_00title.html">– 異常検知 –</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_01.html">異常検知とは</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_02_outlier.html">外れ値検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_03_other_outlier.html">【補足】 外れ値検知 - その他の手法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_04_ml_base.html">機械学習を用いた異常検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_05_other_ml_base.html">【補足】機械学習を用いた異常検知 - その他の手法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_13_nearest_neighbers.html">変化点検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_17_generation.html">【補足】 生成モデルによる異常部位検知</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_18_auto_encoder.html">【補足】 異常部位検知 - AutoEncoder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="99_11ability-test2.html">【補足】 実力テスト - 機械学習セクション</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">応用講座コース</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>時系列データの取り扱い方</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/src/03_01_timeseries_basic.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt .copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+.jp-RenderedHTMLCommon table,
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+.jp-RenderedHTMLCommon thead,
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+.jp-RenderedHTMLCommon tr,
+.jp-RenderedHTMLCommon th,
+.jp-RenderedHTMLCommon td,
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+.jp-RenderedHTMLCommon th,
+div.rendered_html th {
+  font-weight: bold;
+}
+.jp-RenderedHTMLCommon tbody tr:nth-child(odd),
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+.jp-RenderedHTMLCommon tbody tr:hover,
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="時系列データの取り扱い方">
+<h1>時系列データの取り扱い方<a class="headerlink" href="#時系列データの取り扱い方" title="この見出しへのパーマリンク"></a></h1>
+<p><strong>本章で使用するデータ</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="data/AirPassengers.csv">AirPassengers.csv</a></p></li>
+</ul>
+<hr class="docutils" />
+<section id="データの読み込み">
+<h2>データの読み込み<a class="headerlink" href="#データの読み込み" title="この見出しへのパーマリンク"></a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 必要なモジュール・パッケージのインポート
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+import statsmodels.api as sm
+
+# 警告非表示
+import warnings
+warnings.filterwarnings(&#39;ignore&#39;)
+
+# グラフサイズの設定
+plt.rcParams[&#39;figure.figsize&#39;] = 10, 6
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/usr/local/lib/python3.7/dist-packages/statsmodels/tools/_testing.py:19: FutureWarning: pandas.util.testing is deprecated. Use the functions in the public API at pandas.testing instead.
+  import pandas.util.testing as tm
+</pre></div></div>
+</div>
+<ul class="simple">
+<li><p>データ</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">index_col</span></code> : インデックスとして扱う列名</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">parse_dates</span></code> : インデックスを時間軸として扱う</p></li>
+</ul>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>df = pd.read_csv(&#39;data/AirPassengers.csv&#39;,
+                 index_col=&#39;Month&#39;,
+                 parse_dates=True)
+df.head(3)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+  <div id="df-519ba198-9f2c-4680-8964-7ebcd99a0e24">
+    <div class="colab-df-container">
+      <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>#Passengers</th>
+    </tr>
+    <tr>
+      <th>Month</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1949-01-01</th>
+      <td>112</td>
+    </tr>
+    <tr>
+      <th>1949-02-01</th>
+      <td>118</td>
+    </tr>
+    <tr>
+      <th>1949-03-01</th>
+      <td>132</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-519ba198-9f2c-4680-8964-7ebcd99a0e24')"
+              title="Convert this dataframe to an interactive table."
+              style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"/>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
+  </svg>
+      </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-519ba198-9f2c-4680-8964-7ebcd99a0e24 button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-519ba198-9f2c-4680-8964-7ebcd99a0e24');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div></div>
+</div>
+</section>
+<section id="時間の単位の変更">
+<h2>時間の単位の変更<a class="headerlink" href="#時間の単位の変更" title="この見出しへのパーマリンク"></a></h2>
+<p>※ 時系列データにおいて多くの場合は、時間の単位を変更しても一般性を失いません。</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 2 ヶ月おきのデータに変更
+df_2 = df.asfreq(&#39;2MS&#39;)
+df_2.head(3)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+  <div id="df-8cec7a4d-6457-4bdc-be86-763e2392e2d1">
+    <div class="colab-df-container">
+      <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>#Passengers</th>
+    </tr>
+    <tr>
+      <th>Month</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1949-01-01</th>
+      <td>112</td>
+    </tr>
+    <tr>
+      <th>1949-03-01</th>
+      <td>132</td>
+    </tr>
+    <tr>
+      <th>1949-05-01</th>
+      <td>121</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-8cec7a4d-6457-4bdc-be86-763e2392e2d1')"
+              title="Convert this dataframe to an interactive table."
+              style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"/>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
+  </svg>
+      </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-8cec7a4d-6457-4bdc-be86-763e2392e2d1 button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-8cec7a4d-6457-4bdc-be86-763e2392e2d1');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 2 ヶ月の合計値でまとめる
+df_2_sum = df.resample(&#39;2MS&#39;).sum()
+df_2_sum.head(3)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+  <div id="df-7ba4c0f8-d167-4da8-8832-47d789e84105">
+    <div class="colab-df-container">
+      <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>#Passengers</th>
+    </tr>
+    <tr>
+      <th>Month</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1949-01-01</th>
+      <td>230</td>
+    </tr>
+    <tr>
+      <th>1949-03-01</th>
+      <td>261</td>
+    </tr>
+    <tr>
+      <th>1949-05-01</th>
+      <td>256</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-7ba4c0f8-d167-4da8-8832-47d789e84105')"
+              title="Convert this dataframe to an interactive table."
+              style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"/>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
+  </svg>
+      </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-7ba4c0f8-d167-4da8-8832-47d789e84105 button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-7ba4c0f8-d167-4da8-8832-47d789e84105');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 月 -&gt; 年
+y_m = df.asfreq(&#39;YS&#39;)
+y_m.head(3)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+  <div id="df-43ffa37c-8c3a-4422-a5f5-822a6342b079">
+    <div class="colab-df-container">
+      <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>#Passengers</th>
+    </tr>
+    <tr>
+      <th>Month</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1949-01-01</th>
+      <td>112</td>
+    </tr>
+    <tr>
+      <th>1950-01-01</th>
+      <td>115</td>
+    </tr>
+    <tr>
+      <th>1951-01-01</th>
+      <td>145</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-43ffa37c-8c3a-4422-a5f5-822a6342b079')"
+              title="Convert this dataframe to an interactive table."
+              style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"/>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
+  </svg>
+      </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-43ffa37c-8c3a-4422-a5f5-822a6342b079 button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-43ffa37c-8c3a-4422-a5f5-822a6342b079');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 月 -&gt; 年（合計）
+y_m_sum = df.resample(&#39;YS&#39;).sum()
+y_m_sum.head(3)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+  <div id="df-0f4c1e94-c6d0-4038-9ef1-4abed1626a24">
+    <div class="colab-df-container">
+      <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>#Passengers</th>
+    </tr>
+    <tr>
+      <th>Month</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1949-01-01</th>
+      <td>1520</td>
+    </tr>
+    <tr>
+      <th>1950-01-01</th>
+      <td>1676</td>
+    </tr>
+    <tr>
+      <th>1951-01-01</th>
+      <td>2042</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-0f4c1e94-c6d0-4038-9ef1-4abed1626a24')"
+              title="Convert this dataframe to an interactive table."
+              style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"/>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
+  </svg>
+      </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-0f4c1e94-c6d0-4038-9ef1-4abed1626a24 button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-0f4c1e94-c6d0-4038-9ef1-4abed1626a24');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div></div>
+</div>
+</section>
+<section id="時系列データの構造">
+<h2>時系列データの構造<a class="headerlink" href="#時系列データの構造" title="この見出しへのパーマリンク"></a></h2>
+<p>時系列データは一般的に以下の成分で構成されます。</p>
+<ul class="simple">
+<li><p>短期の自己相関</p></li>
+<li><p>周期性</p></li>
+<li><p>トレンド性</p></li>
+<li><p>外因性</p></li>
+<li><p>ホワイトノイズ</p></li>
+</ul>
+<section id="短期の自己相関">
+<h3>短期の自己相関<a class="headerlink" href="#短期の自己相関" title="この見出しへのパーマリンク"></a></h3>
+<p>自己相関とは現在のデータと自分自身の過去のデータがどれぐらい関係しているか（似ているか、似てないか）を表すものです。定量的には<strong>自己相関係数</strong>という値で算出されます。</p>
+<section id="自己相関係数-(Autocorrelation-Function)">
+<h4>自己相関係数 (Autocorrelation Function)<a class="headerlink" href="#自己相関係数-(Autocorrelation-Function)" title="この見出しへのパーマリンク"></a></h4>
+<p><strong>自己相関係数</strong>とは、過去の値が現在のデータにどれくらい影響しているのかを定量的に表したものです。</p>
+<p>普通の相関分析だと異なるデータ同士（例えば、X、Y の値の相関）の関係性を調べますが、自己相関の場合は一種類のデータを使い、自分自身のデータをずらして関係性を分析します。日次データだと、1 つずらして自己相関を確認すれば、1 日前の値が今日にどれくらい影響しているかがわかります。</p>
+<p>ずらしたデータのステップ数を<strong>ラグ (lag)</strong> と呼びます。こちらの用語は頻出ですので覚えておきましょう。</p>
+<ul class="simple">
+<li><p>例：2 日前とのデータと負の自己相関がある → 2 日前に高ければ、今日は低い傾向がある</p></li>
+</ul>
+<p>自己相関係数の値の範囲は -1〜1 であり、正負の関係や絶対値が 1 に近いほど相関が強いことを表します。（一般的な相関と同じ）</p>
+<p>自己相関係数 (ACF：Autocorrelation Function) は、StatsModels の <code class="docutils literal notranslate"><span class="pre">tsa.stattools.acf()</span></code> 関数で求められます。</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 自己相関係数の出力
+sm.tsa.stattools.acf(df, nlags=12)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([1.        , 0.94804734, 0.87557484, 0.80668116, 0.75262542,
+       0.71376997, 0.6817336 , 0.66290439, 0.65561048, 0.67094833,
+       0.70271992, 0.74324019, 0.76039504])
+</pre></div></div>
+</div>
+<p>ラグ 12 を指定したので、ラグ 0 ~ 12 まで計 12 個の自己相関係数が出力させました。一番最初の値はラグ 0、すなわちデータをずらしていない同じ値同士の相関なので結果は常に 1.0 になります。</p>
+<p>数値の羅列では少しデータの特徴が捕らえずらいのでグラフ化しましょう。StatsModels の <code class="docutils literal notranslate"><span class="pre">graphics.tsa.plot_acf()</span></code> 関数で、計算とグラフ作成までを自動で行えます。第一引数にデータ、ラグ数はオプション引数 <code class="docutils literal notranslate"><span class="pre">lags</span></code> で指定できます。</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 自己相関係数のグラフを自動作成
+sm.graphics.tsa.plot_acf(df)
+plt.show()
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/src_03_01_timeseries_basic_19_0.png" src="../_images/src_03_01_timeseries_basic_19_0.png" />
+</div>
+</div>
+<p>簡単にグラフ化することができました。上記のようなラグと自己相関でプロットしたグラフは<strong>コレログラム</strong>と呼ばれます。横軸がラグ数で、縦軸が自己相関係数になっています。波みたいな形でラグ数が増えると自己相関係数の値が小さくなっていることがわかります。</p>
+<p>薄い青で塗りつぶされている領域は、<strong>95%信頼区間</strong>といい、この信頼区間の領域を超えてプロットされているデータは統計的に有意差がある値とみることができます。</p>
+<p>※ 今回の場合は「現在のデータとの自己相関係数は 0 である」の 95%信頼区間を表しています。つまり青色の領域から外れている部分は統計的に「現在のデータとの自己相関係数は 0 でない」、すなわち現在のデータに何かしらの影響を与えていると判断できます。</p>
+</section>
+<section id="偏自己相関係数-(Partial-Autocorrelation-Function)">
+<h4>偏自己相関係数 (Partial Autocorrelation Function)<a class="headerlink" href="#偏自己相関係数-(Partial-Autocorrelation-Function)" title="この見出しへのパーマリンク"></a></h4>
+<p>偏自己相関係数は、<strong>注目している時点以外の要因を無視して</strong>計算された自己相関係数です。1 日前と今日の関係が知りたい場合で、2 日前などの過去の要因を見たくない場合にこちらを使用します。</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 偏自己相関係数のグラフ
+sm.graphics.tsa.plot_pacf(df)
+plt.show()
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/src_03_01_timeseries_basic_23_0.png" src="../_images/src_03_01_timeseries_basic_23_0.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="周期性">
+<h3>周期性<a class="headerlink" href="#周期性" title="この見出しへのパーマリンク"></a></h3>
+<p>周期的な変化をすることを <strong>周期性</strong> と呼びます。周期が不定期の場合は<strong>周期性</strong>、周期が定期的（1 年毎、3ヶ月毎など）の場合は <strong>季節性</strong> と呼びます。</p>
+</section>
+<section id="トレンド性">
+<h3>トレンド性<a class="headerlink" href="#トレンド性" title="この見出しへのパーマリンク"></a></h3>
+<p>単位時間当たりの一定の変化量を <strong>トレンド</strong> と呼びます。</p>
+</section>
+<section id="外因性">
+<h3>外因性<a class="headerlink" href="#外因性" title="この見出しへのパーマリンク"></a></h3>
+<p>外因性とは端的に <strong>外部からの影響</strong> のことで、過去のデータからは予測することが困難な場合が多いものです。</p>
+<p>例えば、今回の飛行機の乗客数のデータでは、</p>
+<ul class="simple">
+<li><p>◯年◯月◯日に特別なイベントが◯◯で開催されたため、前後◯日は乗客数が多い。</p></li>
+</ul>
+<p>や、他には</p>
+<ul class="simple">
+<li><p>原因不明のウイルスの流行で飛行機の乗客数が大幅に下落した。</p></li>
+</ul>
+<p>などが上げられます。</p>
+<p>統計モデリングでは予測できる範囲（定期的なイベント等）であれば、外因性もモデルに組み込むことが可能です。（ウイルスの流行等、予測できない範囲は組み込むことは難しいです。）</p>
+</section>
+<section id="ホワイトノイズ">
+<h3>ホワイトノイズ<a class="headerlink" href="#ホワイトノイズ" title="この見出しへのパーマリンク"></a></h3>
+<p>予測できない純粋なノイズのことを指します。具体的には上記で紹介した</p>
+<ul class="simple">
+<li><p>短期の自己相関</p></li>
+<li><p>周期性</p></li>
+<li><p>トレンド性</p></li>
+<li><p>外因性</p></li>
+</ul>
+<p>の各成分を使って予測しても、どうしても説明しきれない「残りの変動」のことです。ホワイトノイズは以下の性質を持ちます。</p>
+<ul class="simple">
+<li><p>平均：0</p></li>
+<li><p>分散：一定</p></li>
+<li><p>自己相関：0</p></li>
+</ul>
+<p>また、平均 0、分散 <span class="math notranslate nohighlight">\(\sigma^2\)</span> の正規分布に従う場合は <strong>正規ホワイトノイズ</strong> と呼びます。こちらの性質は<strong>正しくモデルを作成できているか</strong>の判断の指標ともなるので、しっかりと押さえておきましょう。</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 正規ホワイトノイズの生成
+rand_numbers = np.random.randn(1000) # 正規分布からランダムに 1000 サンプルを取得
+pd.Series(rand_numbers).plot(title=&#39;Random White Noise&#39;);
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/src_03_01_timeseries_basic_32_0.png" src="../_images/src_03_01_timeseries_basic_32_0.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="STL-分解">
+<h2>STL 分解<a class="headerlink" href="#STL-分解" title="この見出しへのパーマリンク"></a></h2>
+<p>時系列データを<strong>季節成分</strong>、<strong>トレンド成分</strong>、残りの<strong>残差成分</strong>に分解することを STL 分解 (Seasonal Decomposition Of Time Series By Loess) と呼びます。こちらは <code class="docutils literal notranslate"><span class="pre">sm.tsa.seasonal_decompose()</span></code> 関数で実装できます。</p>
+<p>また時系列データによってはトレンド性と季節性の組み合わせが異なる場合があるため、時系列は加法的または乗法的な時系列としてモデル化できます。</p>
+<section id="加法的時系列">
+<h3>加法的時系列<a class="headerlink" href="#加法的時系列" title="この見出しへのパーマリンク"></a></h3>
+<p>値 = 基準値 + トレンド + 季節性 + 誤差</p>
+</section>
+<section id="乗法的時系列">
+<h3>乗法的時系列<a class="headerlink" href="#乗法的時系列" title="この見出しへのパーマリンク"></a></h3>
+<p>値 = 基準値 × トレンド × 季節性 × 誤差</p>
+<p>そのため時系列データを加法的時系列とみなす場合は、<code class="docutils literal notranslate"><span class="pre">model='additive'</span></code> とし、乗法的時系列とみなす場合は、<code class="docutils literal notranslate"><span class="pre">model='multiplicative'</span></code> と設定します。</p>
+<p>今回は飛行機の乗客数のデータに対し、それぞれのモデルで STL 分解を行ってみます。</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 加法分解
+additive_decomposition = sm.tsa.seasonal_decompose(df, model=&#39;additive&#39;)
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 季節成分の可視化
+additive_decomposition.seasonal.plot();
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/src_03_01_timeseries_basic_40_0.png" src="../_images/src_03_01_timeseries_basic_40_0.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># トレンド成分の可視化
+additive_decomposition.trend.plot();
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/src_03_01_timeseries_basic_41_0.png" src="../_images/src_03_01_timeseries_basic_41_0.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 残差成分の可視化
+additive_decomposition.resid.plot();
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/src_03_01_timeseries_basic_42_0.png" src="../_images/src_03_01_timeseries_basic_42_0.png" />
+</div>
+</div>
+<p>次に乗法的時系列とみなして STL 分解を行います。</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 乗法分解
+multiplicative_decomposition = sm.tsa.seasonal_decompose(df, model=&#39;multiplicative&#39;)
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 季節性、トレンド性、残差成分の可視化
+multiplicative_decomposition.plot()
+plt.plot()
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[]
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/src_03_01_timeseries_basic_45_1.png" src="../_images/src_03_01_timeseries_basic_45_1.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 残差成分を可視化
+multiplicative_decomposition.resid.plot();
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/src_03_01_timeseries_basic_46_0.png" src="../_images/src_03_01_timeseries_basic_46_0.png" />
+</div>
+</div>
+<p>加法分解と乗法分解の残差成分を確認すると、加法分解には少しパターンが残っていることが確認できます。しかし乗法分解はランダムなデータに見えます。残差成分は<strong>ホワイトノイズ</strong>に近い方が正しく分解できているため、今回のデータは乗法的時系列と仮定するほうが良さそうです。</p>
+</section>
+</section>
+<section id="定常性と非定常性">
+<h2>定常性と非定常性<a class="headerlink" href="#定常性と非定常性" title="この見出しへのパーマリンク"></a></h2>
+<p>時系列データには定常過程のデータと非定常仮定のデータが存在します。それぞれの定義は以下です。</p>
+<ul class="simple">
+<li><p>非定常過程：性質が時間とともに変化するもの</p></li>
+<li><p>定常過程：性質が一定で、時間的に変化しないもの</p></li>
+</ul>
+<p>定常過程の具体的な性質は以下です。</p>
+<p><strong>定常過程の性質</strong></p>
+<ul class="simple">
+<li><p>平均値や分散が一定である → トレンドが存在しない</p></li>
+<li><p>自己相関は時間差のみに依存する</p></li>
+</ul>
+<p>次章の統計モデルを作成する際に<strong>データが定常過程か、非定常過程かによってどのモデルが適用できるかが変わる</strong>ため、この定常性、非定常性は非常に重要な性質です。</p>
+<p>基本的には定常過程のモデルが<strong>モデリングしやすい</strong>データのため、非定常過程の場合は<strong>一度定常過程に変換してから</strong>モデリングを行います。</p>
+</section>
+<section id="定常過程の時系列を得るためには？">
+<h2>定常過程の時系列を得るためには？<a class="headerlink" href="#定常過程の時系列を得るためには？" title="この見出しへのパーマリンク"></a></h2>
+<p>定常過程の時系列データを取得するためには、以下の処理が有効です。</p>
+<ul class="simple">
+<li><p>平均値を一定にする</p>
+<ul>
+<li><p>N 階差分を取る（N は任意）</p></li>
+</ul>
+</li>
+<li><p>分散を一定にする</p>
+<ul>
+<li><p>対数変換</p></li>
+</ul>
+</li>
+</ul>
+<p>またここで押さえておくべき重要な用語を紹介します。</p>
+<section id="和分過程">
+<h3>和分過程<a class="headerlink" href="#和分過程" title="この見出しへのパーマリンク"></a></h3>
+<p><span class="math notranslate nohighlight">\(N\)</span> 階の差分を取ると、定常過程になる系列：<span class="math notranslate nohighlight">\(N\)</span> 次和分過程とも呼ぶ</p>
+</section>
+<section id="単位根過程">
+<h3>単位根過程<a class="headerlink" href="#単位根過程" title="この見出しへのパーマリンク"></a></h3>
+<p>1 階差分をとると定常過程になる系列：1 次和分過程と同じ</p>
+<p>それでは各変換について確認してみましょう。</p>
+</section>
+<section id="差分変換">
+<h3>差分変換<a class="headerlink" href="#差分変換" title="この見出しへのパーマリンク"></a></h3>
+<p>時刻 <span class="math notranslate nohighlight">\(t\)</span> 地点と時刻 <span class="math notranslate nohighlight">\(t+1\)</span> 地点の差をします。差分を取ることで、上昇、下降などのトレンド性を取り除くことが可能です。時系列解析では、元のデータを<strong>原系列</strong>と呼び、差分をとったデータを<strong>差分系列</strong>と呼びます。</p>
+<p>差分をとるためには<code class="docutils literal notranslate"><span class="pre">diff()</span></code> メソッドを使用します。</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 差分変換
+df[&#39;diff&#39;] = df[&#39;#Passengers&#39;].diff()
+df.head(3)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+  <div id="df-93e56307-ea0f-4edb-b2de-2cb73aa7e222">
+    <div class="colab-df-container">
+      <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>#Passengers</th>
+      <th>diff</th>
+    </tr>
+    <tr>
+      <th>Month</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1949-01-01</th>
+      <td>112</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1949-02-01</th>
+      <td>118</td>
+      <td>6.0</td>
+    </tr>
+    <tr>
+      <th>1949-03-01</th>
+      <td>132</td>
+      <td>14.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-93e56307-ea0f-4edb-b2de-2cb73aa7e222')"
+              title="Convert this dataframe to an interactive table."
+              style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"/>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
+  </svg>
+      </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-93e56307-ea0f-4edb-b2de-2cb73aa7e222 button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-93e56307-ea0f-4edb-b2de-2cb73aa7e222');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 差分系列の可視化
+plt.plot(df[&#39;diff&#39;]);
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/src_03_01_timeseries_basic_59_0.png" src="../_images/src_03_01_timeseries_basic_59_0.png" />
+</div>
+</div>
+<p>差分をとることによりトレンド性を除去し、平均値を一定にすることができました。自己相関係数についても確認しておきましょう。</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 自己相関係数をグラフで確認
+sm.graphics.tsa.plot_acf(df[&#39;diff&#39;][1:], lags=64)
+plt.show()
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/src_03_01_timeseries_basic_61_0.png" src="../_images/src_03_01_timeseries_basic_61_0.png" />
+</div>
+</div>
+<p>自己相関係数についても時間差のみに依存していることが確認できました。</p>
+</section>
+<section id="対数変換">
+<h3>対数変換<a class="headerlink" href="#対数変換" title="この見出しへのパーマリンク"></a></h3>
+<p>対数変換は時系列データの分散が一定でないときに行う処理で、データのばらつきを吸収することが可能です。対数変換は pandas の関数にはありませんが、<code class="docutils literal notranslate"><span class="pre">np.log</span></code> で計算することができます。データの特定の列に対して、同じ処理をしたい場合には <code class="docutils literal notranslate"><span class="pre">apply()</span></code> メソッドで実装できます。</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 対数変換
+df[&#39;log&#39;] = df[&#39;#Passengers&#39;].apply(np.log)
+df.head(3)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+  <div id="df-b72ff83e-473b-42c2-93b5-1280cd564c94">
+    <div class="colab-df-container">
+      <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>#Passengers</th>
+      <th>diff</th>
+      <th>log</th>
+    </tr>
+    <tr>
+      <th>Month</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1949-01-01</th>
+      <td>112</td>
+      <td>NaN</td>
+      <td>4.718499</td>
+    </tr>
+    <tr>
+      <th>1949-02-01</th>
+      <td>118</td>
+      <td>6.0</td>
+      <td>4.770685</td>
+    </tr>
+    <tr>
+      <th>1949-03-01</th>
+      <td>132</td>
+      <td>14.0</td>
+      <td>4.882802</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-b72ff83e-473b-42c2-93b5-1280cd564c94')"
+              title="Convert this dataframe to an interactive table."
+              style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"/>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
+  </svg>
+      </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-b72ff83e-473b-42c2-93b5-1280cd564c94 button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-b72ff83e-473b-42c2-93b5-1280cd564c94');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 対数系列の可視化
+plt.plot(df[&#39;log&#39;]);
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/src_03_01_timeseries_basic_66_0.png" src="../_images/src_03_01_timeseries_basic_66_0.png" />
+</div>
+</div>
+<p>対数変換を行うことでデータのばらつきが一定になっていることが確認できました。</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="03_00title.html" class="btn btn-neutral float-left" title="– 時系列解析 –" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="03_02_timeseries_analysis.html" class="btn btn-neutral float-right" title="自己回帰型モデル" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, kikagaku.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
