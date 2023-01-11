@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>モデルの精度を保証する実装 &mdash; 応用講座コース  ドキュメント</title>
+  <title>10. モデルの精度を保証する実装 &mdash; 応用講座コース  ドキュメント</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -24,8 +24,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="検索" href="../search.html" />
-    <link rel="next" title="説明可能な AI (XAI)" href="02_03_XAI.html" />
-    <link rel="prev" title="モデル構築のための特徴量作成" href="02_01_create_feature.html" /> 
+    <link rel="next" title="11. 説明可能な AI (XAI)" href="02_03_XAI.html" />
+    <link rel="prev" title="9. モデル構築のための特徴量作成" href="02_01_create_feature.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -45,42 +45,42 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="00_title.html">– Python 速習とテーブルデータの操作 –</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01_00_colab.html">Google Colaboratory 実習</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01_01_00_data.html">データの理解</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01_01_00_python_basic.html">Python 速習とテーブルデータの基本操作</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01_01_01_question.html">演習問題</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01_04_exercise_classification.html">問題設定：Bank Marketing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01_05_bankmarketing.html">実装例</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02_00title.html">– データの前処理と機械学習モデルの構築 –</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02_01_create_feature.html">モデル構築のための特徴量作成</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">モデルの精度を保証する実装</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#Cross-Validation-とは">Cross Validation とは</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#LightGBM-による-CrossValidation-を用いた学習">LightGBM による CrossValidation を用いた学習</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="00_title.html">1. – Python 速習とテーブルデータの操作 –</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_00_colab.html">2. Google Colaboratory 実習</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_01_00_data.html">3. データの理解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_01_00_python_basic.html">4. Python 速習とテーブルデータの基本操作</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_01_01_question.html">5. 演習問題</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_04_exercise_classification.html">6. 問題設定：Bank Marketing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_05_bankmarketing.html">7. 実装例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_00title.html">8. – データの前処理と機械学習モデルの構築 –</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_01_create_feature.html">9. モデル構築のための特徴量作成</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">10. モデルの精度を保証する実装</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#Cross-Validation-とは">10.1. Cross Validation とは</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#LightGBM-による-CrossValidation-を用いた学習">10.2. LightGBM による CrossValidation を用いた学習</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#parameter-について">parameter について</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#データの準備">データの準備</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#特徴量重要度-(FeatureImporatnce)-の可視化">特徴量重要度 (FeatureImporatnce) の可視化</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#学習済みモデルを用いた予測結果の確認">学習済みモデルを用いた予測結果の確認</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#予測値の分布を確認">予測値の分布を確認</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#【補足】-Permutation-Feature-Importance">【補足】 Permutation Feature Importance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#データの準備">10.3. データの準備</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#特徴量重要度-(FeatureImporatnce)-の可視化">10.4. 特徴量重要度 (FeatureImporatnce) の可視化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#学習済みモデルを用いた予測結果の確認">10.5. 学習済みモデルを用いた予測結果の確認</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#予測値の分布を確認">10.6. 予測値の分布を確認</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#【補足】-Permutation-Feature-Importance">10.7. 【補足】 Permutation Feature Importance</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="02_03_XAI.html">説明可能な AI (XAI)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03_00title.html">– 時系列解析 –</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03_01_timeseries_basic.html">時系列データの取り扱い方</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03_02_timeseries_analysis.html">自己回帰型モデル</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_00title.html">– 異常検知 –</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_01.html">異常検知とは</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_02_outlier.html">外れ値検知入門</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_03_other_outlier.html">【補足】 外れ値検知 - その他の手法</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_04_ml_base.html">機械学習を用いた異常検知入門</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_05_other_ml_base.html">【補足】機械学習を用いた異常検知 - その他の手法</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_13_nearest_neighbers.html">変化点検知入門</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_17_generation.html">【補足】 生成モデルによる異常部位検知</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_18_auto_encoder.html">【補足】 異常部位検知 - AutoEncoder</a></li>
-<li class="toctree-l1"><a class="reference internal" href="99_11ability-test2.html">【補足】 実力テスト - 機械学習セクション</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_03_XAI.html">11. 説明可能な AI (XAI)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_00title.html">12. – 時系列解析 –</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_01_timeseries_basic.html">13. 時系列データの取り扱い方</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_02_timeseries_analysis.html">14. 自己回帰型モデル</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_00title.html">15. – 異常検知 –</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_01.html">16. 異常検知とは</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_02_outlier.html">17. 外れ値検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_03_other_outlier.html">18. 【補足】 外れ値検知 - その他の手法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_04_ml_base.html">19. 機械学習を用いた異常検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_05_other_ml_base.html">20. 【補足】機械学習を用いた異常検知 - その他の手法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_13_nearest_neighbers.html">21. 変化点検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_17_generation.html">22. 【補足】 生成モデルによる異常部位検知</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_18_auto_encoder.html">23. 【補足】 異常部位検知 - AutoEncoder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="99_11ability-test2.html">24. 【補足】 実力テスト - 機械学習セクション</a></li>
 </ul>
 
         </div>
@@ -97,7 +97,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>モデルの精度を保証する実装</li>
+      <li><span class="section-number">10. </span>モデルの精度を保証する実装</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/src/02_02_K-Fold.ipynb.txt" rel="nofollow"> View page source</a>
       </li>
@@ -386,7 +386,7 @@ div.rendered_html tbody tr:hover {
 }
 </style>
 <section id="モデルの精度を保証する実装">
-<h1>モデルの精度を保証する実装<a class="headerlink" href="#モデルの精度を保証する実装" title="この見出しへのパーマリンク"></a></h1>
+<h1><span class="section-number">10. </span>モデルの精度を保証する実装<a class="headerlink" href="#モデルの精度を保証する実装" title="この見出しへのパーマリンク"></a></h1>
 <p>本章では、機械学習モデルの構築のテクニックとして、Cross Validatioｎ（交差検証）と LightGBM の本格的な実装について触れます。LightGBM はテーブルデータを主に扱う際の手法として、予測精度では高い精度が出やすいと言われており、多くのコンペティションなどでも採用されるアルゴリズムです。</p>
 <p>本章では、その精度を向上させるためのテクニックと、精度を保証するために必要な Cross Validatioｎ の実装方法について触れます。</p>
 <p><strong>本章の目的</strong></p>
@@ -399,14 +399,14 @@ div.rendered_html tbody tr:hover {
 <li><p><a class="reference external" href="data/adult2.csv">Adult Gensus Income</a></p></li>
 </ul>
 <section id="Cross-Validation-とは">
-<h2>Cross Validation とは<a class="headerlink" href="#Cross-Validation-とは" title="この見出しへのパーマリンク"></a></h2>
+<h2><span class="section-number">10.1. </span>Cross Validation とは<a class="headerlink" href="#Cross-Validation-とは" title="この見出しへのパーマリンク"></a></h2>
 <p>Cross Validation とは学習用のデータセットを複数に分割してそれぞれの分割で学習・検証のデータセットを作り、モデルの性能を見積もる枠組みのことです。</p>
 <p>一番有名なものは KFold と呼ばれるものです。これはランダムに学習データを分割します。 その他にターゲットの分布が同じになるように分割する Stratified と呼ばれる方法もあります。</p>
 <p>あとは「各分割で特定のグループが重ならないようにする」Group K Fold もよく使われます。</p>
 <p>その他にも時系列で区切る time split という方法もあります。どれを使えばよいかは test データがどのように構成されているか依存なので、データを見て決定します。</p>
 </section>
 <section id="LightGBM-による-CrossValidation-を用いた学習">
-<h2>LightGBM による CrossValidation を用いた学習<a class="headerlink" href="#LightGBM-による-CrossValidation-を用いた学習" title="この見出しへのパーマリンク"></a></h2>
+<h2><span class="section-number">10.2. </span>LightGBM による CrossValidation を用いた学習<a class="headerlink" href="#LightGBM-による-CrossValidation-を用いた学習" title="この見出しへのパーマリンク"></a></h2>
 <p>今回は使う機械学習モデルとして lightGBM を使います。lightGBM は以下のような良い性質があります。</p>
 <ul class="simple">
 <li><p>欠損値が存在している場合にも、欠損を埋めることなく自然に取り扱うことができる</p></li>
@@ -522,7 +522,7 @@ from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_sc
 </section>
 </section>
 <section id="データの準備">
-<h2>データの準備<a class="headerlink" href="#データの準備" title="この見出しへのパーマリンク"></a></h2>
+<h2><span class="section-number">10.3. </span>データの準備<a class="headerlink" href="#データの準備" title="この見出しへのパーマリンク"></a></h2>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[59]:
 </pre></div>
@@ -804,7 +804,7 @@ FINISHED | Whole F1 Score: 0.8446
 </div>
 </section>
 <section id="特徴量重要度-(FeatureImporatnce)-の可視化">
-<h2>特徴量重要度 (FeatureImporatnce) の可視化<a class="headerlink" href="#特徴量重要度-(FeatureImporatnce)-の可視化" title="この見出しへのパーマリンク"></a></h2>
+<h2><span class="section-number">10.4. </span>特徴量重要度 (FeatureImporatnce) の可視化<a class="headerlink" href="#特徴量重要度-(FeatureImporatnce)-の可視化" title="この見出しへのパーマリンク"></a></h2>
 <p>LightGBM など木系のモデルではどの特徴量で分割を行ってどれだけ目的変数を説明しているかを特徴重要度 (feature importance) として出力することができます。これを見ることで</p>
 <ul class="simple">
 <li><p>どの特徴量が大事なのか</p></li>
@@ -1035,7 +1035,7 @@ FINISHED | Whole F1 Score: 0.8446
 </div>
 </section>
 <section id="学習済みモデルを用いた予測結果の確認">
-<h2>学習済みモデルを用いた予測結果の確認<a class="headerlink" href="#学習済みモデルを用いた予測結果の確認" title="この見出しへのパーマリンク"></a></h2>
+<h2><span class="section-number">10.5. </span>学習済みモデルを用いた予測結果の確認<a class="headerlink" href="#学習済みモデルを用いた予測結果の確認" title="この見出しへのパーマリンク"></a></h2>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
 </pre></div>
@@ -1047,7 +1047,7 @@ pred = np.mean(pred, axis=0)
 </div>
 </section>
 <section id="予測値の分布を確認">
-<h2>予測値の分布を確認<a class="headerlink" href="#予測値の分布を確認" title="この見出しへのパーマリンク"></a></h2>
+<h2><span class="section-number">10.6. </span>予測値の分布を確認<a class="headerlink" href="#予測値の分布を確認" title="この見出しへのパーマリンク"></a></h2>
 <p>あまりに大きくずれているときは実装がおかしい or 分布がずれている可能性が高いです。</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
@@ -1069,7 +1069,7 @@ ax.legend();
 </div>
 </section>
 <section id="【補足】-Permutation-Feature-Importance">
-<h2>【補足】 Permutation Feature Importance<a class="headerlink" href="#【補足】-Permutation-Feature-Importance" title="この見出しへのパーマリンク"></a></h2>
+<h2><span class="section-number">10.7. </span>【補足】 Permutation Feature Importance<a class="headerlink" href="#【補足】-Permutation-Feature-Importance" title="この見出しへのパーマリンク"></a></h2>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
 </pre></div>
@@ -1252,8 +1252,8 @@ FINISHED | Whole F1 Score: 0.8446
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="02_01_create_feature.html" class="btn btn-neutral float-left" title="モデル構築のための特徴量作成" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="02_03_XAI.html" class="btn btn-neutral float-right" title="説明可能な AI (XAI)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="02_01_create_feature.html" class="btn btn-neutral float-left" title="9. モデル構築のための特徴量作成" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="02_03_XAI.html" class="btn btn-neutral float-right" title="11. 説明可能な AI (XAI)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

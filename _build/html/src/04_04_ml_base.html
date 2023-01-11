@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>機械学習を用いた異常検知入門 &mdash; 応用講座コース  ドキュメント</title>
+  <title>19. 機械学習を用いた異常検知入門 &mdash; 応用講座コース  ドキュメント</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -24,8 +24,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="検索" href="../search.html" />
-    <link rel="next" title="【補足】機械学習を用いた異常検知 - その他の手法" href="04_05_other_ml_base.html" />
-    <link rel="prev" title="【補足】 外れ値検知 - その他の手法" href="04_03_other_outlier.html" /> 
+    <link rel="next" title="20. 【補足】機械学習を用いた異常検知 - その他の手法" href="04_05_other_ml_base.html" />
+    <link rel="prev" title="18. 【補足】 外れ値検知 - その他の手法" href="04_03_other_outlier.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -45,35 +45,35 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="00_title.html">– Python 速習とテーブルデータの操作 –</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01_00_colab.html">Google Colaboratory 実習</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01_01_00_data.html">データの理解</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01_01_00_python_basic.html">Python 速習とテーブルデータの基本操作</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01_01_01_question.html">演習問題</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01_04_exercise_classification.html">問題設定：Bank Marketing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01_05_bankmarketing.html">実装例</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02_00title.html">– データの前処理と機械学習モデルの構築 –</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02_01_create_feature.html">モデル構築のための特徴量作成</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02_02_K-Fold.html">モデルの精度を保証する実装</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02_03_XAI.html">説明可能な AI (XAI)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03_00title.html">– 時系列解析 –</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03_01_timeseries_basic.html">時系列データの取り扱い方</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03_02_timeseries_analysis.html">自己回帰型モデル</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_00title.html">– 異常検知 –</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_01.html">異常検知とは</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_02_outlier.html">外れ値検知入門</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_03_other_outlier.html">【補足】 外れ値検知 - その他の手法</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">機械学習を用いた異常検知入門</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#k-Nearest-Neighbors">k-Nearest Neighbors</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#OneClassSVM">OneClassSVM</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#Isolation-Forest">Isolation Forest</a></li>
+<li class="toctree-l1"><a class="reference internal" href="00_title.html">1. – Python 速習とテーブルデータの操作 –</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_00_colab.html">2. Google Colaboratory 実習</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_01_00_data.html">3. データの理解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_01_00_python_basic.html">4. Python 速習とテーブルデータの基本操作</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_01_01_question.html">5. 演習問題</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_04_exercise_classification.html">6. 問題設定：Bank Marketing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_05_bankmarketing.html">7. 実装例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_00title.html">8. – データの前処理と機械学習モデルの構築 –</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_01_create_feature.html">9. モデル構築のための特徴量作成</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_02_K-Fold.html">10. モデルの精度を保証する実装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_03_XAI.html">11. 説明可能な AI (XAI)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_00title.html">12. – 時系列解析 –</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_01_timeseries_basic.html">13. 時系列データの取り扱い方</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_02_timeseries_analysis.html">14. 自己回帰型モデル</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_00title.html">15. – 異常検知 –</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_01.html">16. 異常検知とは</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_02_outlier.html">17. 外れ値検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_03_other_outlier.html">18. 【補足】 外れ値検知 - その他の手法</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">19. 機械学習を用いた異常検知入門</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#k-Nearest-Neighbors">19.1. k-Nearest Neighbors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#OneClassSVM">19.2. OneClassSVM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Isolation-Forest">19.3. Isolation Forest</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="04_05_other_ml_base.html">【補足】機械学習を用いた異常検知 - その他の手法</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_13_nearest_neighbers.html">変化点検知入門</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_17_generation.html">【補足】 生成モデルによる異常部位検知</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_18_auto_encoder.html">【補足】 異常部位検知 - AutoEncoder</a></li>
-<li class="toctree-l1"><a class="reference internal" href="99_11ability-test2.html">【補足】 実力テスト - 機械学習セクション</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_05_other_ml_base.html">20. 【補足】機械学習を用いた異常検知 - その他の手法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_13_nearest_neighbers.html">21. 変化点検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_17_generation.html">22. 【補足】 生成モデルによる異常部位検知</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_18_auto_encoder.html">23. 【補足】 異常部位検知 - AutoEncoder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="99_11ability-test2.html">24. 【補足】 実力テスト - 機械学習セクション</a></li>
 </ul>
 
         </div>
@@ -90,7 +90,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>機械学習を用いた異常検知入門</li>
+      <li><span class="section-number">19. </span>機械学習を用いた異常検知入門</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/src/04_04_ml_base.ipynb.txt" rel="nofollow"> View page source</a>
       </li>
@@ -379,7 +379,7 @@ div.rendered_html tbody tr:hover {
 }
 </style>
 <section id="機械学習を用いた異常検知入門">
-<h1>機械学習を用いた異常検知入門<a class="headerlink" href="#機械学習を用いた異常検知入門" title="この見出しへのパーマリンク"></a></h1>
+<h1><span class="section-number">19. </span>機械学習を用いた異常検知入門<a class="headerlink" href="#機械学習を用いた異常検知入門" title="この見出しへのパーマリンク"></a></h1>
 <div class="line-block">
 <div class="line">本章では、機械学習を用いて異常検知を行う方法について触れます。</div>
 <div class="line">前提として今回触れているのは時系列データではないテーブルデータに適用するパターンを想定しています。</div>
@@ -391,7 +391,7 @@ div.rendered_html tbody tr:hover {
 <li><p>Isolation Forest</p></li>
 </ol>
 <section id="k-Nearest-Neighbors">
-<h2>k-Nearest Neighbors<a class="headerlink" href="#k-Nearest-Neighbors" title="この見出しへのパーマリンク"></a></h2>
+<h2><span class="section-number">19.1. </span>k-Nearest Neighbors<a class="headerlink" href="#k-Nearest-Neighbors" title="この見出しへのパーマリンク"></a></h2>
 <p>こちらは、異常検知の手法として K- 近傍法を用いる方法です。</p>
 <p>k- 近傍法には、教師あり学習と教師なし学習があります。</p>
 <ul class="simple">
@@ -867,7 +867,7 @@ kn_data
 </div>
 </section>
 <section id="OneClassSVM">
-<h2>OneClassSVM<a class="headerlink" href="#OneClassSVM" title="この見出しへのパーマリンク"></a></h2>
+<h2><span class="section-number">19.2. </span>OneClassSVM<a class="headerlink" href="#OneClassSVM" title="この見出しへのパーマリンク"></a></h2>
 <p>クラス分類問題に用いられるSVMは教師あり学習ですが、OneClassSVMは教師なし学習です。したがって、外れ値検出のための教師データは不要です。</p>
 <p>正常データとして1つのクラスを学習させ、識別境界を決定することで、その境界を基準として外れ値を検出します。異常がほとんど発生せず、異常クラスのデータを集めにくいようなシステムで異常検知を実現したい場合には有効な外れ値検知手法です。</p>
 <p>OneClassSVMでは、全ての学習データをクラスタ1とし、原点のみをクラスタ-1に属するようにカーネルトリックを用いて、高次元空間の特徴空間へデータを写像します。このとき、学習データは原点から遠くに配置されるように写像されるため、元の学習データと類似していないデータは原点の近くに集まるようになります。この性質を用いて正常および異常データの区別をすることができます。</p>
@@ -1221,7 +1221,7 @@ oc_data
 </div>
 </section>
 <section id="Isolation-Forest">
-<h2>Isolation Forest<a class="headerlink" href="#Isolation-Forest" title="この見出しへのパーマリンク"></a></h2>
+<h2><span class="section-number">19.3. </span>Isolation Forest<a class="headerlink" href="#Isolation-Forest" title="この見出しへのパーマリンク"></a></h2>
 <p>Isolation Forest はアンサンブルの決定木に属するクラスタリングアルゴリズムです。</p>
 <div class="line-block">
 <div class="line">分類木に基づいており、多変量のデータにも対応できます。</div>
@@ -1379,8 +1379,8 @@ plot_tree(
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="04_03_other_outlier.html" class="btn btn-neutral float-left" title="【補足】 外れ値検知 - その他の手法" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="04_05_other_ml_base.html" class="btn btn-neutral float-right" title="【補足】機械学習を用いた異常検知 - その他の手法" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="04_03_other_outlier.html" class="btn btn-neutral float-left" title="18. 【補足】 外れ値検知 - その他の手法" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="04_05_other_ml_base.html" class="btn btn-neutral float-right" title="20. 【補足】機械学習を用いた異常検知 - その他の手法" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

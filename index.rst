@@ -10,6 +10,7 @@
    :maxdepth: 2
    :caption: Contents:
    :glob:
+   :numbered: 2
 
    src/*
    

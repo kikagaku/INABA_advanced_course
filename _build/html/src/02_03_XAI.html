@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>説明可能な AI (XAI) &mdash; 応用講座コース  ドキュメント</title>
+  <title>11. 説明可能な AI (XAI) &mdash; 応用講座コース  ドキュメント</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -24,8 +24,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="検索" href="../search.html" />
-    <link rel="next" title="– 時系列解析 –" href="03_00title.html" />
-    <link rel="prev" title="モデルの精度を保証する実装" href="02_02_K-Fold.html" /> 
+    <link rel="next" title="12. – 時系列解析 –" href="03_00title.html" />
+    <link rel="prev" title="10. モデルの精度を保証する実装" href="02_02_K-Fold.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -45,26 +45,26 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="00_title.html">– Python 速習とテーブルデータの操作 –</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01_00_colab.html">Google Colaboratory 実習</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01_01_00_data.html">データの理解</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01_01_00_python_basic.html">Python 速習とテーブルデータの基本操作</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01_01_01_question.html">演習問題</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01_04_exercise_classification.html">問題設定：Bank Marketing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01_05_bankmarketing.html">実装例</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02_00title.html">– データの前処理と機械学習モデルの構築 –</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02_01_create_feature.html">モデル構築のための特徴量作成</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02_02_K-Fold.html">モデルの精度を保証する実装</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">説明可能な AI (XAI)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#説明可能な-AI-（XAI）とは">説明可能な AI （XAI）とは</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#データセットの準備">データセットの準備</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#モデルの準備">モデルの準備</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#LGBMClassifierの学習とテストスコアの算出">LGBMClassifierの学習とテストスコアの算出</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#SHAP-値">SHAP 値</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="00_title.html">1. – Python 速習とテーブルデータの操作 –</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_00_colab.html">2. Google Colaboratory 実習</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_01_00_data.html">3. データの理解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_01_00_python_basic.html">4. Python 速習とテーブルデータの基本操作</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_01_01_question.html">5. 演習問題</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_04_exercise_classification.html">6. 問題設定：Bank Marketing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_05_bankmarketing.html">7. 実装例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_00title.html">8. – データの前処理と機械学習モデルの構築 –</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_01_create_feature.html">9. モデル構築のための特徴量作成</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_02_K-Fold.html">10. モデルの精度を保証する実装</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">11. 説明可能な AI (XAI)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#説明可能な-AI-（XAI）とは">11.1. 説明可能な AI （XAI）とは</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#データセットの準備">11.2. データセットの準備</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#モデルの準備">11.3. モデルの準備</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#LGBMClassifierの学習とテストスコアの算出">11.4. LGBMClassifierの学習とテストスコアの算出</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#SHAP-値">11.5. SHAP 値</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#シグモイド関数を適用した-SHAP-値の一致性の確認">シグモイド関数を適用した SHAP 値の一致性の確認</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#SHAP-値の可視化">SHAP 値の可視化</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#SHAP-値の可視化">11.6. SHAP 値の可視化</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#個別の予測に対する特徴量の影響">個別の予測に対する特徴量の影響</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#データセット全体に対する特徴量の効き方">データセット全体に対する特徴量の効き方</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#【補足】特徴量の重要度同士の比較">【補足】特徴量の重要度同士の比較</a></li>
@@ -72,7 +72,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#変数間の交互作用をより細かく観察する方法">変数間の交互作用をより細かく観察する方法</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#SHAP-値の活用">SHAP 値の活用</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#SHAP-値の活用">11.7. SHAP 値の活用</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#SHAP-値クラスタリングによるデータの分類">SHAP 値クラスタリングによるデータの分類</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#【補足】-次元削減による特徴量の組み合わせ抽出">【補足】 次元削減による特徴量の組み合わせ抽出</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#【補足】-類似データの検索と新規性の算出">【補足】 類似データの検索と新規性の算出</a></li>
@@ -80,19 +80,19 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="03_00title.html">– 時系列解析 –</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03_01_timeseries_basic.html">時系列データの取り扱い方</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03_02_timeseries_analysis.html">自己回帰型モデル</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_00title.html">– 異常検知 –</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_01.html">異常検知とは</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_02_outlier.html">外れ値検知入門</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_03_other_outlier.html">【補足】 外れ値検知 - その他の手法</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_04_ml_base.html">機械学習を用いた異常検知入門</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_05_other_ml_base.html">【補足】機械学習を用いた異常検知 - その他の手法</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_13_nearest_neighbers.html">変化点検知入門</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_17_generation.html">【補足】 生成モデルによる異常部位検知</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_18_auto_encoder.html">【補足】 異常部位検知 - AutoEncoder</a></li>
-<li class="toctree-l1"><a class="reference internal" href="99_11ability-test2.html">【補足】 実力テスト - 機械学習セクション</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_00title.html">12. – 時系列解析 –</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_01_timeseries_basic.html">13. 時系列データの取り扱い方</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_02_timeseries_analysis.html">14. 自己回帰型モデル</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_00title.html">15. – 異常検知 –</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_01.html">16. 異常検知とは</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_02_outlier.html">17. 外れ値検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_03_other_outlier.html">18. 【補足】 外れ値検知 - その他の手法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_04_ml_base.html">19. 機械学習を用いた異常検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_05_other_ml_base.html">20. 【補足】機械学習を用いた異常検知 - その他の手法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_13_nearest_neighbers.html">21. 変化点検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_17_generation.html">22. 【補足】 生成モデルによる異常部位検知</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_18_auto_encoder.html">23. 【補足】 異常部位検知 - AutoEncoder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="99_11ability-test2.html">24. 【補足】 実力テスト - 機械学習セクション</a></li>
 </ul>
 
         </div>
@@ -109,7 +109,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>説明可能な AI (XAI)</li>
+      <li><span class="section-number">11. </span>説明可能な AI (XAI)</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/src/02_03_XAI.ipynb.txt" rel="nofollow"> View page source</a>
       </li>
@@ -398,7 +398,7 @@ div.rendered_html tbody tr:hover {
 }
 </style>
 <section id="説明可能な-AI-(XAI)">
-<h1>説明可能な AI (XAI)<a class="headerlink" href="#説明可能な-AI-(XAI)" title="この見出しへのパーマリンク"></a></h1>
+<h1><span class="section-number">11. </span>説明可能な AI (XAI)<a class="headerlink" href="#説明可能な-AI-(XAI)" title="この見出しへのパーマリンク"></a></h1>
 <div class="line-block">
 <div class="line">本章では説明可能な AI （Explanable AI）について触れます。</div>
 <div class="line">具体的には、機械学習の予測結果などを説明する際の一つの方法として、SHAP などについてご紹介します。</div>
@@ -414,7 +414,7 @@ div.rendered_html tbody tr:hover {
 <li><p>SHAP モジュールに予め登録されている Adult Gensus Income</p></li>
 </ul>
 <section id="説明可能な-AI-（XAI）とは">
-<h2>説明可能な AI （XAI）とは<a class="headerlink" href="#説明可能な-AI-（XAI）とは" title="この見出しへのパーマリンク"></a></h2>
+<h2><span class="section-number">11.1. </span>説明可能な AI （XAI）とは<a class="headerlink" href="#説明可能な-AI-（XAI）とは" title="この見出しへのパーマリンク"></a></h2>
 <p>※ こちらはスライドにてご紹介します。スライドは別途 PDF にて配布いたします。</p>
 <p>## SHAP による局所的・大局的説明</p>
 <div class="nbinput docutils container">
@@ -474,7 +474,7 @@ import shap
 </div>
 </section>
 <section id="データセットの準備">
-<h2>データセットの準備<a class="headerlink" href="#データセットの準備" title="この見出しへのパーマリンク"></a></h2>
+<h2><span class="section-number">11.2. </span>データセットの準備<a class="headerlink" href="#データセットの準備" title="この見出しへのパーマリンク"></a></h2>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
@@ -834,7 +834,7 @@ x_train.shape, x_test.shape
 </div>
 </section>
 <section id="モデルの準備">
-<h2>モデルの準備<a class="headerlink" href="#モデルの準備" title="この見出しへのパーマリンク"></a></h2>
+<h2><span class="section-number">11.3. </span>モデルの準備<a class="headerlink" href="#モデルの準備" title="この見出しへのパーマリンク"></a></h2>
 <p>LightGBM モデルを用いて学習と評価を行います。</p>
 <p>LightGBM は「勾配 Boosting 木」と呼ばれる方法の一種であり、予測と目的変数との誤差を最小化するように、複数の決定木を学習していくモデルで、精度が高く出やすいことと、計算速度が速いことで実務や機械学習コンペティションで頻繁に使用されています。</p>
 <p>決定木は、説明変数に関する条件分岐を繰り返して目的変数を予測するモデルです。 本来解釈性の高い機械学習手法ですが、LightGBM はこの決定木を複数使用するため、相対的に解釈性は低くなってしまうことに留意しておきましょう。</p>
@@ -844,7 +844,7 @@ x_train.shape, x_test.shape
 </div>
 </section>
 <section id="LGBMClassifierの学習とテストスコアの算出">
-<h2>LGBMClassifierの学習とテストスコアの算出<a class="headerlink" href="#LGBMClassifierの学習とテストスコアの算出" title="この見出しへのパーマリンク"></a></h2>
+<h2><span class="section-number">11.4. </span>LGBMClassifierの学習とテストスコアの算出<a class="headerlink" href="#LGBMClassifierの学習とテストスコアの算出" title="この見出しへのパーマリンク"></a></h2>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
@@ -1028,7 +1028,7 @@ pd.crosstab(y_test, y_pred)
 </div>
 </section>
 <section id="SHAP-値">
-<h2>SHAP 値<a class="headerlink" href="#SHAP-値" title="この見出しへのパーマリンク"></a></h2>
+<h2><span class="section-number">11.5. </span>SHAP 値<a class="headerlink" href="#SHAP-値" title="この見出しへのパーマリンク"></a></h2>
 <p>SHAP 値はすべての特徴量について、ひとつずつ特徴量を追加しながら（追加前の特徴量は「欠損」のように扱って）モデルの予測値を計算し、各特徴量の予測値に対する平均的な影響を Shapley 値で表現します。</p>
 <p>特徴量の数に応じて計算時間が増加していまいますが、このような計算量の爆発を回避する方法として、特定のモデルに対して　SHAP 値を効率的に計算するアルゴリズムが提案されています。</p>
 <ul class="simple">
@@ -1203,7 +1203,7 @@ assert np.all(np.isclose(prob_shap,y_pred_prob))
 </section>
 </section>
 <section id="SHAP-値の可視化">
-<h2>SHAP 値の可視化<a class="headerlink" href="#SHAP-値の可視化" title="この見出しへのパーマリンク"></a></h2>
+<h2><span class="section-number">11.6. </span>SHAP 値の可視化<a class="headerlink" href="#SHAP-値の可視化" title="この見出しへのパーマリンク"></a></h2>
 <div class="line-block">
 <div class="line">上記で、与えたデータと同じサイズ（データ数, 特徴量数）の SHAP 値を得ることができました。</div>
 <div class="line">ここからはこの値を可視化してモデル理解を進めていきます。</div>
@@ -1523,7 +1523,7 @@ shap.dependence_plot(&#39;Age&#39;, sv_test, x_test, interaction_index=&#39;Capi
 </section>
 </section>
 <section id="SHAP-値の活用">
-<h2>SHAP 値の活用<a class="headerlink" href="#SHAP-値の活用" title="この見出しへのパーマリンク"></a></h2>
+<h2><span class="section-number">11.7. </span>SHAP 値の活用<a class="headerlink" href="#SHAP-値の活用" title="この見出しへのパーマリンク"></a></h2>
 <p>SHAP 値自体は元のデータセットと同じ大きさの実数値行列なので、これを通常のデータ分析の対象と捉えることで、欲しい情報を必要に応じて抽出することが可能になります。</p>
 <section id="SHAP-値クラスタリングによるデータの分類">
 <h3>SHAP 値クラスタリングによるデータの分類<a class="headerlink" href="#SHAP-値クラスタリングによるデータの分類" title="この見出しへのパーマリンク"></a></h3>
@@ -1898,8 +1898,8 @@ shap.force_plot(explainer.expected_value[1], sv_future[index], x_future.iloc[ind
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="02_02_K-Fold.html" class="btn btn-neutral float-left" title="モデルの精度を保証する実装" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="03_00title.html" class="btn btn-neutral float-right" title="– 時系列解析 –" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="02_02_K-Fold.html" class="btn btn-neutral float-left" title="10. モデルの精度を保証する実装" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="03_00title.html" class="btn btn-neutral float-right" title="12. – 時系列解析 –" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

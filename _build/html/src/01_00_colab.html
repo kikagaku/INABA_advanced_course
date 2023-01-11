@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Google Colaboratory 実習 &mdash; 応用講座コース  ドキュメント</title>
+  <title>2. Google Colaboratory 実習 &mdash; 応用講座コース  ドキュメント</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -24,8 +24,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="検索" href="../search.html" />
-    <link rel="next" title="データの理解" href="01_01_00_data.html" />
-    <link rel="prev" title="– Python 速習とテーブルデータの操作 –" href="00_title.html" /> 
+    <link rel="next" title="3. データの理解" href="01_01_00_data.html" />
+    <link rel="prev" title="1. – Python 速習とテーブルデータの操作 –" href="00_title.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -45,14 +45,14 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="00_title.html">– Python 速習とテーブルデータの操作 –</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Google Colaboratory 実習</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#Google-Colaboratory-の基本">Google Colaboratory の基本</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#環境構築">環境構築</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="00_title.html">1. – Python 速習とテーブルデータの操作 –</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2. Google Colaboratory 実習</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#Google-Colaboratory-の基本">2.1. Google Colaboratory の基本</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#環境構築">2.2. 環境構築</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#Colab-を開く">Colab を開く</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#Colab-の基本的な使い方">Colab の基本的な使い方</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#Colab-の基本的な使い方">2.3. Colab の基本的な使い方</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#コードセル">コードセル</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#テキストセル">テキストセル</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#ファイルの読み込みとダウンロード">ファイルの読み込みとダウンロード</a></li>
@@ -68,7 +68,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#Tips">Tips</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#Tips">2.4. Tips</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id12">コードセル</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id13">テキストセル</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#Colab-の便利なショートカット">Colab の便利なショートカット</a></li>
@@ -79,28 +79,28 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="01_01_00_data.html">データの理解</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01_01_00_python_basic.html">Python 速習とテーブルデータの基本操作</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01_01_01_question.html">演習問題</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01_04_exercise_classification.html">問題設定：Bank Marketing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01_05_bankmarketing.html">実装例</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02_00title.html">– データの前処理と機械学習モデルの構築 –</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02_01_create_feature.html">モデル構築のための特徴量作成</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02_02_K-Fold.html">モデルの精度を保証する実装</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02_03_XAI.html">説明可能な AI (XAI)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03_00title.html">– 時系列解析 –</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03_01_timeseries_basic.html">時系列データの取り扱い方</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03_02_timeseries_analysis.html">自己回帰型モデル</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_00title.html">– 異常検知 –</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_01.html">異常検知とは</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_02_outlier.html">外れ値検知入門</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_03_other_outlier.html">【補足】 外れ値検知 - その他の手法</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_04_ml_base.html">機械学習を用いた異常検知入門</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_05_other_ml_base.html">【補足】機械学習を用いた異常検知 - その他の手法</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_13_nearest_neighbers.html">変化点検知入門</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_17_generation.html">【補足】 生成モデルによる異常部位検知</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_18_auto_encoder.html">【補足】 異常部位検知 - AutoEncoder</a></li>
-<li class="toctree-l1"><a class="reference internal" href="99_11ability-test2.html">【補足】 実力テスト - 機械学習セクション</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_01_00_data.html">3. データの理解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_01_00_python_basic.html">4. Python 速習とテーブルデータの基本操作</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_01_01_question.html">5. 演習問題</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_04_exercise_classification.html">6. 問題設定：Bank Marketing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_05_bankmarketing.html">7. 実装例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_00title.html">8. – データの前処理と機械学習モデルの構築 –</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_01_create_feature.html">9. モデル構築のための特徴量作成</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_02_K-Fold.html">10. モデルの精度を保証する実装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_03_XAI.html">11. 説明可能な AI (XAI)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_00title.html">12. – 時系列解析 –</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_01_timeseries_basic.html">13. 時系列データの取り扱い方</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_02_timeseries_analysis.html">14. 自己回帰型モデル</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_00title.html">15. – 異常検知 –</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_01.html">16. 異常検知とは</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_02_outlier.html">17. 外れ値検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_03_other_outlier.html">18. 【補足】 外れ値検知 - その他の手法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_04_ml_base.html">19. 機械学習を用いた異常検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_05_other_ml_base.html">20. 【補足】機械学習を用いた異常検知 - その他の手法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_13_nearest_neighbers.html">21. 変化点検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_17_generation.html">22. 【補足】 生成モデルによる異常部位検知</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_18_auto_encoder.html">23. 【補足】 異常部位検知 - AutoEncoder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="99_11ability-test2.html">24. 【補足】 実力テスト - 機械学習セクション</a></li>
 </ul>
 
         </div>
@@ -117,7 +117,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Google Colaboratory 実習</li>
+      <li><span class="section-number">2. </span>Google Colaboratory 実習</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/src/01_00_colab.ipynb.txt" rel="nofollow"> View page source</a>
       </li>
@@ -406,9 +406,9 @@ div.rendered_html tbody tr:hover {
 }
 </style>
 <section id="Google-Colaboratory-実習">
-<h1>Google Colaboratory 実習<a class="headerlink" href="#Google-Colaboratory-実習" title="この見出しへのパーマリンク"></a></h1>
+<h1><span class="section-number">2. </span>Google Colaboratory 実習<a class="headerlink" href="#Google-Colaboratory-実習" title="この見出しへのパーマリンク"></a></h1>
 <section id="Google-Colaboratory-の基本">
-<h2>Google Colaboratory の基本<a class="headerlink" href="#Google-Colaboratory-の基本" title="この見出しへのパーマリンク"></a></h2>
+<h2><span class="section-number">2.1. </span>Google Colaboratory の基本<a class="headerlink" href="#Google-Colaboratory-の基本" title="この見出しへのパーマリンク"></a></h2>
 <p>本講義で使用するコードを実行するにあたって Google Colaboratory というサービスの利用を推奨します。</p>
 <p>Google Colaboratory（以下 Colab ）は、クラウド上で <a class="reference external" href="https://jupyter.org/">Jupyter Notebook</a> 環境を提供する Google のウェブサービスです。Jupyter Notebook はブラウザ上で主に以下のようなことが可能なオープンソースのウェブアプリケーションであり、データ分析の現場や研究、教育などで広く用いられています。</p>
 <ul class="simple">
@@ -420,7 +420,7 @@ div.rendered_html tbody tr:hover {
 <p>以降では、環境構築と基本的な使い方を説明します。</p>
 </section>
 <section id="環境構築">
-<h2>環境構築<a class="headerlink" href="#環境構築" title="この見出しへのパーマリンク"></a></h2>
+<h2><span class="section-number">2.2. </span>環境構築<a class="headerlink" href="#環境構築" title="この見出しへのパーマリンク"></a></h2>
 <p>ここではまず、<strong>Google Colaboratory</strong> の利用方法を説明します。必要な事前準備は下記 ２ 点です。</p>
 <ul class="simple">
 <li><p>Google アカウント（お持ちでない場合は<a class="reference external" href="https://accounts.google.com/signup/v2/webcreateaccount?flowName=GlifWebSignIn&amp;flowEntry=SignUp">こちら</a>から作成）</p></li>
@@ -451,7 +451,7 @@ div.rendered_html tbody tr:hover {
 </section>
 </section>
 <section id="Colab-の基本的な使い方">
-<h2>Colab の基本的な使い方<a class="headerlink" href="#Colab-の基本的な使い方" title="この見出しへのパーマリンク"></a></h2>
+<h2><span class="section-number">2.3. </span>Colab の基本的な使い方<a class="headerlink" href="#Colab-の基本的な使い方" title="この見出しへのパーマリンク"></a></h2>
 <p>Colab 上の Jupyter Notebook を以降、単に<strong>ノートブック</strong>と呼びます。</p>
 <p>ノートブックは、複数の<strong>セル</strong>と呼ばれるブロックを持つことができます。 新しいノートブックを作った直後では、何も書かれていないセルが一つだけ存在している状態になっています。 セルの内側のどこかをクリックすると、そのセルを選択することができます。</p>
 <p>セルには、<strong>コードセル</strong>と<strong>テキストセル</strong>の 2 種類があります。コードセルは Python のコードを書き込み、実行するためのセルであり、テキストセルは、Markdown 形式で文章を書くためのセルです。</p>
@@ -713,7 +713,7 @@ df_time = df / 40
 </section>
 </section>
 <section id="Tips">
-<h2>Tips<a class="headerlink" href="#Tips" title="この見出しへのパーマリンク"></a></h2>
+<h2><span class="section-number">2.4. </span>Tips<a class="headerlink" href="#Tips" title="この見出しへのパーマリンク"></a></h2>
 <div class="line-block">
 <div class="line">テキストセルとコードセルのどちらもメモを残すことができます。</div>
 <div class="line">コードセルのメモの残し方と、テキストセルの記入方法を紹介します。</div>
@@ -819,8 +819,8 @@ df_time = df / 40
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="00_title.html" class="btn btn-neutral float-left" title="– Python 速習とテーブルデータの操作 –" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="01_01_00_data.html" class="btn btn-neutral float-right" title="データの理解" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="00_title.html" class="btn btn-neutral float-left" title="1. – Python 速習とテーブルデータの操作 –" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="01_01_00_data.html" class="btn btn-neutral float-right" title="3. データの理解" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
