@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>20. 【補足】機械学習を用いた異常検知 - その他の手法 &mdash; 応用講座コース  ドキュメント</title>
+  <title>21. 【補足】機械学習を用いた異常検知 - その他の手法 &mdash; 応用講座コース  ドキュメント</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -24,8 +24,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="検索" href="../search.html" />
-    <link rel="next" title="21. 変化点検知入門" href="04_13_nearest_neighbers.html" />
-    <link rel="prev" title="19. 機械学習を用いた異常検知入門" href="04_04_ml_base.html" /> 
+    <link rel="next" title="22. 変化点検知入門" href="04_13_nearest_neighbers.html" />
+    <link rel="prev" title="20. 機械学習を用いた異常検知入門" href="04_04_ml_base.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -45,31 +45,32 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="00_title.html">1. – Python 速習とテーブルデータの操作 –</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_00_00_title.html">1. – Python 速習とテーブルデータの操作 –</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01_00_colab.html">2. Google Colaboratory 実習</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01_01_00_data.html">3. データの理解</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01_01_00_python_basic.html">4. Python 速習とテーブルデータの基本操作</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01_01_01_question.html">5. 演習問題</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01_04_exercise_classification.html">6. 問題設定：Bank Marketing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01_05_bankmarketing.html">7. 実装例</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02_00title.html">8. – データの前処理と機械学習モデルの構築 –</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02_01_create_feature.html">9. モデル構築のための特徴量作成</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02_02_K-Fold.html">10. モデルの精度を保証する実装</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02_03_XAI.html">11. 説明可能な AI (XAI)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03_00title.html">12. – 時系列解析 –</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03_01_timeseries_basic.html">13. 時系列データの取り扱い方</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03_02_timeseries_analysis.html">14. 自己回帰型モデル</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_00title.html">15. – 異常検知 –</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_01.html">16. 異常検知とは</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_02_outlier.html">17. 外れ値検知入門</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_03_other_outlier.html">18. 【補足】 外れ値検知 - その他の手法</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_04_ml_base.html">19. 機械学習を用いた異常検知入門</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">20. 【補足】機械学習を用いた異常検知 - その他の手法</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#DBSCAN-(Density-based-spatial-clustering-of-applications-with-noise)">20.1. DBSCAN (Density-based spatial clustering of applications with noise)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#実装">20.2. 実装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_02_preprocessing_advanced.html">6. 【補足】データ前処理 応用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_04_exercise_classification.html">7. 問題設定：Bank Marketing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_05_bankmarketing.html">8. 実装例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_00title.html">9. ー データの前処理と機械学習モデルの構築 ー</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_01_create_feature.html">10. モデル構築のための特徴量作成</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_02_K-Fold.html">11. モデルの精度を保証する実装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_03_XAI.html">12. 説明可能な AI (XAI)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_00title.html">13. ー 時系列解析 ー</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_01_timeseries_basic.html">14. 時系列データの取り扱い方</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_02_timeseries_analysis.html">15. 自己回帰型モデル</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_00title.html">16. ー 異常検知 ー</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_01.html">17. 異常検知とは</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_02_outlier.html">18. 外れ値検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_03_other_outlier.html">19. 【補足】 外れ値検知 - その他の手法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_04_ml_base.html">20. 機械学習を用いた異常検知入門</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">21. 【補足】機械学習を用いた異常検知 - その他の手法</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#DBSCAN-(Density-based-spatial-clustering-of-applications-with-noise)">21.1. DBSCAN (Density-based spatial clustering of applications with noise)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#実装">21.2. 実装</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="04_13_nearest_neighbers.html">21. 変化点検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_13_nearest_neighbers.html">22. 変化点検知入門</a></li>
 </ul>
 
         </div>
@@ -86,7 +87,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li><span class="section-number">20. </span>【補足】機械学習を用いた異常検知 - その他の手法</li>
+      <li><span class="section-number">21. </span>【補足】機械学習を用いた異常検知 - その他の手法</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/src/04_05_other_ml_base.ipynb.txt" rel="nofollow"> View page source</a>
       </li>
@@ -375,9 +376,9 @@ div.rendered_html tbody tr:hover {
 }
 </style>
 <section id="【補足】機械学習を用いた異常検知---その他の手法">
-<h1><span class="section-number">20. </span>【補足】機械学習を用いた異常検知 - その他の手法<a class="headerlink" href="#【補足】機械学習を用いた異常検知---その他の手法" title="この見出しへのパーマリンク"></a></h1>
+<h1><span class="section-number">21. </span>【補足】機械学習を用いた異常検知 - その他の手法<a class="headerlink" href="#【補足】機械学習を用いた異常検知---その他の手法" title="この見出しへのパーマリンク"></a></h1>
 <section id="DBSCAN-(Density-based-spatial-clustering-of-applications-with-noise)">
-<h2><span class="section-number">20.1. </span>DBSCAN (Density-based spatial clustering of applications with noise)<a class="headerlink" href="#DBSCAN-(Density-based-spatial-clustering-of-applications-with-noise)" title="この見出しへのパーマリンク"></a></h2>
+<h2><span class="section-number">21.1. </span>DBSCAN (Density-based spatial clustering of applications with noise)<a class="headerlink" href="#DBSCAN-(Density-based-spatial-clustering-of-applications-with-noise)" title="この見出しへのパーマリンク"></a></h2>
 <p>データクラスタリングアルゴリズムです。クラスタ -1 は外れ値を示します。 DBSCAN には 2 つのパラメータが必要です。</p>
 <ol class="arabic simple">
 <li><p>epsilon: 近傍探索の半径を定義する距離パラメータ。</p></li>
@@ -392,7 +393,7 @@ div.rendered_html tbody tr:hover {
 <img alt="04" src="../_images/04.png" />
 </section>
 <section id="実装">
-<h2><span class="section-number">20.2. </span>実装<a class="headerlink" href="#実装" title="この見出しへのパーマリンク"></a></h2>
+<h2><span class="section-number">21.2. </span>実装<a class="headerlink" href="#実装" title="この見出しへのパーマリンク"></a></h2>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
@@ -640,8 +641,8 @@ data
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="04_04_ml_base.html" class="btn btn-neutral float-left" title="19. 機械学習を用いた異常検知入門" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="04_13_nearest_neighbers.html" class="btn btn-neutral float-right" title="21. 変化点検知入門" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="04_04_ml_base.html" class="btn btn-neutral float-left" title="20. 機械学習を用いた異常検知入門" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="04_13_nearest_neighbers.html" class="btn btn-neutral float-right" title="22. 変化点検知入門" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

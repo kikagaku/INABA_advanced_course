@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>21. 変化点検知入門 &mdash; 応用講座コース  ドキュメント</title>
+  <title>22. 変化点検知入門 &mdash; 応用講座コース  ドキュメント</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -24,7 +24,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="検索" href="../search.html" />
-    <link rel="prev" title="20. 【補足】機械学習を用いた異常検知 - その他の手法" href="04_05_other_ml_base.html" /> 
+    <link rel="prev" title="21. 【補足】機械学習を用いた異常検知 - その他の手法" href="04_05_other_ml_base.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -44,33 +44,34 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="00_title.html">1. – Python 速習とテーブルデータの操作 –</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_00_00_title.html">1. – Python 速習とテーブルデータの操作 –</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01_00_colab.html">2. Google Colaboratory 実習</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01_01_00_data.html">3. データの理解</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01_01_00_python_basic.html">4. Python 速習とテーブルデータの基本操作</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01_01_01_question.html">5. 演習問題</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01_04_exercise_classification.html">6. 問題設定：Bank Marketing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01_05_bankmarketing.html">7. 実装例</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02_00title.html">8. – データの前処理と機械学習モデルの構築 –</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02_01_create_feature.html">9. モデル構築のための特徴量作成</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02_02_K-Fold.html">10. モデルの精度を保証する実装</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02_03_XAI.html">11. 説明可能な AI (XAI)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03_00title.html">12. – 時系列解析 –</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03_01_timeseries_basic.html">13. 時系列データの取り扱い方</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03_02_timeseries_analysis.html">14. 自己回帰型モデル</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_00title.html">15. – 異常検知 –</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_01.html">16. 異常検知とは</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_02_outlier.html">17. 外れ値検知入門</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_03_other_outlier.html">18. 【補足】 外れ値検知 - その他の手法</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_04_ml_base.html">19. 機械学習を用いた異常検知入門</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_05_other_ml_base.html">20. 【補足】機械学習を用いた異常検知 - その他の手法</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">21. 変化点検知入門</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#k-Nearest-Neighbors">21.1. k-Nearest Neighbors</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#Window-処理">21.2. Window 処理</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="01_02_preprocessing_advanced.html">6. 【補足】データ前処理 応用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_04_exercise_classification.html">7. 問題設定：Bank Marketing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_05_bankmarketing.html">8. 実装例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_00title.html">9. ー データの前処理と機械学習モデルの構築 ー</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_01_create_feature.html">10. モデル構築のための特徴量作成</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_02_K-Fold.html">11. モデルの精度を保証する実装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_03_XAI.html">12. 説明可能な AI (XAI)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_00title.html">13. ー 時系列解析 ー</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_01_timeseries_basic.html">14. 時系列データの取り扱い方</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_02_timeseries_analysis.html">15. 自己回帰型モデル</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_00title.html">16. ー 異常検知 ー</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_01.html">17. 異常検知とは</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_02_outlier.html">18. 外れ値検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_03_other_outlier.html">19. 【補足】 外れ値検知 - その他の手法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_04_ml_base.html">20. 機械学習を用いた異常検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_05_other_ml_base.html">21. 【補足】機械学習を用いた異常検知 - その他の手法</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">22. 変化点検知入門</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#k-Nearest-Neighbors">22.1. k-Nearest Neighbors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Window-処理">22.2. Window 処理</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#Window-処理（部分時系列処理）">Window 処理（部分時系列処理）</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#ChangeFinder">21.3. ChangeFinder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ChangeFinder">22.3. ChangeFinder</a></li>
 </ul>
 </li>
 </ul>
@@ -89,7 +90,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li><span class="section-number">21. </span>変化点検知入門</li>
+      <li><span class="section-number">22. </span>変化点検知入門</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/src/04_13_nearest_neighbers.ipynb.txt" rel="nofollow"> View page source</a>
       </li>
@@ -378,9 +379,9 @@ div.rendered_html tbody tr:hover {
 }
 </style>
 <section id="変化点検知入門">
-<h1><span class="section-number">21. </span>変化点検知入門<a class="headerlink" href="#変化点検知入門" title="この見出しへのパーマリンク"></a></h1>
+<h1><span class="section-number">22. </span>変化点検知入門<a class="headerlink" href="#変化点検知入門" title="この見出しへのパーマリンク"></a></h1>
 <section id="k-Nearest-Neighbors">
-<h2><span class="section-number">21.1. </span>k-Nearest Neighbors<a class="headerlink" href="#k-Nearest-Neighbors" title="この見出しへのパーマリンク"></a></h2>
+<h2><span class="section-number">22.1. </span>k-Nearest Neighbors<a class="headerlink" href="#k-Nearest-Neighbors" title="この見出しへのパーマリンク"></a></h2>
 <p>k- 近傍法を用いた、時系列データに対する変化点検知を行います。</p>
 <div class="line-block">
 <div class="line"><strong>使用するデータ</strong></div>
@@ -909,7 +910,7 @@ plt.vlines(x=4554, ymin=.0, ymax=1., colors=&#39;r&#39;, linestyles=&#39;--&#39;
 </div>
 </section>
 <section id="Window-処理">
-<h2><span class="section-number">21.2. </span>Window 処理<a class="headerlink" href="#Window-処理" title="この見出しへのパーマリンク"></a></h2>
+<h2><span class="section-number">22.2. </span>Window 処理<a class="headerlink" href="#Window-処理" title="この見出しへのパーマリンク"></a></h2>
 <p>変化検知において外れ値検出が有効でないとされるのは、時系列データをひとつひとつ独立なデータと見なし、時間的に近いデータの影響を無視することで継続的な異常を判別出来ないためです。そこで、時間的に近いデータをまとめて新たなデータを作ることでこの問題を解決します。</p>
 <p>まずは、サンプルデータを作成します。平均値と標準偏差を変えることでバラツキと位置を変えています。</p>
 <div class="nbinput docutils container">
@@ -1395,7 +1396,7 @@ for change_point in change_points:
 </section>
 </section>
 <section id="ChangeFinder">
-<h2><span class="section-number">21.3. </span>ChangeFinder<a class="headerlink" href="#ChangeFinder" title="この見出しへのパーマリンク"></a></h2>
+<h2><span class="section-number">22.3. </span>ChangeFinder<a class="headerlink" href="#ChangeFinder" title="この見出しへのパーマリンク"></a></h2>
 <p>ChangeFinder とは自己回帰モデル（AR モデル）のオンライン忘却学習アルゴリズムである、SDAR アルゴリズム (Sequencially Discounting AR model learning) を活用したものです。</p>
 <p>今回内部の理論まで詳しくは扱いませんが、下記に簡単にアルゴリズムを整理しておきます。</p>
 <ol class="arabic simple">
@@ -1492,7 +1493,7 @@ plt.show()
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="04_05_other_ml_base.html" class="btn btn-neutral float-left" title="20. 【補足】機械学習を用いた異常検知 - その他の手法" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="04_05_other_ml_base.html" class="btn btn-neutral float-left" title="21. 【補足】機械学習を用いた異常検知 - その他の手法" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>
