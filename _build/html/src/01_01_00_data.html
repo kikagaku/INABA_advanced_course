@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="ja" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>3. データの理解 &mdash; 応用講座コース  ドキュメント</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -16,7 +15,6 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/translations.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -125,10 +123,10 @@
     text-align: unset;
 }
 </style>
-<section id="データの理解">
-<h1><span class="section-number">3. </span>データの理解<a class="headerlink" href="#データの理解" title="この見出しへのパーマリンク"></a></h1>
-<section id="データを理解する">
-<h2><span class="section-number">3.1. </span>データを理解する<a class="headerlink" href="#データを理解する" title="この見出しへのパーマリンク"></a></h2>
+<div class="section" id="データの理解">
+<h1><span class="section-number">3. </span>データの理解<a class="headerlink" href="#データの理解" title="Permalink to this heading"></a></h1>
+<div class="section" id="データを理解する">
+<h2><span class="section-number">3.1. </span>データを理解する<a class="headerlink" href="#データを理解する" title="Permalink to this heading"></a></h2>
 <p>PBL 期間に入ると、課題設定からデータの分析とモデルの構築までを行っていきます。 データ分析の際に一番初めに行うことは、コードを書くことではなくデータのスキーマ（データベース構造）と実際にどういうデータが入っているのかを確認することです。</p>
 <ul class="simple">
 <li><p>自分が使えるデータ（情報）はなにか</p></li>
@@ -136,9 +134,9 @@
 <li><p>どんな値が入っているのか</p></li>
 </ul>
 <p>をしっかりと把握してください。</p>
-</section>
-<section id="実際に眺める">
-<h2><span class="section-number">3.2. </span>実際に眺める<a class="headerlink" href="#実際に眺める" title="この見出しへのパーマリンク"></a></h2>
+</div>
+<div class="section" id="実際に眺める">
+<h2><span class="section-number">3.2. </span>実際に眺める<a class="headerlink" href="#実際に眺める" title="Permalink to this heading"></a></h2>
 <div class="line-block">
 <div class="line">全体の構造がざっと理解できたら、次は実際にデータを眺めてみることをおすすめします。</div>
 <div class="line">この実際に見るというのは pandas で head を print とかではなくて、エクセルで開いて、フィルタなどを活用しながらデータを確認するような少し泥臭い作業を指します。</div>
@@ -149,24 +147,24 @@
 <li><p>テキストのカラムでの表記ゆれ。目で見たほうがすぐわかります。</p></li>
 </ul>
 <p>容量が小さいデータはローカルでエクセルで開いてみて、外観を掴むだけでもだいぶ違うでしょう。このとき思ったこと・感じたことは、 テーブルごとなどでどこかにメモしておくとあとあとで処理をするときに役立つ場合があります。</p>
-</section>
-<section id="現象を理解する">
-<h2><span class="section-number">3.3. </span>現象を理解する<a class="headerlink" href="#現象を理解する" title="この見出しへのパーマリンク"></a></h2>
+</div>
+<div class="section" id="現象を理解する">
+<h2><span class="section-number">3.3. </span>現象を理解する<a class="headerlink" href="#現象を理解する" title="Permalink to this heading"></a></h2>
 <div class="line-block">
 <div class="line">次に「このデータはどのように作られたか（取得されたか）」について考えてみましょう。</div>
 <div class="line">特殊なデータを除いて、データとは何らかの行動のあしあとですから物理的・時間的な制約を多く受けます。</div>
 <div class="line">あしあとに関して想像をふくらませることで機械学習のアルゴリズムに対してよりよい情報（特徴量）を作成することができます。</div>
 </div>
-</section>
-<section id="予測対象を確認する">
-<h2><span class="section-number">3.4. </span>予測対象を確認する<a class="headerlink" href="#予測対象を確認する" title="この見出しへのパーマリンク"></a></h2>
+</div>
+<div class="section" id="予測対象を確認する">
+<h2><span class="section-number">3.4. </span>予測対象を確認する<a class="headerlink" href="#予測対象を確認する" title="Permalink to this heading"></a></h2>
 <p>自身の解きたい問題設定によって、予測の対象を絞り込みます。予測する対象である目的変数と、それを説明する説明変数の選び方にこそみなさんのドメイン知識（専門知）が生かされます。どのような変数を選ぶべきなのかは、普段の業務を通じて「もしかしたら、〇〇の現象には△△が関係しているかもしれない。」という気づきが有効になることもあります。ぜひ予測モデルを構築するという視点でも業務への関わりを意識してみてください。</p>
-</section>
-<section id="評価指標を確認する">
-<h2><span class="section-number">3.5. </span>評価指標を確認する<a class="headerlink" href="#評価指標を確認する" title="この見出しへのパーマリンク"></a></h2>
+</div>
+<div class="section" id="評価指標を確認する">
+<h2><span class="section-number">3.5. </span>評価指標を確認する<a class="headerlink" href="#評価指標を確認する" title="Permalink to this heading"></a></h2>
 <p>評価指標は、モデルの評価指標とビジネス的な価値の評価指標の２つがあります。モデルの評価指標は、精度ともいわれ問題設定によってどのような精度をおくのかが重要になります。精度向上のアプローチでは、データアプローチとモデルアプローチがあります。どのようなデータを取得し、前処理をすると良いのか、どのモデルを選定しチューニングすればよいのかを、試行錯誤しながら精度向上を目指していきましょう。</p>
-</section>
-</section>
+</div>
+</div>
 
 
            </div>

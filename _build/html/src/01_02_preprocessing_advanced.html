@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="ja" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>6. 【補足】データ前処理 応用 &mdash; 応用講座コース  ドキュメント</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -16,7 +15,6 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/translations.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -393,24 +391,24 @@ div.rendered_html tbody tr:hover {
     text-align: unset;
 }
 </style>
-<section id="【補足】データ前処理-応用">
-<h1><span class="section-number">6. </span>【補足】データ前処理 応用<a class="headerlink" href="#【補足】データ前処理-応用" title="この見出しへのパーマリンク"></a></h1>
+<div class="section" id="【補足】データ前処理-応用">
+<h1><span class="section-number">6. </span>【補足】データ前処理 応用<a class="headerlink" href="#【補足】データ前処理-応用" title="Permalink to this heading"></a></h1>
 <p>データの前処理について、再度種類を確認しておきます。</p>
 <ol class="arabic simple">
 <li><p>機械学習のアルゴリズムに適用できる形に変換する前処理</p></li>
 <li><p>モデルの精度を向上させるために行う前処理</p></li>
 </ol>
 <p>まず前者の前処理を施してスコアを確認し、その後精度向上の前処理を行いスコアの変化を確認します。</p>
-<section id="機械学習で扱える形にする前処理">
-<h2><span class="section-number">6.1. </span>機械学習で扱える形にする前処理<a class="headerlink" href="#機械学習で扱える形にする前処理" title="この見出しへのパーマリンク"></a></h2>
+<div class="section" id="機械学習で扱える形にする前処理">
+<h2><span class="section-number">6.1. </span>機械学習で扱える形にする前処理<a class="headerlink" href="#機械学習で扱える形にする前処理" title="Permalink to this heading"></a></h2>
 <p>機械学習のアルゴリズムに適用できる形に変換していきます。以下の手順で進めていきます。</p>
 <ul class="simple">
 <li><p>データの確認</p></li>
 <li><p>欠損値処理</p></li>
 <li><p>カテゴリカル変数処理</p></li>
 </ul>
-<section id="データの確認">
-<h3>データの確認<a class="headerlink" href="#データの確認" title="この見出しへのパーマリンク"></a></h3>
+<div class="section" id="データの確認">
+<h3>データの確認<a class="headerlink" href="#データの確認" title="Permalink to this heading"></a></h3>
 <p>まずは今回取り扱うデータを確認しましょう。</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
@@ -580,9 +578,9 @@ div.rendered_html tbody tr:hover {
 (205, 26)
 </pre></div></div>
 </div>
-</section>
-<section id="欠損値処理">
-<h3>欠損値処理<a class="headerlink" href="#欠損値処理" title="この見出しへのパーマリンク"></a></h3>
+</div>
+<div class="section" id="欠損値処理">
+<h3>欠損値処理<a class="headerlink" href="#欠損値処理" title="Permalink to this heading"></a></h3>
 <p><strong>欠損値除去</strong></p>
 <p>もう一度欠損値除去の2つの方法を確認します。</p>
 <table class="docutils align-default">
@@ -1128,9 +1126,9 @@ dtype: int64
 </pre></div></div>
 </div>
 <p>これでうまく欠損値を全てなくすことが出来ました。それでは、続いて文字列データ（カテゴリカル変数）をどのように数値に落とし込んでいくかみていきましょう。</p>
-</section>
-<section id="カテゴリカル変数処理">
-<h3>カテゴリカル変数処理<a class="headerlink" href="#カテゴリカル変数処理" title="この見出しへのパーマリンク"></a></h3>
+</div>
+<div class="section" id="カテゴリカル変数処理">
+<h3>カテゴリカル変数処理<a class="headerlink" href="#カテゴリカル変数処理" title="Permalink to this heading"></a></h3>
 <p>カテゴリカル変数は、Label Encoding と One-Hot Encoding　の 2 種類を紹介しました。</p>
 <p>まずはカテゴリカル変数のデータを確認してみましょう。</p>
 <div class="nbinput docutils container">
@@ -1520,9 +1518,9 @@ Index([&#39;fuel-type&#39;, &#39;aspiration&#39;, &#39;num-of-doors&#39;, &#39;e
 </div>
 <p>うまく文字列データが数値（ダミー変数）に置き換わっていることが確認できます。これでようやくデータを機械学習のモデルに学習させることのできる形になりました。</p>
 <p>精度向上のための前処理を施す前に、この時点でのスコアを一度確認しましょう。</p>
-</section>
-<section id="重回帰分析の実装">
-<h3>重回帰分析の実装<a class="headerlink" href="#重回帰分析の実装" title="この見出しへのパーマリンク"></a></h3>
+</div>
+<div class="section" id="重回帰分析の実装">
+<h3>重回帰分析の実装<a class="headerlink" href="#重回帰分析の実装" title="Permalink to this heading"></a></h3>
 <p>先ほどのデータを使用して、重回帰分析を実装します。</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
@@ -1589,17 +1587,17 @@ train score : 0.9734120796250461
 test score : 0.8617805165929352
 </pre></div></div>
 </div>
-</section>
-</section>
-<section id="データの前処理（応用）">
-<h2><span class="section-number">6.2. </span>データの前処理（応用）<a class="headerlink" href="#データの前処理（応用）" title="この見出しへのパーマリンク"></a></h2>
+</div>
+</div>
+<div class="section" id="データの前処理（応用）">
+<h2><span class="section-number">6.2. </span>データの前処理（応用）<a class="headerlink" href="#データの前処理（応用）" title="Permalink to this heading"></a></h2>
 <p>精度向上のための前処理の方法をいくつか確認しましょう。</p>
 <ul class="simple">
 <li><p>特徴量エンジニアリング</p></li>
 <li><p>外れ値除去</p></li>
 </ul>
-<section id="特徴量エンジニアリング">
-<h3>特徴量エンジニアリング<a class="headerlink" href="#特徴量エンジニアリング" title="この見出しへのパーマリンク"></a></h3>
+<div class="section" id="特徴量エンジニアリング">
+<h3>特徴量エンジニアリング<a class="headerlink" href="#特徴量エンジニアリング" title="Permalink to this heading"></a></h3>
 <p>精度をあげる為の前処理の １ つとして、特徴量エンジニアリングについてご紹介します。特徴量エンジニアリングとは現在あるデータを用い、より有用なデータを作成することです。（外部のデータを使用するケースもあります。）</p>
 <p>今回は車のメーカーで分けてしまうよりも、メーカーをいくつかのクラスに分割してしまった方がいいかもしれません。車市場について調べてみるとメーカーによって下記のようなクラスに分類することができそうです。</p>
 <table class="docutils align-default">
@@ -1976,8 +1974,8 @@ Index([&#39;symboling&#39;, &#39;fuel-type&#39;, &#39;aspiration&#39;, &#39;num-
 </div></div>
 </div>
 <p>高級層、中級層、大衆層の入力変数を作成できました。</p>
-<section id="新たな入力変数を追加したデータで重回帰分析">
-<h4>新たな入力変数を追加したデータで重回帰分析<a class="headerlink" href="#新たな入力変数を追加したデータで重回帰分析" title="この見出しへのパーマリンク"></a></h4>
+<div class="section" id="新たな入力変数を追加したデータで重回帰分析">
+<h4>新たな入力変数を追加したデータで重回帰分析<a class="headerlink" href="#新たな入力変数を追加したデータで重回帰分析" title="Permalink to this heading"></a></h4>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
 </pre></div>
@@ -2045,10 +2043,10 @@ test score : 0.8440907703445528
 </div>
 <p>過学習は抑えることができましたが精度はあまり向上しませんでした。ドメイン知識がない為、適切な特徴量エンジニアリングができていないのかもしれません。今回はこのようなものがあるという程度の認識で大丈夫です。</p>
 <p>重要なのは適切な特徴量を作成するという部分にあります。</p>
-</section>
-</section>
-<section id="外れ値除去">
-<h3>外れ値除去<a class="headerlink" href="#外れ値除去" title="この見出しへのパーマリンク"></a></h3>
+</div>
+</div>
+<div class="section" id="外れ値除去">
+<h3>外れ値除去<a class="headerlink" href="#外れ値除去" title="Permalink to this heading"></a></h3>
 <p>まず前提として外れ値は問題設定によって異なるという点をおさえておいてください。今回は外れ値除去の代表的な 2 つの手法をお伝えします。</p>
 <ul class="simple">
 <li><p>3σ法（平均値ベース）</p></li>
@@ -2058,8 +2056,8 @@ test score : 0.8440907703445528
 <div class="line">それぞれの違いは平均値をベースにするものか、中央値ベースにするのかです。基本的には3σ法を採用し、それでうまく外れ値を検知出来ない場合はハンペル判別法を使うといいでしょう。</div>
 <div class="line">（ハンペル判別法外れ値の数が多く、平均が引っ張られている場合などに有用な手法です。）</div>
 </div>
-<section id="3σ法">
-<h4>3σ法<a class="headerlink" href="#3σ法" title="この見出しへのパーマリンク"></a></h4>
+<div class="section" id="3σ法">
+<h4>3σ法<a class="headerlink" href="#3σ法" title="Permalink to this heading"></a></h4>
 <p>3σ 法の公式は下記です。x が 3σ の中に収まらないものを外れ値とみなします。</p>
 <table class="docutils align-default">
 <colgroup>
@@ -2318,10 +2316,10 @@ test score : 0.8440907703445528
 (182, 44)
 </pre></div></div>
 </div>
-</section>
-</section>
-<section id="外れ値除去を行なったデータで重回帰分析">
-<h3>外れ値除去を行なったデータで重回帰分析<a class="headerlink" href="#外れ値除去を行なったデータで重回帰分析" title="この見出しへのパーマリンク"></a></h3>
+</div>
+</div>
+<div class="section" id="外れ値除去を行なったデータで重回帰分析">
+<h3>外れ値除去を行なったデータで重回帰分析<a class="headerlink" href="#外れ値除去を行なったデータで重回帰分析" title="Permalink to this heading"></a></h3>
 <p>それでは、3σ 法で外れ値除去を行なったデータを用いて再度精度を確認してみましょう。</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[65]:
@@ -2389,9 +2387,9 @@ test score : 0.8824611285104028
 </pre></div></div>
 </div>
 <p>精度が上昇していることが確認できました。外れ値除去を行うポイントですが、行えば必ず精度が上がるわけではありません。データの分布や問題設定を考えた上で実行する必要があります。</p>
-</section>
-</section>
-</section>
+</div>
+</div>
+</div>
 
 
            </div>

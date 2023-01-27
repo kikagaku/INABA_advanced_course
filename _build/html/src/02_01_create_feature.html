@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="ja" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>10. モデル構築のための特徴量作成 &mdash; 応用講座コース  ドキュメント</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -16,7 +15,6 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/translations.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -395,8 +393,8 @@ div.rendered_html tbody tr:hover {
     text-align: unset;
 }
 </style>
-<section id="モデル構築のための特徴量作成">
-<h1><span class="section-number">10. </span>モデル構築のための特徴量作成<a class="headerlink" href="#モデル構築のための特徴量作成" title="この見出しへのパーマリンク"></a></h1>
+<div class="section" id="モデル構築のための特徴量作成">
+<h1><span class="section-number">10. </span>モデル構築のための特徴量作成<a class="headerlink" href="#モデル構築のための特徴量作成" title="Permalink to this heading"></a></h1>
 <div class="line-block">
 <div class="line">本章では、機械学習モデルの構築に必要な特徴量作成の例として実装を行います。</div>
 <div class="line">ここでは事前学習などでは扱えなかった高度な集計の方法や、特徴量作成時のポイント（処理を関数化しておくこと）などに触れます。</div>
@@ -411,8 +409,8 @@ div.rendered_html tbody tr:hover {
 <ul class="simple">
 <li><p><a class="reference external" href="data/adult.csv">Adult Gesus Dataset</a></p></li>
 </ul>
-<section id="データの読み込みと確認">
-<h2><span class="section-number">10.1. </span>データの読み込みと確認<a class="headerlink" href="#データの読み込みと確認" title="この見出しへのパーマリンク"></a></h2>
+<div class="section" id="データの読み込みと確認">
+<h2><span class="section-number">10.1. </span>データの読み込みと確認<a class="headerlink" href="#データの読み込みと確認" title="Permalink to this heading"></a></h2>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -623,9 +621,9 @@ div.rendered_html tbody tr:hover {
 今回のデータセットにおける機械学習実装での不都合な点は何が有るでしょうか？
 </pre></div>
 </div>
-</section>
-<section id="【参考】-前処理のためのデータ確認（基礎編）">
-<h2><span class="section-number">10.2. </span>【参考】 前処理のためのデータ確認（基礎編）<a class="headerlink" href="#【参考】-前処理のためのデータ確認（基礎編）" title="この見出しへのパーマリンク"></a></h2>
+</div>
+<div class="section" id="【参考】-前処理のためのデータ確認（基礎編）">
+<h2><span class="section-number">10.2. </span>【参考】 前処理のためのデータ確認（基礎編）<a class="headerlink" href="#【参考】-前処理のためのデータ確認（基礎編）" title="Permalink to this heading"></a></h2>
 <div class="line-block">
 <div class="line">取り合えす、最低限実装しておくべきデータの確認について記載しておきます。</div>
 <div class="line">こちらは復習内容が大半ですので実装はしませんが、どうすれば何を確認できたのかは押さえておきましょう。</div>
@@ -1041,9 +1039,9 @@ memory usage: 3.8+ MB
 <li><p>カテゴリのデータが存在する</p></li>
 <li><p>同じ意味を持つ変数が存在している</p></li>
 </ul>
-</section>
-<section id="前処理のためのデータ確認（発展編）">
-<h2><span class="section-number">10.3. </span>前処理のためのデータ確認（発展編）<a class="headerlink" href="#前処理のためのデータ確認（発展編）" title="この見出しへのパーマリンク"></a></h2>
+</div>
+<div class="section" id="前処理のためのデータ確認（発展編）">
+<h2><span class="section-number">10.3. </span>前処理のためのデータ確認（発展編）<a class="headerlink" href="#前処理のためのデータ確認（発展編）" title="Permalink to this heading"></a></h2>
 <div class="line-block">
 <div class="line">ここからでは、前処理のためのデータ確認において発展的な実装を行います。</div>
 <div class="line">前提として以下のコードは一例でありより効率的なコードを書くことはできると思います。</div>
@@ -1080,8 +1078,8 @@ memory usage: 3.8+ MB
 数値のカラム:[&#39;age&#39;, &#39;fnlwgt&#39;, &#39;education.num&#39;, &#39;capital.gain&#39;, &#39;capital.loss&#39;, &#39;hours.per.week&#39;]
 </pre></div></div>
 </div>
-<section id="構成と分布を確認する">
-<h3>構成と分布を確認する<a class="headerlink" href="#構成と分布を確認する" title="この見出しへのパーマリンク"></a></h3>
+<div class="section" id="構成と分布を確認する">
+<h3>構成と分布を確認する<a class="headerlink" href="#構成と分布を確認する" title="Permalink to this heading"></a></h3>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -1223,9 +1221,9 @@ memory usage: 3.8+ MB
 <img alt="../_images/src_02_01_create_feature_25_0.png" src="../_images/src_02_01_create_feature_25_0.png" />
 </div>
 </div>
-</section>
-<section id="データの関連性を見る">
-<h3>データの関連性を見る<a class="headerlink" href="#データの関連性を見る" title="この見出しへのパーマリンク"></a></h3>
+</div>
+<div class="section" id="データの関連性を見る">
+<h3>データの関連性を見る<a class="headerlink" href="#データの関連性を見る" title="Permalink to this heading"></a></h3>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -1461,12 +1459,12 @@ memory usage: 3.8+ MB
 ここまでの実装の結果から行うべき処理はどのようなものが有るか考えましょう。
 </pre></div>
 </div>
-</section>
-</section>
-<section id="特徴量変換">
-<h2><span class="section-number">10.4. </span>特徴量変換<a class="headerlink" href="#特徴量変換" title="この見出しへのパーマリンク"></a></h2>
-<section id="特徴量とは">
-<h3>特徴量とは<a class="headerlink" href="#特徴量とは" title="この見出しへのパーマリンク"></a></h3>
+</div>
+</div>
+<div class="section" id="特徴量変換">
+<h2><span class="section-number">10.4. </span>特徴量変換<a class="headerlink" href="#特徴量変換" title="Permalink to this heading"></a></h2>
+<div class="section" id="特徴量とは">
+<h3>特徴量とは<a class="headerlink" href="#特徴量とは" title="Permalink to this heading"></a></h3>
 <p>予測変数に紐付いた説明変数のことを「特徴量」と呼びます。様々なアルゴリズムがが開発されていますが、アルゴリズムに入力するデータは人間が用意しなければいけません。この予測のもとになるデータを特徴量とよび、アルゴリズムが理解しやすい特徴量を作ることを <strong>特徴量エンジニアリング</strong>と呼びます。</p>
 <p>特徴量エンジニアリングの目的には大きく分けて以下の2つがあります。</p>
 <ul class="simple">
@@ -1474,13 +1472,13 @@ memory usage: 3.8+ MB
 <li><p>予測に用いるために最適なデータを用意する</p></li>
 </ul>
 <p>それぞれ実装しましょう。</p>
-</section>
-</section>
-<section id="機械学習モデルが扱えるデータを用意する">
-<h2><span class="section-number">10.5. </span>機械学習モデルが扱えるデータを用意する<a class="headerlink" href="#機械学習モデルが扱えるデータを用意する" title="この見出しへのパーマリンク"></a></h2>
+</div>
+</div>
+<div class="section" id="機械学習モデルが扱えるデータを用意する">
+<h2><span class="section-number">10.5. </span>機械学習モデルが扱えるデータを用意する<a class="headerlink" href="#機械学習モデルが扱えるデータを用意する" title="Permalink to this heading"></a></h2>
 <p>機械学習が理解できるのは基本的に数値の形式のみです。テキストや画像などを取り扱う場合もありますが、それらもピクセルの RGB や NLP の手法により、最終的に数値化されて機械学習へとインプットされています。数値への変換は人間の仕事です。</p>
-<section id="不要な変数・データの削除やデータの補完">
-<h3>不要な変数・データの削除やデータの補完<a class="headerlink" href="#不要な変数・データの削除やデータの補完" title="この見出しへのパーマリンク"></a></h3>
+<div class="section" id="不要な変数・データの削除やデータの補完">
+<h3>不要な変数・データの削除やデータの補完<a class="headerlink" href="#不要な変数・データの削除やデータの補完" title="Permalink to this heading"></a></h3>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -1787,12 +1785,12 @@ marital-group        0
 dtype: int64
 </pre></div></div>
 </div>
-</section>
-</section>
-<section id="予測に用いるために最適なデータを用意する">
-<h2><span class="section-number">10.6. </span>予測に用いるために最適なデータを用意する<a class="headerlink" href="#予測に用いるために最適なデータを用意する" title="この見出しへのパーマリンク"></a></h2>
-<section id="カテゴリカル変数の変換">
-<h3>カテゴリカル変数の変換<a class="headerlink" href="#カテゴリカル変数の変換" title="この見出しへのパーマリンク"></a></h3>
+</div>
+</div>
+<div class="section" id="予測に用いるために最適なデータを用意する">
+<h2><span class="section-number">10.6. </span>予測に用いるために最適なデータを用意する<a class="headerlink" href="#予測に用いるために最適なデータを用意する" title="Permalink to this heading"></a></h2>
+<div class="section" id="カテゴリカル変数の変換">
+<h3>カテゴリカル変数の変換<a class="headerlink" href="#カテゴリカル変数の変換" title="Permalink to this heading"></a></h3>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -2409,10 +2407,10 @@ Name: marital-group, Length: 32537, dtype: object
     </div>
   </div></div>
 </div>
-</section>
-</section>
-<section id="特徴量エンジニアリングの関数化">
-<h2><span class="section-number">10.7. </span>特徴量エンジニアリングの関数化<a class="headerlink" href="#特徴量エンジニアリングの関数化" title="この見出しへのパーマリンク"></a></h2>
+</div>
+</div>
+<div class="section" id="特徴量エンジニアリングの関数化">
+<h2><span class="section-number">10.7. </span>特徴量エンジニアリングの関数化<a class="headerlink" href="#特徴量エンジニアリングの関数化" title="Permalink to this heading"></a></h2>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -2848,9 +2846,9 @@ Name: marital-group, Length: 32537, dtype: object
     </div>
   </div></div>
 </div>
-</section>
-<section id="【復習】機械学習モデル構築">
-<h2><span class="section-number">10.8. </span>【復習】機械学習モデル構築<a class="headerlink" href="#【復習】機械学習モデル構築" title="この見出しへのパーマリンク"></a></h2>
+</div>
+<div class="section" id="【復習】機械学習モデル構築">
+<h2><span class="section-number">10.8. </span>【復習】機械学習モデル構築<a class="headerlink" href="#【復習】機械学習モデル構築" title="Permalink to this heading"></a></h2>
 <p>基本的な実装として決定木を用いた実装を行いましょう。</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
@@ -2995,8 +2993,8 @@ DecisionTreeClassifier(random_state=0)
 0.8076213890596189
 </pre></div></div>
 </div>
-</section>
-</section>
+</div>
+</div>
 
 
            </div>
