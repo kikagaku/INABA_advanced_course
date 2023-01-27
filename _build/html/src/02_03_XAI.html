@@ -84,13 +84,14 @@
 <li class="toctree-l1"><a class="reference internal" href="03_00title.html">13. ー 時系列解析 ー</a></li>
 <li class="toctree-l1"><a class="reference internal" href="03_01_timeseries_basic.html">14. 時系列データの取り扱い方</a></li>
 <li class="toctree-l1"><a class="reference internal" href="03_02_timeseries_analysis.html">15. 自己回帰型モデル</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_00title.html">16. ー 異常検知 ー</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_01.html">17. 異常検知とは</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_02_outlier.html">18. 外れ値検知入門</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_03_other_outlier.html">19. 【補足】 外れ値検知 - その他の手法</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_04_ml_base.html">20. 機械学習を用いた異常検知入門</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_05_other_ml_base.html">21. 【補足】機械学習を用いた異常検知 - その他の手法</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_13_nearest_neighbers.html">22. 変化点検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_03_feature_enigineering.html">16. 【補足】特徴量エンジニアリング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_00title.html">17. ー 異常検知 ー</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_01.html">18. 異常検知とは</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_02_outlier.html">19. 外れ値検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_03_other_outlier.html">20. 【補足】 外れ値検知 - その他の手法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_04_ml_base.html">21. 機械学習を用いた異常検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_05_other_ml_base.html">22. 【補足】機械学習を用いた異常検知 - その他の手法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_13_nearest_neighbers.html">23. 変化点検知入門</a></li>
 </ul>
 
         </div>
@@ -419,9 +420,9 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!pip install -q shap
-!pip install -q lightgbm
-!pip install -q japanize_matplotlib
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip install -q shap
+<span class="o">!</span>pip install -q lightgbm
+<span class="o">!</span>pip install -q japanize_matplotlib
 </pre></div>
 </div>
 </div>
@@ -438,18 +439,18 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 
-import japanize_matplotlib
-plt.style.use(&#39;bmh&#39;)
-plt.rcParams[&#39;figure.figsize&#39;] = 10, 6
+<span class="kn">import</span> <span class="nn">japanize_matplotlib</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;bmh&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">6</span>
 
-import sklearn
-import lightgbm as lgb
-import shap
+<span class="kn">import</span> <span class="nn">sklearn</span>
+<span class="kn">import</span> <span class="nn">lightgbm</span> <span class="k">as</span> <span class="nn">lgb</span>
+<span class="kn">import</span> <span class="nn">shap</span>
 </pre></div>
 </div>
 </div>
@@ -457,7 +458,7 @@ import shap
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>shap.__version__, lgb.__version__
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">shap</span><span class="o">.</span><span class="n">__version__</span><span class="p">,</span> <span class="n">lgb</span><span class="o">.</span><span class="n">__version__</span>
 </pre></div>
 </div>
 </div>
@@ -477,11 +478,11 @@ import shap
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># データセットの取得
-X, y = shap.datasets.adult()
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># データセットの取得</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">shap</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">adult</span><span class="p">()</span>
 
-# 説明変数
-X.head()
+<span class="c1"># 説明変数</span>
+<span class="n">X</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -683,8 +684,8 @@ X.head()
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 目的変数
-y
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 目的変数</span>
+<span class="n">y</span>
 </pre></div>
 </div>
 </div>
@@ -701,8 +702,8 @@ array([False, False, False, ..., False, False,  True])
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># データサイズ
-X.shape
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># データサイズ</span>
+<span class="n">X</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 </div>
 </div>
@@ -719,8 +720,8 @@ X.shape
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># データ型
-X.dtypes
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># データ型</span>
+<span class="n">X</span><span class="o">.</span><span class="n">dtypes</span>
 </pre></div>
 </div>
 </div>
@@ -749,9 +750,9 @@ dtype: object
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 欠損値の確認
-X.isnull().sum()
-# X.isna().sum()
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 欠損値の確認</span>
+<span class="n">X</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="c1"># X.isna().sum()</span>
 </pre></div>
 </div>
 </div>
@@ -781,13 +782,13 @@ dtype: int64
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># カテゴリ変数の指定
-for col in X.columns:
-    if X[col].dtype == np.int8:
-        # キャスト
-        X[col] = X[col].astype(&#39;category&#39;)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># カテゴリ変数の指定</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">X</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">:</span>
+        <span class="c1"># キャスト</span>
+        <span class="n">X</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span>
 
-print(X.dtypes)
+<span class="nb">print</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">dtypes</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -815,9 +816,9 @@ dtype: object
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 学習用とテスト用にデータ分割
-x_train, x_test, y_train, y_test = sklearn.model_selection.train_test_split(X, y, random_state=0)
-x_train.shape, x_test.shape
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 学習用とテスト用にデータ分割</span>
+<span class="n">x_train</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">model_selection</span><span class="o">.</span><span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">x_train</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">x_test</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 </div>
 </div>
@@ -847,9 +848,9 @@ x_train.shape, x_test.shape
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 学習
-model = lgb.LGBMClassifier(random_state=0)
-model.fit(x_train, y_train)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 学習</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">lgb</span><span class="o">.</span><span class="n">LGBMClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -866,10 +867,10 @@ LGBMClassifier(random_state=0)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 予測値の算出
-# predict_prob の返り値は（0 の確率, 1 の確率）の2列なので、1 の確率のみ取得
-y_pred_prob = model.predict_proba(x_test)[:, 1]
-y_pred = model.predict(x_test)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 予測値の算出</span>
+<span class="c1"># predict_prob の返り値は（0 の確率, 1 の確率）の2列なので、1 の確率のみ取得</span>
+<span class="n">y_pred_prob</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">x_test</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_test</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -877,9 +878,9 @@ y_pred = model.predict(x_test)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 予測値の評価
-val = sklearn.metrics.roc_auc_score(y_test, y_pred_prob)
-print(f&#39;auc-roc score: {val:.2f}&#39;)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 予測値の評価</span>
+<span class="n">val</span> <span class="o">=</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_prob</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;auc-roc score: </span><span class="si">{</span><span class="n">val</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -895,8 +896,8 @@ auc-roc score: 0.93
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 予測結果の混同行列
-pd.crosstab(y_test, y_pred)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 予測結果の混同行列</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1039,9 +1040,9 @@ pd.crosstab(y_test, y_pred)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 説明器の準備とSHAP値の算出
-explainer = shap.TreeExplainer(model)
-sv_test = explainer.shap_values(x_test)[1]
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 説明器の準備とSHAP値の算出</span>
+<span class="n">explainer</span> <span class="o">=</span> <span class="n">shap</span><span class="o">.</span><span class="n">TreeExplainer</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+<span class="n">sv_test</span> <span class="o">=</span> <span class="n">explainer</span><span class="o">.</span><span class="n">shap_values</span><span class="p">(</span><span class="n">x_test</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1057,8 +1058,8 @@ LightGBM binary classifier with TreeExplainer shap values output has changed to 
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># データセットと同じサイズの行列が取得できる
-x_test.shape, sv_test.shape
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># データセットと同じサイズの行列が取得できる</span>
+<span class="n">x_test</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">sv_test</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 </div>
 </div>
@@ -1075,8 +1076,8 @@ x_test.shape, sv_test.shape
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># SHAP値の確認
-print(sv_test[0])
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># SHAP値の確認</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sv_test</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1099,7 +1100,7 @@ print(sv_test[0])
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>explainer.expected_value[1] + sv_test[0].sum()
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">explainer</span><span class="o">.</span><span class="n">expected_value</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">sv_test</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1116,7 +1117,7 @@ print(sv_test[0])
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>y_pred_prob[0]
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_pred_prob</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1135,11 +1136,11 @@ print(sv_test[0])
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># SHAP値の合計＋平均値
-sv_sum = sv_test.sum(axis=1) + explainer.expected_value[1]
-plt.scatter(sv_sum, y_pred_prob)
-plt.xlabel(&#39;SHAP値の合計&#39;)
-plt.ylabel(&#39;モデルの予測確率&#39;);
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># SHAP値の合計＋平均値</span>
+<span class="n">sv_sum</span> <span class="o">=</span> <span class="n">sv_test</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">explainer</span><span class="o">.</span><span class="n">expected_value</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">sv_sum</span><span class="p">,</span> <span class="n">y_pred_prob</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;SHAP値の合計&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;モデルの予測確率&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -1162,9 +1163,9 @@ plt.ylabel(&#39;モデルの予測確率&#39;);
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># SHAP 値から復元したモデルの予測確率
-prob_shap = (1/(1+np.exp(-sv_sum)))
-prob_shap[0]
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># SHAP 値から復元したモデルの予測確率</span>
+<span class="n">prob_shap</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">sv_sum</span><span class="p">)))</span>
+<span class="n">prob_shap</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1181,8 +1182,8 @@ prob_shap[0]
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 一致するか確認
-assert np.all(np.isclose(prob_shap,y_pred_prob))
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 一致するか確認</span>
+<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">prob_shap</span><span class="p">,</span><span class="n">y_pred_prob</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1213,12 +1214,12 @@ assert np.all(np.isclose(prob_shap,y_pred_prob))
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># javascript を使うために必要
-shap.initjs()
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># javascript を使うために必要</span>
+<span class="n">shap</span><span class="o">.</span><span class="n">initjs</span><span class="p">()</span>
 
-# 可視化
-#（javascript環境がない場合は matplotlib 引数をTrueにする）
-shap.force_plot(explainer.expected_value[1], sv_test[0], x_test.iloc[0])
+<span class="c1"># 可視化</span>
+<span class="c1">#（javascript環境がない場合は matplotlib 引数をTrueにする）</span>
+<span class="n">shap</span><span class="o">.</span><span class="n">force_plot</span><span class="p">(</span><span class="n">explainer</span><span class="o">.</span><span class="n">expected_value</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">sv_test</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">x_test</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1285,9 +1286,9 @@ n===t._wrapperState.initialValue&&(e.value=n)}});t.exports=l},function(t,e,n){"u
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 特徴量の数が多い場合
-shap.initjs()
-shap.decision_plot(explainer.expected_value[1], sv_test[0], x_test.iloc[0])
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 特徴量の数が多い場合</span>
+<span class="n">shap</span><span class="o">.</span><span class="n">initjs</span><span class="p">()</span>
+<span class="n">shap</span><span class="o">.</span><span class="n">decision_plot</span><span class="p">(</span><span class="n">explainer</span><span class="o">.</span><span class="n">expected_value</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">sv_test</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">x_test</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1344,8 +1345,8 @@ n===t._wrapperState.initialValue&&(e.value=n)}});t.exports=l},function(t,e,n){"u
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># データセット全体の特徴量の影響の可視化
-shap.summary_plot(sv_test, x_test)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># データセット全体の特徴量の影響の可視化</span>
+<span class="n">shap</span><span class="o">.</span><span class="n">summary_plot</span><span class="p">(</span><span class="n">sv_test</span><span class="p">,</span> <span class="n">x_test</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1377,7 +1378,7 @@ shap.summary_plot(sv_test, x_test)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>shap.summary_plot(sv_test, x_test, plot_type=&#39;bar&#39;)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">shap</span><span class="o">.</span><span class="n">summary_plot</span><span class="p">(</span><span class="n">sv_test</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">plot_type</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1422,8 +1423,8 @@ shap.summary_plot(sv_test, x_test)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Age の影響の散布図
-shap.dependence_plot(&#39;Age&#39;, sv_test, x_test)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Age の影響の散布図</span>
+<span class="n">shap</span><span class="o">.</span><span class="n">dependence_plot</span><span class="p">(</span><span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="n">sv_test</span><span class="p">,</span> <span class="n">x_test</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1454,8 +1455,8 @@ Passing parameters norm and vmin/vmax simultaneously is deprecated since 3.3 and
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Relationship の影響の散布図
-shap.dependence_plot(&#39;Relationship&#39;, sv_test, x_test)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Relationship の影響の散布図</span>
+<span class="n">shap</span><span class="o">.</span><span class="n">dependence_plot</span><span class="p">(</span><span class="s1">&#39;Relationship&#39;</span><span class="p">,</span> <span class="n">sv_test</span><span class="p">,</span> <span class="n">x_test</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1483,8 +1484,8 @@ Passing parameters norm and vmin/vmax simultaneously is deprecated since 3.3 and
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Age と Capital Gain の交互作用の散布図
-shap.dependence_plot(&#39;Age&#39;, sv_test, x_test, interaction_index=&#39;Capital Gain&#39;)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Age と Capital Gain の交互作用の散布図</span>
+<span class="n">shap</span><span class="o">.</span><span class="n">dependence_plot</span><span class="p">(</span><span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="n">sv_test</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">interaction_index</span><span class="o">=</span><span class="s1">&#39;Capital Gain&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1507,14 +1508,14 @@ shap.dependence_plot(&#39;Age&#39;, sv_test, x_test, interaction_index=&#39;Capi
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># SHAP Interaction Value の算出
-# iv = explainer.shap_interaction_values(x_test)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># SHAP Interaction Value の算出</span>
+<span class="c1"># iv = explainer.shap_interaction_values(x_test)</span>
 
-# Age と　Capital Gain の交互作用
-# shap.dependence_plot((&#39;Age&#39;, &#39;Capotal Gain&#39;), iv, x_test)
+<span class="c1"># Age と　Capital Gain の交互作用</span>
+<span class="c1"># shap.dependence_plot((&#39;Age&#39;, &#39;Capotal Gain&#39;), iv, x_test)</span>
 
-# Ageの影響(SHAP値)からそれ以外の特徴量の交互作用を除いたプロット
-# shap.dependence_plot((&#39;Age&#39;, &#39;Capotal Gain&#39;), iv, x_test, display_features=x_test)
+<span class="c1"># Ageの影響(SHAP値)からそれ以外の特徴量の交互作用を除いたプロット</span>
+<span class="c1"># shap.dependence_plot((&#39;Age&#39;, &#39;Capotal Gain&#39;), iv, x_test, display_features=x_test)</span>
 </pre></div>
 </div>
 </div>
@@ -1529,12 +1530,12 @@ shap.dependence_plot(&#39;Age&#39;, sv_test, x_test, interaction_index=&#39;Capi
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># SHAP 値の再計算
-sv_test = explainer.shap_values(x_test)[1]
-shap.initjs()
-# 処理が思いのデータ数を絞る
-num = 300
-shap.force_plot(explainer.expected_value[1], sv_test[:num], x_test[:num])
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># SHAP 値の再計算</span>
+<span class="n">sv_test</span> <span class="o">=</span> <span class="n">explainer</span><span class="o">.</span><span class="n">shap_values</span><span class="p">(</span><span class="n">x_test</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">shap</span><span class="o">.</span><span class="n">initjs</span><span class="p">()</span>
+<span class="c1"># 処理が思いのデータ数を絞る</span>
+<span class="n">num</span> <span class="o">=</span> <span class="mi">300</span>
+<span class="n">shap</span><span class="o">.</span><span class="n">force_plot</span><span class="p">(</span><span class="n">explainer</span><span class="o">.</span><span class="n">expected_value</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">sv_test</span><span class="p">[:</span><span class="n">num</span><span class="p">],</span> <span class="n">x_test</span><span class="p">[:</span><span class="n">num</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1611,7 +1612,7 @@ n===t._wrapperState.initialValue&&(e.value=n)}});t.exports=l},function(t,e,n){"u
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from sklearn.cluster import KMeans
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
 </pre></div>
 </div>
 </div>
@@ -1619,10 +1620,10 @@ n===t._wrapperState.initialValue&&(e.value=n)}});t.exports=l},function(t,e,n){"u
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>model = KMeans(n_clusters=3, random_state=0)
-labels = model.fit_predict(sv_test)
-# 各クラスに属するデータ数
-pd.value_counts(labels)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">sv_test</span><span class="p">)</span>
+<span class="c1"># 各クラスに属するデータ数</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1641,11 +1642,11 @@ dtype: int64
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># クラスタ中心を可視化
-center = pd.DataFrame(model.cluster_centers_, columns=X.columns).T
-plt.plot(center)
-plt.xticks(rotation=45)
-plt.show()
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># クラスタ中心を可視化</span>
+<span class="n">center</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">cluster_centers_</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">center</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1672,9 +1673,9 @@ plt.show()
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 主成分分析の実行と可視化
-from sklearn.decomposition import PCA
-model = PCA(n_components=4)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 主成分分析の実行と可視化</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1682,10 +1683,10 @@ model = PCA(n_components=4)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># SHAP値行列の主成分を計算し、係数を返す
-sv_trans=model.fit_transform(sv_test)
-# 各主成分の寄与(データのばらつきを説明する度合い)
-print(model.explained_variance_ratio_)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># SHAP値行列の主成分を計算し、係数を返す</span>
+<span class="n">sv_trans</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">sv_test</span><span class="p">)</span>
+<span class="c1"># 各主成分の寄与(データのばらつきを説明する度合い)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1701,11 +1702,11 @@ print(model.explained_variance_ratio_)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 主成分を可視化
-comp = pd.DataFrame(model.components_, columns=X.columns).T
-comp.plot(subplots=True, sharey=True)
-plt.xticks([0.5+ v for v in range(X.shape[1])], labels=X.columns, rotation=45)
-plt.show()
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 主成分を可視化</span>
+<span class="n">comp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">components_</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+<span class="n">comp</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">subplots</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([</span><span class="mf">0.5</span><span class="o">+</span> <span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])],</span> <span class="n">labels</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1732,9 +1733,9 @@ plt.show()
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># モデル学習
-model = lgb.LGBMClassifier()
-model.fit(x_train, y_train)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># モデル学習</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">lgb</span><span class="o">.</span><span class="n">LGBMClassifier</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1750,11 +1751,11 @@ LGBMClassifier()
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># テストデータの一部(ここでは末尾100件)を将来予測用に分けて、再度説明器を構築
-x_test, x_future = x_test.iloc[: 100], x_test.iloc[100 :]
-explainer = shap.TreeExplainer(model)
-sv_test = explainer.shap_values(x_test)[1]
-sv_future = explainer.shap_values(x_future)[1]
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># テストデータの一部(ここでは末尾100件)を将来予測用に分けて、再度説明器を構築</span>
+<span class="n">x_test</span><span class="p">,</span> <span class="n">x_future</span> <span class="o">=</span> <span class="n">x_test</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span> <span class="mi">100</span><span class="p">],</span> <span class="n">x_test</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">100</span> <span class="p">:]</span>
+<span class="n">explainer</span> <span class="o">=</span> <span class="n">shap</span><span class="o">.</span><span class="n">TreeExplainer</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+<span class="n">sv_test</span> <span class="o">=</span> <span class="n">explainer</span><span class="o">.</span><span class="n">shap_values</span><span class="p">(</span><span class="n">x_test</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">sv_future</span> <span class="o">=</span> <span class="n">explainer</span><span class="o">.</span><span class="n">shap_values</span><span class="p">(</span><span class="n">x_future</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1770,12 +1771,12 @@ LightGBM binary classifier with TreeExplainer shap values output has changed to 
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># テストデータと新規データのユークリッド距離を計算
-# dist[i,j]:i番目のテストデータとj番目の新規データのユークリッド距離
-N = sv_test.shape[0]
-M = sv_future.shape[0]
-D = sv_test.shape[1]
-distance = np.linalg.norm(sv_test.reshape(N, 1, D) - sv_future.reshape(1, M, D), axis=2)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># テストデータと新規データのユークリッド距離を計算</span>
+<span class="c1"># dist[i,j]:i番目のテストデータとj番目の新規データのユークリッド距離</span>
+<span class="n">N</span> <span class="o">=</span> <span class="n">sv_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">M</span> <span class="o">=</span> <span class="n">sv_future</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">D</span> <span class="o">=</span> <span class="n">sv_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">distance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">sv_test</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">D</span><span class="p">)</span> <span class="o">-</span> <span class="n">sv_future</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">D</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1783,8 +1784,8 @@ distance = np.linalg.norm(sv_test.reshape(N, 1, D) - sv_future.reshape(1, M, D),
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 最も近いデータを取得
-near = np.argmin(distance, axis=0)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 最も近いデータを取得</span>
+<span class="n">near</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">distance</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1792,12 +1793,12 @@ near = np.argmin(distance, axis=0)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 最初の新規データとそれに最も近いテストデータを可視化
-i = 0
-print(&#39;新規データ:&#39;)
-shap.force_plot(explainer.expected_value[1], sv_future[i], x_future.iloc[i], matplotlib=True)
-print(&#39;類似データ:&#39;)
-shap.force_plot(explainer.expected_value[1], sv_test[near[i]], x_test.iloc[near[i]], matplotlib=True)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 最初の新規データとそれに最も近いテストデータを可視化</span>
+<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;新規データ:&#39;</span><span class="p">)</span>
+<span class="n">shap</span><span class="o">.</span><span class="n">force_plot</span><span class="p">(</span><span class="n">explainer</span><span class="o">.</span><span class="n">expected_value</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">sv_future</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">x_future</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">matplotlib</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;類似データ:&#39;</span><span class="p">)</span>
+<span class="n">shap</span><span class="o">.</span><span class="n">force_plot</span><span class="p">(</span><span class="n">explainer</span><span class="o">.</span><span class="n">expected_value</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">sv_test</span><span class="p">[</span><span class="n">near</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span> <span class="n">x_test</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">near</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span> <span class="n">matplotlib</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1837,7 +1838,7 @@ shap.force_plot(explainer.expected_value[1], sv_test[near[i]], x_test.iloc[near[
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from sklearn.neighbors import LocalOutlierFactor
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">LocalOutlierFactor</span>
 </pre></div>
 </div>
 </div>
@@ -1845,11 +1846,11 @@ shap.force_plot(explainer.expected_value[1], sv_test[near[i]], x_test.iloc[near[
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>model = LocalOutlierFactor(n_neighbors=20, novelty=True)
-model.fit(sv_test)
-score = model.score_samples(sv_future)
-# score:異常度のマイナス1倍.小さいほど異常(=新規性が高い)
-print(score[:5])
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">LocalOutlierFactor</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">novelty</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">sv_test</span><span class="p">)</span>
+<span class="n">score</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">score_samples</span><span class="p">(</span><span class="n">sv_future</span><span class="p">)</span>
+<span class="c1"># score:異常度のマイナス1倍.小さいほど異常(=新規性が高い)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">score</span><span class="p">[:</span><span class="mi">5</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1865,10 +1866,10 @@ print(score[:5])
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 最も新規性が大きい1件を取り出し可視化
-index = np.argmin(score)
-print(&#39;新規データ&#39;)
-shap.force_plot(explainer.expected_value[1], sv_future[index], x_future.iloc[index], matplotlib=True)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 最も新規性が大きい1件を取り出し可視化</span>
+<span class="n">index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">score</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;新規データ&#39;</span><span class="p">)</span>
+<span class="n">shap</span><span class="o">.</span><span class="n">force_plot</span><span class="p">(</span><span class="n">explainer</span><span class="o">.</span><span class="n">expected_value</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">sv_future</span><span class="p">[</span><span class="n">index</span><span class="p">],</span> <span class="n">x_future</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">index</span><span class="p">],</span> <span class="n">matplotlib</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

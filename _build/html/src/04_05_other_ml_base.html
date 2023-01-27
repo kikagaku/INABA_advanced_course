@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>21. 【補足】機械学習を用いた異常検知 - その他の手法 &mdash; 応用講座コース  ドキュメント</title>
+  <title>22. 【補足】機械学習を用いた異常検知 - その他の手法 &mdash; 応用講座コース  ドキュメント</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -24,8 +24,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="検索" href="../search.html" />
-    <link rel="next" title="22. 変化点検知入門" href="04_13_nearest_neighbers.html" />
-    <link rel="prev" title="20. 機械学習を用いた異常検知入門" href="04_04_ml_base.html" /> 
+    <link rel="next" title="23. 変化点検知入門" href="04_13_nearest_neighbers.html" />
+    <link rel="prev" title="21. 機械学習を用いた異常検知入門" href="04_04_ml_base.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -60,17 +60,18 @@
 <li class="toctree-l1"><a class="reference internal" href="03_00title.html">13. ー 時系列解析 ー</a></li>
 <li class="toctree-l1"><a class="reference internal" href="03_01_timeseries_basic.html">14. 時系列データの取り扱い方</a></li>
 <li class="toctree-l1"><a class="reference internal" href="03_02_timeseries_analysis.html">15. 自己回帰型モデル</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_00title.html">16. ー 異常検知 ー</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_01.html">17. 異常検知とは</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_02_outlier.html">18. 外れ値検知入門</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_03_other_outlier.html">19. 【補足】 外れ値検知 - その他の手法</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_04_ml_base.html">20. 機械学習を用いた異常検知入門</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">21. 【補足】機械学習を用いた異常検知 - その他の手法</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#DBSCAN-(Density-based-spatial-clustering-of-applications-with-noise)">21.1. DBSCAN (Density-based spatial clustering of applications with noise)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#実装">21.2. 実装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_03_feature_enigineering.html">16. 【補足】特徴量エンジニアリング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_00title.html">17. ー 異常検知 ー</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_01.html">18. 異常検知とは</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_02_outlier.html">19. 外れ値検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_03_other_outlier.html">20. 【補足】 外れ値検知 - その他の手法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_04_ml_base.html">21. 機械学習を用いた異常検知入門</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">22. 【補足】機械学習を用いた異常検知 - その他の手法</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#DBSCAN-(Density-based-spatial-clustering-of-applications-with-noise)">22.1. DBSCAN (Density-based spatial clustering of applications with noise)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#実装">22.2. 実装</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="04_13_nearest_neighbers.html">22. 変化点検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_13_nearest_neighbers.html">23. 変化点検知入門</a></li>
 </ul>
 
         </div>
@@ -87,7 +88,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li><span class="section-number">21. </span>【補足】機械学習を用いた異常検知 - その他の手法</li>
+      <li><span class="section-number">22. </span>【補足】機械学習を用いた異常検知 - その他の手法</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/src/04_05_other_ml_base.ipynb.txt" rel="nofollow"> View page source</a>
       </li>
@@ -376,9 +377,9 @@ div.rendered_html tbody tr:hover {
 }
 </style>
 <section id="【補足】機械学習を用いた異常検知---その他の手法">
-<h1><span class="section-number">21. </span>【補足】機械学習を用いた異常検知 - その他の手法<a class="headerlink" href="#【補足】機械学習を用いた異常検知---その他の手法" title="この見出しへのパーマリンク"></a></h1>
+<h1><span class="section-number">22. </span>【補足】機械学習を用いた異常検知 - その他の手法<a class="headerlink" href="#【補足】機械学習を用いた異常検知---その他の手法" title="この見出しへのパーマリンク"></a></h1>
 <section id="DBSCAN-(Density-based-spatial-clustering-of-applications-with-noise)">
-<h2><span class="section-number">21.1. </span>DBSCAN (Density-based spatial clustering of applications with noise)<a class="headerlink" href="#DBSCAN-(Density-based-spatial-clustering-of-applications-with-noise)" title="この見出しへのパーマリンク"></a></h2>
+<h2><span class="section-number">22.1. </span>DBSCAN (Density-based spatial clustering of applications with noise)<a class="headerlink" href="#DBSCAN-(Density-based-spatial-clustering-of-applications-with-noise)" title="この見出しへのパーマリンク"></a></h2>
 <p>データクラスタリングアルゴリズムです。クラスタ -1 は外れ値を示します。 DBSCAN には 2 つのパラメータが必要です。</p>
 <ol class="arabic simple">
 <li><p>epsilon: 近傍探索の半径を定義する距離パラメータ。</p></li>
@@ -393,16 +394,16 @@ div.rendered_html tbody tr:hover {
 <img alt="04" src="../_images/04.png" />
 </section>
 <section id="実装">
-<h2><span class="section-number">21.2. </span>実装<a class="headerlink" href="#実装" title="この見出しへのパーマリンク"></a></h2>
+<h2><span class="section-number">22.2. </span>実装<a class="headerlink" href="#実装" title="この見出しへのパーマリンク"></a></h2>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
-sns.set()
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -410,13 +411,13 @@ sns.set()
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># データの準備
-np.random.seed(0)
-x1 = np.random.normal(0, 1, 1000)
-x2 = x1 + np.random.normal(0, 0.3, 1000)
-x = np.stack([x1, x2], axis=1)
-anomaly = np.array([[-4, -5], [-1.5, 2], [2.5, -2.5]])
-data = np.concatenate([x, anomaly], axis=0)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># データの準備</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">x1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">x2</span> <span class="o">=</span> <span class="n">x1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">anomaly</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mf">2.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.5</span><span class="p">]])</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">anomaly</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -424,7 +425,7 @@ data = np.concatenate([x, anomaly], axis=0)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.scatter(data[:, 0], data[:, 1])
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">data</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -448,13 +449,13 @@ data = np.concatenate([x, anomaly], axis=0)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from sklearn.cluster import DBSCAN
-# 関数
-def dbscan_outliers(x, eps=0.5, min_samples=5):
-    outlier_detection = DBSCAN(eps=eps, min_samples=min_samples) # default eps=0.5, min_samples=5
-    outlier_detection.fit(x)
-    labels = outlier_detection.labels_
-    return labels
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">DBSCAN</span>
+<span class="c1"># 関数</span>
+<span class="k">def</span> <span class="nf">dbscan_outliers</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">min_samples</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+    <span class="n">outlier_detection</span> <span class="o">=</span> <span class="n">DBSCAN</span><span class="p">(</span><span class="n">eps</span><span class="o">=</span><span class="n">eps</span><span class="p">,</span> <span class="n">min_samples</span><span class="o">=</span><span class="n">min_samples</span><span class="p">)</span> <span class="c1"># default eps=0.5, min_samples=5</span>
+    <span class="n">outlier_detection</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="n">outlier_detection</span><span class="o">.</span><span class="n">labels_</span>
+    <span class="k">return</span> <span class="n">labels</span>
 </pre></div>
 </div>
 </div>
@@ -462,7 +463,7 @@ def dbscan_outliers(x, eps=0.5, min_samples=5):
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>labels = dbscan_outliers(data)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">labels</span> <span class="o">=</span> <span class="n">dbscan_outliers</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -470,7 +471,7 @@ def dbscan_outliers(x, eps=0.5, min_samples=5):
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>labels
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">labels</span>
 </pre></div>
 </div>
 </div>
@@ -487,7 +488,7 @@ array([ 0,  0,  0, ..., -1, -1, -1])
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>np.unique(labels, return_counts=True)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -504,9 +505,9 @@ array([ 0,  0,  0, ..., -1, -1, -1])
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>data = pd.DataFrame(data, columns=[&#39;x1&#39;, &#39;x2&#39;])
-data[&#39;cluster&#39;] = labels
-data
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;x1&#39;</span><span class="p">,</span> <span class="s1">&#39;x2&#39;</span><span class="p">])</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;cluster&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">labels</span>
+<span class="n">data</span>
 </pre></div>
 </div>
 </div>
@@ -614,7 +615,7 @@ data
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sns.scatterplot(x=data[&#39;x1&#39;], y=data[&#39;x2&#39;], hue=data[&#39;cluster&#39;])
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;x1&#39;</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;x2&#39;</span><span class="p">],</span> <span class="n">hue</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;cluster&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -641,8 +642,8 @@ data
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="04_04_ml_base.html" class="btn btn-neutral float-left" title="20. 機械学習を用いた異常検知入門" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="04_13_nearest_neighbers.html" class="btn btn-neutral float-right" title="22. 変化点検知入門" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="04_04_ml_base.html" class="btn btn-neutral float-left" title="21. 機械学習を用いた異常検知入門" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="04_13_nearest_neighbers.html" class="btn btn-neutral float-right" title="23. 変化点検知入門" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

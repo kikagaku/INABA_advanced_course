@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>18. 外れ値検知入門 &mdash; 応用講座コース  ドキュメント</title>
+  <title>19. 外れ値検知入門 &mdash; 応用講座コース  ドキュメント</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -24,8 +24,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="検索" href="../search.html" />
-    <link rel="next" title="19. 【補足】 外れ値検知 - その他の手法" href="04_03_other_outlier.html" />
-    <link rel="prev" title="17. 異常検知とは" href="04_01.html" /> 
+    <link rel="next" title="20. 【補足】 外れ値検知 - その他の手法" href="04_03_other_outlier.html" />
+    <link rel="prev" title="18. 異常検知とは" href="04_01.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -60,14 +60,15 @@
 <li class="toctree-l1"><a class="reference internal" href="03_00title.html">13. ー 時系列解析 ー</a></li>
 <li class="toctree-l1"><a class="reference internal" href="03_01_timeseries_basic.html">14. 時系列データの取り扱い方</a></li>
 <li class="toctree-l1"><a class="reference internal" href="03_02_timeseries_analysis.html">15. 自己回帰型モデル</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_00title.html">16. ー 異常検知 ー</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_01.html">17. 異常検知とは</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">18. 外れ値検知入門</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#外れ値の原因">18.1. 外れ値の原因</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#外れ値検知の実装">18.2. 外れ値検知の実装</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#Z-score-method">18.3. Z-score method</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#Robust-Z-score">18.4. Robust Z-score</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#ホテリング-T^{2}-法">18.5. ホテリング <span class="math notranslate nohighlight">\(T^{2}\)</span> 法</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="03_03_feature_enigineering.html">16. 【補足】特徴量エンジニアリング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_00title.html">17. ー 異常検知 ー</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_01.html">18. 異常検知とは</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">19. 外れ値検知入門</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#外れ値の原因">19.1. 外れ値の原因</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#外れ値検知の実装">19.2. 外れ値検知の実装</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Z-score-method">19.3. Z-score method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Robust-Z-score">19.4. Robust Z-score</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ホテリング-T^{2}-法">19.5. ホテリング <span class="math notranslate nohighlight">\(T^{2}\)</span> 法</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#データの準備">データの準備</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#異常度を定義">異常度を定義</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#閾値の決定">閾値の決定</a></li>
@@ -75,10 +76,10 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="04_03_other_outlier.html">19. 【補足】 外れ値検知 - その他の手法</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_04_ml_base.html">20. 機械学習を用いた異常検知入門</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_05_other_ml_base.html">21. 【補足】機械学習を用いた異常検知 - その他の手法</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_13_nearest_neighbers.html">22. 変化点検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_03_other_outlier.html">20. 【補足】 外れ値検知 - その他の手法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_04_ml_base.html">21. 機械学習を用いた異常検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_05_other_ml_base.html">22. 【補足】機械学習を用いた異常検知 - その他の手法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_13_nearest_neighbers.html">23. 変化点検知入門</a></li>
 </ul>
 
         </div>
@@ -95,7 +96,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li><span class="section-number">18. </span>外れ値検知入門</li>
+      <li><span class="section-number">19. </span>外れ値検知入門</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/src/04_02_outlier.ipynb.txt" rel="nofollow"> View page source</a>
       </li>
@@ -384,7 +385,7 @@ div.rendered_html tbody tr:hover {
 }
 </style>
 <section id="外れ値検知入門">
-<h1><span class="section-number">18. </span>外れ値検知入門<a class="headerlink" href="#外れ値検知入門" title="この見出しへのパーマリンク"></a></h1>
+<h1><span class="section-number">19. </span>外れ値検知入門<a class="headerlink" href="#外れ値検知入門" title="この見出しへのパーマリンク"></a></h1>
 <p>外れ値とは他のデータから数値的に離れている観測値です。簡単に言えば<strong>範囲外の値</strong>のことです。外れ値のあるデータセットと無いデータセットで何が起こるか例を上げて確認してみましょう。</p>
 <table class="docutils align-default">
 <colgroup>
@@ -430,7 +431,7 @@ div.rendered_html tbody tr:hover {
 <div class="line">このため、平均値よりも中央値のほうが適切な指標となります。</div>
 </div>
 <section id="外れ値の原因">
-<h2><span class="section-number">18.1. </span>外れ値の原因<a class="headerlink" href="#外れ値の原因" title="この見出しへのパーマリンク"></a></h2>
+<h2><span class="section-number">19.1. </span>外れ値の原因<a class="headerlink" href="#外れ値の原因" title="この見出しへのパーマリンク"></a></h2>
 <p>外れ値が発生する原因は様々考えられますが、一例として</p>
 <ul class="simple">
 <li><p>データ入力ミス：データの収集・記録・入力時等に発生するヒューマンエラー</p></li>
@@ -440,7 +441,7 @@ div.rendered_html tbody tr:hover {
 <p>などが考えられます。</p>
 </section>
 <section id="外れ値検知の実装">
-<h2><span class="section-number">18.2. </span>外れ値検知の実装<a class="headerlink" href="#外れ値検知の実装" title="この見出しへのパーマリンク"></a></h2>
+<h2><span class="section-number">19.2. </span>外れ値検知の実装<a class="headerlink" href="#外れ値検知の実装" title="この見出しへのパーマリンク"></a></h2>
 <div class="line-block">
 <div class="line">ここからは外れ値検知の実装を行います。</div>
 <div class="line">本章では以下の 2 つについて触れます。</div>
@@ -452,7 +453,7 @@ div.rendered_html tbody tr:hover {
 </ol>
 </section>
 <section id="Z-score-method">
-<h2><span class="section-number">18.3. </span>Z-score method<a class="headerlink" href="#Z-score-method" title="この見出しへのパーマリンク"></a></h2>
+<h2><span class="section-number">19.3. </span>Z-score method<a class="headerlink" href="#Z-score-method" title="この見出しへのパーマリンク"></a></h2>
 <p><span class="math notranslate nohighlight">\(Z\)</span> スコア法はいわゆる 3σ 法を流用した外れ値検知手法です。これは、データの平均から 3σ 内に含まれるデータは全体の分布の 99.7% が含まれるという理論からできており、この方法の外れ値検知でわかることは、平均値から何標準偏差分離れているかを知ることができます。</p>
 <img alt="02" src="../_images/02.jpeg" />
 <div class="math notranslate nohighlight">
@@ -462,10 +463,10 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 </pre></div>
 </div>
 </div>
@@ -474,11 +475,11 @@ import seaborn as sns
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># データの準備
-np.random.seed(0)
-x = np.random.normal(0, 1, 1000)
-anomaly = np.array([-5, 5])
-data = np.concatenate([x, anomaly], axis=0)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># データの準備</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">anomaly</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">anomaly</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -487,7 +488,7 @@ data = np.concatenate([x, anomaly], axis=0)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sns.displot(data)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">displot</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -512,7 +513,7 @@ data = np.concatenate([x, anomaly], axis=0)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.scatter(range(len(data)), data)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)),</span> <span class="n">data</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -537,18 +538,18 @@ data = np.concatenate([x, anomaly], axis=0)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 関数
-def z_score_outlier(x):
-    out = []
-    out_idx = []
-    mean = np.mean(x)
-    std = np.std(x)
-    for n, i  in enumerate(x):
-        z = (i-mean) / std
-        if np.abs(z) &gt; 2:
-            out.append(i)
-            out_idx.append(n)
-    return out, out_idx
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 関数</span>
+<span class="k">def</span> <span class="nf">z_score_outlier</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">out_idx</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">std</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">i</span>  <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="n">z</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="n">mean</span><span class="p">)</span> <span class="o">/</span> <span class="n">std</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">z</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+            <span class="n">out_idx</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">out</span><span class="p">,</span> <span class="n">out_idx</span>
 </pre></div>
 </div>
 </div>
@@ -556,7 +557,7 @@ def z_score_outlier(x):
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>out, out_idx = z_score_outlier(data)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">out</span><span class="p">,</span> <span class="n">out_idx</span> <span class="o">=</span> <span class="n">z_score_outlier</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -564,7 +565,7 @@ def z_score_outlier(x):
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>np.min(out), np.max(out)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">out</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -582,8 +583,8 @@ def z_score_outlier(x):
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.scatter(range(len(data)), data)
-plt.scatter(out_idx, data[out_idx]);
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)),</span> <span class="n">data</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">out_idx</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="n">out_idx</span><span class="p">]);</span>
 </pre></div>
 </div>
 </div>
@@ -597,7 +598,7 @@ plt.scatter(out_idx, data[out_idx]);
 <p>このようにいくつかのデータが外れ値検知されていることがわかります。個の結果からも、データの真ん中（縦軸の 0）より一定区間上下に離れている点が検出されており、これが 3σ を超えたものであることがわかります。</p>
 </section>
 <section id="Robust-Z-score">
-<h2><span class="section-number">18.4. </span>Robust Z-score<a class="headerlink" href="#Robust-Z-score" title="この見出しへのパーマリンク"></a></h2>
+<h2><span class="section-number">19.4. </span>Robust Z-score<a class="headerlink" href="#Robust-Z-score" title="この見出しへのパーマリンク"></a></h2>
 <p>先程実装したものによく似た手法として、Robust Z-score method があります。別名、Median absolute deviation 法とも呼ばれます。</p>
 <p><span class="math notranslate nohighlight">\(Z\)</span> スコア法と似ていますが、用いている中央の値が異なります。平均値と標準偏差は外れ値に大きく影響される特徴がありますが、その点を考慮し中央値と中央値からの絶対偏差を使用したものがこちらの手法です。数式が少し変わった程度であるため押さえておきましょう。</p>
 <div class="math notranslate nohighlight">
@@ -609,11 +610,11 @@ plt.scatter(out_idx, data[out_idx]);
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
-import scipy.stats as stats
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">stats</span>
 </pre></div>
 </div>
 </div>
@@ -625,18 +626,18 @@ import scipy.stats as stats
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 関数
-def robust_z_score_outlier(x):
-    out = []
-    out_idx = []
-    med = np.median(x)
-    ma = stats.median_abs_deviation(x)
-    for n, i in enumerate(x):
-        z = (0.6745*(i-med))/ (np.median(ma))
-        if np.abs(z) &gt; 3:
-            out.append(i)
-            out_idx.append(n)
-    return out, out_idx
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 関数</span>
+<span class="k">def</span> <span class="nf">robust_z_score_outlier</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">out_idx</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">med</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">ma</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">median_abs_deviation</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="n">z</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.6745</span><span class="o">*</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="n">med</span><span class="p">))</span><span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">ma</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">z</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+            <span class="n">out_idx</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">out</span><span class="p">,</span> <span class="n">out_idx</span>
 </pre></div>
 </div>
 </div>
@@ -644,7 +645,7 @@ def robust_z_score_outlier(x):
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>out, out_idx = robust_z_score_outlier(data)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">out</span><span class="p">,</span> <span class="n">out_idx</span> <span class="o">=</span> <span class="n">robust_z_score_outlier</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -652,7 +653,7 @@ def robust_z_score_outlier(x):
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>out
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">out</span>
 </pre></div>
 </div>
 </div>
@@ -670,8 +671,8 @@ def robust_z_score_outlier(x):
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.scatter(range(len(data)), data)
-plt.scatter(out_idx, data[out_idx]);
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)),</span> <span class="n">data</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">out_idx</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="n">out_idx</span><span class="p">]);</span>
 </pre></div>
 </div>
 </div>
@@ -684,7 +685,7 @@ plt.scatter(out_idx, data[out_idx]);
 </div>
 </section>
 <section id="ホテリング-T^{2}-法">
-<h2><span class="section-number">18.5. </span>ホテリング <span class="math notranslate nohighlight">\(T^{2}\)</span> 法<a class="headerlink" href="#ホテリング-T^{2}-法" title="この見出しへのパーマリンク"></a></h2>
+<h2><span class="section-number">19.5. </span>ホテリング <span class="math notranslate nohighlight">\(T^{2}\)</span> 法<a class="headerlink" href="#ホテリング-T^{2}-法" title="この見出しへのパーマリンク"></a></h2>
 <p>統計モデルに基づく異常検知技術(外れ値検知)で有名なものとして ホテリング <span class="math notranslate nohighlight">\(T^{2}\)</span> 法があります。ホテリング <span class="math notranslate nohighlight">\(T^{2}\)</span> 法ではデータの分布として<strong>単一の正規分布にしたがっていると仮定のもと</strong>で、異常度と閾値を定義します。この手法が有効に適用されるには、</p>
 <ol class="arabic simple">
 <li><p>データが単一の正規分布から発生している</p></li>
@@ -699,10 +700,10 @@ plt.scatter(out_idx, data[out_idx]);
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 </pre></div>
 </div>
 </div>
@@ -710,18 +711,18 @@ import seaborn as sns
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># シードの固定
-np.random.seed(0)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># シードの固定</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
-# 平均０, 標準偏差1, サンプル数1000の正規分布に従うデータも生成
-x1 = np.random.normal(0, 1, 1000)
-# 平均０, 標準偏差0.3, サンプル数1000の正規分布に従い, x1と相関をもつデータを生成
-x2 = x1 + np.random.normal(0, 0.3, 1000)
-# 異常データ
-anomaly = np.array([[-4, -5], [-1.5, 2], [2.5, -2.5]])
+<span class="c1"># 平均０, 標準偏差1, サンプル数1000の正規分布に従うデータも生成</span>
+<span class="n">x1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="c1"># 平均０, 標準偏差0.3, サンプル数1000の正規分布に従い, x1と相関をもつデータを生成</span>
+<span class="n">x2</span> <span class="o">=</span> <span class="n">x1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="c1"># 異常データ</span>
+<span class="n">anomaly</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mf">2.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.5</span><span class="p">]])</span>
 
-x = np.stack([x1, x2], axis=1)
-x_new = np.concatenate([x, anomaly], axis=0)
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">x_new</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">anomaly</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -729,7 +730,7 @@ x_new = np.concatenate([x, anomaly], axis=0)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.scatter(x_new[:, 0], x_new[:, 1]);
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_new</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">x_new</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]);</span>
 </pre></div>
 </div>
 </div>
@@ -744,9 +745,9 @@ x_new = np.concatenate([x, anomaly], axis=0)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># histplot: ヒストグラム表示
-plt.hist(x_new[:, 0], alpha = 0.5);
-plt.hist(x_new[:, 1], alpha = 0.5);
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># histplot: ヒストグラム表示</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">x_new</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">x_new</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -768,11 +769,11 @@ plt.hist(x_new[:, 1], alpha = 0.5);
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 平均値
-mean = np.mean(x_new, axis=0)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 平均値</span>
+<span class="n">mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x_new</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
-# 共分散行列
-cov = np.cov(x_new.T)
+<span class="c1"># 共分散行列</span>
+<span class="n">cov</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cov</span><span class="p">(</span><span class="n">x_new</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -783,9 +784,9 @@ cov = np.cov(x_new.T)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from scipy.spatial import distance
-score = distance.mahalanobis(x_new[0], mean, np.linalg.pinv(cov))
-score
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.spatial</span> <span class="kn">import</span> <span class="n">distance</span>
+<span class="n">score</span> <span class="o">=</span> <span class="n">distance</span><span class="o">.</span><span class="n">mahalanobis</span><span class="p">(</span><span class="n">x_new</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">mean</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">pinv</span><span class="p">(</span><span class="n">cov</span><span class="p">))</span>
+<span class="n">score</span>
 </pre></div>
 </div>
 </div>
@@ -802,9 +803,9 @@ score
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 全体の異常度: a(x)
-anomaly_scores = [distance.mahalanobis(x, mean, np.linalg.pinv(cov)) for x in x_new]
-anomaly_scores[:10]
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 全体の異常度: a(x)</span>
+<span class="n">anomaly_scores</span> <span class="o">=</span> <span class="p">[</span><span class="n">distance</span><span class="o">.</span><span class="n">mahalanobis</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">pinv</span><span class="p">(</span><span class="n">cov</span><span class="p">))</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">x_new</span><span class="p">]</span>
+<span class="n">anomaly_scores</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -830,9 +831,9 @@ anomaly_scores[:10]
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.xlabel(&#39;Anomaly_score&#39;)
-plt.ylabel(&#39;Probability density&#39;)
-sns.histplot(anomaly_scores);
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Anomaly_score&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Probability density&#39;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">anomaly_scores</span><span class="p">);</span>
 <br/></pre></div>
 </div>
 </div>
@@ -857,15 +858,15 @@ sns.histplot(anomaly_scores);
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from scipy import stats as st
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span> <span class="k">as</span> <span class="n">st</span>
 
-# 確率値: f1, データの次元数: dim
-f1 = 0.1
-dim = 2
+<span class="c1"># 確率値: f1, データの次元数: dim</span>
+<span class="n">f1</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">dim</span> <span class="o">=</span> <span class="mi">2</span>
 
-# 確率値、次元数から閾値を計算
-threshold = st.chi2.ppf(1 - f1, dim)
-threshold
+<span class="c1"># 確率値、次元数から閾値を計算</span>
+<span class="n">threshold</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">chi2</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">f1</span><span class="p">,</span> <span class="n">dim</span><span class="p">)</span>
+<span class="n">threshold</span>
 </pre></div>
 </div>
 </div>
@@ -882,13 +883,13 @@ threshold
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 結果の描画
-plt.plot(range(0, 1003), anomaly_scores, &#39;o&#39;, color = &#39;b&#39;)
-plt.plot([0,1004],[threshold, threshold], color = &#39;r&#39;, ls = &#39;dashed&#39;)
-plt.xlabel(&#39;Sample number&#39;)
-plt.ylabel(&#39;Anomaly score&#39;)
-plt.ylim([0,15])
-plt.show()
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 結果の描画</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1003</span><span class="p">),</span> <span class="n">anomaly_scores</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1004</span><span class="p">],[</span><span class="n">threshold</span><span class="p">,</span> <span class="n">threshold</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">ls</span> <span class="o">=</span> <span class="s1">&#39;dashed&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Sample number&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Anomaly score&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">15</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -915,8 +916,8 @@ plt.show()
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="04_01.html" class="btn btn-neutral float-left" title="17. 異常検知とは" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="04_03_other_outlier.html" class="btn btn-neutral float-right" title="19. 【補足】 外れ値検知 - その他の手法" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="04_01.html" class="btn btn-neutral float-left" title="18. 異常検知とは" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="04_03_other_outlier.html" class="btn btn-neutral float-right" title="20. 【補足】 外れ値検知 - その他の手法" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

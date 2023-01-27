@@ -109,13 +109,14 @@
 <li class="toctree-l1"><a class="reference internal" href="03_00title.html">13. ー 時系列解析 ー</a></li>
 <li class="toctree-l1"><a class="reference internal" href="03_01_timeseries_basic.html">14. 時系列データの取り扱い方</a></li>
 <li class="toctree-l1"><a class="reference internal" href="03_02_timeseries_analysis.html">15. 自己回帰型モデル</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_00title.html">16. ー 異常検知 ー</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_01.html">17. 異常検知とは</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_02_outlier.html">18. 外れ値検知入門</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_03_other_outlier.html">19. 【補足】 外れ値検知 - その他の手法</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_04_ml_base.html">20. 機械学習を用いた異常検知入門</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_05_other_ml_base.html">21. 【補足】機械学習を用いた異常検知 - その他の手法</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_13_nearest_neighbers.html">22. 変化点検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_03_feature_enigineering.html">16. 【補足】特徴量エンジニアリング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_00title.html">17. ー 異常検知 ー</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_01.html">18. 異常検知とは</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_02_outlier.html">19. 外れ値検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_03_other_outlier.html">20. 【補足】 外れ値検知 - その他の手法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_04_ml_base.html">21. 機械学習を用いた異常検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_05_other_ml_base.html">22. 【補足】機械学習を用いた異常検知 - その他の手法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_13_nearest_neighbers.html">23. 変化点検知入門</a></li>
 </ul>
 
         </div>
@@ -444,9 +445,9 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># # コメントアウトを外して実行してください
-# from google.colab import drive
-# drive.mount(&#39;/content/drive/&#39;)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># # コメントアウトを外して実行してください</span>
+<span class="c1"># from google.colab import drive</span>
+<span class="c1"># drive.mount(&#39;/content/drive/&#39;)</span>
 </pre></div>
 </div>
 </div>
@@ -458,8 +459,8 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># パスの設定
-data_path = &#39;&#39;
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># パスの設定</span>
+<span class="n">data_path</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -470,16 +471,16 @@ data_path = &#39;&#39;
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 
-plt.rcParams[&#39;figure.figsize&#39;] = 10, 5 # 描画サイズの設定
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">5</span> <span class="c1"># 描画サイズの設定</span>
 
-# 警告非表示
-import warnings
-warnings.filterwarnings(&#39;ignore&#39;)
+<span class="c1"># 警告非表示</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -501,9 +502,9 @@ warnings.filterwarnings(&#39;ignore&#39;)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># データの読み込み
-df = pd.read_csv(f&#39;{data_path}/covid_data.csv&#39;, index_col=&#39;date&#39;, parse_dates=True) # date 列をインデックス列に指定
-df.head()
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># データの読み込み</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">data_path</span><span class="si">}</span><span class="s1">/covid_data.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># date 列をインデックス列に指定</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -623,7 +624,7 @@ df.head()
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>df.shape
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 </div>
 </div>
@@ -641,8 +642,8 @@ df.head()
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># データの確認（先頭3件）
-df.head(3)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># データの確認（先頭3件）</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -781,8 +782,8 @@ df.head(3)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># データの確認（末尾3件）
-df.tail(3)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># データの確認（末尾3件）</span>
+<span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -877,8 +878,8 @@ df.tail(3)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 基本情報の確認
-df.info()
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 基本情報の確認</span>
+<span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -909,8 +910,8 @@ memory usage: 1.8+ MB
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 要約統計量の確認
-df.describe()
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 要約統計量の確認</span>
+<span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1031,9 +1032,9 @@ df.describe()
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 説明変数の分割
-x = df.drop([&#39;total_deaths_per_million&#39;], axis=1)
-x.head(3)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 説明変数の分割</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;total_deaths_per_million&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">x</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1123,9 +1124,9 @@ x.head(3)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 目的変数の分割
-t = df[&#39;total_deaths_per_million&#39;]
-t.head(3)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 目的変数の分割</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;total_deaths_per_million&#39;</span><span class="p">]</span>
+<span class="n">t</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1151,7 +1152,7 @@ Name: total_deaths_per_million, dtype: float64
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>df.sort_values(&#39;total_deaths_per_million&#39;, ascending=False) # ascending=Falseにすることで降順で表示
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;total_deaths_per_million&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="c1"># ascending=Falseにすることで降順で表示</span>
 </pre></div>
 </div>
 </div>
@@ -1348,11 +1349,11 @@ Name: total_deaths_per_million, dtype: float64
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># total_deaths_per_million 列を変数に格納しておく（後で戻すため）
-total_deaths_per_million = df[&#39;total_deaths_per_million&#39;]
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># total_deaths_per_million 列を変数に格納しておく（後で戻すため）</span>
+<span class="n">total_deaths_per_million</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;total_deaths_per_million&#39;</span><span class="p">]</span>
 
-# total_deaths_per_million 列を削除
-df = df.drop(labels=&#39;total_deaths_per_million&#39;, axis=1)
+<span class="c1"># total_deaths_per_million 列を削除</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="s1">&#39;total_deaths_per_million&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1360,7 +1361,7 @@ df = df.drop(labels=&#39;total_deaths_per_million&#39;, axis=1)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>df.head(3)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1451,9 +1452,9 @@ df = df.drop(labels=&#39;total_deaths_per_million&#39;, axis=1)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># total_deaths_per_million 列を追加
-df[&#39;total_deaths_per_million&#39;] = total_deaths_per_million # 新しい列名を指定して代入
-df.head(3)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># total_deaths_per_million 列を追加</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;total_deaths_per_million&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">total_deaths_per_million</span> <span class="c1"># 新しい列名を指定して代入</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1553,8 +1554,8 @@ df.head(3)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># location が Japan　のデータに絞り込み
-df[df[&#39;location&#39;]==&#39;Japan&#39;].head(3)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># location が Japan　のデータに絞り込み</span>
+<span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;location&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Japan&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1651,8 +1652,8 @@ df[df[&#39;location&#39;]==&#39;Japan&#39;].head(3)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># location が Japan　かつ total_deaths_per_million が 100 以上
-df[(df[&#39;location&#39;]==&#39;Japan&#39;) &amp; (df[&#39;total_deaths_per_million&#39;] &gt;= 100)].head(3)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># location が Japan　かつ total_deaths_per_million が 100 以上</span>
+<span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;location&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Japan&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;total_deaths_per_million&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">100</span><span class="p">)]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1747,8 +1748,8 @@ df[(df[&#39;location&#39;]==&#39;Japan&#39;) &amp; (df[&#39;total_deaths_per_mil
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># location が Japan　または　total_deaths_per_million が 100 以上
-df[(df[&#39;location&#39;]==&#39;Japan&#39;) | (df[&#39;total_deaths_per_million&#39;] &gt;= 100)].head(3)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># location が Japan　または　total_deaths_per_million が 100 以上</span>
+<span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;location&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Japan&#39;</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;total_deaths_per_million&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">100</span><span class="p">)]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1866,10 +1867,10 @@ df[(df[&#39;location&#39;]==&#39;Japan&#39;) | (df[&#39;total_deaths_per_million
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>x = df[&#39;continent&#39;].value_counts().index  # 横軸の値
-height = df[&#39;continent&#39;].value_counts().values  # 　縦軸の値
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;continent&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">index</span>  <span class="c1"># 横軸の値</span>
+<span class="n">height</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;continent&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">values</span>  <span class="c1"># 　縦軸の値</span>
 
-print(x, height)
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1887,8 +1888,8 @@ Index([&#39;Africa&#39;, &#39;Europe&#39;, &#39;Asia&#39;, &#39;North America&#3
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 棒グラフの描画
-plt.bar(x, height);
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 棒グラフの描画</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">height</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -1904,8 +1905,8 @@ plt.bar(x, height);
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># seaborn を使う場合
-sns.countplot(df[&#39;continent&#39;]);
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># seaborn を使う場合</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;continent&#39;</span><span class="p">]);</span>
 </pre></div>
 </div>
 </div>
@@ -1925,8 +1926,8 @@ sns.countplot(df[&#39;continent&#39;]);
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># ヒストグラムの描画
-plt.hist(df[&#39;total_deaths_per_million&#39;]);
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ヒストグラムの描画</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;total_deaths_per_million&#39;</span><span class="p">]);</span>
 </pre></div>
 </div>
 </div>
@@ -1941,8 +1942,8 @@ plt.hist(df[&#39;total_deaths_per_million&#39;]);
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># seaborn を使う場合
-sns.distplot(df[&#39;total_deaths_per_million&#39;], kde=False, bins=10);
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># seaborn を使う場合</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;total_deaths_per_million&#39;</span><span class="p">],</span> <span class="n">kde</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">10</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -1962,11 +1963,11 @@ sns.distplot(df[&#39;total_deaths_per_million&#39;], kde=False, bins=10);
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 日本のデータのみを取得
-japan = df[df[&#39;location&#39;] == &#39;Japan&#39;]
-# 日本の total_deaths_per_million を取得
-total_deaths = japan[&#39;total_deaths_per_million&#39;]
-plt.plot(total_deaths);
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 日本のデータのみを取得</span>
+<span class="n">japan</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;location&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Japan&#39;</span><span class="p">]</span>
+<span class="c1"># 日本の total_deaths_per_million を取得</span>
+<span class="n">total_deaths</span> <span class="o">=</span> <span class="n">japan</span><span class="p">[</span><span class="s1">&#39;total_deaths_per_million&#39;</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">total_deaths</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -1987,8 +1988,8 @@ plt.plot(total_deaths);
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 散布図の描画
-plt.scatter(df[&#39;new_cases&#39;], df[&#39;new_deaths&#39;]);
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 散布図の描画</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;new_cases&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;new_deaths&#39;</span><span class="p">]);</span>
 </pre></div>
 </div>
 </div>
@@ -2007,9 +2008,9 @@ plt.scatter(df[&#39;new_cases&#39;], df[&#39;new_deaths&#39;]);
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 相関係数の算出
-df_corr = df.corr()
-df_corr
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 相関係数の算出</span>
+<span class="n">df_corr</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+<span class="n">df_corr</span>
 </pre></div>
 </div>
 </div>
@@ -2107,9 +2108,9 @@ df_corr
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 相関係数をヒートマップで描画
-plt.figure(figsize=(10, 8)) # 出力サイズの調整
-sns.heatmap(df_corr, annot=True, vmin=-1, vmax=1, center=0);
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 相関係数をヒートマップで描画</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span> <span class="c1"># 出力サイズの調整</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">df_corr</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="mi">0</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -2130,9 +2131,9 @@ sns.heatmap(df_corr, annot=True, vmin=-1, vmax=1, center=0);
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># グラフ内で日本語を使用する場合はこちらを使用
-# !pip install -q japanize_matplotlib
-import japanize_matplotlib
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># グラフ内で日本語を使用する場合はこちらを使用</span>
+<span class="c1"># !pip install -q japanize_matplotlib</span>
+<span class="kn">import</span> <span class="nn">japanize_matplotlib</span>
 </pre></div>
 </div>
 </div>
@@ -2140,9 +2141,9 @@ import japanize_matplotlib
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># サンプルデータの表示
-plt.plot([&#39;月&#39;, &#39;火&#39;, &#39;水&#39;, &#39;木&#39;, &#39;金&#39;, &#39;土&#39;, &#39;日&#39;],
-         [7, 10, 12, 8, 6, 7, 10])
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># サンプルデータの表示</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="s1">&#39;月&#39;</span><span class="p">,</span> <span class="s1">&#39;火&#39;</span><span class="p">,</span> <span class="s1">&#39;水&#39;</span><span class="p">,</span> <span class="s1">&#39;木&#39;</span><span class="p">,</span> <span class="s1">&#39;金&#39;</span><span class="p">,</span> <span class="s1">&#39;土&#39;</span><span class="p">,</span> <span class="s1">&#39;日&#39;</span><span class="p">],</span>
+         <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -2167,13 +2168,13 @@ plt.plot([&#39;月&#39;, &#39;火&#39;, &#39;水&#39;, &#39;木&#39;, &#39;金&#
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># サンプルデータの表示
-plt.plot([&#39;月&#39;, &#39;火&#39;, &#39;水&#39;, &#39;木&#39;, &#39;金&#39;, &#39;土&#39;, &#39;日&#39;],
-         [7, 10, 12, 8, 6, 7, 10])
-plt.xlabel(&#39;曜日&#39;)
-plt.ylabel(&#39;気温&#39;)
-plt.title(&#39;東京 2月 1週目&#39;)
-plt.grid()
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># サンプルデータの表示</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="s1">&#39;月&#39;</span><span class="p">,</span> <span class="s1">&#39;火&#39;</span><span class="p">,</span> <span class="s1">&#39;水&#39;</span><span class="p">,</span> <span class="s1">&#39;木&#39;</span><span class="p">,</span> <span class="s1">&#39;金&#39;</span><span class="p">,</span> <span class="s1">&#39;土&#39;</span><span class="p">,</span> <span class="s1">&#39;日&#39;</span><span class="p">],</span>
+         <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;曜日&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;気温&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;東京 2月 1週目&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -2189,18 +2190,18 @@ plt.grid()
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># サンプルデータの表示
-plt.plot([&#39;月&#39;, &#39;火&#39;, &#39;水&#39;, &#39;木&#39;, &#39;金&#39;, &#39;土&#39;, &#39;日&#39;],
-         [7, 10, 12, 8, 6, 7, 10],
-         label=&#39;最低気温&#39;)
-plt.plot([&#39;月&#39;, &#39;火&#39;, &#39;水&#39;, &#39;木&#39;, &#39;金&#39;, &#39;土&#39;, &#39;日&#39;],
-         [10, 12, 13, 11, 9, 11, 11],
-         label=&#39;最高気温&#39;)
-plt.xlabel(&#39;曜日&#39;)
-plt.ylabel(&#39;気温&#39;)
-plt.title(&#39;東京 2月 1週目&#39;)
-plt.grid()
-plt.legend() # 凡例の表示
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># サンプルデータの表示</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="s1">&#39;月&#39;</span><span class="p">,</span> <span class="s1">&#39;火&#39;</span><span class="p">,</span> <span class="s1">&#39;水&#39;</span><span class="p">,</span> <span class="s1">&#39;木&#39;</span><span class="p">,</span> <span class="s1">&#39;金&#39;</span><span class="p">,</span> <span class="s1">&#39;土&#39;</span><span class="p">,</span> <span class="s1">&#39;日&#39;</span><span class="p">],</span>
+         <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span>
+         <span class="n">label</span><span class="o">=</span><span class="s1">&#39;最低気温&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="s1">&#39;月&#39;</span><span class="p">,</span> <span class="s1">&#39;火&#39;</span><span class="p">,</span> <span class="s1">&#39;水&#39;</span><span class="p">,</span> <span class="s1">&#39;木&#39;</span><span class="p">,</span> <span class="s1">&#39;金&#39;</span><span class="p">,</span> <span class="s1">&#39;土&#39;</span><span class="p">,</span> <span class="s1">&#39;日&#39;</span><span class="p">],</span>
+         <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">11</span><span class="p">],</span>
+         <span class="n">label</span><span class="o">=</span><span class="s1">&#39;最高気温&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;曜日&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;気温&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;東京 2月 1週目&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span> <span class="c1"># 凡例の表示</span>
 </pre></div>
 </div>
 </div>
@@ -2237,8 +2238,8 @@ plt.legend() # 凡例の表示
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># continent でグループ化
-df.groupby(&#39;continent&#39;)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># continent でグループ化</span>
+<span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;continent&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2256,8 +2257,8 @@ df.groupby(&#39;continent&#39;)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># continent　でグループ化して平均値を見る
-df.groupby(&#39;continent&#39;).mean()
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># continent　でグループ化して平均値を見る</span>
+<span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;continent&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -2365,8 +2366,8 @@ df.groupby(&#39;continent&#39;).mean()
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># continent　でグループ化して平均値、中央値、最小値、最大値を見る
-df.groupby(&#39;continent&#39;).agg([&#39;mean&#39;, &#39;median&#39;, &#39;min&#39;, &#39;max&#39;])
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># continent　でグループ化して平均値、中央値、最小値、最大値を見る</span>
+<span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;continent&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s1">&#39;median&#39;</span><span class="p">,</span> <span class="s1">&#39;min&#39;</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -2609,8 +2610,8 @@ df.groupby(&#39;continent&#39;).agg([&#39;mean&#39;, &#39;median&#39;, &#39;min&
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 四半期末ごとで集計
-df.resample(&#39;Q&#39;).sum()
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 四半期末ごとで集計</span>
+<span class="n">df</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;Q&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -2718,8 +2719,8 @@ df.resample(&#39;Q&#39;).sum()
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># クロス集計
-pd.crosstab(df[&#39;continent&#39;], df[&#39;location&#39;])
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># クロス集計</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;continent&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;location&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -2952,11 +2953,11 @@ pd.crosstab(df[&#39;continent&#39;], df[&#39;location&#39;])
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># ピボットテーブルで集計し、平均値と中央値を算出
-pd.pivot_table(df, values=&#39;total_deaths_per_million&#39;, # 集計する要素を指定
-               index=&#39;continent&#39;, # index 側の要素を指定
-               columns=&#39;location&#39;, # column 側の要素を指定
-               aggfunc=[&#39;mean&#39;, &#39;median&#39;]) # 統計量を指定
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ピボットテーブルで集計し、平均値と中央値を算出</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s1">&#39;total_deaths_per_million&#39;</span><span class="p">,</span> <span class="c1"># 集計する要素を指定</span>
+               <span class="n">index</span><span class="o">=</span><span class="s1">&#39;continent&#39;</span><span class="p">,</span> <span class="c1"># index 側の要素を指定</span>
+               <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;location&#39;</span><span class="p">,</span> <span class="c1"># column 側の要素を指定</span>
+               <span class="n">aggfunc</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s1">&#39;median&#39;</span><span class="p">])</span> <span class="c1"># 統計量を指定</span>
 </pre></div>
 </div>
 </div>
@@ -3201,8 +3202,8 @@ pd.pivot_table(df, values=&#39;total_deaths_per_million&#39;, # 集計する要�
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 欠損値の確認
-df.isnull()[:5]
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 欠損値の確認</span>
+<span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()[:</span><span class="mi">5</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -3322,8 +3323,8 @@ df.isnull()[:5]
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 欠損値の数を確認
-df.isnull().sum()
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 欠損値の数を確認</span>
+<span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -3350,7 +3351,7 @@ dtype: int64
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sns.heatmap(df.isnull(), cbar=False);  # カラーバーは非表示に設定
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">(),</span> <span class="n">cbar</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span>  <span class="c1"># カラーバーは非表示に設定</span>
 </pre></div>
 </div>
 </div>
@@ -3400,8 +3401,8 @@ dtype: int64
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Canada のみ取得
-canada = df[df[&#39;location&#39;]==&#39;Canada&#39;]
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Canada のみ取得</span>
+<span class="n">canada</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;location&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Canada&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -3409,8 +3410,8 @@ canada = df[df[&#39;location&#39;]==&#39;Canada&#39;]
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 欠損値の確認
-canada.isnull().sum()
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 欠損値の確認</span>
+<span class="n">canada</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -3436,7 +3437,7 @@ dtype: int64
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>canada.tail()
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">canada</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -3556,7 +3557,7 @@ dtype: int64
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.hist(canada[&#39;total_tests_per_thousand&#39;]);
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">canada</span><span class="p">[</span><span class="s1">&#39;total_tests_per_thousand&#39;</span><span class="p">]);</span>
 </pre></div>
 </div>
 </div>
@@ -3572,8 +3573,8 @@ dtype: int64
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 中央値を算出
-canada[&#39;total_tests_per_thousand&#39;].median()
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 中央値を算出</span>
+<span class="n">canada</span><span class="p">[</span><span class="s1">&#39;total_tests_per_thousand&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -3591,9 +3592,9 @@ canada[&#39;total_tests_per_thousand&#39;].median()
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 前方埋め
-canada = canada.fillna(method=&#39;ffill&#39;)
-canada.tail()
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 前方埋め</span>
+<span class="n">canada</span> <span class="o">=</span> <span class="n">canada</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;ffill&#39;</span><span class="p">)</span>
+<span class="n">canada</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -3722,18 +3723,18 @@ canada.tail()
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 空のデータフレームを定義
-df_2 = pd.DataFrame()
-# すべての国毎に、前方埋めで欠損値を補完する
-for co in df[&#39;location&#39;].value_counts().index:
-    # 国毎にデータを取得
-    country = df[df[&#39;location&#39;] == co]
-    # 前方埋め
-    country = country.fillna(method=&#39;ffill&#39;)
-    # 前方埋めで対応できない箇所は 0 で埋める
-    country = country.fillna(0)
-    # DataFrame の結合
-    df_2 = pd.concat([df_2, country], axis=0)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 空のデータフレームを定義</span>
+<span class="n">df_2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="c1"># すべての国毎に、前方埋めで欠損値を補完する</span>
+<span class="k">for</span> <span class="n">co</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;location&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+    <span class="c1"># 国毎にデータを取得</span>
+    <span class="n">country</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;location&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">co</span><span class="p">]</span>
+    <span class="c1"># 前方埋め</span>
+    <span class="n">country</span> <span class="o">=</span> <span class="n">country</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;ffill&#39;</span><span class="p">)</span>
+    <span class="c1"># 前方埋めで対応できない箇所は 0 で埋める</span>
+    <span class="n">country</span> <span class="o">=</span> <span class="n">country</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="c1"># DataFrame の結合</span>
+    <span class="n">df_2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_2</span><span class="p">,</span> <span class="n">country</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -3741,8 +3742,8 @@ for co in df[&#39;location&#39;].value_counts().index:
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 欠損値の数を確認する
-df_2.isnull().sum()
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 欠損値の数を確認する</span>
+<span class="n">df_2</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -3780,9 +3781,9 @@ dtype: int64
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 質的変数を含んだデータのみを抽出
-df_obj = df_2.select_dtypes(include=&#39;object&#39;)
-df_obj.head(3)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 質的変数を含んだデータのみを抽出</span>
+<span class="n">df_obj</span> <span class="o">=</span> <span class="n">df_2</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="s1">&#39;object&#39;</span><span class="p">)</span>
+<span class="n">df_obj</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -3848,8 +3849,8 @@ df_obj.head(3)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># ユニークな値の確認
-df_obj[&#39;iso_code&#39;].unique()[:10] # 10 個だけ表示
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ユニークな値の確認</span>
+<span class="n">df_obj</span><span class="p">[</span><span class="s1">&#39;iso_code&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()[:</span><span class="mi">10</span><span class="p">]</span> <span class="c1"># 10 個だけ表示</span>
 </pre></div>
 </div>
 </div>
@@ -3868,9 +3869,9 @@ array([&#39;ABW&#39;, &#39;OWID_NAM&#39;, &#39;NZL&#39;, &#39;OMN&#39;, &#39;OWI
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>for uni in df_obj.columns:
-    print(uni)
-    print(df_obj[uni].unique()[:10])  # 10 個だけ表示
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">uni</span> <span class="ow">in</span> <span class="n">df_obj</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">uni</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">df_obj</span><span class="p">[</span><span class="n">uni</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()[:</span><span class="mi">10</span><span class="p">])</span>  <span class="c1"># 10 個だけ表示</span>
 </pre></div>
 </div>
 </div>
@@ -3897,9 +3898,9 @@ location
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[50]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># インスタンス化
-from sklearn.preprocessing import LabelEncoder
-le = LabelEncoder()
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># インスタンス化</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
+<span class="n">le</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -3907,8 +3908,8 @@ le = LabelEncoder()
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[51]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># ラベルの設定
-df_2[&#39;iso_code&#39;] = le.fit_transform(df_2[&#39;iso_code&#39;])
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ラベルの設定</span>
+<span class="n">df_2</span><span class="p">[</span><span class="s1">&#39;iso_code&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">le</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df_2</span><span class="p">[</span><span class="s1">&#39;iso_code&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -3916,7 +3917,7 @@ df_2[&#39;iso_code&#39;] = le.fit_transform(df_2[&#39;iso_code&#39;])
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[52]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>df_2.head(3)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_2</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -4012,8 +4013,8 @@ df_2[&#39;iso_code&#39;] = le.fit_transform(df_2[&#39;iso_code&#39;])
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[53]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># location にも適用
-df_2[&#39;location&#39;] = le.fit_transform(df_2[&#39;location&#39;])
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># location にも適用</span>
+<span class="n">df_2</span><span class="p">[</span><span class="s1">&#39;location&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">le</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df_2</span><span class="p">[</span><span class="s1">&#39;location&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -4021,7 +4022,7 @@ df_2[&#39;location&#39;] = le.fit_transform(df_2[&#39;location&#39;])
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[54]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>df_2.head(3)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_2</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -4191,8 +4192,8 @@ df_2[&#39;location&#39;] = le.fit_transform(df_2[&#39;location&#39;])
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[55]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 変換前の shape
-df_2.shape
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 変換前の shape</span>
+<span class="n">df_2</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 </div>
 </div>
@@ -4209,8 +4210,8 @@ df_2.shape
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[56]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># One Hot Encoding で変換
-df_2 = pd.get_dummies(df_2, drop_first=True)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># One Hot Encoding で変換</span>
+<span class="n">df_2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">df_2</span><span class="p">,</span> <span class="n">drop_first</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -4218,7 +4219,7 @@ df_2 = pd.get_dummies(df_2, drop_first=True)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[57]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>df_2.head(3)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_2</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -4338,8 +4339,8 @@ df_2 = pd.get_dummies(df_2, drop_first=True)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[58]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 変換後の shape
-df_2.shape
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 変換後の shape</span>
+<span class="n">df_2</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 </div>
 </div>

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>22. 変化点検知入門 &mdash; 応用講座コース  ドキュメント</title>
+  <title>23. 変化点検知入門 &mdash; 応用講座コース  ドキュメント</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -24,7 +24,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="検索" href="../search.html" />
-    <link rel="prev" title="21. 【補足】機械学習を用いた異常検知 - その他の手法" href="04_05_other_ml_base.html" /> 
+    <link rel="prev" title="22. 【補足】機械学習を用いた異常検知 - その他の手法" href="04_05_other_ml_base.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -59,19 +59,20 @@
 <li class="toctree-l1"><a class="reference internal" href="03_00title.html">13. ー 時系列解析 ー</a></li>
 <li class="toctree-l1"><a class="reference internal" href="03_01_timeseries_basic.html">14. 時系列データの取り扱い方</a></li>
 <li class="toctree-l1"><a class="reference internal" href="03_02_timeseries_analysis.html">15. 自己回帰型モデル</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_00title.html">16. ー 異常検知 ー</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_01.html">17. 異常検知とは</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_02_outlier.html">18. 外れ値検知入門</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_03_other_outlier.html">19. 【補足】 外れ値検知 - その他の手法</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_04_ml_base.html">20. 機械学習を用いた異常検知入門</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_05_other_ml_base.html">21. 【補足】機械学習を用いた異常検知 - その他の手法</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">22. 変化点検知入門</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#k-Nearest-Neighbors">22.1. k-Nearest Neighbors</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#Window-処理">22.2. Window 処理</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="03_03_feature_enigineering.html">16. 【補足】特徴量エンジニアリング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_00title.html">17. ー 異常検知 ー</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_01.html">18. 異常検知とは</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_02_outlier.html">19. 外れ値検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_03_other_outlier.html">20. 【補足】 外れ値検知 - その他の手法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_04_ml_base.html">21. 機械学習を用いた異常検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_05_other_ml_base.html">22. 【補足】機械学習を用いた異常検知 - その他の手法</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">23. 変化点検知入門</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#k-Nearest-Neighbors">23.1. k-Nearest Neighbors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Window-処理">23.2. Window 処理</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#Window-処理（部分時系列処理）">Window 処理（部分時系列処理）</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#ChangeFinder">22.3. ChangeFinder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ChangeFinder">23.3. ChangeFinder</a></li>
 </ul>
 </li>
 </ul>
@@ -90,7 +91,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li><span class="section-number">22. </span>変化点検知入門</li>
+      <li><span class="section-number">23. </span>変化点検知入門</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/src/04_13_nearest_neighbers.ipynb.txt" rel="nofollow"> View page source</a>
       </li>
@@ -379,9 +380,9 @@ div.rendered_html tbody tr:hover {
 }
 </style>
 <section id="変化点検知入門">
-<h1><span class="section-number">22. </span>変化点検知入門<a class="headerlink" href="#変化点検知入門" title="この見出しへのパーマリンク"></a></h1>
+<h1><span class="section-number">23. </span>変化点検知入門<a class="headerlink" href="#変化点検知入門" title="この見出しへのパーマリンク"></a></h1>
 <section id="k-Nearest-Neighbors">
-<h2><span class="section-number">22.1. </span>k-Nearest Neighbors<a class="headerlink" href="#k-Nearest-Neighbors" title="この見出しへのパーマリンク"></a></h2>
+<h2><span class="section-number">23.1. </span>k-Nearest Neighbors<a class="headerlink" href="#k-Nearest-Neighbors" title="この見出しへのパーマリンク"></a></h2>
 <p>k- 近傍法を用いた、時系列データに対する変化点検知を行います。</p>
 <div class="line-block">
 <div class="line"><strong>使用するデータ</strong></div>
@@ -391,11 +392,11 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
-sns.set()
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -403,7 +404,7 @@ sns.set()
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>df = pd.read_csv(&#39;data/qtdbsel.csv&#39;, header=None).rename(columns={0: &#39;value&#39;})
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/qtdbsel.csv&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;value&#39;</span><span class="p">})</span>
 </pre></div>
 </div>
 </div>
@@ -411,7 +412,7 @@ sns.set()
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>df
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span>
 </pre></div>
 </div>
 </div>
@@ -495,8 +496,8 @@ sns.set()
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.rcParams[&#39;figure.figsize&#39;] = (10, 6)
-df.plot()
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -520,10 +521,10 @@ df.plot()
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 細かく可視化
-plt.xlabel(&#39;time&#39;)
-plt.ylabel(&#39;value&#39;)
-plt.plot(df.loc[:6000], color=&#39;b&#39;)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 細かく可視化</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:</span><span class="mi">6000</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -548,10 +549,10 @@ plt.plot(df.loc[:6000], color=&#39;b&#39;)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># データの前処理
-from sklearn.preprocessing import MinMaxScaler
-scaler = MinMaxScaler()
-norm_data = scaler.fit_transform(df)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># データの前処理</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">MinMaxScaler</span>
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">()</span>
+<span class="n">norm_data</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -559,7 +560,7 @@ norm_data = scaler.fit_transform(df)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.plot(norm_data[:6000])
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">norm_data</span><span class="p">[:</span><span class="mi">6000</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -583,9 +584,9 @@ norm_data = scaler.fit_transform(df)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from sklearn.neighbors import NearestNeighbors
-nbrs = NearestNeighbors(n_neighbors=2)
-nbrs.fit(norm_data)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">NearestNeighbors</span>
+<span class="n">nbrs</span> <span class="o">=</span> <span class="n">NearestNeighbors</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">nbrs</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">norm_data</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -602,7 +603,7 @@ NearestNeighbors(n_neighbors=2)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>distances, indices = nbrs.kneighbors(norm_data)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">distances</span><span class="p">,</span> <span class="n">indices</span> <span class="o">=</span> <span class="n">nbrs</span><span class="o">.</span><span class="n">kneighbors</span><span class="p">(</span><span class="n">norm_data</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -610,7 +611,7 @@ NearestNeighbors(n_neighbors=2)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.scatter(range(len(distances)), distances[:, 1])
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">distances</span><span class="p">)),</span> <span class="n">distances</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -634,9 +635,9 @@ NearestNeighbors(n_neighbors=2)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>data = pd.DataFrame(norm_data, columns=[&#39;value&#39;])
-data[&#39;anomaly_score&#39;] = distances[:, 1]
-data
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">norm_data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">])</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;anomaly_score&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">distances</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">data</span>
 </pre></div>
 </div>
 </div>
@@ -732,10 +733,10 @@ data
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 異常判定
-threshold = np.percentile(distances[:, 1], 99.5)
-data[&#39;pred&#39;] = data[&#39;anomaly_score&#39;].map(lambda x: 1 if x&gt;threshold else 0)
-data
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 異常判定</span>
+<span class="n">threshold</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">distances</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="mf">99.5</span><span class="p">)</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;pred&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;anomaly_score&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">x</span><span class="o">&gt;</span><span class="n">threshold</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">data</span>
 </pre></div>
 </div>
 </div>
@@ -843,7 +844,7 @@ data
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>data[data[&#39;pred&#39;]==1].index
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;pred&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">index</span>
 </pre></div>
 </div>
 </div>
@@ -862,8 +863,8 @@ Int64Index([ 4263,  4264,  4265,  4266,  4267,  4541,  4542,  4544,  4549,
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.plot(norm_data[:6000])
-plt.vlines(x=4263, ymin=.0, ymax=1., colors=&#39;r&#39;, linestyles=&#39;--&#39;)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">norm_data</span><span class="p">[:</span><span class="mi">6000</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">4263</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=</span><span class="mf">.0</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyles</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -887,8 +888,8 @@ plt.vlines(x=4263, ymin=.0, ymax=1., colors=&#39;r&#39;, linestyles=&#39;--&#39;
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.plot(norm_data[:6000])
-plt.vlines(x=4554, ymin=.0, ymax=1., colors=&#39;r&#39;, linestyles=&#39;--&#39;)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">norm_data</span><span class="p">[:</span><span class="mi">6000</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">4554</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=</span><span class="mf">.0</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyles</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -910,24 +911,24 @@ plt.vlines(x=4554, ymin=.0, ymax=1., colors=&#39;r&#39;, linestyles=&#39;--&#39;
 </div>
 </section>
 <section id="Window-処理">
-<h2><span class="section-number">22.2. </span>Window 処理<a class="headerlink" href="#Window-処理" title="この見出しへのパーマリンク"></a></h2>
+<h2><span class="section-number">23.2. </span>Window 処理<a class="headerlink" href="#Window-処理" title="この見出しへのパーマリンク"></a></h2>
 <p>変化検知において外れ値検出が有効でないとされるのは、時系列データをひとつひとつ独立なデータと見なし、時間的に近いデータの影響を無視することで継続的な異常を判別出来ないためです。そこで、時間的に近いデータをまとめて新たなデータを作ることでこの問題を解決します。</p>
 <p>まずは、サンプルデータを作成します。平均値と標準偏差を変えることでバラツキと位置を変えています。</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># データ準備
-np.random.seed(0)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># データ準備</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
-data1 = np.random.normal(10, 1, 500)
-data2 = np.random.normal(25, 2, 500)
-data = np.concatenate((data1, data2))
+<span class="n">data1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+<span class="n">data2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">data1</span><span class="p">,</span> <span class="n">data2</span><span class="p">))</span>
 
-#可視化
-plt.xlabel(&#39;time&#39;)
-plt.ylabel(&#39;value&#39;)
-plt.plot(data)
+<span class="c1">#可視化</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -952,13 +953,13 @@ plt.plot(data)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from sklearn.neighbors import NearestNeighbors
-# モデルを定義
-nbrs = NearestNeighbors(n_neighbors=2)
-nbrs.fit(data.reshape(len(data), 1))
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">NearestNeighbors</span>
+<span class="c1"># モデルを定義</span>
+<span class="n">nbrs</span> <span class="o">=</span> <span class="n">NearestNeighbors</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">nbrs</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="mi">1</span><span class="p">))</span>
 
-# 近傍距離を取得
-distances, indices = nbrs.kneighbors(data.reshape(len(data), 1))
+<span class="c1"># 近傍距離を取得</span>
+<span class="n">distances</span><span class="p">,</span> <span class="n">indices</span> <span class="o">=</span> <span class="n">nbrs</span><span class="o">.</span><span class="n">kneighbors</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="mi">1</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -966,12 +967,12 @@ distances, indices = nbrs.kneighbors(data.reshape(len(data), 1))
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>data = pd.DataFrame(data, columns=[&#39;value&#39;])
-data[&#39;anomaly_score&#39;] = distances[:, 1]
-# 閾値を設定
-threshold = np.percentile(distances[:, 1], 99.5) # 99.5%
-data[&#39;pred&#39;] = data[&#39;anomaly_score&#39;].map(lambda x: 1 if x&gt;threshold else 0)
-data
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">])</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;anomaly_score&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">distances</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="c1"># 閾値を設定</span>
+<span class="n">threshold</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">distances</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="mf">99.5</span><span class="p">)</span> <span class="c1"># 99.5%</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;pred&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;anomaly_score&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">x</span><span class="o">&gt;</span><span class="n">threshold</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">data</span>
 </pre></div>
 </div>
 </div>
@@ -1079,7 +1080,7 @@ data
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>list(data[data[&#39;pred&#39;]==1].index)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;pred&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1096,7 +1097,7 @@ data
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>change_points = list(data[data[&#39;pred&#39;]==1].index)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">change_points</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;pred&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1104,10 +1105,10 @@ data
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 結果をプロット
-plt.plot(data[&#39;value&#39;])
-for change_point in change_points:
-  plt.axvline(x=change_point, color=&#39;r&#39;, linestyle=&#39;--&#39;)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 結果をプロット</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">change_point</span> <span class="ow">in</span> <span class="n">change_points</span><span class="p">:</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">change_point</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1130,13 +1131,13 @@ for change_point in change_points:
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 部分時系列を作る関数
-def subseq(data, window):
-    sequence = np.zeros((len(data) - window + 1, window))
-    data_x = data[:, 0]
-    for i in range(len(data) - window + 1):
-        sequence[i, :] = data_x[i: window+i]
-    return sequence
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 部分時系列を作る関数</span>
+<span class="k">def</span> <span class="nf">subseq</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">window</span><span class="p">):</span>
+    <span class="n">sequence</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">-</span> <span class="n">window</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">window</span><span class="p">))</span>
+    <span class="n">data_x</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">-</span> <span class="n">window</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">sequence</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">data_x</span><span class="p">[</span><span class="n">i</span><span class="p">:</span> <span class="n">window</span><span class="o">+</span><span class="n">i</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">sequence</span>
 </pre></div>
 </div>
 </div>
@@ -1144,19 +1145,19 @@ def subseq(data, window):
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># データ準備
-np.random.seed(0)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># データ準備</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
-data1 = np.random.normal(10, 1, 500)
-data2 = np.random.normal(25, 2, 500)
-data = np.concatenate((data1, data2))
+<span class="n">data1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+<span class="n">data2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">data1</span><span class="p">,</span> <span class="n">data2</span><span class="p">))</span>
 
-# Window 処理
-data = data.reshape(len(data), 1)
-window = 10
+<span class="c1"># Window 処理</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">window</span> <span class="o">=</span> <span class="mi">10</span>
 
-partial_data = subseq(data, window)
-partial_data.shape
+<span class="n">partial_data</span> <span class="o">=</span> <span class="n">subseq</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">window</span><span class="p">)</span>
+<span class="n">partial_data</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 </div>
 </div>
@@ -1173,9 +1174,9 @@ partial_data.shape
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 確認
-df = pd.DataFrame(partial_data)
-df
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 確認</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">partial_data</span><span class="p">)</span>
+<span class="n">df</span>
 </pre></div>
 </div>
 </div>
@@ -1367,21 +1368,21 @@ df
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># k- 近傍法
-nbrs = NearestNeighbors(n_neighbors=2)
-nbrs.fit(partial_data)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># k- 近傍法</span>
+<span class="n">nbrs</span> <span class="o">=</span> <span class="n">NearestNeighbors</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">nbrs</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">partial_data</span><span class="p">)</span>
 
-distances, indices = nbrs.kneighbors(partial_data)
+<span class="n">distances</span><span class="p">,</span> <span class="n">indices</span> <span class="o">=</span> <span class="n">nbrs</span><span class="o">.</span><span class="n">kneighbors</span><span class="p">(</span><span class="n">partial_data</span><span class="p">)</span>
 
-# 閾値を設定
-threshold = np.percentile(distances[:, 1], 99.5) # 99.5%
-# 変化点
-change_points = indices[distances[:, 1] &gt; threshold]
+<span class="c1"># 閾値を設定</span>
+<span class="n">threshold</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">distances</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="mf">99.5</span><span class="p">)</span> <span class="c1"># 99.5%</span>
+<span class="c1"># 変化点</span>
+<span class="n">change_points</span> <span class="o">=</span> <span class="n">indices</span><span class="p">[</span><span class="n">distances</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">threshold</span><span class="p">]</span>
 
-# 結果をプロット
-plt.plot(data)
-for change_point in change_points:
-  plt.axvline(x=change_point[0], color=&#39;r&#39;, linestyle=&#39;--&#39;)
+<span class="c1"># 結果をプロット</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">change_point</span> <span class="ow">in</span> <span class="n">change_points</span><span class="p">:</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">change_point</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1396,7 +1397,7 @@ for change_point in change_points:
 </section>
 </section>
 <section id="ChangeFinder">
-<h2><span class="section-number">22.3. </span>ChangeFinder<a class="headerlink" href="#ChangeFinder" title="この見出しへのパーマリンク"></a></h2>
+<h2><span class="section-number">23.3. </span>ChangeFinder<a class="headerlink" href="#ChangeFinder" title="この見出しへのパーマリンク"></a></h2>
 <p>ChangeFinder とは自己回帰モデル（AR モデル）のオンライン忘却学習アルゴリズムである、SDAR アルゴリズム (Sequencially Discounting AR model learning) を活用したものです。</p>
 <p>今回内部の理論まで詳しくは扱いませんが、下記に簡単にアルゴリズムを整理しておきます。</p>
 <ol class="arabic simple">
@@ -1410,7 +1411,7 @@ for change_point in change_points:
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!pip install -q changefinder
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip install -q changefinder
 </pre></div>
 </div>
 </div>
@@ -1418,7 +1419,7 @@ for change_point in change_points:
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import changefinder
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">changefinder</span>
 </pre></div>
 </div>
 </div>
@@ -1432,11 +1433,11 @@ for change_point in change_points:
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>cf = changefinder.ChangeFinder(r=0.01, order=1, smooth=5)
-ret = []
-for i in data:
-    score = cf.update(i)
-    ret.append(score)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cf</span> <span class="o">=</span> <span class="n">changefinder</span><span class="o">.</span><span class="n">ChangeFinder</span><span class="p">(</span><span class="n">r</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">smooth</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">ret</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+    <span class="n">score</span> <span class="o">=</span> <span class="n">cf</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">ret</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">score</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1444,12 +1445,12 @@ for i in data:
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>fig = plt.figure()
-ax = fig.add_subplot(111)
-ax.plot(data)
-ax2 = ax.twinx()
-ax2.plot(ret,&#39;r&#39;)
-plt.show()
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1465,17 +1466,17 @@ plt.show()
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>cf = changefinder.ChangeFinder(r=0.1, order=1, smooth=5)
-ret = []
-for i in data:
-    score = cf.update(i)
-    ret.append(score)
-fig = plt.figure()
-ax = fig.add_subplot(111)
-ax.plot(data)
-ax2 = ax.twinx()
-ax2.plot(ret,&#39;r&#39;)
-plt.show()
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cf</span> <span class="o">=</span> <span class="n">changefinder</span><span class="o">.</span><span class="n">ChangeFinder</span><span class="p">(</span><span class="n">r</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">smooth</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">ret</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+    <span class="n">score</span> <span class="o">=</span> <span class="n">cf</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">ret</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">score</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1493,7 +1494,7 @@ plt.show()
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="04_05_other_ml_base.html" class="btn btn-neutral float-left" title="21. 【補足】機械学習を用いた異常検知 - その他の手法" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="04_05_other_ml_base.html" class="btn btn-neutral float-left" title="22. 【補足】機械学習を用いた異常検知 - その他の手法" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

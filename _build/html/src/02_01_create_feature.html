@@ -83,13 +83,14 @@
 <li class="toctree-l1"><a class="reference internal" href="03_00title.html">13. ー 時系列解析 ー</a></li>
 <li class="toctree-l1"><a class="reference internal" href="03_01_timeseries_basic.html">14. 時系列データの取り扱い方</a></li>
 <li class="toctree-l1"><a class="reference internal" href="03_02_timeseries_analysis.html">15. 自己回帰型モデル</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_00title.html">16. ー 異常検知 ー</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_01.html">17. 異常検知とは</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_02_outlier.html">18. 外れ値検知入門</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_03_other_outlier.html">19. 【補足】 外れ値検知 - その他の手法</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_04_ml_base.html">20. 機械学習を用いた異常検知入門</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_05_other_ml_base.html">21. 【補足】機械学習を用いた異常検知 - その他の手法</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_13_nearest_neighbers.html">22. 変化点検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_03_feature_enigineering.html">16. 【補足】特徴量エンジニアリング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_00title.html">17. ー 異常検知 ー</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_01.html">18. 異常検知とは</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_02_outlier.html">19. 外れ値検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_03_other_outlier.html">20. 【補足】 外れ値検知 - その他の手法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_04_ml_base.html">21. 機械学習を用いた異常検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_05_other_ml_base.html">22. 【補足】機械学習を用いた異常検知 - その他の手法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_13_nearest_neighbers.html">23. 変化点検知入門</a></li>
 </ul>
 
         </div>
@@ -416,9 +417,9 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </pre></div>
 </div>
 </div>
@@ -426,7 +427,7 @@ import matplotlib.pyplot as plt
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>df = pd.read_csv(&#39;adult.csv&#39;)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;adult.csv&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -434,7 +435,7 @@ import matplotlib.pyplot as plt
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>df.head(3)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -633,8 +634,8 @@ import matplotlib.pyplot as plt
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 欠損値やデータの型の確認
-df.info()
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 欠損値やデータの型の確認</span>
+<span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -672,8 +673,8 @@ memory usage: 3.8+ MB
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 数値データの分布の確認
-df.describe()
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 数値データの分布の確認</span>
+<span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -865,8 +866,8 @@ df.describe()
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># カテゴリカル・データの概要確認
-df.describe(include=&#39;object&#39;)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># カテゴリカル・データの概要確認</span>
+<span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="s1">&#39;object&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1052,7 +1053,7 @@ df.describe(include=&#39;object&#39;)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import seaborn as sns
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 </pre></div>
 </div>
 </div>
@@ -1060,13 +1061,13 @@ df.describe(include=&#39;object&#39;)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># カテゴリのカラムと数値のカラムの取得
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># カテゴリのカラムと数値のカラムの取得</span>
 
-cat_cols = list(df.drop([&#39;income&#39;], axis=1).select_dtypes(include=[&#39;object&#39;]).columns)
-print(f&#39;カテゴリのカラム:{cat_cols}&#39;)
+<span class="n">cat_cols</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;income&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;object&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;カテゴリのカラム:</span><span class="si">{</span><span class="n">cat_cols</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-num_cols = list(df.drop([&#39;income&#39;], axis=1).select_dtypes(include=[&#39;int&#39;, &#39;float&#39;]).columns)
-print(f&#39;数値のカラム:{num_cols}&#39;)
+<span class="n">num_cols</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;income&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;int&#39;</span><span class="p">,</span> <span class="s1">&#39;float&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;数値のカラム:</span><span class="si">{</span><span class="n">num_cols</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1085,14 +1086,14 @@ print(f&#39;数値のカラム:{num_cols}&#39;)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def get_count_plot(df, cols, hue=None, fig_hight=3, fig_width=3):
-    for idx, col in enumerate(cols):
-        plt.subplot(fig_hight, fig_width, idx + 1)
-        if not hue:
-            sns.countplot(y=col, data=df, order=df[col].value_counts().index);
-        else:
-            sns.countplot(y=col, data=df, order=df[col].value_counts().index, hue=hue);
-        plt.tight_layout();
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_count_plot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">cols</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fig_hight</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">fig_width</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">cols</span><span class="p">):</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">fig_hight</span><span class="p">,</span> <span class="n">fig_width</span><span class="p">,</span> <span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">hue</span><span class="p">:</span>
+            <span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">index</span><span class="p">);</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="n">hue</span><span class="p">);</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
@@ -1100,8 +1101,8 @@ print(f&#39;数値のカラム:{num_cols}&#39;)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.figure(figsize=(20, 12))
-get_count_plot(df, cat_col)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+<span class="n">get_count_plot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">cat_col</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1116,8 +1117,8 @@ get_count_plot(df, cat_col)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.figure(figsize=(20, 12))
-get_count_plot(df, cat_col, hue=&#39;income&#39;)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+<span class="n">get_count_plot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">cat_col</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;income&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1132,14 +1133,14 @@ get_count_plot(df, cat_col, hue=&#39;income&#39;)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def get_box_plot(df, cols, hue=None, fig_hight=3, fig_width=3):
-    for idx, col in enumerate(cols):
-        plt.subplot(fig_hight, fig_width, idx + 1)
-        if not hue:
-            sns.boxplot(x=col, data=df, showfliers=True);
-        else:
-            sns.boxplot(x=col, data=df, showfliers=True, y=hue);
-        plt.tight_layout();
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_box_plot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">cols</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fig_hight</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">fig_width</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">cols</span><span class="p">):</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">fig_hight</span><span class="p">,</span> <span class="n">fig_width</span><span class="p">,</span> <span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">hue</span><span class="p">:</span>
+            <span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">showfliers</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">showfliers</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">hue</span><span class="p">);</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
@@ -1147,8 +1148,8 @@ get_count_plot(df, cat_col, hue=&#39;income&#39;)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.figure(figsize=(20, 12))
-get_box_plot(df, num_cols)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+<span class="n">get_box_plot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">num_cols</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1163,8 +1164,8 @@ get_box_plot(df, num_cols)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.figure(figsize=(20, 12))
-get_box_plot(df, num_cols, hue=&#39;income&#39;)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+<span class="n">get_box_plot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">num_cols</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;income&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1179,14 +1180,14 @@ get_box_plot(df, num_cols, hue=&#39;income&#39;)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def get_hist_plot(df, cols, hue=None, fig_hight=3, fig_width=3):
-    for idx, col in enumerate(cols):
-        plt.subplot(fig_hight, fig_width, idx + 1)
-        if not hue:
-            sns.histplot(x=col, data=df);
-        else:
-            sns.histplot(x=col, data=df, hue=hue);
-        plt.tight_layout();
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_hist_plot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">cols</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fig_hight</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">fig_width</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">cols</span><span class="p">):</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">fig_hight</span><span class="p">,</span> <span class="n">fig_width</span><span class="p">,</span> <span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">hue</span><span class="p">:</span>
+            <span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">);</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="n">hue</span><span class="p">);</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
@@ -1194,8 +1195,8 @@ get_box_plot(df, num_cols, hue=&#39;income&#39;)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.figure(figsize=(20, 12))
-get_hist_plot(df, num_cols)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+<span class="n">get_hist_plot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">num_cols</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1210,8 +1211,8 @@ get_hist_plot(df, num_cols)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.figure(figsize=(20, 12))
-get_hist_plot(df, num_cols, hue=&#39;income&#39;)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+<span class="n">get_hist_plot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">num_cols</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;income&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1229,8 +1230,8 @@ get_hist_plot(df, num_cols, hue=&#39;income&#39;)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.figure(figsize=(10, 11))
-sns.heatmap(df.corr(), annot=True, vmin=-1,vmax=1, center=0, square=True);
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">corr</span><span class="p">(),</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span><span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">square</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -1245,8 +1246,8 @@ sns.heatmap(df.corr(), annot=True, vmin=-1,vmax=1, center=0, square=True);
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 補足：同じ意味を持つ変数の確認
-df[[&#39;education&#39;, &#39;education.num&#39;]].value_counts().reset_index().sort_values(by=&#39;education.num&#39;)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 補足：同じ意味を持つ変数の確認</span>
+<span class="n">df</span><span class="p">[[</span><span class="s1">&#39;education&#39;</span><span class="p">,</span> <span class="s1">&#39;education.num&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;education.num&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1484,7 +1485,7 @@ df[[&#39;education&#39;, &#39;education.num&#39;]].value_counts().reset_index().
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>df_fix = df.copy()
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_fix</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1492,9 +1493,9 @@ df[[&#39;education&#39;, &#39;education.num&#39;]].value_counts().reset_index().
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 重複行の削除
-df_fix.drop_duplicates(inplace=True)
-len(df_fix)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 重複行の削除</span>
+<span class="n">df_fix</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">df_fix</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1510,8 +1511,8 @@ len(df_fix)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 確認
-df_fix[&#39;native.country&#39;].value_counts(normalize=True).head(5)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 確認</span>
+<span class="n">df_fix</span><span class="p">[</span><span class="s1">&#39;native.country&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1532,8 +1533,8 @@ Name: native.country, dtype: float64
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>df_fix.drop([&#39;native.country&#39;, &#39;education&#39;, &#39;fnlwgt&#39;], axis=1, inplace=True)
-df_fix.columns
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_fix</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;native.country&#39;</span><span class="p">,</span> <span class="s1">&#39;education&#39;</span><span class="p">,</span> <span class="s1">&#39;fnlwgt&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df_fix</span><span class="o">.</span><span class="n">columns</span>
 </pre></div>
 </div>
 </div>
@@ -1552,9 +1553,9 @@ Index([&#39;age&#39;, &#39;workclass&#39;, &#39;education.num&#39;, &#39;marital
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 欠損値を np.nan に置き換え
-df_fix = df_fix.applymap(lambda var: np.nan if var==&quot;?&quot; else var)
-df_fix.head(5)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 欠損値を np.nan に置き換え</span>
+<span class="n">df_fix</span> <span class="o">=</span> <span class="n">df_fix</span><span class="o">.</span><span class="n">applymap</span><span class="p">(</span><span class="k">lambda</span> <span class="n">var</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span> <span class="k">if</span> <span class="n">var</span><span class="o">==</span><span class="s2">&quot;?&quot;</span> <span class="k">else</span> <span class="n">var</span><span class="p">)</span>
+<span class="n">df_fix</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1761,7 +1762,7 @@ df_fix.head(5)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>df_fix.isnull().sum()
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_fix</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1796,15 +1797,15 @@ dtype: int64
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>marital_status_dict = {
-  &#39;Never-married&#39;: &#39;NotMarried&#39;,
-  &#39;Married-AF-spouse&#39;: &#39;Married&#39;,
-  &#39;Married-civ-spouse&#39;: &#39;Married&#39;,
-  &#39;Married-spouse-absent&#39;: &#39;Married&#39;,
-  &#39;Separated&#39;: &#39;Separated&#39;,
-  &#39;Divorced&#39;: &#39;Separated&#39;,
-  &#39;Widowed&#39;: &#39;Widowed&#39;
-}
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">marital_status_dict</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s1">&#39;Never-married&#39;</span><span class="p">:</span> <span class="s1">&#39;NotMarried&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;Married-AF-spouse&#39;</span><span class="p">:</span> <span class="s1">&#39;Married&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;Married-civ-spouse&#39;</span><span class="p">:</span> <span class="s1">&#39;Married&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;Married-spouse-absent&#39;</span><span class="p">:</span> <span class="s1">&#39;Married&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;Separated&#39;</span><span class="p">:</span> <span class="s1">&#39;Separated&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;Divorced&#39;</span><span class="p">:</span> <span class="s1">&#39;Separated&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;Widowed&#39;</span><span class="p">:</span> <span class="s1">&#39;Widowed&#39;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -1812,8 +1813,8 @@ dtype: int64
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>df_fix[&#39;marital-group&#39;] = df_fix[&#39;marital.status&#39;].map(marital_status_dict).astype(&#39;object&#39;)
-df_fix[&#39;marital-group&#39;]
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_fix</span><span class="p">[</span><span class="s1">&#39;marital-group&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_fix</span><span class="p">[</span><span class="s1">&#39;marital.status&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">marital_status_dict</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;object&#39;</span><span class="p">)</span>
+<span class="n">df_fix</span><span class="p">[</span><span class="s1">&#39;marital-group&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1840,7 +1841,7 @@ Name: marital-group, Length: 32537, dtype: object
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>df_fix.drop(&#39;marital.status&#39;, axis=1, inplace=True)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_fix</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;marital.status&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1849,7 +1850,7 @@ Name: marital-group, Length: 32537, dtype: object
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>df_fix.describe(include=&#39;object&#39;)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_fix</span><span class="o">.</span><span class="n">describe</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="s1">&#39;object&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2010,9 +2011,9 @@ Name: marital-group, Length: 32537, dtype: object
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>df_final = pd.get_dummies(df_fix.drop(&#39;income&#39;, axis=1))
-df_final[&#39;target&#39;] = df_fix[&#39;income&#39;]
-df_final
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_final</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">df_fix</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;income&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">df_final</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_fix</span><span class="p">[</span><span class="s1">&#39;income&#39;</span><span class="p">]</span>
+<span class="n">df_final</span>
 </pre></div>
 </div>
 </div>
@@ -2416,25 +2417,25 @@ df_final
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def preprocess(df, cols, target_col):
-    marital_status_dict = {
-        &#39;Never-married&#39;: &#39;NotMarried&#39;,
-        &#39;Married-AF-spouse&#39;: &#39;Married&#39;,
-        &#39;Married-civ-spouse&#39;: &#39;Married&#39;,
-        &#39;Married-spouse-absent&#39;: &#39;Married&#39;,
-        &#39;Separated&#39;: &#39;Separated&#39;,
-        &#39;Divorced&#39;: &#39;Separated&#39;,
-        &#39;Widowed&#39;: &#39;Widowed&#39;
-        }
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">preprocess</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">cols</span><span class="p">,</span> <span class="n">target_col</span><span class="p">):</span>
+    <span class="n">marital_status_dict</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;Never-married&#39;</span><span class="p">:</span> <span class="s1">&#39;NotMarried&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Married-AF-spouse&#39;</span><span class="p">:</span> <span class="s1">&#39;Married&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Married-civ-spouse&#39;</span><span class="p">:</span> <span class="s1">&#39;Married&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Married-spouse-absent&#39;</span><span class="p">:</span> <span class="s1">&#39;Married&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Separated&#39;</span><span class="p">:</span> <span class="s1">&#39;Separated&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Divorced&#39;</span><span class="p">:</span> <span class="s1">&#39;Separated&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Widowed&#39;</span><span class="p">:</span> <span class="s1">&#39;Widowed&#39;</span>
+        <span class="p">}</span>
 
-    _df = df.applymap(lambda var: np.nan if var==&quot;?&quot; else var)
-    _df[&#39;marital-group&#39;] = _df[&#39;marital.status&#39;].map(marital_status_dict).astype(&#39;object&#39;)
-    _df = _df.drop(cols, axis=1)
+    <span class="n">_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">applymap</span><span class="p">(</span><span class="k">lambda</span> <span class="n">var</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span> <span class="k">if</span> <span class="n">var</span><span class="o">==</span><span class="s2">&quot;?&quot;</span> <span class="k">else</span> <span class="n">var</span><span class="p">)</span>
+    <span class="n">_df</span><span class="p">[</span><span class="s1">&#39;marital-group&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_df</span><span class="p">[</span><span class="s1">&#39;marital.status&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">marital_status_dict</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;object&#39;</span><span class="p">)</span>
+    <span class="n">_df</span> <span class="o">=</span> <span class="n">_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">cols</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-    _df= pd.get_dummies(df.drop(target_col, axis=1))
-    _df[&#39;target&#39;]  = df[taeget_col]
+    <span class="n">_df</span><span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">target_col</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">_df</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]</span>  <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">taeget_col</span><span class="p">]</span>
 
-    return _df
+    <span class="k">return</span> <span class="n">_df</span>
 </pre></div>
 </div>
 </div>
@@ -2442,8 +2443,8 @@ df_final
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>cols = [&#39;marital.status&#39;, &#39;fnlwgt&#39;, &#39;native.country&#39;, &#39;education&#39;]
-_df = preprocess(df, cols)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;marital.status&#39;</span><span class="p">,</span> <span class="s1">&#39;fnlwgt&#39;</span><span class="p">,</span> <span class="s1">&#39;native.country&#39;</span><span class="p">,</span> <span class="s1">&#39;education&#39;</span><span class="p">]</span>
+<span class="n">_df</span> <span class="o">=</span> <span class="n">preprocess</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">cols</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2451,7 +2452,7 @@ _df = preprocess(df, cols)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>_df
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_df</span>
 </pre></div>
 </div>
 </div>
@@ -2855,8 +2856,8 @@ _df = preprocess(df, cols)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from sklearn.tree import DecisionTreeClassifier
-from sklearn.model_selection import train_test_split
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
 </pre></div>
 </div>
 </div>
@@ -2864,8 +2865,8 @@ from sklearn.model_selection import train_test_split
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>x = df_final.drop(&#39;target&#39;, axis=1).values
-t = df_final[&#39;target&#39;]
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">df_final</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;target&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">df_final</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -2873,7 +2874,7 @@ t = df_final[&#39;target&#39;]
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>x
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span>
 </pre></div>
 </div>
 </div>
@@ -2895,7 +2896,7 @@ array([[90,  9,  0, ...,  0,  0,  1],
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>t
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span>
 </pre></div>
 </div>
 </div>
@@ -2922,10 +2923,10 @@ Name: target, Length: 32537, dtype: object
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>target_dict = {&#39;&lt;=50K&#39;:0, &#39;&gt;50K&#39;:1}
-t = t.map(target_dict)
-t = t.values
-t
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">target_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;&lt;=50K&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;&gt;50K&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">}</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">target_dict</span><span class="p">)</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">values</span>
+<span class="n">t</span>
 </pre></div>
 </div>
 </div>
@@ -2941,8 +2942,8 @@ array([0, 0, 0, ..., 1, 0, 0])
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>x_train, x_test, t_train, t_test = train_test_split(x, t, test_size=0.1, andom_state=0, stratify=t)
-len(x_train), len(t_train), len(x_test), len(t_test)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_train</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">t_train</span><span class="p">,</span> <span class="n">t_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">andom_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">t</span><span class="p">)</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">x_train</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">t_train</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">x_test</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">t_test</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2958,7 +2959,7 @@ len(x_train), len(t_train), len(x_test), len(t_test)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>tree_model = DecisionTreeClassifier(random_state=0)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tree_model</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2966,7 +2967,7 @@ len(x_train), len(t_train), len(x_test), len(t_test)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>tree_model.fit(x_train, t_train)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tree_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">t_train</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2982,7 +2983,7 @@ DecisionTreeClassifier(random_state=0)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>tree_model.score(x_test, t_test)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tree_model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">t_test</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

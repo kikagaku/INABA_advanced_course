@@ -58,13 +58,14 @@
 <li class="toctree-l1"><a class="reference internal" href="src/03_00title.html">13. ー 時系列解析 ー</a></li>
 <li class="toctree-l1"><a class="reference internal" href="src/03_01_timeseries_basic.html">14. 時系列データの取り扱い方</a></li>
 <li class="toctree-l1"><a class="reference internal" href="src/03_02_timeseries_analysis.html">15. 自己回帰型モデル</a></li>
-<li class="toctree-l1"><a class="reference internal" href="src/04_00title.html">16. ー 異常検知 ー</a></li>
-<li class="toctree-l1"><a class="reference internal" href="src/04_01.html">17. 異常検知とは</a></li>
-<li class="toctree-l1"><a class="reference internal" href="src/04_02_outlier.html">18. 外れ値検知入門</a></li>
-<li class="toctree-l1"><a class="reference internal" href="src/04_03_other_outlier.html">19. 【補足】 外れ値検知 - その他の手法</a></li>
-<li class="toctree-l1"><a class="reference internal" href="src/04_04_ml_base.html">20. 機械学習を用いた異常検知入門</a></li>
-<li class="toctree-l1"><a class="reference internal" href="src/04_05_other_ml_base.html">21. 【補足】機械学習を用いた異常検知 - その他の手法</a></li>
-<li class="toctree-l1"><a class="reference internal" href="src/04_13_nearest_neighbers.html">22. 変化点検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/03_03_feature_enigineering.html">16. 【補足】特徴量エンジニアリング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/04_00title.html">17. ー 異常検知 ー</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/04_01.html">18. 異常検知とは</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/04_02_outlier.html">19. 外れ値検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/04_03_other_outlier.html">20. 【補足】 外れ値検知 - その他の手法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/04_04_ml_base.html">21. 機械学習を用いた異常検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/04_05_other_ml_base.html">22. 【補足】機械学習を用いた異常検知 - その他の手法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/04_13_nearest_neighbers.html">23. 変化点検知入門</a></li>
 </ul>
 
         </div>
@@ -235,42 +236,52 @@
 <li class="toctree-l2"><a class="reference internal" href="src/03_02_timeseries_analysis.html#ワーク">15.10. ワーク</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="src/04_00title.html">16. ー 異常検知 ー</a></li>
-<li class="toctree-l1"><a class="reference internal" href="src/04_01.html">17. 異常検知とは</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="src/04_01.html#異常検知の手法と適用例">17.1. 異常検知の手法と適用例</a></li>
-<li class="toctree-l2"><a class="reference internal" href="src/04_01.html#外れ値検知">17.2. 外れ値検知</a></li>
-<li class="toctree-l2"><a class="reference internal" href="src/04_01.html#変化点検知-&amp;-異常部位検知">17.3. 変化点検知 &amp; 異常部位検知</a></li>
-<li class="toctree-l2"><a class="reference internal" href="src/04_01.html#異常検知の基本的な流れと用いられる手法">17.4. 異常検知の基本的な流れと用いられる手法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/03_03_feature_enigineering.html">16. 【補足】特徴量エンジニアリング</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="src/03_03_feature_enigineering.html#必要なモジュールのインポート">16.1. 必要なモジュールのインポート</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src/03_03_feature_enigineering.html#ワイドフォーマットとロングフォーマット">16.2. ワイドフォーマットとロングフォーマット</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src/03_03_feature_enigineering.html#カレンダー特徴量">16.3. カレンダー特徴量</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src/03_03_feature_enigineering.html#ラグ特徴量">16.4. ラグ特徴量</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src/03_03_feature_enigineering.html#ローリング特徴量">16.5. ローリング特徴量</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src/03_03_feature_enigineering.html#エキスパディング特徴量">16.6. エキスパディング特徴量</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src/03_03_feature_enigineering.html#特徴量の結合">16.7. 特徴量の結合</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="src/04_02_outlier.html">18. 外れ値検知入門</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="src/04_02_outlier.html#外れ値の原因">18.1. 外れ値の原因</a></li>
-<li class="toctree-l2"><a class="reference internal" href="src/04_02_outlier.html#外れ値検知の実装">18.2. 外れ値検知の実装</a></li>
-<li class="toctree-l2"><a class="reference internal" href="src/04_02_outlier.html#Z-score-method">18.3. Z-score method</a></li>
-<li class="toctree-l2"><a class="reference internal" href="src/04_02_outlier.html#Robust-Z-score">18.4. Robust Z-score</a></li>
-<li class="toctree-l2"><a class="reference internal" href="src/04_02_outlier.html#ホテリング-T^{2}-法">18.5. ホテリング <span class="math notranslate nohighlight">\(T^{2}\)</span> 法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/04_00title.html">17. ー 異常検知 ー</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/04_01.html">18. 異常検知とは</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="src/04_01.html#異常検知の手法と適用例">18.1. 異常検知の手法と適用例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src/04_01.html#外れ値検知">18.2. 外れ値検知</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src/04_01.html#変化点検知-&amp;-異常部位検知">18.3. 変化点検知 &amp; 異常部位検知</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src/04_01.html#異常検知の基本的な流れと用いられる手法">18.4. 異常検知の基本的な流れと用いられる手法</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="src/04_03_other_outlier.html">19. 【補足】 外れ値検知 - その他の手法</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="src/04_03_other_outlier.html#統計値を用いた異常検知-2---IQR-method-/-Winsorizing-method">19.1. 統計値を用いた異常検知 2 - IQR method / Winsorizing method</a></li>
-<li class="toctree-l2"><a class="reference internal" href="src/04_03_other_outlier.html#Hypothesis-Testing-(Smirnov‐Grubbs-検定)">19.2. Hypothesis Testing (Smirnov‐Grubbs 検定)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/04_02_outlier.html">19. 外れ値検知入門</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="src/04_02_outlier.html#外れ値の原因">19.1. 外れ値の原因</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src/04_02_outlier.html#外れ値検知の実装">19.2. 外れ値検知の実装</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src/04_02_outlier.html#Z-score-method">19.3. Z-score method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src/04_02_outlier.html#Robust-Z-score">19.4. Robust Z-score</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src/04_02_outlier.html#ホテリング-T^{2}-法">19.5. ホテリング <span class="math notranslate nohighlight">\(T^{2}\)</span> 法</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="src/04_04_ml_base.html">20. 機械学習を用いた異常検知入門</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="src/04_04_ml_base.html#k-Nearest-Neighbors">20.1. k-Nearest Neighbors</a></li>
-<li class="toctree-l2"><a class="reference internal" href="src/04_04_ml_base.html#OneClassSVM">20.2. OneClassSVM</a></li>
-<li class="toctree-l2"><a class="reference internal" href="src/04_04_ml_base.html#Isolation-Forest">20.3. Isolation Forest</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/04_03_other_outlier.html">20. 【補足】 外れ値検知 - その他の手法</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="src/04_03_other_outlier.html#統計値を用いた異常検知-2---IQR-method-/-Winsorizing-method">20.1. 統計値を用いた異常検知 2 - IQR method / Winsorizing method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src/04_03_other_outlier.html#Hypothesis-Testing-(Smirnov‐Grubbs-検定)">20.2. Hypothesis Testing (Smirnov‐Grubbs 検定)</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="src/04_05_other_ml_base.html">21. 【補足】機械学習を用いた異常検知 - その他の手法</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="src/04_05_other_ml_base.html#DBSCAN-(Density-based-spatial-clustering-of-applications-with-noise)">21.1. DBSCAN (Density-based spatial clustering of applications with noise)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="src/04_05_other_ml_base.html#実装">21.2. 実装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/04_04_ml_base.html">21. 機械学習を用いた異常検知入門</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="src/04_04_ml_base.html#k-Nearest-Neighbors">21.1. k-Nearest Neighbors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src/04_04_ml_base.html#OneClassSVM">21.2. OneClassSVM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src/04_04_ml_base.html#Isolation-Forest">21.3. Isolation Forest</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="src/04_13_nearest_neighbers.html">22. 変化点検知入門</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="src/04_13_nearest_neighbers.html#k-Nearest-Neighbors">22.1. k-Nearest Neighbors</a></li>
-<li class="toctree-l2"><a class="reference internal" href="src/04_13_nearest_neighbers.html#Window-処理">22.2. Window 処理</a></li>
-<li class="toctree-l2"><a class="reference internal" href="src/04_13_nearest_neighbers.html#ChangeFinder">22.3. ChangeFinder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/04_05_other_ml_base.html">22. 【補足】機械学習を用いた異常検知 - その他の手法</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="src/04_05_other_ml_base.html#DBSCAN-(Density-based-spatial-clustering-of-applications-with-noise)">22.1. DBSCAN (Density-based spatial clustering of applications with noise)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src/04_05_other_ml_base.html#実装">22.2. 実装</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="src/04_13_nearest_neighbers.html">23. 変化点検知入門</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="src/04_13_nearest_neighbers.html#k-Nearest-Neighbors">23.1. k-Nearest Neighbors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src/04_13_nearest_neighbers.html#Window-処理">23.2. Window 処理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src/04_13_nearest_neighbers.html#ChangeFinder">23.3. ChangeFinder</a></li>
 </ul>
 </li>
 </ul>

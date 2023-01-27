@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>19. 【補足】 外れ値検知 - その他の手法 &mdash; 応用講座コース  ドキュメント</title>
+  <title>20. 【補足】 外れ値検知 - その他の手法 &mdash; 応用講座コース  ドキュメント</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -24,8 +24,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="検索" href="../search.html" />
-    <link rel="next" title="20. 機械学習を用いた異常検知入門" href="04_04_ml_base.html" />
-    <link rel="prev" title="18. 外れ値検知入門" href="04_02_outlier.html" /> 
+    <link rel="next" title="21. 機械学習を用いた異常検知入門" href="04_04_ml_base.html" />
+    <link rel="prev" title="19. 外れ値検知入門" href="04_02_outlier.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -60,21 +60,22 @@
 <li class="toctree-l1"><a class="reference internal" href="03_00title.html">13. ー 時系列解析 ー</a></li>
 <li class="toctree-l1"><a class="reference internal" href="03_01_timeseries_basic.html">14. 時系列データの取り扱い方</a></li>
 <li class="toctree-l1"><a class="reference internal" href="03_02_timeseries_analysis.html">15. 自己回帰型モデル</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_00title.html">16. ー 異常検知 ー</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_01.html">17. 異常検知とは</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_02_outlier.html">18. 外れ値検知入門</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">19. 【補足】 外れ値検知 - その他の手法</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#統計値を用いた異常検知-2---IQR-method-/-Winsorizing-method">19.1. 統計値を用いた異常検知 2 - IQR method / Winsorizing method</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="03_03_feature_enigineering.html">16. 【補足】特徴量エンジニアリング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_00title.html">17. ー 異常検知 ー</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_01.html">18. 異常検知とは</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_02_outlier.html">19. 外れ値検知入門</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">20. 【補足】 外れ値検知 - その他の手法</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#統計値を用いた異常検知-2---IQR-method-/-Winsorizing-method">20.1. 統計値を用いた異常検知 2 - IQR method / Winsorizing method</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#IQR-method">IQR method</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#Winsorizing-method">Winsorizing method</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#Hypothesis-Testing-(Smirnov‐Grubbs-検定)">19.2. Hypothesis Testing (Smirnov‐Grubbs 検定)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Hypothesis-Testing-(Smirnov‐Grubbs-検定)">20.2. Hypothesis Testing (Smirnov‐Grubbs 検定)</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="04_04_ml_base.html">20. 機械学習を用いた異常検知入門</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_05_other_ml_base.html">21. 【補足】機械学習を用いた異常検知 - その他の手法</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_13_nearest_neighbers.html">22. 変化点検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_04_ml_base.html">21. 機械学習を用いた異常検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_05_other_ml_base.html">22. 【補足】機械学習を用いた異常検知 - その他の手法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_13_nearest_neighbers.html">23. 変化点検知入門</a></li>
 </ul>
 
         </div>
@@ -91,7 +92,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li><span class="section-number">19. </span>【補足】 外れ値検知 - その他の手法</li>
+      <li><span class="section-number">20. </span>【補足】 外れ値検知 - その他の手法</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/src/04_03_other_outlier.ipynb.txt" rel="nofollow"> View page source</a>
       </li>
@@ -380,9 +381,9 @@ div.rendered_html tbody tr:hover {
 }
 </style>
 <section id="【補足】-外れ値検知---その他の手法">
-<h1><span class="section-number">19. </span>【補足】 外れ値検知 - その他の手法<a class="headerlink" href="#【補足】-外れ値検知---その他の手法" title="この見出しへのパーマリンク"></a></h1>
+<h1><span class="section-number">20. </span>【補足】 外れ値検知 - その他の手法<a class="headerlink" href="#【補足】-外れ値検知---その他の手法" title="この見出しへのパーマリンク"></a></h1>
 <section id="統計値を用いた異常検知-2---IQR-method-/-Winsorizing-method">
-<h2><span class="section-number">19.1. </span>統計値を用いた異常検知 2 - IQR method / Winsorizing method<a class="headerlink" href="#統計値を用いた異常検知-2---IQR-method-/-Winsorizing-method" title="この見出しへのパーマリンク"></a></h2>
+<h2><span class="section-number">20.1. </span>統計値を用いた異常検知 2 - IQR method / Winsorizing method<a class="headerlink" href="#統計値を用いた異常検知-2---IQR-method-/-Winsorizing-method" title="この見出しへのパーマリンク"></a></h2>
 <p>IQR method / Winsorizing method について触れます。これらも統計量を利用した異常検知の一つで、具体的には四分位数を利用したものです。Zscore method でも学習したような前提条件などがありますが、データの分布に従った理解のしやすい手法であるため押さえておきましょう。</p>
 <section id="IQR-method">
 <h3>IQR method<a class="headerlink" href="#IQR-method" title="この見出しへのパーマリンク"></a></h3>
@@ -392,10 +393,10 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 </pre></div>
 </div>
 </div>
@@ -404,11 +405,11 @@ import seaborn as sns
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># データの準備
-np.random.seed(0)
-x = np.random.normal(0, 1, 1000)
-anomaly = np.array([-5, 5])
-data = np.concatenate([x, anomaly], axis=0)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># データの準備</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">anomaly</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">anomaly</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -416,7 +417,7 @@ data = np.concatenate([x, anomaly], axis=0)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sns.displot(data)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">displot</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -440,20 +441,20 @@ data = np.concatenate([x, anomaly], axis=0)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 関数
-def iqr_outlier(x):
-    out = []
-    out_idx = []
-    q1 = np.quantile(x, q=.25)
-    q3 = np.quantile(x, q=.75)
-    iqr = q3-q1
-    Lower_tail = q1 - 1.5 * iqr
-    Upper_tail = q3 + 1.5 * iqr
-    for n, i in enumerate(x):
-        if i &gt; Upper_tail or i &lt; Lower_tail:
-            out.append(i)
-            out_idx.append(n)
-    return out, out_idx
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 関数</span>
+<span class="k">def</span> <span class="nf">iqr_outlier</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">out_idx</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">q1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="mf">.25</span><span class="p">)</span>
+    <span class="n">q3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="mf">.75</span><span class="p">)</span>
+    <span class="n">iqr</span> <span class="o">=</span> <span class="n">q3</span><span class="o">-</span><span class="n">q1</span>
+    <span class="n">Lower_tail</span> <span class="o">=</span> <span class="n">q1</span> <span class="o">-</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">iqr</span>
+    <span class="n">Upper_tail</span> <span class="o">=</span> <span class="n">q3</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">iqr</span>
+    <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="n">Upper_tail</span> <span class="ow">or</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">Lower_tail</span><span class="p">:</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+            <span class="n">out_idx</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">out</span><span class="p">,</span> <span class="n">out_idx</span>
 </pre></div>
 </div>
 </div>
@@ -461,7 +462,7 @@ def iqr_outlier(x):
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>out, out_idx = iqr_outlier(data)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">out</span><span class="p">,</span> <span class="n">out_idx</span> <span class="o">=</span> <span class="n">iqr_outlier</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -469,7 +470,7 @@ def iqr_outlier(x):
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>out
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">out</span>
 </pre></div>
 </div>
 </div>
@@ -494,8 +495,8 @@ def iqr_outlier(x):
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.scatter(range(len(data)), data)
-plt.scatter(out_idx, data[out_idx]);
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)),</span> <span class="n">data</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">out_idx</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="n">out_idx</span><span class="p">]);</span>
 </pre></div>
 </div>
 </div>
@@ -515,17 +516,17 @@ plt.scatter(out_idx, data[out_idx]);
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 関数
-def winsorization_outliers(x):
-    out = []
-    out_idx = []
-    q1 = np.percentile(x, 1)
-    q3 = np.percentile(x, 99)
-    for n, i in enumerate(x):
-        if i &gt; q3 or i &lt; q1:
-            out.append(i)
-            out_idx.append(n)
-    return out, out_idx, q1, q3
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 関数</span>
+<span class="k">def</span> <span class="nf">winsorization_outliers</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">out_idx</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">q1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">q3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">99</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="n">q3</span> <span class="ow">or</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">q1</span><span class="p">:</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+            <span class="n">out_idx</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">out</span><span class="p">,</span> <span class="n">out_idx</span><span class="p">,</span> <span class="n">q1</span><span class="p">,</span> <span class="n">q3</span>
 </pre></div>
 </div>
 </div>
@@ -533,7 +534,7 @@ def winsorization_outliers(x):
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>out, out_idx, q1, q3 = winsorization_outliers(data)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">out</span><span class="p">,</span> <span class="n">out_idx</span><span class="p">,</span> <span class="n">q1</span><span class="p">,</span> <span class="n">q3</span> <span class="o">=</span> <span class="n">winsorization_outliers</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -541,8 +542,8 @@ def winsorization_outliers(x):
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.scatter(range(len(data)), data)
-plt.scatter(out_idx, data[out_idx])
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)),</span> <span class="n">data</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">out_idx</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="n">out_idx</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -565,7 +566,7 @@ plt.scatter(out_idx, data[out_idx])
 </section>
 </section>
 <section id="Hypothesis-Testing-(Smirnov‐Grubbs-検定)">
-<h2><span class="section-number">19.2. </span>Hypothesis Testing (Smirnov‐Grubbs 検定)<a class="headerlink" href="#Hypothesis-Testing-(Smirnov‐Grubbs-検定)" title="この見出しへのパーマリンク"></a></h2>
+<h2><span class="section-number">20.2. </span>Hypothesis Testing (Smirnov‐Grubbs 検定)<a class="headerlink" href="#Hypothesis-Testing-(Smirnov‐Grubbs-検定)" title="この見出しへのパーマリンク"></a></h2>
 <p>次は同じ統計量を利用するものですが、その中でも仮説検定を利用する方法について触れます。</p>
 <p>仮説検定を扱うため帰無仮説 (<span class="math notranslate nohighlight">\(H_0\)</span>)、対立仮説 (<span class="math notranslate nohighlight">\(H_1\)</span>) を以下のように定義します。</p>
 <ul class="simple">
@@ -584,8 +585,8 @@ plt.scatter(out_idx, data[out_idx])
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import numpy as np
-import scipy.stats as stats
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">stats</span>
 </pre></div>
 </div>
 </div>
@@ -593,12 +594,12 @@ import scipy.stats as stats
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># サンプルデータ
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># サンプルデータ</span>
 
-# 外れ値無し
-A = np.array([10, 11, 12, 17, 19, 21])
-# 外れ値有り
-B = np.array([10, 11, 12, 17, 19, 21, 43])
+<span class="c1"># 外れ値無し</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">21</span><span class="p">])</span>
+<span class="c1"># 外れ値有り</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">43</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -606,25 +607,25 @@ B = np.array([10, 11, 12, 17, 19, 21, 43])
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 関数
-def grubbs_test_outlier(data, alpha=0.05):
-    x, outliers = list(data), []
-    while True:
-        global i_far
-        n = len(x)
-        t = stats.t.isf(q=(alpha/n)/2, df=n-2)
-        tau = (n-1) * t / np.sqrt(n*(n-2)+n*t*t)
-        i_min, i_max = np.argmin(x), np.argmax(x)
-        mean, std = np.mean(x), np.std(x, ddof=1)
-        if np.abs(x[i_max]-mean) &gt; np.abs(x[i_min]-mean):
-            i_far = i_max
-        else:
-            i_min
-        tau_far = np.abs((x[i_far]-mean)/std)
-        if tau_far &lt; tau:
-            break
-        outliers.append(x.pop(i_far))
-    return x, outliers
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 関数</span>
+<span class="k">def</span> <span class="nf">grubbs_test_outlier</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">):</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">outliers</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="p">[]</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="k">global</span> <span class="n">i_far</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">isf</span><span class="p">(</span><span class="n">q</span><span class="o">=</span><span class="p">(</span><span class="n">alpha</span><span class="o">/</span><span class="n">n</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">df</span><span class="o">=</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">tau</span> <span class="o">=</span> <span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">t</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="n">n</span><span class="o">*</span><span class="n">t</span><span class="o">*</span><span class="n">t</span><span class="p">)</span>
+        <span class="n">i_min</span><span class="p">,</span> <span class="n">i_max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">mean</span><span class="p">,</span> <span class="n">std</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i_max</span><span class="p">]</span><span class="o">-</span><span class="n">mean</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i_min</span><span class="p">]</span><span class="o">-</span><span class="n">mean</span><span class="p">):</span>
+            <span class="n">i_far</span> <span class="o">=</span> <span class="n">i_max</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">i_min</span>
+        <span class="n">tau_far</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">((</span><span class="n">x</span><span class="p">[</span><span class="n">i_far</span><span class="p">]</span><span class="o">-</span><span class="n">mean</span><span class="p">)</span><span class="o">/</span><span class="n">std</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">tau_far</span> <span class="o">&lt;</span> <span class="n">tau</span><span class="p">:</span>
+            <span class="k">break</span>
+        <span class="n">outliers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">i_far</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">outliers</span>
 </pre></div>
 </div>
 </div>
@@ -632,9 +633,9 @@ def grubbs_test_outlier(data, alpha=0.05):
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># A:外れ値無しの場合
-_, out = grubbs_test_outlier(A)
-print(&#39;外れ値&#39;, out)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># A:外れ値無しの場合</span>
+<span class="n">_</span><span class="p">,</span> <span class="n">out</span> <span class="o">=</span> <span class="n">grubbs_test_outlier</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;外れ値&#39;</span><span class="p">,</span> <span class="n">out</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -650,9 +651,9 @@ print(&#39;外れ値&#39;, out)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># B:外れ値有りの場合
-_, out = grubbs_test_outlier(B)
-print(&#39;外れ値&#39;, out)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># B:外れ値有りの場合</span>
+<span class="n">_</span><span class="p">,</span> <span class="n">out</span> <span class="o">=</span> <span class="n">grubbs_test_outlier</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;外れ値&#39;</span><span class="p">,</span> <span class="n">out</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -671,8 +672,8 @@ print(&#39;外れ値&#39;, out)
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="04_02_outlier.html" class="btn btn-neutral float-left" title="18. 外れ値検知入門" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="04_04_ml_base.html" class="btn btn-neutral float-right" title="20. 機械学習を用いた異常検知入門" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="04_02_outlier.html" class="btn btn-neutral float-left" title="19. 外れ値検知入門" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="04_04_ml_base.html" class="btn btn-neutral float-right" title="21. 機械学習を用いた異常検知入門" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
