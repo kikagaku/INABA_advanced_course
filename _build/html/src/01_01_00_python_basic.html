@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="ja" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>4. Python 速習とテーブルデータの基本操作 &mdash; 応用講座コース  ドキュメント</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -15,6 +16,7 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/translations.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -419,8 +421,8 @@ div.rendered_html tbody tr:hover {
     text-align: unset;
 }
 </style>
-<div class="section" id="Python-速習とテーブルデータの基本操作">
-<h1><span class="section-number">4. </span>Python 速習とテーブルデータの基本操作<a class="headerlink" href="#Python-速習とテーブルデータの基本操作" title="Permalink to this heading"></a></h1>
+<section id="Python-速習とテーブルデータの基本操作">
+<h1><span class="section-number">4. </span>Python 速習とテーブルデータの基本操作<a class="headerlink" href="#Python-速習とテーブルデータの基本操作" title="この見出しへのパーマリンク"></a></h1>
 <p>▼ 本章で使用するデータ</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://drive.google.com/file/d/1pu4Y-QvHA1TNQRN_6tTyZ7Fp7bgBR6Ft/view?usp=sharing">covid_data.csv</a></p></li>
@@ -437,8 +439,8 @@ div.rendered_html tbody tr:hover {
 <li><p>質的変数への対応</p></li>
 </ul>
 <hr class="docutils" />
-<div class="section" id="GoogleDrive-のマウント">
-<h2><span class="section-number">4.1. </span>GoogleDrive のマウント<a class="headerlink" href="#GoogleDrive-のマウント" title="Permalink to this heading"></a></h2>
+<section id="GoogleDrive-のマウント">
+<h2><span class="section-number">4.1. </span>GoogleDrive のマウント<a class="headerlink" href="#GoogleDrive-のマウント" title="この見出しへのパーマリンク"></a></h2>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -449,9 +451,9 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
-</div>
-<div class="section" id="パスの設定">
-<h2><span class="section-number">4.2. </span>パスの設定<a class="headerlink" href="#パスの設定" title="Permalink to this heading"></a></h2>
+</section>
+<section id="パスの設定">
+<h2><span class="section-number">4.2. </span>パスの設定<a class="headerlink" href="#パスの設定" title="この見出しへのパーマリンク"></a></h2>
 <p>講義資料と同じコードで実装が進められるようにパスの設定を行います。data フォルダまでのパスを <code class="docutils literal notranslate"><span class="pre">data_path</span></code> という変数に格納しておきます。講義資料と同じ階層でデータを格納している場合は以下のコードをそのまま実行してください。</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
@@ -462,9 +464,9 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
-</div>
-<div class="section" id="必要なモジュールのインポート">
-<h2><span class="section-number">4.3. </span>必要なモジュールのインポート<a class="headerlink" href="#必要なモジュールのインポート" title="Permalink to this heading"></a></h2>
+</section>
+<section id="必要なモジュールのインポート">
+<h2><span class="section-number">4.3. </span>必要なモジュールのインポート<a class="headerlink" href="#必要なモジュールのインポート" title="この見出しへのパーマリンク"></a></h2>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
@@ -482,9 +484,9 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
-</div>
-<div class="section" id="基本的なテーブルデータ操作-(Pandas)">
-<h2><span class="section-number">4.4. </span>基本的なテーブルデータ操作 (Pandas)<a class="headerlink" href="#基本的なテーブルデータ操作-(Pandas)" title="Permalink to this heading"></a></h2>
+</section>
+<section id="基本的なテーブルデータ操作-(Pandas)">
+<h2><span class="section-number">4.4. </span>基本的なテーブルデータ操作 (Pandas)<a class="headerlink" href="#基本的なテーブルデータ操作-(Pandas)" title="この見出しへのパーマリンク"></a></h2>
 <p>まずは Pandas を使用したデータ操作の基本を確認しましょう。</p>
 <ul class="simple">
 <li><p>データの読み込み</p></li>
@@ -493,8 +495,8 @@ div.rendered_html tbody tr:hover {
 <li><p>列の削除・追加</p></li>
 <li><p>データの絞り込み</p></li>
 </ul>
-<div class="section" id="データの読み込み">
-<h3>データの読み込み<a class="headerlink" href="#データの読み込み" title="Permalink to this heading"></a></h3>
+<section id="データの読み込み">
+<h3>データの読み込み<a class="headerlink" href="#データの読み込み" title="この見出しへのパーマリンク"></a></h3>
 <p>まずはデータセットの読み込みから行いましょう。<a class="reference external" href="drive/MyDrive/quick/data/covid_data.csv">covid_data.csv</a> を使用します。</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
@@ -1021,9 +1023,9 @@ memory usage: 1.8+ MB
 </table>
 </div></div>
 </div>
-</div>
-<div class="section" id="データの切り分け">
-<h3>データの切り分け<a class="headerlink" href="#データの切り分け" title="Permalink to this heading"></a></h3>
+</section>
+<section id="データの切り分け">
+<h3>データの切り分け<a class="headerlink" href="#データの切り分け" title="この見出しへのパーマリンク"></a></h3>
 <p>統計モデルや機械学習モデルを作成する際は、データを説明変数と目的変数に分割することが多いです。今回は説明変数 <code class="docutils literal notranslate"><span class="pre">x</span></code> と目的変数 <code class="docutils literal notranslate"><span class="pre">t</span></code> として 1 つのデータフレームから分割してみます。<code class="docutils literal notranslate"><span class="pre">total_deaths_per_million</span></code> を目的変数として分割してみましょう。</p>
 <p>方法は様々ありますが、今回は <code class="docutils literal notranslate"><span class="pre">drop()</span></code> メソッドを使用します。</p>
 <div class="nbinput docutils container">
@@ -1141,9 +1143,9 @@ date
 Name: total_deaths_per_million, dtype: float64
 </pre></div></div>
 </div>
-</div>
-<div class="section" id="データの並び替え">
-<h3>データの並び替え<a class="headerlink" href="#データの並び替え" title="Permalink to this heading"></a></h3>
+</section>
+<section id="データの並び替え">
+<h3>データの並び替え<a class="headerlink" href="#データの並び替え" title="この見出しへのパーマリンク"></a></h3>
 <p>データの中身を確認するときに降順や昇順で並び替えて、確認したい場合もあります。<code class="docutils literal notranslate"><span class="pre">sort_values('ソートする列名')</span></code> メソッドで並び替えは可能です。</p>
 <p>それでは <code class="docutils literal notranslate"><span class="pre">total_deaths_per_million</span></code> に関して、並び順を変更してみましょう。</p>
 <div class="nbinput docutils container">
@@ -1338,9 +1340,9 @@ Name: total_deaths_per_million, dtype: float64
 <p>23728 rows × 9 columns</p>
 </div></div>
 </div>
-</div>
-<div class="section" id="列の削除・追加">
-<h3>列の削除・追加<a class="headerlink" href="#列の削除・追加" title="Permalink to this heading"></a></h3>
+</section>
+<section id="列の削除・追加">
+<h3>列の削除・追加<a class="headerlink" href="#列の削除・追加" title="この見出しへのパーマリンク"></a></h3>
 <p>列を削除する方法は <code class="docutils literal notranslate"><span class="pre">.drop(labels=列名)</span></code> で実行できます。列を削除する際には <code class="docutils literal notranslate"><span class="pre">axis=1</span></code> と指定する必要がある点に注意しましょう。（デフォルトでは <code class="docutils literal notranslate"><span class="pre">axis=0</span></code>(行方向)です。）</p>
 <p><code class="docutils literal notranslate"><span class="pre">total_deaths_per_million'</span></code> の列を削除し、その後戻してみましょう。</p>
 <div class="nbinput nblast docutils container">
@@ -1544,9 +1546,9 @@ Name: total_deaths_per_million, dtype: float64
 </div></div>
 </div>
 <p>列の位置は変化しましたが、再度 <code class="docutils literal notranslate"><span class="pre">total_deaths_per_million</span></code> を追加できました。</p>
-</div>
-<div class="section" id="データの絞り込み">
-<h3>データの絞り込み<a class="headerlink" href="#データの絞り込み" title="Permalink to this heading"></a></h3>
+</section>
+<section id="データの絞り込み">
+<h3>データの絞り込み<a class="headerlink" href="#データの絞り込み" title="この見出しへのパーマリンク"></a></h3>
 <p>特定の条件に合致するデータに絞り込む方法も確認しておきます。</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
@@ -1838,27 +1840,27 @@ Name: total_deaths_per_million, dtype: float64
 </table>
 </div></div>
 </div>
-</div>
-</div>
-<div class="section" id="基本的なデータの可視化-(Matplotlib,-Seaborn)">
-<h2><span class="section-number">4.5. </span>基本的なデータの可視化 (Matplotlib, Seaborn)<a class="headerlink" href="#基本的なデータの可視化-(Matplotlib,-Seaborn)" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+<section id="基本的なデータの可視化-(Matplotlib,-Seaborn)">
+<h2><span class="section-number">4.5. </span>基本的なデータの可視化 (Matplotlib, Seaborn)<a class="headerlink" href="#基本的なデータの可視化-(Matplotlib,-Seaborn)" title="この見出しへのパーマリンク"></a></h2>
 <p>データの性質を知るためには、データを様々な図で可視化することが有効です。可視化の方法はたくさんありますが、ここでは代表的なものをピックアップして確認します。</p>
 <ul class="simple">
 <li><p>分布の把握</p></li>
 <li><p>傾向の把握</p></li>
 <li><p>相関の把握</p></li>
 </ul>
-<div class="section" id="【補足】データの種類">
-<h3>【補足】データの種類<a class="headerlink" href="#【補足】データの種類" title="Permalink to this heading"></a></h3>
+<section id="【補足】データの種類">
+<h3>【補足】データの種類<a class="headerlink" href="#【補足】データの種類" title="この見出しへのパーマリンク"></a></h3>
 <p>データは大きく 2 種類に分けられます。質的変数と量的変数です。質的変数はカテゴリカルな値で、離散値を取ります。量的変数は連続値になります。具体例は以下です。</p>
 <ul class="simple">
 <li><p>質的変数：満足度（5 段階評価）、性別（男女）、ランキング（10 段階）</p></li>
 <li><p>量的変数：身長、売上、気温</p></li>
 </ul>
 <p>データの種類により可視化の方法も変えることが効果的ですので、データの種類についても押さえておきましょう。</p>
-</div>
-<div class="section" id="分布の把握：棒グラフ">
-<h3>分布の把握：棒グラフ<a class="headerlink" href="#分布の把握：棒グラフ" title="Permalink to this heading"></a></h3>
+</section>
+<section id="分布の把握：棒グラフ">
+<h3>分布の把握：棒グラフ<a class="headerlink" href="#分布の把握：棒グラフ" title="この見出しへのパーマリンク"></a></h3>
 <p>質的変数において、各カテゴリ毎の分布を把握する際には<strong>棒グラフ</strong>で可視化します。今回のデータでは大陸 (<code class="docutils literal notranslate"><span class="pre">continent</span></code>) は質的変数にあたるため、こちらを可視化してみましょう。</p>
 <p>Matplotlib では <code class="docutils literal notranslate"><span class="pre">bar()</span></code> 関数で棒グラフを可視化できます。</p>
 <div class="nbinput docutils container">
@@ -1916,9 +1918,9 @@ Index([&#39;Africa&#39;, &#39;Europe&#39;, &#39;Asia&#39;, &#39;North America&#3
 </div>
 </div>
 <p>このデータセットには、Africa のデータが最も多いことがわかりました。</p>
-</div>
-<div class="section" id="分布の把握：ヒストグラム">
-<h3>分布の把握：ヒストグラム<a class="headerlink" href="#分布の把握：ヒストグラム" title="Permalink to this heading"></a></h3>
+</section>
+<section id="分布の把握：ヒストグラム">
+<h3>分布の把握：ヒストグラム<a class="headerlink" href="#分布の把握：ヒストグラム" title="この見出しへのパーマリンク"></a></h3>
 <p>量的変数の分布を把握する際には、ヒストグラムを使用します。</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
@@ -1953,9 +1955,9 @@ Index([&#39;Africa&#39;, &#39;Europe&#39;, &#39;Asia&#39;, &#39;North America&#3
 </div>
 </div>
 <p>データの分布を把握することで、外れ値の有無や、欠損値補完の方法を考察する助けになります。</p>
-</div>
-<div class="section" id="傾向の把握：折れ線グラフ">
-<h3>傾向の把握：折れ線グラフ<a class="headerlink" href="#傾向の把握：折れ線グラフ" title="Permalink to this heading"></a></h3>
+</section>
+<section id="傾向の把握：折れ線グラフ">
+<h3>傾向の把握：折れ線グラフ<a class="headerlink" href="#傾向の把握：折れ線グラフ" title="この見出しへのパーマリンク"></a></h3>
 <p>量的変数の時間軸に沿った変化傾向を見る際には、折れ線グラフで可視化を行います。</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
@@ -1976,12 +1978,12 @@ Index([&#39;Africa&#39;, &#39;Europe&#39;, &#39;Asia&#39;, &#39;North America&#3
 <img alt="../_images/src_01_01_00_python_basic_48_0.png" src="../_images/src_01_01_00_python_basic_48_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="相関関係の把握：散布図、ヒートマップ">
-<h3>相関関係の把握：散布図、ヒートマップ<a class="headerlink" href="#相関関係の把握：散布図、ヒートマップ" title="Permalink to this heading"></a></h3>
+</section>
+<section id="相関関係の把握：散布図、ヒートマップ">
+<h3>相関関係の把握：散布図、ヒートマップ<a class="headerlink" href="#相関関係の把握：散布図、ヒートマップ" title="この見出しへのパーマリンク"></a></h3>
 <p>今までの可視化は 1 変数に絞った可視化でしたが、相関関係は 2 変数に着目します。2 変数間の相関関係を把握する際には、散布図やヒートマップを用います。</p>
-<div class="section" id="散布図">
-<h4>散布図<a class="headerlink" href="#散布図" title="Permalink to this heading"></a></h4>
+<section id="散布図">
+<h4>散布図<a class="headerlink" href="#散布図" title="この見出しへのパーマリンク"></a></h4>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
 </pre></div>
@@ -1998,9 +2000,9 @@ Index([&#39;Africa&#39;, &#39;Europe&#39;, &#39;Asia&#39;, &#39;North America&#3
 <img alt="../_images/src_01_01_00_python_basic_51_0.png" src="../_images/src_01_01_00_python_basic_51_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="ヒートマップ">
-<h4>ヒートマップ<a class="headerlink" href="#ヒートマップ" title="Permalink to this heading"></a></h4>
+</section>
+<section id="ヒートマップ">
+<h4>ヒートマップ<a class="headerlink" href="#ヒートマップ" title="この見出しへのパーマリンク"></a></h4>
 <p>変数が多い場合にはすべての変数同士の散布図を確認するのは大変です。その場合には、グラフではなく相関係数を色付きで表示するヒートマップによる可視化が有効です。</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
@@ -2119,11 +2121,11 @@ Index([&#39;Africa&#39;, &#39;Europe&#39;, &#39;Asia&#39;, &#39;North America&#3
 <img alt="../_images/src_01_01_00_python_basic_55_0.png" src="../_images/src_01_01_00_python_basic_55_0.png" />
 </div>
 </div>
-</div>
-</div>
-</div>
-<div class="section" id="【補足】Matplotlib-の描画方法について">
-<h2><span class="section-number">4.6. </span>【補足】Matplotlib の描画方法について<a class="headerlink" href="#【補足】Matplotlib-の描画方法について" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+</section>
+<section id="【補足】Matplotlib-の描画方法について">
+<h2><span class="section-number">4.6. </span>【補足】Matplotlib の描画方法について<a class="headerlink" href="#【補足】Matplotlib-の描画方法について" title="この見出しへのパーマリンク"></a></h2>
 <p>Matploblib を使用した可視化の際、グラフのラベルや凡例、罫線の表示等、様々な点を工夫することが可能です。簡単なサンプルデータを作成して表示の変更方法を確認します。</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
@@ -2219,9 +2221,9 @@ Index([&#39;Africa&#39;, &#39;Europe&#39;, &#39;Asia&#39;, &#39;North America&#3
 <img alt="../_images/src_01_01_00_python_basic_63_1.png" src="../_images/src_01_01_00_python_basic_63_1.png" />
 </div>
 </div>
-</div>
-<div class="section" id="データの集計操作">
-<h2><span class="section-number">4.7. </span>データの集計操作<a class="headerlink" href="#データの集計操作" title="Permalink to this heading"></a></h2>
+</section>
+<section id="データの集計操作">
+<h2><span class="section-number">4.7. </span>データの集計操作<a class="headerlink" href="#データの集計操作" title="この見出しへのパーマリンク"></a></h2>
 <p>ここまでデータフレームの扱い方からデータの可視化方法まで扱いました。最後にデータを集計する方法について扱います。代表的な以下の項目に関して説明します。</p>
 <ul class="simple">
 <li><p>グループ化（groupby ・ resample）</p></li>
@@ -2229,8 +2231,8 @@ Index([&#39;Africa&#39;, &#39;Europe&#39;, &#39;Asia&#39;, &#39;North America&#3
 <li><p>ピボットテーブル</p></li>
 </ul>
 <p>集計に関しては基本的に質的変数でグルーピングして行います。（量的変数は無限通りのパターンが考えられるため集計には向きません。）</p>
-<div class="section" id="グループ化">
-<h3>グループ化<a class="headerlink" href="#グループ化" title="Permalink to this heading"></a></h3>
+<section id="グループ化">
+<h3>グループ化<a class="headerlink" href="#グループ化" title="この見出しへのパーマリンク"></a></h3>
 <p>任意の質的変数でグルーピングを行って統計量を把握する際には、<code class="docutils literal notranslate"><span class="pre">groupby()</span></code> メソッドを使用します。</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
@@ -2709,9 +2711,9 @@ Index([&#39;Africa&#39;, &#39;Europe&#39;, &#39;Asia&#39;, &#39;North America&#3
 <div class="line">先頭に <code class="docutils literal notranslate"><span class="pre">B</span></code> を付けると営業日（月曜 - 金曜）。</div>
 <div class="line">末尾に <code class="docutils literal notranslate"><span class="pre">S</span></code> をつけると開始日となります。</div>
 </div>
-</div>
-<div class="section" id="クロス集計">
-<h3>クロス集計<a class="headerlink" href="#クロス集計" title="Permalink to this heading"></a></h3>
+</section>
+<section id="クロス集計">
+<h3>クロス集計<a class="headerlink" href="#クロス集計" title="この見出しへのパーマリンク"></a></h3>
 <p>2 つの質的変数同士で掛け合わせ、各変数毎のサンプル数を集計するにはクロス集計を行います。クロス集計は、<code class="docutils literal notranslate"><span class="pre">crosstab()</span></code> メソッドで実行できます。</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
@@ -2942,9 +2944,9 @@ Index([&#39;Africa&#39;, &#39;Europe&#39;, &#39;Asia&#39;, &#39;North America&#3
 <p>6 rows × 225 columns</p>
 </div></div>
 </div>
-</div>
-<div class="section" id="ピボットテーブル">
-<h3>ピボットテーブル<a class="headerlink" href="#ピボットテーブル" title="Permalink to this heading"></a></h3>
+</section>
+<section id="ピボットテーブル">
+<h3>ピボットテーブル<a class="headerlink" href="#ピボットテーブル" title="この見出しへのパーマリンク"></a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">pivot_table()</span></code> メソッドを使用することで、2つの質的変数をかけ合わせた上で、任意の数値について様々な集計を行えます。</p>
 <p><code class="docutils literal notranslate"><span class="pre">aggfunc</span></code> という引数で 平均値や合計等、集計方法を指定することができます。</p>
 <div class="nbinput docutils container">
@@ -3190,10 +3192,10 @@ Index([&#39;Africa&#39;, &#39;Europe&#39;, &#39;Asia&#39;, &#39;North America&#3
 </div></div>
 </div>
 <p>算出できない部分に関しては上記のように NaN (Not a Number) と表示されます。</p>
-</div>
-</div>
-<div class="section" id="欠損値対応">
-<h2><span class="section-number">4.8. </span>欠損値対応<a class="headerlink" href="#欠損値対応" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+<section id="欠損値対応">
+<h2><span class="section-number">4.8. </span>欠損値対応<a class="headerlink" href="#欠損値対応" title="この見出しへのパーマリンク"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">NaN</span></code> と表記されている値を欠損値（または欠測値）と呼び、こちらがあると統計モデルや機械学習モデルではうまく分析できないことが多いです。欠損値があるデータに対する前処理の方法について押さえておきましょう。</p>
 <p>まずは欠損値がどこにあるのかを確認しましょう。</p>
 <div class="nbinput docutils container">
@@ -3366,8 +3368,8 @@ dtype: int64
 <li><p>欠損値の除去</p></li>
 <li><p>欠損値の補完</p></li>
 </ol>
-<div class="section" id="欠損値除去">
-<h3>欠損値除去<a class="headerlink" href="#欠損値除去" title="Permalink to this heading"></a></h3>
+<section id="欠損値除去">
+<h3>欠損値除去<a class="headerlink" href="#欠損値除去" title="この見出しへのパーマリンク"></a></h3>
 <p>欠損値除去とは、名前から推測できるように欠損値を取り除く方法です。欠損値の取り除き方は大きく 2 つです。</p>
 <ul class="simple">
 <li><p>行方向に除去する（サンプル数が減少）</p></li>
@@ -3379,9 +3381,9 @@ dtype: int64
 <li><p>行方向に除去する（サンプル数が減少）: df.dropna(subset=<code class="docutils literal notranslate"><span class="pre">欠損値を削除したいカラム名</span></code>)</p></li>
 <li><p>列方向に除去する（カラム数が減少） : df.drop(<code class="docutils literal notranslate"><span class="pre">削除したいカラム名</span></code>, axis=1)</p></li>
 </ul>
-</div>
-<div class="section" id="欠損値の補完">
-<h3>欠損値の補完<a class="headerlink" href="#欠損値の補完" title="Permalink to this heading"></a></h3>
+</section>
+<section id="欠損値の補完">
+<h3>欠損値の補完<a class="headerlink" href="#欠損値の補完" title="この見出しへのパーマリンク"></a></h3>
 <p>次は欠損値補完について学びます。欠損値補完とは欠損値を他の値で埋める方法です。具体的には以下です。</p>
 <ul class="simple">
 <li><p>前方埋め（直前の時刻のデータで埋める）</p></li>
@@ -3764,10 +3766,10 @@ dtype: int64
 </pre></div></div>
 </div>
 <p>これで欠損値を全てなくすことができました。</p>
-</div>
-</div>
-<div class="section" id="質的変数への対応">
-<h2><span class="section-number">4.9. </span>質的変数への対応<a class="headerlink" href="#質的変数への対応" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+<section id="質的変数への対応">
+<h2><span class="section-number">4.9. </span>質的変数への対応<a class="headerlink" href="#質的変数への対応" title="この見出しへのパーマリンク"></a></h2>
 <p>文字列データを含めた、カテゴリを表すデータを質的変数といいます。（例えば「男性、女性」というような文字列データ。）既に数字に変換されていれば問題ありませんが、文字列のままの場合はモデルで扱うことができないため、一度数字に変換する必要があります。</p>
 <p>数字に変換する方法は様々ありますが、今回は以下を紹介します。</p>
 <ol class="arabic simple">
@@ -3889,8 +3891,8 @@ location
 </pre></div></div>
 </div>
 <p>それでは文字列から数値に変換を行ってみます。</p>
-<div class="section" id="Label-Encoding">
-<h3>Label Encoding<a class="headerlink" href="#Label-Encoding" title="Permalink to this heading"></a></h3>
+<section id="Label-Encoding">
+<h3>Label Encoding<a class="headerlink" href="#Label-Encoding" title="この見出しへのパーマリンク"></a></h3>
 <p>Label Encoding は各カテゴリに 0, 1, 2, … と数値を割り振る変換です。scikit learn の中の <code class="docutils literal notranslate"><span class="pre">preprocessing</span></code> モジュールにある <code class="docutils literal notranslate"><span class="pre">LabelEncodin()</span></code> クラスを使用します。</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[50]:
@@ -4111,9 +4113,9 @@ location
 </table>
 </div></div>
 </div>
-</div>
-<div class="section" id="One-Hot-Encoding">
-<h3>One-Hot Encoding<a class="headerlink" href="#One-Hot-Encoding" title="Permalink to this heading"></a></h3>
+</section>
+<section id="One-Hot-Encoding">
+<h3>One-Hot Encoding<a class="headerlink" href="#One-Hot-Encoding" title="この見出しへのパーマリンク"></a></h3>
 <p>One - Hot Encoding はダミー変数化とも言われ、下記のように各カテゴリの値ごとに 0 1 の列を作成します。</p>
 <p><strong>変換前</strong></p>
 <table class="docutils align-default">
@@ -4353,44 +4355,44 @@ location
 </div>
 <p>文字列データが数値（ダミー変数）に置き換わっていることが確認できます。変換前は入力変数の数が 9 でしたが、14 に増えています。このように <strong>入力変数の数が増える点がOne-Hot Encodingのデメリット</strong> になります。</p>
 <p>カテゴリの数が非常に多いような場合には、グルーピングしてカテゴリ数を減らしたりするとよいでしょう。</p>
-</div>
-</div>
-<div class="section" id="【補足】Python-補足資料">
-<h2><span class="section-number">4.10. </span>【補足】Python 補足資料<a class="headerlink" href="#【補足】Python-補足資料" title="Permalink to this heading"></a></h2>
-<div class="section" id="Python">
-<h3>Python<a class="headerlink" href="#Python" title="Permalink to this heading"></a></h3>
+</section>
+</section>
+<section id="【補足】Python-補足資料">
+<h2><span class="section-number">4.10. </span>【補足】Python 補足資料<a class="headerlink" href="#【補足】Python-補足資料" title="この見出しへのパーマリンク"></a></h2>
+<section id="Python">
+<h3>Python<a class="headerlink" href="#Python" title="この見出しへのパーマリンク"></a></h3>
 <ul class="simple">
 <li><p><a class="reference external" href="https://docs.kikagaku.co.jp/python/">https://docs.kikagaku.co.jp/python/</a></p></li>
 <li><p>ユーザー名：kikagaku</p></li>
 <li><p>パスワード：python</p></li>
 </ul>
-</div>
-<div class="section" id="NumPy">
-<h3>NumPy<a class="headerlink" href="#NumPy" title="Permalink to this heading"></a></h3>
+</section>
+<section id="NumPy">
+<h3>NumPy<a class="headerlink" href="#NumPy" title="この見出しへのパーマリンク"></a></h3>
 <ul class="simple">
 <li><p><a class="reference external" href="https://docs.kikagaku.co.jp/numpy/">https://docs.kikagaku.co.jp/numpy/</a></p></li>
 <li><p>ユーザー名：kikagaku</p></li>
 <li><p>パスワード：numpy</p></li>
 </ul>
-</div>
-<div class="section" id="Pandas">
-<h3>Pandas<a class="headerlink" href="#Pandas" title="Permalink to this heading"></a></h3>
+</section>
+<section id="Pandas">
+<h3>Pandas<a class="headerlink" href="#Pandas" title="この見出しへのパーマリンク"></a></h3>
 <ul class="simple">
 <li><p><a class="reference external" href="https://docs.kikagaku.co.jp/pandas/">https://docs.kikagaku.co.jp/pandas/</a></p></li>
 <li><p>ユーザー名：kikagaku</p></li>
 <li><p>パスワード：pandas</p></li>
 </ul>
-</div>
-<div class="section" id="Matplotlib-/-seaborn">
-<h3>Matplotlib / seaborn<a class="headerlink" href="#Matplotlib-/-seaborn" title="Permalink to this heading"></a></h3>
+</section>
+<section id="Matplotlib-/-seaborn">
+<h3>Matplotlib / seaborn<a class="headerlink" href="#Matplotlib-/-seaborn" title="この見出しへのパーマリンク"></a></h3>
 <ul class="simple">
 <li><p><a class="reference external" href="https://docs.kikagaku.co.jp/matplotlib/">https://docs.kikagaku.co.jp/matplotlib/</a></p></li>
 <li><p>ユーザー名：kikagaku</p></li>
 <li><p>パスワード：matplotlib</p></li>
 </ul>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>

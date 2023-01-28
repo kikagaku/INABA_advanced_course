@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="ja" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>20. 【補足】 外れ値検知 - その他の手法 &mdash; 応用講座コース  ドキュメント</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -15,6 +16,7 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/translations.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -378,13 +380,13 @@ div.rendered_html tbody tr:hover {
     text-align: unset;
 }
 </style>
-<div class="section" id="【補足】-外れ値検知---その他の手法">
-<h1><span class="section-number">20. </span>【補足】 外れ値検知 - その他の手法<a class="headerlink" href="#【補足】-外れ値検知---その他の手法" title="Permalink to this heading"></a></h1>
-<div class="section" id="統計値を用いた異常検知-2---IQR-method-/-Winsorizing-method">
-<h2><span class="section-number">20.1. </span>統計値を用いた異常検知 2 - IQR method / Winsorizing method<a class="headerlink" href="#統計値を用いた異常検知-2---IQR-method-/-Winsorizing-method" title="Permalink to this heading"></a></h2>
+<section id="【補足】-外れ値検知---その他の手法">
+<h1><span class="section-number">20. </span>【補足】 外れ値検知 - その他の手法<a class="headerlink" href="#【補足】-外れ値検知---その他の手法" title="この見出しへのパーマリンク"></a></h1>
+<section id="統計値を用いた異常検知-2---IQR-method-/-Winsorizing-method">
+<h2><span class="section-number">20.1. </span>統計値を用いた異常検知 2 - IQR method / Winsorizing method<a class="headerlink" href="#統計値を用いた異常検知-2---IQR-method-/-Winsorizing-method" title="この見出しへのパーマリンク"></a></h2>
 <p>IQR method / Winsorizing method について触れます。これらも統計量を利用した異常検知の一つで、具体的には四分位数を利用したものです。Zscore method でも学習したような前提条件などがありますが、データの分布に従った理解のしやすい手法であるため押さえておきましょう。</p>
-<div class="section" id="IQR-method">
-<h3>IQR method<a class="headerlink" href="#IQR-method" title="Permalink to this heading"></a></h3>
+<section id="IQR-method">
+<h3>IQR method<a class="headerlink" href="#IQR-method" title="この見出しへのパーマリンク"></a></h3>
 <p>IQR (Interquartile range) とは四分位範囲で、75 パーセンタイル（第3四分位数、Q3）から 25 パーセンタイル（第1四分位数、Q1）を引いた値で、データのばらつきを示すものです。通常 <strong>-1.5 × IQR</strong> から <strong>1.5 × IQR</strong> の範囲を超えた値は外れ値として扱われます。</p>
 <img alt="03" src="../_images/03.png" />
 <div class="nbinput nblast docutils container">
@@ -506,9 +508,9 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <p>上図のオレンジ色の点が以上と判断された点です。おおよそのデータが青色の固まりのようになっているにも関わらず検出されたものはそれらから外れていることがわかります。</p>
-</div>
-<div class="section" id="Winsorizing-method">
-<h3>Winsorizing method<a class="headerlink" href="#Winsorizing-method" title="Permalink to this heading"></a></h3>
+</section>
+<section id="Winsorizing-method">
+<h3>Winsorizing method<a class="headerlink" href="#Winsorizing-method" title="この見出しへのパーマリンク"></a></h3>
 <p>この方法は IQR 法と非常に似た手法です。データの分布のうち、四分位範囲で、99 パーセンタイルを超える、または、 1 パーセンタイル以下の値を外れ値とみなします。</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
@@ -561,10 +563,10 @@ div.rendered_html tbody tr:hover {
 <img alt="../_images/src_04_03_other_outlier_16_1.png" src="../_images/src_04_03_other_outlier_16_1.png" />
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="Hypothesis-Testing-(Smirnov‐Grubbs-検定)">
-<h2><span class="section-number">20.2. </span>Hypothesis Testing (Smirnov‐Grubbs 検定)<a class="headerlink" href="#Hypothesis-Testing-(Smirnov‐Grubbs-検定)" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+<section id="Hypothesis-Testing-(Smirnov‐Grubbs-検定)">
+<h2><span class="section-number">20.2. </span>Hypothesis Testing (Smirnov‐Grubbs 検定)<a class="headerlink" href="#Hypothesis-Testing-(Smirnov‐Grubbs-検定)" title="この見出しへのパーマリンク"></a></h2>
 <p>次は同じ統計量を利用するものですが、その中でも仮説検定を利用する方法について触れます。</p>
 <p>仮説検定を扱うため帰無仮説 (<span class="math notranslate nohighlight">\(H_0\)</span>)、対立仮説 (<span class="math notranslate nohighlight">\(H_1\)</span>) を以下のように定義します。</p>
 <ul class="simple">
@@ -663,8 +665,8 @@ div.rendered_html tbody tr:hover {
 外れ値 [43]
 </pre></div></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

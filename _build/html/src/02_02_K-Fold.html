@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="ja" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>11. モデルの精度を保証する実装 &mdash; 応用講座コース  ドキュメント</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -15,6 +16,7 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/translations.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -382,8 +384,8 @@ div.rendered_html tbody tr:hover {
     text-align: unset;
 }
 </style>
-<div class="section" id="モデルの精度を保証する実装">
-<h1><span class="section-number">11. </span>モデルの精度を保証する実装<a class="headerlink" href="#モデルの精度を保証する実装" title="Permalink to this heading"></a></h1>
+<section id="モデルの精度を保証する実装">
+<h1><span class="section-number">11. </span>モデルの精度を保証する実装<a class="headerlink" href="#モデルの精度を保証する実装" title="この見出しへのパーマリンク"></a></h1>
 <p>本章では、機械学習モデルの構築のテクニックとして、Cross Validatioｎ（交差検証）と LightGBM の本格的な実装について触れます。LightGBM はテーブルデータを主に扱う際の手法として、予測精度では高い精度が出やすいと言われており、多くのコンペティションなどでも採用されるアルゴリズムです。</p>
 <p>本章では、その精度を向上させるためのテクニックと、精度を保証するために必要な Cross Validatioｎ の実装方法について触れます。</p>
 <p><strong>本章の目的</strong></p>
@@ -395,15 +397,15 @@ div.rendered_html tbody tr:hover {
 <ul class="simple">
 <li><p><a class="reference external" href="data/adult2.csv">Adult Gensus Income</a></p></li>
 </ul>
-<div class="section" id="Cross-Validation-とは">
-<h2><span class="section-number">11.1. </span>Cross Validation とは<a class="headerlink" href="#Cross-Validation-とは" title="Permalink to this heading"></a></h2>
+<section id="Cross-Validation-とは">
+<h2><span class="section-number">11.1. </span>Cross Validation とは<a class="headerlink" href="#Cross-Validation-とは" title="この見出しへのパーマリンク"></a></h2>
 <p>Cross Validation とは学習用のデータセットを複数に分割してそれぞれの分割で学習・検証のデータセットを作り、モデルの性能を見積もる枠組みのことです。</p>
 <p>一番有名なものは KFold と呼ばれるものです。これはランダムに学習データを分割します。 その他にターゲットの分布が同じになるように分割する Stratified と呼ばれる方法もあります。</p>
 <p>あとは「各分割で特定のグループが重ならないようにする」Group K Fold もよく使われます。</p>
 <p>その他にも時系列で区切る time split という方法もあります。どれを使えばよいかは test データがどのように構成されているか依存なので、データを見て決定します。</p>
-</div>
-<div class="section" id="LightGBM-による-CrossValidation-を用いた学習">
-<h2><span class="section-number">11.2. </span>LightGBM による CrossValidation を用いた学習<a class="headerlink" href="#LightGBM-による-CrossValidation-を用いた学習" title="Permalink to this heading"></a></h2>
+</section>
+<section id="LightGBM-による-CrossValidation-を用いた学習">
+<h2><span class="section-number">11.2. </span>LightGBM による CrossValidation を用いた学習<a class="headerlink" href="#LightGBM-による-CrossValidation-を用いた学習" title="この見出しへのパーマリンク"></a></h2>
 <p>今回は使う機械学習モデルとして lightGBM を使います。lightGBM は以下のような良い性質があります。</p>
 <ul class="simple">
 <li><p>欠損値が存在している場合にも、欠損を埋めることなく自然に取り扱うことができる</p></li>
@@ -470,8 +472,8 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
-<div class="section" id="parameter-について">
-<h3>parameter について<a class="headerlink" href="#parameter-について" title="Permalink to this heading"></a></h3>
+<section id="parameter-について">
+<h3>parameter について<a class="headerlink" href="#parameter-について" title="この見出しへのパーマリンク"></a></h3>
 <p>LightGBM などの GBDT のパラメータは、内部的にどういう意味を持つのかを知っておくことで、課題設定ごとにどのようにパラメータを調整スべきかを感覚的に掴むことができます。</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://lightgbm.readthedocs.io/en/latest/Parameters-Tuning.html">Parameters Tuning</a></p></li>
@@ -516,10 +518,10 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="データの準備">
-<h2><span class="section-number">11.3. </span>データの準備<a class="headerlink" href="#データの準備" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+<section id="データの準備">
+<h2><span class="section-number">11.3. </span>データの準備<a class="headerlink" href="#データの準備" title="この見出しへのパーマリンク"></a></h2>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[59]:
 </pre></div>
@@ -799,9 +801,9 @@ F1 Score: 0.8406
 FINISHED | Whole F1 Score: 0.8446
 </pre></div></div>
 </div>
-</div>
-<div class="section" id="特徴量重要度-(FeatureImporatnce)-の可視化">
-<h2><span class="section-number">11.4. </span>特徴量重要度 (FeatureImporatnce) の可視化<a class="headerlink" href="#特徴量重要度-(FeatureImporatnce)-の可視化" title="Permalink to this heading"></a></h2>
+</section>
+<section id="特徴量重要度-(FeatureImporatnce)-の可視化">
+<h2><span class="section-number">11.4. </span>特徴量重要度 (FeatureImporatnce) の可視化<a class="headerlink" href="#特徴量重要度-(FeatureImporatnce)-の可視化" title="この見出しへのパーマリンク"></a></h2>
 <p>LightGBM など木系のモデルではどの特徴量で分割を行ってどれだけ目的変数を説明しているかを特徴重要度 (feature importance) として出力することができます。これを見ることで</p>
 <ul class="simple">
 <li><p>どの特徴量が大事なのか</p></li>
@@ -1030,9 +1032,9 @@ FINISHED | Whole F1 Score: 0.8446
     </div>
   </div></div>
 </div>
-</div>
-<div class="section" id="学習済みモデルを用いた予測結果の確認">
-<h2><span class="section-number">11.5. </span>学習済みモデルを用いた予測結果の確認<a class="headerlink" href="#学習済みモデルを用いた予測結果の確認" title="Permalink to this heading"></a></h2>
+</section>
+<section id="学習済みモデルを用いた予測結果の確認">
+<h2><span class="section-number">11.5. </span>学習済みモデルを用いた予測結果の確認<a class="headerlink" href="#学習済みモデルを用いた予測結果の確認" title="この見出しへのパーマリンク"></a></h2>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
 </pre></div>
@@ -1042,9 +1044,9 @@ FINISHED | Whole F1 Score: 0.8446
 </pre></div>
 </div>
 </div>
-</div>
-<div class="section" id="予測値の分布を確認">
-<h2><span class="section-number">11.6. </span>予測値の分布を確認<a class="headerlink" href="#予測値の分布を確認" title="Permalink to this heading"></a></h2>
+</section>
+<section id="予測値の分布を確認">
+<h2><span class="section-number">11.6. </span>予測値の分布を確認<a class="headerlink" href="#予測値の分布を確認" title="この見出しへのパーマリンク"></a></h2>
 <p>あまりに大きくずれているときは実装がおかしい or 分布がずれている可能性が高いです。</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
@@ -1064,9 +1066,9 @@ FINISHED | Whole F1 Score: 0.8446
 <img alt="../_images/src_02_02_K-Fold_24_0.png" src="../_images/src_02_02_K-Fold_24_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="【補足】-Permutation-Feature-Importance">
-<h2><span class="section-number">11.7. </span>【補足】 Permutation Feature Importance<a class="headerlink" href="#【補足】-Permutation-Feature-Importance" title="Permalink to this heading"></a></h2>
+</section>
+<section id="【補足】-Permutation-Feature-Importance">
+<h2><span class="section-number">11.7. </span>【補足】 Permutation Feature Importance<a class="headerlink" href="#【補足】-Permutation-Feature-Importance" title="この見出しへのパーマリンク"></a></h2>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
 </pre></div>
@@ -1242,8 +1244,8 @@ FINISHED | Whole F1 Score: 0.8446
 <img alt="../_images/src_02_02_K-Fold_30_0.png" src="../_images/src_02_02_K-Fold_30_0.png" />
 </div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

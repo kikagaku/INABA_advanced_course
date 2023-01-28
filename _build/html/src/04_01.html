@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="ja" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>18. 異常検知とは &mdash; 応用講座コース  ドキュメント</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -15,6 +16,7 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/translations.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -128,8 +130,8 @@
     text-align: unset;
 }
 </style>
-<div class="section" id="異常検知とは">
-<h1><span class="section-number">18. </span>異常検知とは<a class="headerlink" href="#異常検知とは" title="Permalink to this heading"></a></h1>
+<section id="異常検知とは">
+<h1><span class="section-number">18. </span>異常検知とは<a class="headerlink" href="#異常検知とは" title="この見出しへのパーマリンク"></a></h1>
 <div class="line-block">
 <div class="line">大量のデータを入手できた場合、通常そこには多かれ少なかれパターンが見えてきます。</div>
 <div class="line">そのようなパターンから大きく外れた異常なデータを発見すること・異常な変化を検出することを異常検知 (Anomaly Detection) と呼びます。データマイニング（※1）の機能の１つです。</div>
@@ -137,8 +139,8 @@
 <p>異常検知の最も根源的な欲求は、「なにか変」を機械にわかるように定量評価 or 定式化し、人間の勘に頼らず見つけ出すことです。しかしながら、この「なにか変」を機械に検出させるには技術的な困難が伴います。人の目には明らかに「変なデータ」であっても、これを判定するモデルには様々な工夫が必要になります。</p>
 <p>※1 データマイニング (Data mining) とは、大量のデータに対して、統計学や人工知能などの分析手法を駆使して、「知識」を見出すための技術です。</p>
 <img alt="01" src="../_images/01.png" />
-<div class="section" id="異常検知の手法と適用例">
-<h2><span class="section-number">18.1. </span>異常検知の手法と適用例<a class="headerlink" href="#異常検知の手法と適用例" title="Permalink to this heading"></a></h2>
+<section id="異常検知の手法と適用例">
+<h2><span class="section-number">18.1. </span>異常検知の手法と適用例<a class="headerlink" href="#異常検知の手法と適用例" title="この見出しへのパーマリンク"></a></h2>
 <div class="line-block">
 <div class="line">異常検知の技術は今や様々な場面で持ちいられます。異常検知の手法としては以下のようなものがります。</div>
 <div class="line">それぞれ確認しましょう。</div>
@@ -148,39 +150,39 @@
 <li><p>変化点検知</p></li>
 <li><p>異常部位検知</p></li>
 </ol>
-</div>
-<div class="section" id="外れ値検知">
-<h2><span class="section-number">18.2. </span>外れ値検知<a class="headerlink" href="#外れ値検知" title="Permalink to this heading"></a></h2>
+</section>
+<section id="外れ値検知">
+<h2><span class="section-number">18.2. </span>外れ値検知<a class="headerlink" href="#外れ値検知" title="この見出しへのパーマリンク"></a></h2>
 <p>外れ値とは、値が他のデータに比べて大きく離れている。というものです。この外れ値は、普段では発生すると考えられないようなデータ点であり、それ以外のものとは傾向が異なると判断できます。その外れ値を見つける異常検知の問題を「外れ値検知」と呼びます。これは直感的にわかりやすく、他の点(データ)と明らかに離れており異常な値を見つけていると捉えることができます。</p>
-<div class="section" id="外れ値検知の事例">
-<h3>外れ値検知の事例<a class="headerlink" href="#外れ値検知の事例" title="Permalink to this heading"></a></h3>
+<section id="外れ値検知の事例">
+<h3>外れ値検知の事例<a class="headerlink" href="#外れ値検知の事例" title="この見出しへのパーマリンク"></a></h3>
 <div class="line-block">
 <div class="line">外れ値検知の例としてユーザー動向の異常検出があります。</div>
 <div class="line">これは、ユーザーのサイトに対するアクセス数に対して一定のしきい値を設けておき、その値を超えると以上とみなすというものです。</div>
 </div>
 <img alt="01" src="../_images/011.png" />
 <p>普段の傾向から逸脱した動きをした場合に、アラートを流すといった運用ができることが想像できます。</p>
-</div>
-</div>
-<div class="section" id="変化点検知-&amp;-異常部位検知">
-<h2><span class="section-number">18.3. </span>変化点検知 &amp; 異常部位検知<a class="headerlink" href="#変化点検知-&-異常部位検知" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+<section id="変化点検知-&amp;-異常部位検知">
+<h2><span class="section-number">18.3. </span>変化点検知 &amp; 異常部位検知<a class="headerlink" href="#変化点検知-&-異常部位検知" title="この見出しへのパーマリンク"></a></h2>
 <div class="line-block">
 <div class="line">変化点検知は、時系列データのパターンが急激に変化する箇所を検知するための手法です。</div>
 <div class="line">時系列データは例えば、株価のデータのように、連続して動くデータですが、ある時点から値が他と異なった振る舞いをすることがあります。これを検知するのが変化点検知です。</div>
 </div>
 <p>これに対して、<strong>異常部位検出</strong>は、明らかな異常が起きている部分時系列を検出することを指しています。変化点検知とはある1点で検知するのか、一定区間で検知するのかで呼び名が変わっています。概念としては別物ですが、時系列データにおいて正常でない振る舞いをした場面を検出するという意味では変化点も異常部位も同じ意味になります。</p>
-<div class="section" id="変化点検知の事例">
-<h3>変化点検知の事例<a class="headerlink" href="#変化点検知の事例" title="Permalink to this heading"></a></h3>
+<section id="変化点検知の事例">
+<h3>変化点検知の事例<a class="headerlink" href="#変化点検知の事例" title="この見出しへのパーマリンク"></a></h3>
 <p>以下は、日別販売金額の推移における変化点を検出するというものです。</p>
 <div class="line-block">
 <div class="line"><img alt="02" src="../_images/02.png" /></div>
 <div class="line">出典：<a class="reference external" href="https://speakerdeck.com/ikuyam/zhi-zao-ye-niokerushi-xi-lie-yu-ce-moteruhuo-yong?slide=24">https://speakerdeck.com/ikuyam/zhi-zao-ye-niokerushi-xi-lie-yu-ce-moteruhuo-yong?slide=24</a></div>
 </div>
 <p>製品の販売量と在庫量の管理について、変化点検知を利用することで早期での発見を実現しています。</p>
-</div>
-</div>
-<div class="section" id="異常検知の基本的な流れと用いられる手法">
-<h2><span class="section-number">18.4. </span>異常検知の基本的な流れと用いられる手法<a class="headerlink" href="#異常検知の基本的な流れと用いられる手法" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+<section id="異常検知の基本的な流れと用いられる手法">
+<h2><span class="section-number">18.4. </span>異常検知の基本的な流れと用いられる手法<a class="headerlink" href="#異常検知の基本的な流れと用いられる手法" title="この見出しへのパーマリンク"></a></h2>
 <p>異常と呼んでも様々な異常がありますが、異常検知の基本的な流れとしては以下の通りです。</p>
 <ol class="arabic simple">
 <li><p>正常時のデータの振る舞いのパターンを見つける</p></li>
@@ -196,8 +198,8 @@
 <div class="line">どのような統計モデルを仮定するか、データ間の距離をどのように定義するのかによって様々な異常検知手法が提案されています。</div>
 <div class="line">近年は上記に対して、機械学習の手法が用いられるようになり、画像に対しても異常検知を適用できるようになるなど汎用性も高まっています。</div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

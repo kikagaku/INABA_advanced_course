@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="ja" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>12. 説明可能な AI (XAI) &mdash; 応用講座コース  ドキュメント</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -15,6 +16,7 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/translations.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -394,8 +396,8 @@ div.rendered_html tbody tr:hover {
     text-align: unset;
 }
 </style>
-<div class="section" id="説明可能な-AI-(XAI)">
-<h1><span class="section-number">12. </span>説明可能な AI (XAI)<a class="headerlink" href="#説明可能な-AI-(XAI)" title="Permalink to this heading"></a></h1>
+<section id="説明可能な-AI-(XAI)">
+<h1><span class="section-number">12. </span>説明可能な AI (XAI)<a class="headerlink" href="#説明可能な-AI-(XAI)" title="この見出しへのパーマリンク"></a></h1>
 <div class="line-block">
 <div class="line">本章では説明可能な AI （Explanable AI）について触れます。</div>
 <div class="line">具体的には、機械学習の予測結果などを説明する際の一つの方法として、SHAP などについてご紹介します。</div>
@@ -410,8 +412,8 @@ div.rendered_html tbody tr:hover {
 <ul class="simple">
 <li><p>SHAP モジュールに予め登録されている Adult Gensus Income</p></li>
 </ul>
-<div class="section" id="説明可能な-AI-（XAI）とは">
-<h2><span class="section-number">12.1. </span>説明可能な AI （XAI）とは<a class="headerlink" href="#説明可能な-AI-（XAI）とは" title="Permalink to this heading"></a></h2>
+<section id="説明可能な-AI-（XAI）とは">
+<h2><span class="section-number">12.1. </span>説明可能な AI （XAI）とは<a class="headerlink" href="#説明可能な-AI-（XAI）とは" title="この見出しへのパーマリンク"></a></h2>
 <p>※ こちらはスライドにてご紹介します。スライドは別途 PDF にて配布いたします。</p>
 <p>## SHAP による局所的・大局的説明</p>
 <div class="nbinput docutils container">
@@ -469,9 +471,9 @@ div.rendered_html tbody tr:hover {
 (&#39;0.41.0&#39;, &#39;2.2.3&#39;)
 </pre></div></div>
 </div>
-</div>
-<div class="section" id="データセットの準備">
-<h2><span class="section-number">12.2. </span>データセットの準備<a class="headerlink" href="#データセットの準備" title="Permalink to this heading"></a></h2>
+</section>
+<section id="データセットの準備">
+<h2><span class="section-number">12.2. </span>データセットの準備<a class="headerlink" href="#データセットの準備" title="この見出しへのパーマリンク"></a></h2>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
@@ -829,9 +831,9 @@ dtype: object
 ((24420, 12), (8141, 12))
 </pre></div></div>
 </div>
-</div>
-<div class="section" id="モデルの準備">
-<h2><span class="section-number">12.3. </span>モデルの準備<a class="headerlink" href="#モデルの準備" title="Permalink to this heading"></a></h2>
+</section>
+<section id="モデルの準備">
+<h2><span class="section-number">12.3. </span>モデルの準備<a class="headerlink" href="#モデルの準備" title="この見出しへのパーマリンク"></a></h2>
 <p>LightGBM モデルを用いて学習と評価を行います。</p>
 <p>LightGBM は「勾配 Boosting 木」と呼ばれる方法の一種であり、予測と目的変数との誤差を最小化するように、複数の決定木を学習していくモデルで、精度が高く出やすいことと、計算速度が速いことで実務や機械学習コンペティションで頻繁に使用されています。</p>
 <p>決定木は、説明変数に関する条件分岐を繰り返して目的変数を予測するモデルです。 本来解釈性の高い機械学習手法ですが、LightGBM はこの決定木を複数使用するため、相対的に解釈性は低くなってしまうことに留意しておきましょう。</p>
@@ -839,9 +841,9 @@ dtype: object
 <div class="line">LightGBM の使用方法には Scikit-API と Learning-API という 2 つの API があります。</div>
 <div class="line">今回は Scikit-API から分類モデルを作成する LGBMClassifier を使用します。</div>
 </div>
-</div>
-<div class="section" id="LGBMClassifierの学習とテストスコアの算出">
-<h2><span class="section-number">12.4. </span>LGBMClassifierの学習とテストスコアの算出<a class="headerlink" href="#LGBMClassifierの学習とテストスコアの算出" title="Permalink to this heading"></a></h2>
+</section>
+<section id="LGBMClassifierの学習とテストスコアの算出">
+<h2><span class="section-number">12.4. </span>LGBMClassifierの学習とテストスコアの算出<a class="headerlink" href="#LGBMClassifierの学習とテストスコアの算出" title="この見出しへのパーマリンク"></a></h2>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
@@ -1023,9 +1025,9 @@ auc-roc score: 0.93
     </div>
   </div></div>
 </div>
-</div>
-<div class="section" id="SHAP-値">
-<h2><span class="section-number">12.5. </span>SHAP 値<a class="headerlink" href="#SHAP-値" title="Permalink to this heading"></a></h2>
+</section>
+<section id="SHAP-値">
+<h2><span class="section-number">12.5. </span>SHAP 値<a class="headerlink" href="#SHAP-値" title="この見出しへのパーマリンク"></a></h2>
 <p>SHAP 値はすべての特徴量について、ひとつずつ特徴量を追加しながら（追加前の特徴量は「欠損」のように扱って）モデルの予測値を計算し、各特徴量の予測値に対する平均的な影響を Shapley 値で表現します。</p>
 <p>特徴量の数に応じて計算時間が増加していまいますが、このような計算量の爆発を回避する方法として、特定のモデルに対して　SHAP 値を効率的に計算するアルゴリズムが提案されています。</p>
 <ul class="simple">
@@ -1155,8 +1157,8 @@ LightGBM binary classifier with TreeExplainer shap values output has changed to 
 <p>分類モデルにおいては、確率値を直接予測するのではなく、実数値（対数オッズ）を予測し、それをシグモイド関数で 0~1 の実数値に変換して、確率の予測値とするのが一般的です。</p>
 <p>予測値は確率値である一方で、SHAPの影響度は、モデルが内部で算出している対数オッズをベースにして算出されているため、上記のようなズレが生じていました。</p>
 <p>したがって、SHAP 値から元のモデルの確率の予測値を復元したければ、次のように SHAP 値の総和にシグモイド関数を適用させればよいということになります。</p>
-<div class="section" id="シグモイド関数を適用した-SHAP-値の一致性の確認">
-<h3>シグモイド関数を適用した SHAP 値の一致性の確認<a class="headerlink" href="#シグモイド関数を適用した-SHAP-値の一致性の確認" title="Permalink to this heading"></a></h3>
+<section id="シグモイド関数を適用した-SHAP-値の一致性の確認">
+<h3>シグモイド関数を適用した SHAP 値の一致性の確認<a class="headerlink" href="#シグモイド関数を適用した-SHAP-値の一致性の確認" title="この見出しへのパーマリンク"></a></h3>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
 </pre></div>
@@ -1197,16 +1199,16 @@ LightGBM binary classifier with TreeExplainer shap values output has changed to 
 </ul>
 </li>
 </ul>
-</div>
-</div>
-<div class="section" id="SHAP-値の可視化">
-<h2><span class="section-number">12.6. </span>SHAP 値の可視化<a class="headerlink" href="#SHAP-値の可視化" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+<section id="SHAP-値の可視化">
+<h2><span class="section-number">12.6. </span>SHAP 値の可視化<a class="headerlink" href="#SHAP-値の可視化" title="この見出しへのパーマリンク"></a></h2>
 <div class="line-block">
 <div class="line">上記で、与えたデータと同じサイズ（データ数, 特徴量数）の SHAP 値を得ることができました。</div>
 <div class="line">ここからはこの値を可視化してモデル理解を進めていきます。</div>
 </div>
-<div class="section" id="個別の予測に対する特徴量の影響">
-<h3>個別の予測に対する特徴量の影響<a class="headerlink" href="#個別の予測に対する特徴量の影響" title="Permalink to this heading"></a></h3>
+<section id="個別の予測に対する特徴量の影響">
+<h3>個別の予測に対する特徴量の影響<a class="headerlink" href="#個別の予測に対する特徴量の影響" title="この見出しへのパーマリンク"></a></h3>
 <p>1 つの予測に関する情報を得たい場合、得られた行列の 1 行を見ると、各特徴量の影響がわかります。</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
@@ -1335,9 +1337,9 @@ n===t._wrapperState.initialValue&&(e.value=n)}});t.exports=l},function(t,e,n){"u
 </div>
 <p>中央最下段を出発点（予測値の平均）として、下から順に特徴量の影響を加えていって、最終的な予測値に至るまでの経路を表示しています。</p>
 <p>この例だと半数程度の特徴量はほぼ影響していないことは上位の特徴量がマイナスに効いていることがわかります。</p>
-</div>
-<div class="section" id="データセット全体に対する特徴量の効き方">
-<h3>データセット全体に対する特徴量の効き方<a class="headerlink" href="#データセット全体に対する特徴量の効き方" title="Permalink to this heading"></a></h3>
+</section>
+<section id="データセット全体に対する特徴量の効き方">
+<h3>データセット全体に対する特徴量の効き方<a class="headerlink" href="#データセット全体に対する特徴量の効き方" title="この見出しへのパーマリンク"></a></h3>
 <p>SHAP 自体はモデルの局所的な説明のための技術ですが、すべてのデータに対して 1 件ごとの説明を行い、その全体像を眺めることでモデルの全体的な説明とみなす考え方もあります。</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
@@ -1387,9 +1389,9 @@ n===t._wrapperState.initialValue&&(e.value=n)}});t.exports=l},function(t,e,n){"u
 <img alt="../_images/src_02_03_XAI_49_0.png" src="../_images/src_02_03_XAI_49_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="【補足】特徴量の重要度同士の比較">
-<h3>【補足】特徴量の重要度同士の比較<a class="headerlink" href="#【補足】特徴量の重要度同士の比較" title="Permalink to this heading"></a></h3>
+</section>
+<section id="【補足】特徴量の重要度同士の比較">
+<h3>【補足】特徴量の重要度同士の比較<a class="headerlink" href="#【補足】特徴量の重要度同士の比較" title="この見出しへのパーマリンク"></a></h3>
 <p>機械学習の分野には特徴量の重要度を算出する方法が多く存在します。</p>
 <ul class="simple">
 <li><p>SHAP 値の絶対値平均</p>
@@ -1413,9 +1415,9 @@ n===t._wrapperState.initialValue&&(e.value=n)}});t.exports=l},function(t,e,n){"u
 </li>
 </ul>
 <p>どういった指標を採用すべきかは、説明が求められる文脈で異なることに注意しましょう。</p>
-</div>
-<div class="section" id="SHAP-値と特徴量の相関の可視化">
-<h3>SHAP 値と特徴量の相関の可視化<a class="headerlink" href="#SHAP-値と特徴量の相関の可視化" title="Permalink to this heading"></a></h3>
+</section>
+<section id="SHAP-値と特徴量の相関の可視化">
+<h3>SHAP 値と特徴量の相関の可視化<a class="headerlink" href="#SHAP-値と特徴量の相関の可視化" title="この見出しへのパーマリンク"></a></h3>
 <p>1 つの特徴量について細かく確認した場合は　dependence_plot で特徴量の値と　SHAP 値の散布図を確認しましょう。</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
@@ -1494,9 +1496,9 @@ Passing parameters norm and vmin/vmax simultaneously is deprecated since 3.3 and
 <img alt="../_images/src_02_03_XAI_57_0.png" src="../_images/src_02_03_XAI_57_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="変数間の交互作用をより細かく観察する方法">
-<h3>変数間の交互作用をより細かく観察する方法<a class="headerlink" href="#変数間の交互作用をより細かく観察する方法" title="Permalink to this heading"></a></h3>
+</section>
+<section id="変数間の交互作用をより細かく観察する方法">
+<h3>変数間の交互作用をより細かく観察する方法<a class="headerlink" href="#変数間の交互作用をより細かく観察する方法" title="この見出しへのパーマリンク"></a></h3>
 <p>SHAP Interraction Values</p>
 <ul class="simple">
 <li><p>2 つの特徴量の交互作用のみを取り出して算出する</p></li>
@@ -1517,13 +1519,13 @@ Passing parameters norm and vmin/vmax simultaneously is deprecated since 3.3 and
 </pre></div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="SHAP-値の活用">
-<h2><span class="section-number">12.7. </span>SHAP 値の活用<a class="headerlink" href="#SHAP-値の活用" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+<section id="SHAP-値の活用">
+<h2><span class="section-number">12.7. </span>SHAP 値の活用<a class="headerlink" href="#SHAP-値の活用" title="この見出しへのパーマリンク"></a></h2>
 <p>SHAP 値自体は元のデータセットと同じ大きさの実数値行列なので、これを通常のデータ分析の対象と捉えることで、欲しい情報を必要に応じて抽出することが可能になります。</p>
-<div class="section" id="SHAP-値クラスタリングによるデータの分類">
-<h3>SHAP 値クラスタリングによるデータの分類<a class="headerlink" href="#SHAP-値クラスタリングによるデータの分類" title="Permalink to this heading"></a></h3>
+<section id="SHAP-値クラスタリングによるデータの分類">
+<h3>SHAP 値クラスタリングによるデータの分類<a class="headerlink" href="#SHAP-値クラスタリングによるデータの分類" title="この見出しへのパーマリンク"></a></h3>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -1663,9 +1665,9 @@ dtype: int64
 <p>モデルの理解という観点では SHAP 値をより単純化して捉えることができ、新しいデータの SHAP 値を計算したときに、どのクラスタに属するかを確認することで、既存のどのデータ群に近い予測が行われているのかを判別できるようなる、といった点が挙げられます。</p>
 <p>また、元データにおいて特徴量の単位を揃えるのが難しい場合、精度の良いモデルを使って元データに対するクタスタリングを、SHAP 値クラスタリングで代用する、という活用方法もできます。</p>
 <p>SHAP 論文では「このようにして得られたクラスタリングが、既存の他の特徴量影響度の算出手法よりも、よくデータとモデル出力の関係を捉えている」とする実験結果があります。</p>
-</div>
-<div class="section" id="【補足】-次元削減による特徴量の組み合わせ抽出">
-<h3>【補足】 次元削減による特徴量の組み合わせ抽出<a class="headerlink" href="#【補足】-次元削減による特徴量の組み合わせ抽出" title="Permalink to this heading"></a></h3>
+</section>
+<section id="【補足】-次元削減による特徴量の組み合わせ抽出">
+<h3>【補足】 次元削減による特徴量の組み合わせ抽出<a class="headerlink" href="#【補足】-次元削減による特徴量の組み合わせ抽出" title="この見出しへのパーマリンク"></a></h3>
 <p>クラスタリングと近い考え方ですが、SHAP 値行列に対して次元削除を行うと、特徴量の SHAP 値のパターンを抽出できます。そのパターンを確認することで、モデル全体が複数の特徴量をどのように組み合わせて使っているかを、より分かりやすく理解できます。ここでは、 scikitlearn の PCA（主成分分析）モデルを用いて、主成分とそれらの寄与を算出します。</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
@@ -1717,9 +1719,9 @@ dtype: int64
 </div>
 <p>プロットの各行がひとつの主成分のベクトル値を示しています。得られた主成分のうち上位3件は、いずれも CapitalGain、Relationship および Age において大きい値をとっています。これは SHAP 値行列がこれらの値の方向に大きく散らばっていることを示しており、SHAP 重要度の結果とも合致します。</p>
 <p>今回のケースだと、特徴量の重要度から得られる情報とあまり変わらない結果になりましたが、より特徴量の種類の多いデータにおいては、特徴量のパターンから興味深い情報が得られることもあります。</p>
-</div>
-<div class="section" id="【補足】-類似データの検索と新規性の算出">
-<h3>【補足】 類似データの検索と新規性の算出<a class="headerlink" href="#【補足】-類似データの検索と新規性の算出" title="Permalink to this heading"></a></h3>
+</section>
+<section id="【補足】-類似データの検索と新規性の算出">
+<h3>【補足】 類似データの検索と新規性の算出<a class="headerlink" href="#【補足】-類似データの検索と新規性の算出" title="この見出しへのパーマリンク"></a></h3>
 <p>これまでは主に、元のテストデータ全体におけるモデルの挙動の傾向を分析してきましたが、今度は新しいデータが与えられたときに、以下のような情報を得ることを目指します。</p>
 <ul class="simple">
 <li><p>そのデータに「似ている」元データはどれか（類似データの検索）</p></li>
@@ -1887,9 +1889,9 @@ LightGBM binary classifier with TreeExplainer shap values output has changed to 
 </div>
 </div>
 <p>得られたスコアは、データ点の周辺の密度とその近傍点の密度の比の逆数のマイナス 1 倍になっており、これが 1 を有意に下回れば「異常である」とみなすことができます。</p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>

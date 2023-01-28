@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="ja" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>14. 時系列データの取り扱い方 &mdash; 応用講座コース  ドキュメント</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -15,6 +16,7 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/translations.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -399,15 +401,15 @@ div.rendered_html tbody tr:hover {
     text-align: unset;
 }
 </style>
-<div class="section" id="時系列データの取り扱い方">
-<h1><span class="section-number">14. </span>時系列データの取り扱い方<a class="headerlink" href="#時系列データの取り扱い方" title="Permalink to this heading"></a></h1>
+<section id="時系列データの取り扱い方">
+<h1><span class="section-number">14. </span>時系列データの取り扱い方<a class="headerlink" href="#時系列データの取り扱い方" title="この見出しへのパーマリンク"></a></h1>
 <p><strong>本章で使用するデータ</strong></p>
 <ul class="simple">
 <li><p><a class="reference external" href="data/AirPassengers.csv">AirPassengers.csv</a></p></li>
 </ul>
 <hr class="docutils" />
-<div class="section" id="データの読み込み">
-<h2><span class="section-number">14.1. </span>データの読み込み<a class="headerlink" href="#データの読み込み" title="Permalink to this heading"></a></h2>
+<section id="データの読み込み">
+<h2><span class="section-number">14.1. </span>データの読み込み<a class="headerlink" href="#データの読み込み" title="この見出しへのパーマリンク"></a></h2>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
@@ -577,9 +579,9 @@ div.rendered_html tbody tr:hover {
     </div>
   </div></div>
 </div>
-</div>
-<div class="section" id="時間の単位の変更">
-<h2><span class="section-number">14.2. </span>時間の単位の変更<a class="headerlink" href="#時間の単位の変更" title="Permalink to this heading"></a></h2>
+</section>
+<section id="時間の単位の変更">
+<h2><span class="section-number">14.2. </span>時間の単位の変更<a class="headerlink" href="#時間の単位の変更" title="この見出しへのパーマリンク"></a></h2>
 <p>※ 時系列データにおいて多くの場合は、時間の単位を変更しても一般性を失いません。</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
@@ -1117,9 +1119,9 @@ div.rendered_html tbody tr:hover {
     </div>
   </div></div>
 </div>
-</div>
-<div class="section" id="時系列データの構造">
-<h2><span class="section-number">14.3. </span>時系列データの構造<a class="headerlink" href="#時系列データの構造" title="Permalink to this heading"></a></h2>
+</section>
+<section id="時系列データの構造">
+<h2><span class="section-number">14.3. </span>時系列データの構造<a class="headerlink" href="#時系列データの構造" title="この見出しへのパーマリンク"></a></h2>
 <p>時系列データは一般的に以下の成分で構成されます。</p>
 <ul class="simple">
 <li><p>短期の自己相関</p></li>
@@ -1128,11 +1130,11 @@ div.rendered_html tbody tr:hover {
 <li><p>外因性</p></li>
 <li><p>ホワイトノイズ</p></li>
 </ul>
-<div class="section" id="短期の自己相関">
-<h3>短期の自己相関<a class="headerlink" href="#短期の自己相関" title="Permalink to this heading"></a></h3>
+<section id="短期の自己相関">
+<h3>短期の自己相関<a class="headerlink" href="#短期の自己相関" title="この見出しへのパーマリンク"></a></h3>
 <p>自己相関とは現在のデータと自分自身の過去のデータがどれぐらい関係しているか（似ているか、似てないか）を表すものです。定量的には<strong>自己相関係数</strong>という値で算出されます。</p>
-<div class="section" id="自己相関係数-(Autocorrelation-Function)">
-<h4>自己相関係数 (Autocorrelation Function)<a class="headerlink" href="#自己相関係数-(Autocorrelation-Function)" title="Permalink to this heading"></a></h4>
+<section id="自己相関係数-(Autocorrelation-Function)">
+<h4>自己相関係数 (Autocorrelation Function)<a class="headerlink" href="#自己相関係数-(Autocorrelation-Function)" title="この見出しへのパーマリンク"></a></h4>
 <p><strong>自己相関係数</strong>とは、過去の値が現在のデータにどれくらい影響しているのかを定量的に表したものです。</p>
 <p>普通の相関分析だと異なるデータ同士（例えば、X、Y の値の相関）の関係性を調べますが、自己相関の場合は一種類のデータを使い、自分自身のデータをずらして関係性を分析します。日次データだと、1 つずらして自己相関を確認すれば、1 日前の値が今日にどれくらい影響しているかがわかります。</p>
 <p>ずらしたデータのステップ数を<strong>ラグ (lag)</strong> と呼びます。こちらの用語は頻出ですので覚えておきましょう。</p>
@@ -1183,9 +1185,9 @@ array([1.        , 0.94804734, 0.87557484, 0.80668116, 0.75262542,
 <p>簡単にグラフ化することができました。上記のようなラグと自己相関でプロットしたグラフは<strong>コレログラム</strong>と呼ばれます。横軸がラグ数で、縦軸が自己相関係数になっています。波みたいな形でラグ数が増えると自己相関係数の値が小さくなっていることがわかります。</p>
 <p>薄い青で塗りつぶされている領域は、<strong>95%信頼区間</strong>といい、この信頼区間の領域を超えてプロットされているデータは統計的に有意差がある値とみることができます。</p>
 <p>※ 今回の場合は「現在のデータとの自己相関係数は 0 である」の 95%信頼区間を表しています。つまり青色の領域から外れている部分は統計的に「現在のデータとの自己相関係数は 0 でない」、すなわち現在のデータに何かしらの影響を与えていると判断できます。</p>
-</div>
-<div class="section" id="偏自己相関係数-(Partial-Autocorrelation-Function)">
-<h4>偏自己相関係数 (Partial Autocorrelation Function)<a class="headerlink" href="#偏自己相関係数-(Partial-Autocorrelation-Function)" title="Permalink to this heading"></a></h4>
+</section>
+<section id="偏自己相関係数-(Partial-Autocorrelation-Function)">
+<h4>偏自己相関係数 (Partial Autocorrelation Function)<a class="headerlink" href="#偏自己相関係数-(Partial-Autocorrelation-Function)" title="この見出しへのパーマリンク"></a></h4>
 <p>偏自己相関係数は、<strong>注目している時点以外の要因を無視して</strong>計算された自己相関係数です。1 日前と今日の関係が知りたい場合で、2 日前などの過去の要因を見たくない場合にこちらを使用します。</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
@@ -1204,18 +1206,18 @@ array([1.        , 0.94804734, 0.87557484, 0.80668116, 0.75262542,
 <img alt="../_images/src_03_01_timeseries_basic_23_0.png" src="../_images/src_03_01_timeseries_basic_23_0.png" />
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="周期性">
-<h3>周期性<a class="headerlink" href="#周期性" title="Permalink to this heading"></a></h3>
+</section>
+</section>
+<section id="周期性">
+<h3>周期性<a class="headerlink" href="#周期性" title="この見出しへのパーマリンク"></a></h3>
 <p>周期的な変化をすることを <strong>周期性</strong> と呼びます。周期が不定期の場合は<strong>周期性</strong>、周期が定期的（1 年毎、3ヶ月毎など）の場合は <strong>季節性</strong> と呼びます。</p>
-</div>
-<div class="section" id="トレンド性">
-<h3>トレンド性<a class="headerlink" href="#トレンド性" title="Permalink to this heading"></a></h3>
+</section>
+<section id="トレンド性">
+<h3>トレンド性<a class="headerlink" href="#トレンド性" title="この見出しへのパーマリンク"></a></h3>
 <p>単位時間当たりの一定の変化量を <strong>トレンド</strong> と呼びます。</p>
-</div>
-<div class="section" id="外因性">
-<h3>外因性<a class="headerlink" href="#外因性" title="Permalink to this heading"></a></h3>
+</section>
+<section id="外因性">
+<h3>外因性<a class="headerlink" href="#外因性" title="この見出しへのパーマリンク"></a></h3>
 <p>外因性とは端的に <strong>外部からの影響</strong> のことで、過去のデータからは予測することが困難な場合が多いものです。</p>
 <p>例えば、今回の飛行機の乗客数のデータでは、</p>
 <ul class="simple">
@@ -1227,9 +1229,9 @@ array([1.        , 0.94804734, 0.87557484, 0.80668116, 0.75262542,
 </ul>
 <p>などが上げられます。</p>
 <p>統計モデリングでは予測できる範囲（定期的なイベント等）であれば、外因性もモデルに組み込むことが可能です。（ウイルスの流行等、予測できない範囲は組み込むことは難しいです。）</p>
-</div>
-<div class="section" id="ホワイトノイズ">
-<h3>ホワイトノイズ<a class="headerlink" href="#ホワイトノイズ" title="Permalink to this heading"></a></h3>
+</section>
+<section id="ホワイトノイズ">
+<h3>ホワイトノイズ<a class="headerlink" href="#ホワイトノイズ" title="この見出しへのパーマリンク"></a></h3>
 <p>予測できない純粋なノイズのことを指します。具体的には上記で紹介した</p>
 <ul class="simple">
 <li><p>短期の自己相関</p></li>
@@ -1261,18 +1263,18 @@ array([1.        , 0.94804734, 0.87557484, 0.80668116, 0.75262542,
 <img alt="../_images/src_03_01_timeseries_basic_32_0.png" src="../_images/src_03_01_timeseries_basic_32_0.png" />
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="STL-分解">
-<h2><span class="section-number">14.4. </span>STL 分解<a class="headerlink" href="#STL-分解" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+<section id="STL-分解">
+<h2><span class="section-number">14.4. </span>STL 分解<a class="headerlink" href="#STL-分解" title="この見出しへのパーマリンク"></a></h2>
 <p>時系列データを<strong>季節成分</strong>、<strong>トレンド成分</strong>、残りの<strong>残差成分</strong>に分解することを STL 分解 (Seasonal Decomposition Of Time Series By Loess) と呼びます。こちらは <code class="docutils literal notranslate"><span class="pre">sm.tsa.seasonal_decompose()</span></code> 関数で実装できます。</p>
 <p>また時系列データによってはトレンド性と季節性の組み合わせが異なる場合があるため、時系列は加法的または乗法的な時系列としてモデル化できます。</p>
-<div class="section" id="加法的時系列">
-<h3>加法的時系列<a class="headerlink" href="#加法的時系列" title="Permalink to this heading"></a></h3>
+<section id="加法的時系列">
+<h3>加法的時系列<a class="headerlink" href="#加法的時系列" title="この見出しへのパーマリンク"></a></h3>
 <p>値 = 基準値 + トレンド + 季節性 + 誤差</p>
-</div>
-<div class="section" id="乗法的時系列">
-<h3>乗法的時系列<a class="headerlink" href="#乗法的時系列" title="Permalink to this heading"></a></h3>
+</section>
+<section id="乗法的時系列">
+<h3>乗法的時系列<a class="headerlink" href="#乗法的時系列" title="この見出しへのパーマリンク"></a></h3>
 <p>値 = 基準値 × トレンド × 季節性 × 誤差</p>
 <p>そのため時系列データを加法的時系列とみなす場合は、<code class="docutils literal notranslate"><span class="pre">model='additive'</span></code> とし、乗法的時系列とみなす場合は、<code class="docutils literal notranslate"><span class="pre">model='multiplicative'</span></code> と設定します。</p>
 <p>今回は飛行機の乗客数のデータに対し、それぞれのモデルで STL 分解を行ってみます。</p>
@@ -1386,10 +1388,10 @@ array([1.        , 0.94804734, 0.87557484, 0.80668116, 0.75262542,
 </div>
 </div>
 <p>加法分解と乗法分解の残差成分を確認すると、加法分解には少しパターンが残っていることが確認できます。しかし乗法分解はランダムなデータに見えます。残差成分は<strong>ホワイトノイズ</strong>に近い方が正しく分解できているため、今回のデータは乗法的時系列と仮定するほうが良さそうです。</p>
-</div>
-</div>
-<div class="section" id="定常性と非定常性">
-<h2><span class="section-number">14.5. </span>定常性と非定常性<a class="headerlink" href="#定常性と非定常性" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+<section id="定常性と非定常性">
+<h2><span class="section-number">14.5. </span>定常性と非定常性<a class="headerlink" href="#定常性と非定常性" title="この見出しへのパーマリンク"></a></h2>
 <p>時系列データには定常過程のデータと非定常仮定のデータが存在します。それぞれの定義は以下です。</p>
 <ul class="simple">
 <li><p>非定常過程：性質が時間とともに変化するもの</p></li>
@@ -1403,9 +1405,9 @@ array([1.        , 0.94804734, 0.87557484, 0.80668116, 0.75262542,
 </ul>
 <p>次章の統計モデルを作成する際に<strong>データが定常過程か、非定常過程かによってどのモデルが適用できるかが変わる</strong>ため、この定常性、非定常性は非常に重要な性質です。</p>
 <p>基本的には定常過程のモデルが<strong>モデリングしやすい</strong>データのため、非定常過程の場合は<strong>一度定常過程に変換してから</strong>モデリングを行います。</p>
-</div>
-<div class="section" id="定常過程の時系列を得るためには？">
-<h2><span class="section-number">14.6. </span>定常過程の時系列を得るためには？<a class="headerlink" href="#定常過程の時系列を得るためには？" title="Permalink to this heading"></a></h2>
+</section>
+<section id="定常過程の時系列を得るためには？">
+<h2><span class="section-number">14.6. </span>定常過程の時系列を得るためには？<a class="headerlink" href="#定常過程の時系列を得るためには？" title="この見出しへのパーマリンク"></a></h2>
 <p>定常過程の時系列データを取得するためには、以下の処理が有効です。</p>
 <ul class="simple">
 <li><p>平均値を一定にする</p>
@@ -1420,17 +1422,17 @@ array([1.        , 0.94804734, 0.87557484, 0.80668116, 0.75262542,
 </li>
 </ul>
 <p>またここで押さえておくべき重要な用語を紹介します。</p>
-<div class="section" id="和分過程">
-<h3>和分過程<a class="headerlink" href="#和分過程" title="Permalink to this heading"></a></h3>
+<section id="和分過程">
+<h3>和分過程<a class="headerlink" href="#和分過程" title="この見出しへのパーマリンク"></a></h3>
 <p><span class="math notranslate nohighlight">\(N\)</span> 階の差分を取ると、定常過程になる系列：<span class="math notranslate nohighlight">\(N\)</span> 次和分過程とも呼ぶ</p>
-</div>
-<div class="section" id="単位根過程">
-<h3>単位根過程<a class="headerlink" href="#単位根過程" title="Permalink to this heading"></a></h3>
+</section>
+<section id="単位根過程">
+<h3>単位根過程<a class="headerlink" href="#単位根過程" title="この見出しへのパーマリンク"></a></h3>
 <p>1 階差分をとると定常過程になる系列：1 次和分過程と同じ</p>
 <p>それでは各変換について確認してみましょう。</p>
-</div>
-<div class="section" id="差分変換">
-<h3>差分変換<a class="headerlink" href="#差分変換" title="Permalink to this heading"></a></h3>
+</section>
+<section id="差分変換">
+<h3>差分変換<a class="headerlink" href="#差分変換" title="この見出しへのパーマリンク"></a></h3>
 <p>時刻 <span class="math notranslate nohighlight">\(t\)</span> 地点と時刻 <span class="math notranslate nohighlight">\(t+1\)</span> 地点の差をします。差分を取ることで、上昇、下降などのトレンド性を取り除くことが可能です。時系列解析では、元のデータを<strong>原系列</strong>と呼び、差分をとったデータを<strong>差分系列</strong>と呼びます。</p>
 <p>差分をとるためには<code class="docutils literal notranslate"><span class="pre">diff()</span></code> メソッドを使用します。</p>
 <div class="nbinput docutils container">
@@ -1607,9 +1609,9 @@ array([1.        , 0.94804734, 0.87557484, 0.80668116, 0.75262542,
 </div>
 </div>
 <p>自己相関係数についても時間差のみに依存していることが確認できました。</p>
-</div>
-<div class="section" id="対数変換">
-<h3>対数変換<a class="headerlink" href="#対数変換" title="Permalink to this heading"></a></h3>
+</section>
+<section id="対数変換">
+<h3>対数変換<a class="headerlink" href="#対数変換" title="この見出しへのパーマリンク"></a></h3>
 <p>対数変換は時系列データの分散が一定でないときに行う処理で、データのばらつきを吸収することが可能です。対数変換は pandas の関数にはありませんが、<code class="docutils literal notranslate"><span class="pre">np.log</span></code> で計算することができます。データの特定の列に対して、同じ処理をしたい場合には <code class="docutils literal notranslate"><span class="pre">apply()</span></code> メソッドで実装できます。</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
@@ -1772,9 +1774,9 @@ array([1.        , 0.94804734, 0.87557484, 0.80668116, 0.75262542,
 </div>
 </div>
 <p>対数変換を行うことでデータのばらつきが一定になっていることが確認できました。</p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>
