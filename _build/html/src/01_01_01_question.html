@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="ja" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>6. 演習問題 &mdash; 応用講座コース  ドキュメント</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -15,6 +16,7 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/translations.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -130,33 +132,33 @@
     text-align: unset;
 }
 </style>
-<div class="section" id="演習問題">
-<h1><span class="section-number">6. </span>演習問題<a class="headerlink" href="#演習問題" title="Permalink to this heading"></a></h1>
+<section id="演習問題">
+<h1><span class="section-number">6. </span>演習問題<a class="headerlink" href="#演習問題" title="この見出しへのパーマリンク"></a></h1>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">02.</span> <span class="pre">問題</span></code> に記載されている問題について、Python を使用したコーディングを実施して回答してください。</p></li>
 <li><p>Excel 上でのデータ操作もデータクレンジングに有効ですが、今回は Python でのデータ操作に限定します。（ただしデータの特徴を掴む上では一度 Excel で目を通すことは重要です。）</p></li>
 </ul>
-<div class="section" id="01.-データセット">
-<h2><span class="section-number">6.1. </span>01. データセット<a class="headerlink" href="#01.-データセット" title="Permalink to this heading"></a></h2>
+<section id="01.-データセット">
+<h2><span class="section-number">6.1. </span>01. データセット<a class="headerlink" href="#01.-データセット" title="この見出しへのパーマリンク"></a></h2>
 <p>本演習で使用するデータセットは以下格納してあります。</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://drive.google.com/drive/folders/1AxdWmThER5vQsktVAhLnI96cvdWmqHyX?usp=share_link">データセットリンク</a></p></li>
 </ul>
 <p>上記をダウンロードして使用していただいても、ご自身の drive にショートカットを作成して使用していただいても構いません。</p>
-</div>
-<div class="section" id="02.-問題">
-<h2><span class="section-number">6.2. </span>02. 問題<a class="headerlink" href="#02.-問題" title="Permalink to this heading"></a></h2>
-</div>
-<div class="section" id="Q1">
-<h2><span class="section-number">6.3. </span>Q1<a class="headerlink" href="#Q1" title="Permalink to this heading"></a></h2>
+</section>
+<section id="02.-問題">
+<h2><span class="section-number">6.2. </span>02. 問題<a class="headerlink" href="#02.-問題" title="この見出しへのパーマリンク"></a></h2>
+</section>
+<section id="Q1">
+<h2><span class="section-number">6.3. </span>Q1<a class="headerlink" href="#Q1" title="この見出しへのパーマリンク"></a></h2>
 <hr class="docutils" />
 <p>下記データについて<strong>欠損値のデータ数</strong>を算出できるコードを作成し、欠損値の数を確認しましょう。</p>
 <ul class="simple">
 <li><p>lego.csv</p></li>
 </ul>
-</div>
-<div class="section" id="Q2">
-<h2><span class="section-number">6.4. </span>Q2<a class="headerlink" href="#Q2" title="Permalink to this heading"></a></h2>
+</section>
+<section id="Q2">
+<h2><span class="section-number">6.4. </span>Q2<a class="headerlink" href="#Q2" title="この見出しへのパーマリンク"></a></h2>
 <hr class="docutils" />
 <p>下記データについて<strong>重複しているデータ数（行）</strong>を算出できるコードを作成し、重複行の数を確認しましょう。</p>
 <ul class="simple">
@@ -191,17 +193,17 @@
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="Q3">
-<h2><span class="section-number">6.5. </span>Q3<a class="headerlink" href="#Q3" title="Permalink to this heading"></a></h2>
+</section>
+<section id="Q3">
+<h2><span class="section-number">6.5. </span>Q3<a class="headerlink" href="#Q3" title="この見出しへのパーマリンク"></a></h2>
 <hr class="docutils" />
 <p>以下のデータセットには通常の欠損値（空白）だけでなく、<code class="docutils literal notranslate"><span class="pre">?</span></code> で補完されている欠損値が存在します。空白の欠損値と <code class="docutils literal notranslate"><span class="pre">?</span></code>の合計数を各列毎で確認してください。</p>
 <ul class="simple">
 <li><p>income.csv</p></li>
 </ul>
-</div>
-<div class="section" id="Q4">
-<h2><span class="section-number">6.6. </span>Q4<a class="headerlink" href="#Q4" title="Permalink to this heading"></a></h2>
+</section>
+<section id="Q4">
+<h2><span class="section-number">6.6. </span>Q4<a class="headerlink" href="#Q4" title="この見出しへのパーマリンク"></a></h2>
 <hr class="docutils" />
 <p>以下のデータセットについて、多くの値は <code class="docutils literal notranslate"><span class="pre">United-States</span></code> となっており、その他の国に関してはあまり存在していません。こちらの列について、以下のように変換を行ってください。</p>
 <ul class="simple">
@@ -215,9 +217,9 @@
 <li><p>ヒント</p></li>
 <li><p>? を nan に変換する際には <code class="docutils literal notranslate"><span class="pre">df</span> <span class="pre">=</span> <span class="pre">df.replace('</span> <span class="pre">?',</span> <span class="pre">np.nan)</span></code> で置き換えることができます</p></li>
 </ul>
-</div>
-<div class="section" id="Q5">
-<h2><span class="section-number">6.7. </span>Q5<a class="headerlink" href="#Q5" title="Permalink to this heading"></a></h2>
+</section>
+<section id="Q5">
+<h2><span class="section-number">6.7. </span>Q5<a class="headerlink" href="#Q5" title="この見出しへのパーマリンク"></a></h2>
 <hr class="docutils" />
 <p>以下のデータセットについて、 <code class="docutils literal notranslate"><span class="pre">age</span></code> 列に対して、以下のように処理を行った新しい列 (age_label) を作成してください。</p>
 <ul class="simple">
@@ -231,10 +233,10 @@
 <li><p>61 ~ 80 であれば 3 を割り振る</p></li>
 <li><p>81 ~ 100 であれば 4 を割り振る</p></li>
 </ul>
-</div>
+</section>
 <hr class="docutils" />
-<div class="section" id="Q6">
-<h2><span class="section-number">6.8. </span>Q6<a class="headerlink" href="#Q6" title="Permalink to this heading"></a></h2>
+<section id="Q6">
+<h2><span class="section-number">6.8. </span>Q6<a class="headerlink" href="#Q6" title="この見出しへのパーマリンク"></a></h2>
 <hr class="docutils" />
 <p>時系列データでは時間自体の欠損が発生することがよくあります。</p>
 <p>例：2020/04/01 の次のデータが 2020/04/03 になっており、2020/04/02 が欠けている。</p>
@@ -242,9 +244,9 @@
 <ul class="simple">
 <li><p>toyota_stock.csv</p></li>
 </ul>
-</div>
-<div class="section" id="Q7">
-<h2><span class="section-number">6.9. </span>Q7<a class="headerlink" href="#Q7" title="Permalink to this heading"></a></h2>
+</section>
+<section id="Q7">
+<h2><span class="section-number">6.9. </span>Q7<a class="headerlink" href="#Q7" title="この見出しへのパーマリンク"></a></h2>
 <hr class="docutils" />
 <p>以下のデータの <code class="docutils literal notranslate"><span class="pre">Timestamp</span></code> 列には日付データと時間のデータが同じ列に含まれています。</p>
 <ul class="simple">
@@ -298,18 +300,18 @@
 <ul class="simple">
 <li><p>ヒント：データの分割は <code class="docutils literal notranslate"><span class="pre">split</span></code>メソッドを使用します。<code class="docutils literal notranslate"><span class="pre">df</span> <span class="pre">=</span> <span class="pre">df['変数'].str.split('</span> <span class="pre">',</span> <span class="pre">expand=True)</span></code></p></li>
 </ul>
-</div>
-<div class="section" id="Q8">
-<h2><span class="section-number">6.10. </span>Q8<a class="headerlink" href="#Q8" title="Permalink to this heading"></a></h2>
+</section>
+<section id="Q8">
+<h2><span class="section-number">6.10. </span>Q8<a class="headerlink" href="#Q8" title="この見出しへのパーマリンク"></a></h2>
 <hr class="docutils" />
 <p>以下のデータは各国のコロナウイルスに関するデータセットである。以下のデータにおいて各国毎の <code class="docutils literal notranslate"><span class="pre">new_deaths</span></code> の欠損値が 200 個より多い国の数を確認してください。</p>
 <p>ただし、使用する日付はどの国も <strong>2021-05-22 からに設定してください。（国によっては 2021-05-22 より後の日付データしかない場合もありますが、開始日は揃えるようにしてください）</strong></p>
 <ul class="simple">
 <li><p>covid_data.csv</p></li>
 </ul>
-</div>
-<div class="section" id="Q9">
-<h2><span class="section-number">6.11. </span>Q9<a class="headerlink" href="#Q9" title="Permalink to this heading"></a></h2>
+</section>
+<section id="Q9">
+<h2><span class="section-number">6.11. </span>Q9<a class="headerlink" href="#Q9" title="この見出しへのパーマリンク"></a></h2>
 <hr class="docutils" />
 <p>以下の 2 つのデータを hobby_id を参照して結合してください。</p>
 <ul class="simple">
@@ -380,8 +382,8 @@
 </tr>
 </tbody>
 </table>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

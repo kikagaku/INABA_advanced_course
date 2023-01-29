@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="ja" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>17. 【補足】特徴量エンジニアリング &mdash; 応用講座コース  ドキュメント</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -15,6 +16,7 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/translations.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -380,15 +382,15 @@ div.rendered_html tbody tr:hover {
     text-align: unset;
 }
 </style>
-<div class="section" id="【補足】特徴量エンジニアリング">
-<h1><span class="section-number">17. </span>【補足】特徴量エンジニアリング<a class="headerlink" href="#【補足】特徴量エンジニアリング" title="Permalink to this heading"></a></h1>
+<section id="【補足】特徴量エンジニアリング">
+<h1><span class="section-number">17. </span>【補足】特徴量エンジニアリング<a class="headerlink" href="#【補足】特徴量エンジニアリング" title="この見出しへのパーマリンク"></a></h1>
 <p>▼ 本章で使用するデータ</p>
 <ul class="simple">
 <li><p><a class="reference external" href="data/ts_wide.csv">ts_wide.csv</a></p></li>
 </ul>
 <hr class="docutils" />
-<div class="section" id="必要なモジュールのインポート">
-<h2><span class="section-number">17.1. </span>必要なモジュールのインポート<a class="headerlink" href="#必要なモジュールのインポート" title="Permalink to this heading"></a></h2>
+<section id="必要なモジュールのインポート">
+<h2><span class="section-number">17.1. </span>必要なモジュールのインポート<a class="headerlink" href="#必要なモジュールのインポート" title="この見出しへのパーマリンク"></a></h2>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
@@ -406,9 +408,9 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
-</div>
-<div class="section" id="ワイドフォーマットとロングフォーマット">
-<h2><span class="section-number">17.2. </span>ワイドフォーマットとロングフォーマット<a class="headerlink" href="#ワイドフォーマットとロングフォーマット" title="Permalink to this heading"></a></h2>
+</section>
+<section id="ワイドフォーマットとロングフォーマット">
+<h2><span class="section-number">17.2. </span>ワイドフォーマットとロングフォーマット<a class="headerlink" href="#ワイドフォーマットとロングフォーマット" title="この見出しへのパーマリンク"></a></h2>
 <p>時系列データはデータの格納方法として<strong>ワイドフォーマット</strong>と<strong>ロングフォーマット</strong>があります。ワイドフォーマットはキーとなる変数を列として注目する変数の値を格納する形式です。</p>
 <p><strong>例</strong></p>
 <table class="docutils align-default">
@@ -908,9 +910,9 @@ div.rendered_html tbody tr:hover {
   </div></div>
 </div>
 <p>ワイドフォーマットへ戻すことができました。上記のデータ操作はよく使用するので押さえておきましょう。</p>
-</div>
-<div class="section" id="カレンダー特徴量">
-<h2><span class="section-number">17.3. </span>カレンダー特徴量<a class="headerlink" href="#カレンダー特徴量" title="Permalink to this heading"></a></h2>
+</section>
+<section id="カレンダー特徴量">
+<h2><span class="section-number">17.3. </span>カレンダー特徴量<a class="headerlink" href="#カレンダー特徴量" title="この見出しへのパーマリンク"></a></h2>
 <p>それでは<strong>特徴量エンジニアリング (Feature Engineering)</strong> を行います。特徴量エンジニアリングとは今ある特徴量（データ）からドメイン知識などを活かして新しく特徴量を作成することです。これによりデータの質を上げ、機械学習モデルの予測性能を向上させることが目的になります。</p>
 <p>時系列データで行われる特徴量エンジニアリングは主に以下です。</p>
 <ul class="simple">
@@ -1519,9 +1521,9 @@ Int64Index([ 7,  7,  7,  7,  7,  7,  7,  7,  7,  7,
     </div>
   </div></div>
 </div>
-</div>
-<div class="section" id="ラグ特徴量">
-<h2><span class="section-number">17.4. </span>ラグ特徴量<a class="headerlink" href="#ラグ特徴量" title="Permalink to this heading"></a></h2>
+</section>
+<section id="ラグ特徴量">
+<h2><span class="section-number">17.4. </span>ラグ特徴量<a class="headerlink" href="#ラグ特徴量" title="この見出しへのパーマリンク"></a></h2>
 <p>ある t 期の売上高を予測する際に、前月の t-1 期の売上を特徴量として使用したり、前々月である t-2 期の売上高を特徴量として使用することがあります。t-1 期の売上高や t-2 期の売上高を<strong>ラグ特徴量</strong>と言います。</p>
 <p>ラグ特徴量は目的変数に対して使用できますし、もちろん入力変数に対して使用しても構いません。</p>
 <div class="nbinput docutils container">
@@ -1844,9 +1846,9 @@ Int64Index([ 7,  7,  7,  7,  7,  7,  7,  7,  7,  7,
     </div>
   </div></div>
 </div>
-</div>
-<div class="section" id="ローリング特徴量">
-<h2><span class="section-number">17.5. </span>ローリング特徴量<a class="headerlink" href="#ローリング特徴量" title="Permalink to this heading"></a></h2>
+</section>
+<section id="ローリング特徴量">
+<h2><span class="section-number">17.5. </span>ローリング特徴量<a class="headerlink" href="#ローリング特徴量" title="この見出しへのパーマリンク"></a></h2>
 <p><strong>ローリング特徴量</strong>とは<strong>過去の一定期間における集計値</strong>を特徴量としたものです。月毎の時系列データであれば、t 期の売上高を予測する際に過去 3 ヶ月間の平均値や中央値、最大値や最小値を特徴量とすることです。</p>
 <p>もちろん目的変数以外の入力変数にて、ローリング特徴量をとっても構いません。また集計する期間に関しても 1 つの期間（過去 3 ヶ月間など）だけでなく、過去3ヶ月・過去半年・過去 1 年間など、複数の期間を定めて作ることが多いです。</p>
 <div class="nbinput docutils container">
@@ -2423,9 +2425,9 @@ Int64Index([ 7,  7,  7,  7,  7,  7,  7,  7,  7,  7,
     </div>
   </div></div>
 </div>
-</div>
-<div class="section" id="エキスパディング特徴量">
-<h2><span class="section-number">17.6. </span>エキスパディング特徴量<a class="headerlink" href="#エキスパディング特徴量" title="Permalink to this heading"></a></h2>
+</section>
+<section id="エキスパディング特徴量">
+<h2><span class="section-number">17.6. </span>エキスパディング特徴量<a class="headerlink" href="#エキスパディング特徴量" title="この見出しへのパーマリンク"></a></h2>
 <p><strong>エクスパンディング特徴量</strong>とは、<strong>過去すべての期間の集計値</strong>を特徴量としたものです。</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
@@ -2840,9 +2842,9 @@ Int64Index([ 7,  7,  7,  7,  7,  7,  7,  7,  7,  7,
     </div>
   </div></div>
 </div>
-</div>
-<div class="section" id="特徴量の結合">
-<h2><span class="section-number">17.7. </span>特徴量の結合<a class="headerlink" href="#特徴量の結合" title="Permalink to this heading"></a></h2>
+</section>
+<section id="特徴量の結合">
+<h2><span class="section-number">17.7. </span>特徴量の結合<a class="headerlink" href="#特徴量の結合" title="この見出しへのパーマリンク"></a></h2>
 <p>作成した特徴量を元のデータフレームと結合する方法をお伝えします。</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
@@ -3269,8 +3271,8 @@ Int64Index([ 7,  7,  7,  7,  7,  7,  7,  7,  7,  7,
   </div></div>
 </div>
 <p>上記のように結合することができました。また <code class="docutils literal notranslate"><span class="pre">2016-07-01</span></code> 時点でのデータには欠損が発生しているため、欠損の削除または補完が必要な点も押さえておきましょう。</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="ja" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>1. – イントロダクション – &mdash; 応用講座コース  ドキュメント</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -15,6 +16,7 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/translations.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -120,15 +122,151 @@
     text-align: unset;
 }
 </style>
-<div class="section" id="–-イントロダクション-–">
-<h1><span class="section-number">1. </span>– イントロダクション –<a class="headerlink" href="#–-イントロダクション-–" title="Permalink to this heading"></a></h1>
-<div class="section" id="研修スケジュール">
-<h2><span class="section-number">1.1. </span>研修スケジュール<a class="headerlink" href="#研修スケジュール" title="Permalink to this heading"></a></h2>
-<p><strong>Day1</strong> | 時程 | 章節 | | —- | —- | | 9:30 〜 9:50 | 0. イントロダクション | | 9:50 〜 10:20 | 2. Google Colaboratory 実習 | | 10:20 〜 10:30 | 3. データの理解 | | 10:30 〜 12:00 | 4. Python 速習とテーブルデータの基本操作 | | 12:00 〜 13:00 | 昼休憩 | | 13:00 〜 13:20 | 5. 演習問題 | | 13:20 〜 14:30 | 7. 問題設定：Bank Marketing | | 14:30 〜 15:40 | 10. モデル構築のための特徴量作成 | | 15:40 〜 16:30 | 11. モデルの精度を保証する実装 | | 16:30 〜 17:30 | 12.
-説明可能な AI (XAI) |</p>
-<p><strong>Day2</strong> | 時程 | 章節 | | —- | —- | | 9:30 〜 9:40 | 0. イントロダクション | | 9:40 〜 11:00 | 14. 時系列データの取り扱い方 | | 11:00 〜 12:00 | 15. 自己回帰型モデル | | 12:00 〜 13:00 | 昼休憩 | | 13:00 〜 14:00 | 15. 自己回帰型モデル | | 14:00 〜 14:40 | 18. 異常検知とは | | 14:40 〜 15:40 | 19. 外れ値検知入門 | | 15:40 〜 16:30 | 21. 機械学習を用いた異常検知入門 | | 16:30 〜 17:20 | 23. 変化点検知入門 | | 17:20 〜 17:30 | アウトロダクション |</p>
-</div>
-</div>
+<section id="–-イントロダクション-–">
+<h1><span class="section-number">1. </span>– イントロダクション –<a class="headerlink" href="#–-イントロダクション-–" title="この見出しへのパーマリンク"></a></h1>
+<section id="研修スケジュール">
+<h2><span class="section-number">1.1. </span>研修スケジュール<a class="headerlink" href="#研修スケジュール" title="この見出しへのパーマリンク"></a></h2>
+<p><strong>Day1</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 26%" />
+<col style="width: 74%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>時程</p></th>
+<th class="head"><p>章節</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>9:30 〜 9:50</p></td>
+<td><ol class="arabic simple" start="0">
+<li><p>イントロダクション</p></li>
+</ol>
+</td>
+</tr>
+<tr class="row-odd"><td><p>9:50 〜 10:20</p></td>
+<td><ol class="arabic simple" start="2">
+<li><p>Google Colaboratory 実習</p></li>
+</ol>
+</td>
+</tr>
+<tr class="row-even"><td><p>10:20 〜 10:30</p></td>
+<td><ol class="arabic simple" start="3">
+<li><p>データの理解</p></li>
+</ol>
+</td>
+</tr>
+<tr class="row-odd"><td><p>10:30 〜 12:00</p></td>
+<td><ol class="arabic simple" start="4">
+<li><p>Python 速習とテーブルデータの基本操作</p></li>
+</ol>
+</td>
+</tr>
+<tr class="row-even"><td><p>12:00 〜 13:00</p></td>
+<td><p>昼休憩</p></td>
+</tr>
+<tr class="row-odd"><td><p>13:00 〜 13:20</p></td>
+<td><ol class="arabic simple" start="5">
+<li><p>演習問題</p></li>
+</ol>
+</td>
+</tr>
+<tr class="row-even"><td><p>13:20 〜 14:30</p></td>
+<td><ol class="arabic simple" start="7">
+<li><p>問題設定：Bank Marketing</p></li>
+</ol>
+</td>
+</tr>
+<tr class="row-odd"><td><p>14:30 〜 15:40</p></td>
+<td><ol class="arabic simple" start="10">
+<li><p>モデル構築のための特徴量作成</p></li>
+</ol>
+</td>
+</tr>
+<tr class="row-even"><td><p>15:40 〜 16:30</p></td>
+<td><ol class="arabic simple" start="11">
+<li><p>モデルの精度を保証する実装</p></li>
+</ol>
+</td>
+</tr>
+<tr class="row-odd"><td><p>16:30 〜 17:30</p></td>
+<td><ol class="arabic simple" start="12">
+<li><p>説明可能な AI (XAI)</p></li>
+</ol>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Day2</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 70%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>時程</p></th>
+<th class="head"><p>章節</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>9:30 〜 9:40</p></td>
+<td><ol class="arabic simple" start="0">
+<li><p>イントロダクション</p></li>
+</ol>
+</td>
+</tr>
+<tr class="row-odd"><td><p>9:40 〜 11:00</p></td>
+<td><ol class="arabic simple" start="14">
+<li><p>時系列データの取り扱い方</p></li>
+</ol>
+</td>
+</tr>
+<tr class="row-even"><td><p>11:00 〜 12:00</p></td>
+<td><ol class="arabic simple" start="15">
+<li><p>自己回帰型モデル</p></li>
+</ol>
+</td>
+</tr>
+<tr class="row-odd"><td><p>12:00 〜 13:00</p></td>
+<td><p>昼休憩</p></td>
+</tr>
+<tr class="row-even"><td><p>13:00 〜 14:00</p></td>
+<td><ol class="arabic simple" start="15">
+<li><p>自己回帰型モデル</p></li>
+</ol>
+</td>
+</tr>
+<tr class="row-odd"><td><p>14:00 〜 14:40</p></td>
+<td><ol class="arabic simple" start="18">
+<li><p>異常検知とは</p></li>
+</ol>
+</td>
+</tr>
+<tr class="row-even"><td><p>14:40 〜 15:40</p></td>
+<td><ol class="arabic simple" start="19">
+<li><p>外れ値検知入門</p></li>
+</ol>
+</td>
+</tr>
+<tr class="row-odd"><td><p>15:40 〜 16:30</p></td>
+<td><ol class="arabic simple" start="21">
+<li><p>機械学習を用いた異常検知入門</p></li>
+</ol>
+</td>
+</tr>
+<tr class="row-even"><td><p>16:30 〜 17:20</p></td>
+<td><ol class="arabic simple" start="23">
+<li><p>変化点検知入門</p></li>
+</ol>
+</td>
+</tr>
+<tr class="row-odd"><td><p>17:20 〜 17:30</p></td>
+<td><p>アウトロダクション</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
 
 
            </div>

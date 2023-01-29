@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="ja" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>24. 変化点検知入門 &mdash; 応用講座コース  ドキュメント</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -15,6 +16,7 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/translations.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -378,10 +380,10 @@ div.rendered_html tbody tr:hover {
     text-align: unset;
 }
 </style>
-<div class="section" id="変化点検知入門">
-<h1><span class="section-number">24. </span>変化点検知入門<a class="headerlink" href="#変化点検知入門" title="Permalink to this heading"></a></h1>
-<div class="section" id="k-Nearest-Neighbors">
-<h2><span class="section-number">24.1. </span>k-Nearest Neighbors<a class="headerlink" href="#k-Nearest-Neighbors" title="Permalink to this heading"></a></h2>
+<section id="変化点検知入門">
+<h1><span class="section-number">24. </span>変化点検知入門<a class="headerlink" href="#変化点検知入門" title="この見出しへのパーマリンク"></a></h1>
+<section id="k-Nearest-Neighbors">
+<h2><span class="section-number">24.1. </span>k-Nearest Neighbors<a class="headerlink" href="#k-Nearest-Neighbors" title="この見出しへのパーマリンク"></a></h2>
 <p>k- 近傍法を用いた、時系列データに対する変化点検知を行います。</p>
 <div class="line-block">
 <div class="line"><strong>使用するデータ</strong></div>
@@ -908,9 +910,9 @@ Int64Index([ 4263,  4264,  4265,  4266,  4267,  4541,  4542,  4544,  4549,
 <img alt="../_images/src_04_13_nearest_neighbers_17_1.png" src="../_images/src_04_13_nearest_neighbers_17_1.png" />
 </div>
 </div>
-</div>
-<div class="section" id="Window-処理">
-<h2><span class="section-number">24.2. </span>Window 処理<a class="headerlink" href="#Window-処理" title="Permalink to this heading"></a></h2>
+</section>
+<section id="Window-処理">
+<h2><span class="section-number">24.2. </span>Window 処理<a class="headerlink" href="#Window-処理" title="この見出しへのパーマリンク"></a></h2>
 <p>変化検知において外れ値検出が有効でないとされるのは、時系列データをひとつひとつ独立なデータと見なし、時間的に近いデータの影響を無視することで継続的な異常を判別出来ないためです。そこで、時間的に近いデータをまとめて新たなデータを作ることでこの問題を解決します。</p>
 <p>まずは、サンプルデータを作成します。平均値と標準偏差を変えることでバラツキと位置を変えています。</p>
 <div class="nbinput docutils container">
@@ -1120,8 +1122,8 @@ Int64Index([ 4263,  4264,  4265,  4266,  4267,  4541,  4542,  4544,  4549,
 </div>
 <p>検知した箇所が複数出てくるのは問題ではないですが、見たところ異常ではない箇所、変化の幅が小さいところも異常と検知しているので上手くいっていないことがわかります。</p>
 <p>ここで、部分時系列を作成し、スライド窓の次元数の各点の差分を合計して異常度を再定義しましょう。単純に各点が独立しているのではなく、時系列も考慮して異常度を定義します。</p>
-<div class="section" id="Window-処理（部分時系列処理）">
-<h3>Window 処理（部分時系列処理）<a class="headerlink" href="#Window-処理（部分時系列処理）" title="Permalink to this heading"></a></h3>
+<section id="Window-処理（部分時系列処理）">
+<h3>Window 処理（部分時系列処理）<a class="headerlink" href="#Window-処理（部分時系列処理）" title="この見出しへのパーマリンク"></a></h3>
 <p>各データから M 個の隣接した時系列データをまとめて、データを M 次元のベクトルの集まりにします。例えば M=5 のときの時系列データの変換を表しており、このときデータを纏めている曲線を長さ5の Window（スライド窓） といい、できた5次元ベクトルの集まりデータを 部分時系列 といいます。時系列データという名前ではありますが、ベクトル形式のデータであることに注意してください。</p>
 <img alt="07" src="../_images/07.png" />
 <p>Window 幅 10 で横に 1 ずつズレていく部分時系列を作成しましょう。</p>
@@ -1393,10 +1395,10 @@ Int64Index([ 4263,  4264,  4265,  4266,  4267,  4541,  4542,  4544,  4549,
 </div>
 </div>
 <p>Window 幅を変えることで距離の値も変わってくるので、使用するデータの周期なども考慮しながら設定する必要があります。</p>
-</div>
-</div>
-<div class="section" id="ChangeFinder">
-<h2><span class="section-number">24.3. </span>ChangeFinder<a class="headerlink" href="#ChangeFinder" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+<section id="ChangeFinder">
+<h2><span class="section-number">24.3. </span>ChangeFinder<a class="headerlink" href="#ChangeFinder" title="この見出しへのパーマリンク"></a></h2>
 <p>ChangeFinder とは自己回帰モデル（AR モデル）のオンライン忘却学習アルゴリズムである、SDAR アルゴリズム (Sequencially Discounting AR model learning) を活用したものです。</p>
 <p>今回内部の理論まで詳しくは扱いませんが、下記に簡単にアルゴリズムを整理しておきます。</p>
 <ol class="arabic simple">
@@ -1486,8 +1488,8 @@ Int64Index([ 4263,  4264,  4265,  4266,  4267,  4541,  4542,  4544,  4549,
 <img alt="../_images/src_04_13_nearest_neighbers_43_0.png" src="../_images/src_04_13_nearest_neighbers_43_0.png" />
 </div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

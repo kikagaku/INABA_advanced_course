@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="ja" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>3. Google Colaboratory 実習 &mdash; 応用講座コース  ドキュメント</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -15,6 +16,7 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/translations.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -403,10 +405,10 @@ div.rendered_html tbody tr:hover {
     text-align: unset;
 }
 </style>
-<div class="section" id="Google-Colaboratory-実習">
-<h1><span class="section-number">3. </span>Google Colaboratory 実習<a class="headerlink" href="#Google-Colaboratory-実習" title="Permalink to this heading"></a></h1>
-<div class="section" id="Google-Colaboratory-の基本">
-<h2><span class="section-number">3.1. </span>Google Colaboratory の基本<a class="headerlink" href="#Google-Colaboratory-の基本" title="Permalink to this heading"></a></h2>
+<section id="Google-Colaboratory-実習">
+<h1><span class="section-number">3. </span>Google Colaboratory 実習<a class="headerlink" href="#Google-Colaboratory-実習" title="この見出しへのパーマリンク"></a></h1>
+<section id="Google-Colaboratory-の基本">
+<h2><span class="section-number">3.1. </span>Google Colaboratory の基本<a class="headerlink" href="#Google-Colaboratory-の基本" title="この見出しへのパーマリンク"></a></h2>
 <p>本講義で使用するコードを実行するにあたって Google Colaboratory というサービスの利用を推奨します。</p>
 <p>Google Colaboratory（以下 Colab ）は、クラウド上で <a class="reference external" href="https://jupyter.org/">Jupyter Notebook</a> 環境を提供する Google のウェブサービスです。Jupyter Notebook はブラウザ上で主に以下のようなことが可能なオープンソースのウェブアプリケーションであり、データ分析の現場や研究、教育などで広く用いられています。</p>
 <ul class="simple">
@@ -416,17 +418,17 @@ div.rendered_html tbody tr:hover {
 <p>Colab では無料で GPU も使用することができますが、そのランタイムは最大 12 時間で消えてしまうため、長時間を要する処理などは別途環境を用意する必要があります。しかし学びはじめのうちは、数分から数時間程度で終わる処理がほとんどであるため、気にする必要はありませんが、本格的に使っていく場合は有料のクラウドサービスを利用するなどして、環境を整えるようにしましょう。有料版を検討される場合はキカガク技術ブログの記事（<a class="reference external" href="https://blog.kikagaku.co.jp/google-colab-newplan">Google Colab
 有料版の料金と内容は？</a>）を参考にして下さい。</p>
 <p>以降では、環境構築と基本的な使い方を説明します。</p>
-</div>
-<div class="section" id="環境構築">
-<h2><span class="section-number">3.2. </span>環境構築<a class="headerlink" href="#環境構築" title="Permalink to this heading"></a></h2>
+</section>
+<section id="環境構築">
+<h2><span class="section-number">3.2. </span>環境構築<a class="headerlink" href="#環境構築" title="この見出しへのパーマリンク"></a></h2>
 <p>ここではまず、<strong>Google Colaboratory</strong> の利用方法を説明します。必要な事前準備は下記 ２ 点です。</p>
 <ul class="simple">
 <li><p>Google アカウント（お持ちでない場合は<a class="reference external" href="https://accounts.google.com/signup/v2/webcreateaccount?flowName=GlifWebSignIn&amp;flowEntry=SignUp">こちら</a>から作成）</p></li>
 <li><p><a class="reference external" href="https://www.google.com/chrome/">Chrome</a> もしくは <a class="reference external" href="https://www.mozilla.org/ja/firefox/new/">Firefox</a> のインストール</p></li>
 </ul>
 <p>ブラウザはどちらでも大丈夫ですが、Chrome を推奨します。</p>
-<div class="section" id="Colab-を開く">
-<h3>Colab を開く<a class="headerlink" href="#Colab-を開く" title="Permalink to this heading"></a></h3>
+<section id="Colab-を開く">
+<h3>Colab を開く<a class="headerlink" href="#Colab-を開く" title="この見出しへのパーマリンク"></a></h3>
 <p>まずは以下の URL にアクセスして、ブラウザで Google を開き、自分のアカウントにログインしてください。</p>
 <p><a class="reference external" href="https://www.google.com/">https://www.google.com/</a></p>
 <p>ログインが完了したら、下記に沿って、Google Drive のページに移動します。Google Drive とはファイルなどを保存することのできるオンラインストレージサービスになります。</p>
@@ -446,16 +448,16 @@ div.rendered_html tbody tr:hover {
 <p>プログラミングを開始するためには右上にある「接続」ボタンをクリックし、ノートブックをサーバーに接続します。</p>
 <p>もし、新規のノートブックを開く際には、下記の手順に沿ってファイルを作成します。</p>
 <img alt="15" src="../_images/15.png" />
-</div>
-</div>
-<div class="section" id="Colab-の基本的な使い方">
-<h2><span class="section-number">3.3. </span>Colab の基本的な使い方<a class="headerlink" href="#Colab-の基本的な使い方" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+<section id="Colab-の基本的な使い方">
+<h2><span class="section-number">3.3. </span>Colab の基本的な使い方<a class="headerlink" href="#Colab-の基本的な使い方" title="この見出しへのパーマリンク"></a></h2>
 <p>Colab 上の Jupyter Notebook を以降、単に<strong>ノートブック</strong>と呼びます。</p>
 <p>ノートブックは、複数の<strong>セル</strong>と呼ばれるブロックを持つことができます。 新しいノートブックを作った直後では、何も書かれていないセルが一つだけ存在している状態になっています。 セルの内側のどこかをクリックすると、そのセルを選択することができます。</p>
 <p>セルには、<strong>コードセル</strong>と<strong>テキストセル</strong>の 2 種類があります。コードセルは Python のコードを書き込み、実行するためのセルであり、テキストセルは、Markdown 形式で文章を書くためのセルです。</p>
 <p>それぞれのセルタイプについてもう少し詳しく説明をします。</p>
-<div class="section" id="コードセル">
-<h3>コードセル<a class="headerlink" href="#コードセル" title="Permalink to this heading"></a></h3>
+<section id="コードセル">
+<h3>コードセル<a class="headerlink" href="#コードセル" title="この見出しへのパーマリンク"></a></h3>
 <p>コードセルは、Python のコードを書き込み、実行することができるセルです。 実行するには、コードセルを選択した状態で、<code class="docutils literal notranslate"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">Enter</span></code> または <code class="docutils literal notranslate"><span class="pre">Shift</span> <span class="pre">+</span> <span class="pre">Enter</span></code> を押します。 試しに、下のセルを選択して、<code class="docutils literal notranslate"><span class="pre">Shift</span> <span class="pre">+</span> <span class="pre">Enter</span></code> を押してみてください。</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
@@ -474,17 +476,17 @@ Hello world!
 </pre></div></div>
 </div>
 <p>すぐ下に、Hello world! という文字列が表示されました。上のセルに書き込まれているのは Python のコードで、与えられた文字列を表示する関数である <code class="docutils literal notranslate"><span class="pre">print()</span></code> に、<code class="docutils literal notranslate"><span class="pre">'Hello</span> <span class="pre">world!'</span></code> という文字列を渡しています。これを実行したため、その結果が下に表示されています。</p>
-</div>
-<div class="section" id="テキストセル">
-<h3>テキストセル<a class="headerlink" href="#テキストセル" title="Permalink to this heading"></a></h3>
+</section>
+<section id="テキストセル">
+<h3>テキストセル<a class="headerlink" href="#テキストセル" title="この見出しへのパーマリンク"></a></h3>
 <p>テキストセルでは、Markdown 形式で記述された文章を扱います。試しに、このセルをダブルクリックしてみてください。テキストセルが編集モードになり、Markdown 形式で文章を装飾するための、先程までは表示されていなかった記号が見えるようになります。</p>
 <p>その状態で <code class="docutils literal notranslate"><span class="pre">Shift</span> <span class="pre">+</span> <span class="pre">Enter</span></code> を押してみましょう。元の文章の表示に戻ります。</p>
-<div class="section" id="ファイルの読み込みとダウンロード">
-<h4>ファイルの読み込みとダウンロード<a class="headerlink" href="#ファイルの読み込みとダウンロード" title="Permalink to this heading"></a></h4>
-</div>
-</div>
-<div class="section" id="ファイルをアップロードする方法">
-<h3>ファイルをアップロードする方法<a class="headerlink" href="#ファイルをアップロードする方法" title="Permalink to this heading"></a></h3>
+<section id="ファイルの読み込みとダウンロード">
+<h4>ファイルの読み込みとダウンロード<a class="headerlink" href="#ファイルの読み込みとダウンロード" title="この見出しへのパーマリンク"></a></h4>
+</section>
+</section>
+<section id="ファイルをアップロードする方法">
+<h3>ファイルをアップロードする方法<a class="headerlink" href="#ファイルをアップロードする方法" title="この見出しへのパーマリンク"></a></h3>
 <div class="line-block">
 <div class="line">ノートブック上にファイルをアップロードする方法は非常に簡単です。</div>
 <div class="line">以下の csv ファイルをダウンロードし、ノートブック上へアップロードしてみましょう。</div>
@@ -543,9 +545,9 @@ Hello world!
 </div>
 </li>
 </ol>
-</div>
-<div class="section" id="アップロードしたファイルを読み込む">
-<h3>アップロードしたファイルを読み込む<a class="headerlink" href="#アップロードしたファイルを読み込む" title="Permalink to this heading"></a></h3>
+</section>
+<section id="アップロードしたファイルを読み込む">
+<h3>アップロードしたファイルを読み込む<a class="headerlink" href="#アップロードしたファイルを読み込む" title="この見出しへのパーマリンク"></a></h3>
 <p>アップロードできたファイルをノートブック上で読み込んでみましょう。</p>
 <p><strong>csv ファイルの読み込み</strong></p>
 <p>ノートブック上で以下のコードを実行すると df という変数名で csv データの読み込みを行うことができます。</p>
@@ -580,9 +582,9 @@ Hello world!
 <div class="line">データがノートブック上で読み込めていることを確認できました。</div>
 <div class="line">読み込んだデータは距離行列のデータとなっています。詳しい見方はルート最適化を行う際に解説しますが、各地点ごとの距離を表しているデータです。</div>
 </div>
-</div>
-<div class="section" id="データを書き出してダウンロードする方法">
-<h3>データを書き出してダウンロードする方法<a class="headerlink" href="#データを書き出してダウンロードする方法" title="Permalink to this heading"></a></h3>
+</section>
+<section id="データを書き出してダウンロードする方法">
+<h3>データを書き出してダウンロードする方法<a class="headerlink" href="#データを書き出してダウンロードする方法" title="この見出しへのパーマリンク"></a></h3>
 <p>ノートブックで扱ったデータを csv ファイルとして書き出して、サイドバーからダウンロードすることができます。</p>
 <p><strong>データの書き出し</strong></p>
 <div class="line-block">
@@ -641,8 +643,8 @@ Hello world!
 </tr>
 </tbody>
 </table>
-<div class="section" id="ノートブックを共同編集する方法">
-<h4>ノートブックを共同編集する方法<a class="headerlink" href="#ノートブックを共同編集する方法" title="Permalink to this heading"></a></h4>
+<section id="ノートブックを共同編集する方法">
+<h4>ノートブックを共同編集する方法<a class="headerlink" href="#ノートブックを共同編集する方法" title="この見出しへのパーマリンク"></a></h4>
 <p>作成したノートブックを共有または、共同編集することもできます。</p>
 <ol class="arabic">
 <li><div class="line-block">
@@ -666,9 +668,9 @@ Hello world!
 <div class="line">本講義では使用しませんが、以下画像の赤枠内に相手を追加することで指定した相手とだけ共同編集を可能にすることもできます。</div>
 <div class="line"><img alt="07_3" src="../_images/07_3.png" /></div>
 </div>
-</div>
-<div class="section" id="プチ演習">
-<h4>プチ演習<a class="headerlink" href="#プチ演習" title="Permalink to this heading"></a></h4>
+</section>
+<section id="プチ演習">
+<h4>プチ演習<a class="headerlink" href="#プチ演習" title="この見出しへのパーマリンク"></a></h4>
 <p>先程使用した <code class="docutils literal notranslate"><span class="pre">matrix_01.csv</span></code> ファイルを手順の内容を行い提出をして下さい。</p>
 <div class="line-block">
 <div class="line"><strong>手順</strong></div>
@@ -690,9 +692,9 @@ df_time = df / 40
 </div>
 </li>
 </ol>
-</div>
-<div class="section" id="GPU-を使用する">
-<h4>GPU を使用する<a class="headerlink" href="#GPU-を使用する" title="Permalink to this heading"></a></h4>
+</section>
+<section id="GPU-を使用する">
+<h4>GPU を使用する<a class="headerlink" href="#GPU-を使用する" title="この見出しへのパーマリンク"></a></h4>
 <p>Colab では GPU を無料で使用することができます。初期設定では GPU を使用しない設定となっているため、GPU を使用する場合は設定を変更する必要があります。 GPU を使用する場合は、以下の手順で設定の変更を行って下さい。</p>
 <ol class="arabic">
 <li><div class="line-block">
@@ -707,17 +709,17 @@ df_time = df / 40
 </li>
 </ol>
 <p>これで Colab 上で GPU を使用できるようになりました。</p>
-</div>
-</div>
-</div>
-<div class="section" id="Tips">
-<h2><span class="section-number">3.4. </span>Tips<a class="headerlink" href="#Tips" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+</section>
+<section id="Tips">
+<h2><span class="section-number">3.4. </span>Tips<a class="headerlink" href="#Tips" title="この見出しへのパーマリンク"></a></h2>
 <div class="line-block">
 <div class="line">テキストセルとコードセルのどちらもメモを残すことができます。</div>
 <div class="line">コードセルのメモの残し方と、テキストセルの記入方法を紹介します。</div>
 </div>
-<div class="section" id="id12">
-<h3>コードセル<a class="headerlink" href="#id12" title="Permalink to this heading"></a></h3>
+<section id="id12">
+<h3>コードセル<a class="headerlink" href="#id12" title="この見出しへのパーマリンク"></a></h3>
 <p>コメントアウトとは、コード中で実行時に無視したい行やコメントを選択した状態で行う操作です。 Python では、<code class="docutils literal notranslate"><span class="pre">#</span></code> の後に続く文字列は全てコメントとして無視され、実行時に評価されることはありません。</p>
 <p>コードに対してメモを残したい時など、コードセル内にコメントを残したい場合に使用します。</p>
 <div class="nbinput nblast docutils container">
@@ -728,9 +730,9 @@ df_time = df / 40
 </pre></div>
 </div>
 </div>
-</div>
-<div class="section" id="id13">
-<h3>テキストセル<a class="headerlink" href="#id13" title="Permalink to this heading"></a></h3>
+</section>
+<section id="id13">
+<h3>テキストセル<a class="headerlink" href="#id13" title="この見出しへのパーマリンク"></a></h3>
 <div class="line-block">
 <div class="line">テキストセル内にもコメントを残すことができます。</div>
 <div class="line">コードセルとテキストセルの内容でもお伝えしましたが、テキストセルは Markdown 形式で記述された文章を扱います。マークダウンの詳しい書き方は<a class="reference external" href="https://www.markdownguide.org/cheat-sheet/">マークダウンガイド</a>をご確認ください。</div>
@@ -739,8 +741,8 @@ df_time = df / 40
 <img alt="09_1" src="../_images/09_1.png" />
 <p>実行すると以下のように見出しを追加したらい箇条書きを表示できます。</p>
 <img alt="09_2" src="../_images/09_2.gif" />
-<div class="section" id="Colab-の便利なショートカット">
-<h4>Colab の便利なショートカット<a class="headerlink" href="#Colab-の便利なショートカット" title="Permalink to this heading"></a></h4>
+<section id="Colab-の便利なショートカット">
+<h4>Colab の便利なショートカット<a class="headerlink" href="#Colab-の便利なショートカット" title="この見出しへのパーマリンク"></a></h4>
 <p>最後に作業効率を向上するために<strong>ショートカットコマンド</strong>を紹介します。Colab を使用中に、セルのタイプの変更やセルの複製・追加などの操作をする場合は、メニューから該当する項目を選ぶ方法以外に、キーボードショートカットを利用する方法もあります。</p>
 <p>下記によく使うショートカットキーをまとめておきます。</p>
 <table class="docutils align-default">
@@ -791,9 +793,9 @@ df_time = df / 40
 <div class="line">紹介した他にも様々なショートカットキーがあります。ショートカットキーを使うことで作業効率も上がりますので興味がある方は参考の記事をご覧ください。</div>
 <div class="line">【参考：<a class="reference external" href="https://blog.kikagaku.co.jp/google-colaboratory-shortcut">作業が捗るショートカットキーを厳選して紹介！</a>】</div>
 </div>
-</div>
-<div class="section" id="ファイルパスを取得する方法">
-<h4>ファイルパスを取得する方法<a class="headerlink" href="#ファイルパスを取得する方法" title="Permalink to this heading"></a></h4>
+</section>
+<section id="ファイルパスを取得する方法">
+<h4>ファイルパスを取得する方法<a class="headerlink" href="#ファイルパスを取得する方法" title="この見出しへのパーマリンク"></a></h4>
 <p>ファイルパスの取得方法を紹介します。直接打ち込むことも可能ですが、タイプミスが起きやすいためこの後紹介する取得方法を推奨します。</p>
 <ol class="arabic">
 <li><div class="line-block">
@@ -808,10 +810,10 @@ df_time = df / 40
 </div>
 </li>
 </ol>
-</div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
+</section>
 
 
            </div>

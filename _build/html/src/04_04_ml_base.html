@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="ja" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>22. 機械学習を用いた異常検知入門 &mdash; 応用講座コース  ドキュメント</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -15,6 +16,7 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/translations.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -376,8 +378,8 @@ div.rendered_html tbody tr:hover {
     text-align: unset;
 }
 </style>
-<div class="section" id="機械学習を用いた異常検知入門">
-<h1><span class="section-number">22. </span>機械学習を用いた異常検知入門<a class="headerlink" href="#機械学習を用いた異常検知入門" title="Permalink to this heading"></a></h1>
+<section id="機械学習を用いた異常検知入門">
+<h1><span class="section-number">22. </span>機械学習を用いた異常検知入門<a class="headerlink" href="#機械学習を用いた異常検知入門" title="この見出しへのパーマリンク"></a></h1>
 <div class="line-block">
 <div class="line">本章では、機械学習を用いて異常検知を行う方法について触れます。</div>
 <div class="line">前提として今回触れているのは時系列データではないテーブルデータに適用するパターンを想定しています。</div>
@@ -388,8 +390,8 @@ div.rendered_html tbody tr:hover {
 <li><p>OneClassSVM</p></li>
 <li><p>Isolation Forest</p></li>
 </ol>
-<div class="section" id="k-Nearest-Neighbors">
-<h2><span class="section-number">22.1. </span>k-Nearest Neighbors<a class="headerlink" href="#k-Nearest-Neighbors" title="Permalink to this heading"></a></h2>
+<section id="k-Nearest-Neighbors">
+<h2><span class="section-number">22.1. </span>k-Nearest Neighbors<a class="headerlink" href="#k-Nearest-Neighbors" title="この見出しへのパーマリンク"></a></h2>
 <p>こちらは、異常検知の手法として K- 近傍法を用いる方法です。</p>
 <p>k- 近傍法には、教師あり学習と教師なし学習があります。</p>
 <ul class="simple">
@@ -863,9 +865,9 @@ array([[   0,  742],
 <img alt="../_images/src_04_04_ml_base_22_0.png" src="../_images/src_04_04_ml_base_22_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="OneClassSVM">
-<h2><span class="section-number">22.2. </span>OneClassSVM<a class="headerlink" href="#OneClassSVM" title="Permalink to this heading"></a></h2>
+</section>
+<section id="OneClassSVM">
+<h2><span class="section-number">22.2. </span>OneClassSVM<a class="headerlink" href="#OneClassSVM" title="この見出しへのパーマリンク"></a></h2>
 <p>クラス分類問題に用いられるSVMは教師あり学習ですが、OneClassSVMは教師なし学習です。したがって、外れ値検出のための教師データは不要です。</p>
 <p>正常データとして1つのクラスを学習させ、識別境界を決定することで、その境界を基準として外れ値を検出します。異常がほとんど発生せず、異常クラスのデータを集めにくいようなシステムで異常検知を実現したい場合には有効な外れ値検知手法です。</p>
 <p>OneClassSVMでは、全ての学習データをクラスタ1とし、原点のみをクラスタ-1に属するようにカーネルトリックを用いて、高次元空間の特徴空間へデータを写像します。このとき、学習データは原点から遠くに配置されるように写像されるため、元の学習データと類似していないデータは原点の近くに集まるようになります。この性質を用いて正常および異常データの区別をすることができます。</p>
@@ -1217,9 +1219,9 @@ array([ 0.18909216,  0.27661899,  0.25456026, ..., -1.96315875,
 <img alt="../_images/src_04_04_ml_base_32_0.png" src="../_images/src_04_04_ml_base_32_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="Isolation-Forest">
-<h2><span class="section-number">22.3. </span>Isolation Forest<a class="headerlink" href="#Isolation-Forest" title="Permalink to this heading"></a></h2>
+</section>
+<section id="Isolation-Forest">
+<h2><span class="section-number">22.3. </span>Isolation Forest<a class="headerlink" href="#Isolation-Forest" title="この見出しへのパーマリンク"></a></h2>
 <p>Isolation Forest はアンサンブルの決定木に属するクラスタリングアルゴリズムです。</p>
 <div class="line-block">
 <div class="line">分類木に基づいており、多変量のデータにも対応できます。</div>
@@ -1370,8 +1372,8 @@ array([-1,  1,  1, ..., -1, -1, -1])
 </pre></div>
 </div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
