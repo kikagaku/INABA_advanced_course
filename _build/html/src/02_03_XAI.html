@@ -1534,7 +1534,7 @@ Passing parameters norm and vmin/vmax simultaneously is deprecated since 3.3 and
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># SHAP 値の再計算</span>
 <span class="n">sv_test</span> <span class="o">=</span> <span class="n">explainer</span><span class="o">.</span><span class="n">shap_values</span><span class="p">(</span><span class="n">x_test</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
 <span class="n">shap</span><span class="o">.</span><span class="n">initjs</span><span class="p">()</span>
-<span class="c1"># 処理が思いのデータ数を絞る</span>
+<span class="c1"># 処理が重いのでデータ数を絞る</span>
 <span class="n">num</span> <span class="o">=</span> <span class="mi">300</span>
 <span class="n">shap</span><span class="o">.</span><span class="n">force_plot</span><span class="p">(</span><span class="n">explainer</span><span class="o">.</span><span class="n">expected_value</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">sv_test</span><span class="p">[:</span><span class="n">num</span><span class="p">],</span> <span class="n">x_test</span><span class="p">[:</span><span class="n">num</span><span class="p">])</span>
 </pre></div>
@@ -1669,7 +1669,7 @@ dtype: int64
 </section>
 <section id="【補足】-次元削減による特徴量の組み合わせ抽出">
 <h3>【補足】 次元削減による特徴量の組み合わせ抽出<a class="headerlink" href="#【補足】-次元削減による特徴量の組み合わせ抽出" title="この見出しへのパーマリンク"></a></h3>
-<p>クラスタリングと近い考え方ですが、SHAP 値行列に対して次元削除を行うと、特徴量の SHAP 値のパターンを抽出できます。そのパターンを確認することで、モデル全体が複数の特徴量をどのように組み合わせて使っているかを、より分かりやすく理解できます。ここでは、 scikitlearn の PCA（主成分分析）モデルを用いて、主成分とそれらの寄与を算出します。</p>
+<p>クラスタリングと近い考え方ですが、SHAP 値行列に対して次元削減を行うと、特徴量の SHAP 値のパターンを抽出できます。そのパターンを確認することで、モデル全体が複数の特徴量をどのように組み合わせて使っているかを、より分かりやすく理解できます。ここでは、 scikitlearn の PCA（主成分分析）モデルを用いて、主成分とそれらの寄与を算出します。</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
