@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="ja" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>15. 自己回帰型モデル &mdash; 応用講座コース  ドキュメント</title>
+  <title>16. 自己回帰型モデル &mdash; 応用講座コース  ドキュメント</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -16,7 +15,6 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/translations.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -24,8 +22,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="検索" href="../search.html" />
-    <link rel="next" title="16. 【補足】特徴量エンジニアリング" href="03_03_feature_enigineering.html" />
-    <link rel="prev" title="14. 時系列データの取り扱い方" href="03_01_timeseries_basic.html" /> 
+    <link rel="next" title="17. 【補足】特徴量エンジニアリング" href="03_03_feature_enigineering.html" />
+    <link rel="prev" title="15. 時系列データの取り扱い方" href="03_01_timeseries_basic.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -45,48 +43,49 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="01_00_00_title.html">1. – Python 速習とテーブルデータの操作 –</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01_00_colab.html">2. Google Colaboratory 実習</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01_01_00_data.html">3. データの理解</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01_01_00_python_basic.html">4. Python 速習とテーブルデータの基本操作</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01_01_01_question.html">5. 演習問題</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01_02_preprocessing_advanced.html">6. 【補足】データ前処理 応用</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01_04_exercise_classification.html">7. 問題設定：Bank Marketing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01_05_bankmarketing.html">8. 実装例</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02_00title.html">9. ー データの前処理と機械学習モデルの構築 ー</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02_01_create_feature.html">10. モデル構築のための特徴量作成</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02_02_K-Fold.html">11. モデルの精度を保証する実装</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02_03_XAI.html">12. 説明可能な AI (XAI)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03_00title.html">13. ー 時系列解析 ー</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03_01_timeseries_basic.html">14. 時系列データの取り扱い方</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">15. 自己回帰型モデル</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#statsmodels-の更新">15.1. statsmodels の更新</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#データの読み込み">15.2. データの読み込み</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#時系列モデルの概要">15.3. 時系列モデルの概要</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="01_00_00_00_introduction.html">1. – イントロダクション –</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_00_00_01title.html">2. – Python 速習とテーブルデータの操作 –</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_00_colab.html">3. Google Colaboratory 実習</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_01_00_data.html">4. データの理解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_01_00_python_basic.html">5. Python 速習とテーブルデータの基本操作</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_01_01_question.html">6. 演習問題</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_02_preprocessing_advanced.html">7. 【補足】データ前処理 応用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_04_exercise_classification.html">8. 問題設定：Bank Marketing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_05_bankmarketing.html">9. 実装例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_00title.html">10. ー データの前処理と機械学習モデルの構築 ー</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_01_create_feature.html">11. モデル構築のための特徴量作成</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_02_K-Fold.html">12. モデルの精度を保証する実装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_03_XAI.html">13. 説明可能な AI (XAI)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_00title.html">14. ー 時系列解析 ー</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_01_timeseries_basic.html">15. 時系列データの取り扱い方</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">16. 自己回帰型モデル</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#statsmodels-の更新">16.1. statsmodels の更新</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#データの読み込み">16.2. データの読み込み</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#時系列モデルの概要">16.3. 時系列モデルの概要</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id4">自己回帰型モデル</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#AR-モデル-:-自己回帰モデル-:-autoregressive-model">15.4. AR モデル : 自己回帰モデル : autoregressive model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#MA-モデル-:-移動平均モデル-:-moving-average-model">15.5. MA モデル : 移動平均モデル : moving average model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#ARMA-モデル-:-自己回帰移動平均モデル-:-autoregressive-moving-average-model">15.6. ARMA モデル : 自己回帰移動平均モデル : autoregressive moving average model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#ARIMA-モデル-:-自己回帰和分移動平均モデル-:-autoregressive-integrated-moving-average-model">15.7. ARIMA モデル : 自己回帰和分移動平均モデル : autoregressive integrated moving average model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#SARIMA-モデル-:-季節変動自己回帰和分移動平均モデル-:-seasonal-autoregressive-integrated-moving-average-model">15.8. SARIMA モデル : 季節変動自己回帰和分移動平均モデル : seasonal autoregressive integrated moving average model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#SARIMAX-モデル-:-季節自己回帰和分移動平均モデル-+-外生変数-:-seasonal-autoregressive-integrated-moving-average-model-+-exogeneous-variables">15.9. SARIMAX モデル : 季節自己回帰和分移動平均モデル + 外生変数 : seasonal autoregressive integrated moving average model + exogeneous variables</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#ワーク">15.10. ワーク</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#AR-モデル-:-自己回帰モデル-:-autoregressive-model">16.4. AR モデル : 自己回帰モデル : autoregressive model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#MA-モデル-:-移動平均モデル-:-moving-average-model">16.5. MA モデル : 移動平均モデル : moving average model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ARMA-モデル-:-自己回帰移動平均モデル-:-autoregressive-moving-average-model">16.6. ARMA モデル : 自己回帰移動平均モデル : autoregressive moving average model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ARIMA-モデル-:-自己回帰和分移動平均モデル-:-autoregressive-integrated-moving-average-model">16.7. ARIMA モデル : 自己回帰和分移動平均モデル : autoregressive integrated moving average model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#SARIMA-モデル-:-季節変動自己回帰和分移動平均モデル-:-seasonal-autoregressive-integrated-moving-average-model">16.8. SARIMA モデル : 季節変動自己回帰和分移動平均モデル : seasonal autoregressive integrated moving average model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#SARIMAX-モデル-:-季節自己回帰和分移動平均モデル-+-外生変数-:-seasonal-autoregressive-integrated-moving-average-model-+-exogeneous-variables">16.9. SARIMAX モデル : 季節自己回帰和分移動平均モデル + 外生変数 : seasonal autoregressive integrated moving average model + exogeneous variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ワーク">16.10. ワーク</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#ワーク-1">ワーク 1</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#発展ワーク">発展ワーク</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="03_03_feature_enigineering.html">16. 【補足】特徴量エンジニアリング</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_00title.html">17. ー 異常検知 ー</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_01.html">18. 異常検知とは</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_02_outlier.html">19. 外れ値検知入門</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_03_other_outlier.html">20. 【補足】 外れ値検知 - その他の手法</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_04_ml_base.html">21. 機械学習を用いた異常検知入門</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_05_other_ml_base.html">22. 【補足】機械学習を用いた異常検知 - その他の手法</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_13_nearest_neighbers.html">23. 変化点検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_03_feature_enigineering.html">17. 【補足】特徴量エンジニアリング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_00title.html">18. ー 異常検知 ー</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_01.html">19. 異常検知とは</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_02_outlier.html">20. 外れ値検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_03_other_outlier.html">21. 【補足】 外れ値検知 - その他の手法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_04_ml_base.html">22. 機械学習を用いた異常検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_05_other_ml_base.html">23. 【補足】機械学習を用いた異常検知 - その他の手法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_13_nearest_neighbers.html">24. 変化点検知入門</a></li>
 </ul>
 
         </div>
@@ -103,7 +102,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li><span class="section-number">15. </span>自己回帰型モデル</li>
+      <li><span class="section-number">16. </span>自己回帰型モデル</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/src/03_02_timeseries_analysis.ipynb.txt" rel="nofollow"> View page source</a>
       </li>
@@ -391,16 +390,16 @@ div.rendered_html tbody tr:hover {
     text-align: unset;
 }
 </style>
-<section id="自己回帰型モデル">
-<h1><span class="section-number">15. </span>自己回帰型モデル<a class="headerlink" href="#自己回帰型モデル" title="この見出しへのパーマリンク"></a></h1>
+<div class="section" id="自己回帰型モデル">
+<h1><span class="section-number">16. </span>自己回帰型モデル<a class="headerlink" href="#自己回帰型モデル" title="Permalink to this heading"></a></h1>
 <p><strong>本章で使用するデータ</strong></p>
 <ul class="simple">
 <li><p><a class="reference external" href="data/AirPassengers.csv">AirPassengers.csv</a></p></li>
 <li><p><a class="reference external" href="data/米国_個人消費支出.xlsx">米国_個人消費支出.xlsx</a></p></li>
 </ul>
 <hr class="docutils" />
-<section id="statsmodels-の更新">
-<h2><span class="section-number">15.1. </span>statsmodels の更新<a class="headerlink" href="#statsmodels-の更新" title="この見出しへのパーマリンク"></a></h2>
+<div class="section" id="statsmodels-の更新">
+<h2><span class="section-number">16.1. </span>statsmodels の更新<a class="headerlink" href="#statsmodels-の更新" title="Permalink to this heading"></a></h2>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
@@ -412,9 +411,9 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">Proceed</span> <span class="pre">(y/n)?</span></code> が表示されましたら <code class="docutils literal notranslate"><span class="pre">y</span></code> と入力して Enter キーを押してください。</p>
-</section>
-<section id="データの読み込み">
-<h2><span class="section-number">15.2. </span>データの読み込み<a class="headerlink" href="#データの読み込み" title="この見出しへのパーマリンク"></a></h2>
+</div>
+<div class="section" id="データの読み込み">
+<h2><span class="section-number">16.2. </span>データの読み込み<a class="headerlink" href="#データの読み込み" title="Permalink to this heading"></a></h2>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
@@ -515,9 +514,9 @@ div.rendered_html tbody tr:hover {
 </table>
 </div></div>
 </div>
-</section>
-<section id="時系列モデルの概要">
-<h2><span class="section-number">15.3. </span>時系列モデルの概要<a class="headerlink" href="#時系列モデルの概要" title="この見出しへのパーマリンク"></a></h2>
+</div>
+<div class="section" id="時系列モデルの概要">
+<h2><span class="section-number">16.3. </span>時系列モデルの概要<a class="headerlink" href="#時系列モデルの概要" title="Permalink to this heading"></a></h2>
 <p>時系列モデルの概要についてお伝えします。まずは以下の表をご覧ください。</p>
 <table class="docutils align-default">
 <colgroup>
@@ -576,8 +575,8 @@ div.rendered_html tbody tr:hover {
 </table>
 <p>時系列解析を行うためのモデルは様々な種類が存在します。大きく統計モデル（自己回帰型モデル、状態空間モデル）と深層学習ベースのモデルに分類できます。</p>
 <p>本研修では統計モデルである自己回帰型モデルについて扱います。まずは概要を掴んでおきましょう。</p>
-<section id="id4">
-<h3>自己回帰型モデル<a class="headerlink" href="#id4" title="この見出しへのパーマリンク"></a></h3>
+<div class="section" id="id4">
+<h3>自己回帰型モデル<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
 <p>自己回帰型モデルとは<strong>過去の自分自身の値やノイズが現在の値に影響を与えている</strong>という考え方から定義されるモデルです。</p>
 <div class="line-block">
 <div class="line"><strong>例</strong></div>
@@ -589,10 +588,10 @@ div.rendered_html tbody tr:hover {
 </div></blockquote>
 <p>過去のどの値を考慮するのかやどんなデータに対して適用するかにより様々なモデルがありますが、構造自体は過去のデータから現在を予測するというシンプルな内容です。</p>
 <p>この後は自己回帰型モデルの各手法について詳細に見ていきます。</p>
-</section>
-</section>
-<section id="AR-モデル-:-自己回帰モデル-:-autoregressive-model">
-<h2><span class="section-number">15.4. </span>AR モデル : 自己回帰モデル : autoregressive model<a class="headerlink" href="#AR-モデル-:-自己回帰モデル-:-autoregressive-model" title="この見出しへのパーマリンク"></a></h2>
+</div>
+</div>
+<div class="section" id="AR-モデル-:-自己回帰モデル-:-autoregressive-model">
+<h2><span class="section-number">16.4. </span>AR モデル : 自己回帰モデル : autoregressive model<a class="headerlink" href="#AR-モデル-:-自己回帰モデル-:-autoregressive-model" title="Permalink to this heading"></a></h2>
 <p><strong>過去の自分のデータを使って短期の自己相関を表現するモデル</strong> です。</p>
 <p><strong>1 次の AR モデル (AR(1))</strong></p>
 <div class="math notranslate nohighlight">
@@ -765,9 +764,9 @@ Warnings:
 </div>
 </div>
 <p>傾向はあっていますが、値の散らばり具合が少し異なることが確認できました。</p>
-</section>
-<section id="MA-モデル-:-移動平均モデル-:-moving-average-model">
-<h2><span class="section-number">15.5. </span>MA モデル : 移動平均モデル : moving average model<a class="headerlink" href="#MA-モデル-:-移動平均モデル-:-moving-average-model" title="この見出しへのパーマリンク"></a></h2>
+</div>
+<div class="section" id="MA-モデル-:-移動平均モデル-:-moving-average-model">
+<h2><span class="section-number">16.5. </span>MA モデル : 移動平均モデル : moving average model<a class="headerlink" href="#MA-モデル-:-移動平均モデル-:-moving-average-model" title="Permalink to this heading"></a></h2>
 <p><strong>過去のホワイトノイズを用いて短期の自己相関を表現する</strong> モデルです。</p>
 <p><strong>1 次の MA モデル (MA(1))</strong></p>
 <div class="math notranslate nohighlight">
@@ -886,9 +885,9 @@ Warnings:
 </div>
 </div>
 <p>こちらも AR モデルと同様にデータの散らばり具合のみうまく予測できていないようです。</p>
-</section>
-<section id="ARMA-モデル-:-自己回帰移動平均モデル-:-autoregressive-moving-average-model">
-<h2><span class="section-number">15.6. </span>ARMA モデル : 自己回帰移動平均モデル : autoregressive moving average model<a class="headerlink" href="#ARMA-モデル-:-自己回帰移動平均モデル-:-autoregressive-moving-average-model" title="この見出しへのパーマリンク"></a></h2>
+</div>
+<div class="section" id="ARMA-モデル-:-自己回帰移動平均モデル-:-autoregressive-moving-average-model">
+<h2><span class="section-number">16.6. </span>ARMA モデル : 自己回帰移動平均モデル : autoregressive moving average model<a class="headerlink" href="#ARMA-モデル-:-自己回帰移動平均モデル-:-autoregressive-moving-average-model" title="Permalink to this heading"></a></h2>
 <p>名前の通り AR + MA のモデルです。</p>
 <p><strong>1 次の ARMA モデル (ARMA(1, 1))</strong></p>
 <div class="math notranslate nohighlight">
@@ -1007,9 +1006,9 @@ Warnings:
 </div>
 </div>
 <p>上記を見ると、AR モデルや MA モデルよりも比較的うまく予測できていることがわかりました。</p>
-</section>
-<section id="ARIMA-モデル-:-自己回帰和分移動平均モデル-:-autoregressive-integrated-moving-average-model">
-<h2><span class="section-number">15.7. </span>ARIMA モデル : 自己回帰和分移動平均モデル : autoregressive integrated moving average model<a class="headerlink" href="#ARIMA-モデル-:-自己回帰和分移動平均モデル-:-autoregressive-integrated-moving-average-model" title="この見出しへのパーマリンク"></a></h2>
+</div>
+<div class="section" id="ARIMA-モデル-:-自己回帰和分移動平均モデル-:-autoregressive-integrated-moving-average-model">
+<h2><span class="section-number">16.7. </span>ARIMA モデル : 自己回帰和分移動平均モデル : autoregressive integrated moving average model<a class="headerlink" href="#ARIMA-モデル-:-自己回帰和分移動平均モデル-:-autoregressive-integrated-moving-average-model" title="Permalink to this heading"></a></h2>
 <p>データの差分を取ってから ARMA モデルを適用したモデルです。差分をとることにより、<strong>非定常過程のデータ（扱いにくいデータ）を定常過程（扱いやすいデータ）に変換</strong>できます。</p>
 <p><strong>次数の読み方</strong></p>
 <div class="math notranslate nohighlight">
@@ -1136,9 +1135,9 @@ Warnings:
 </div>
 </div>
 <p>予測結果はだいたいあっていますが、少しずれていることが確認できます。</p>
-</section>
-<section id="SARIMA-モデル-:-季節変動自己回帰和分移動平均モデル-:-seasonal-autoregressive-integrated-moving-average-model">
-<h2><span class="section-number">15.8. </span>SARIMA モデル : 季節変動自己回帰和分移動平均モデル : seasonal autoregressive integrated moving average model<a class="headerlink" href="#SARIMA-モデル-:-季節変動自己回帰和分移動平均モデル-:-seasonal-autoregressive-integrated-moving-average-model" title="この見出しへのパーマリンク"></a></h2>
+</div>
+<div class="section" id="SARIMA-モデル-:-季節変動自己回帰和分移動平均モデル-:-seasonal-autoregressive-integrated-moving-average-model">
+<h2><span class="section-number">16.8. </span>SARIMA モデル : 季節変動自己回帰和分移動平均モデル : seasonal autoregressive integrated moving average model<a class="headerlink" href="#SARIMA-モデル-:-季節変動自己回帰和分移動平均モデル-:-seasonal-autoregressive-integrated-moving-average-model" title="Permalink to this heading"></a></h2>
 <p>ARIMA モデルに周期性を取り入れたモデルです。</p>
 <p><strong>次数の読み方</strong></p>
 <div class="math notranslate nohighlight">
@@ -1276,9 +1275,9 @@ Warnings:
 </div>
 </div>
 <p>きれいに予測出来ていることが確認できました。</p>
-</section>
-<section id="SARIMAX-モデル-:-季節自己回帰和分移動平均モデル-+-外生変数-:-seasonal-autoregressive-integrated-moving-average-model-+-exogeneous-variables">
-<h2><span class="section-number">15.9. </span>SARIMAX モデル : 季節自己回帰和分移動平均モデル + 外生変数 : seasonal autoregressive integrated moving average model + exogeneous variables<a class="headerlink" href="#SARIMAX-モデル-:-季節自己回帰和分移動平均モデル-+-外生変数-:-seasonal-autoregressive-integrated-moving-average-model-+-exogeneous-variables" title="この見出しへのパーマリンク"></a></h2>
+</div>
+<div class="section" id="SARIMAX-モデル-:-季節自己回帰和分移動平均モデル-+-外生変数-:-seasonal-autoregressive-integrated-moving-average-model-+-exogeneous-variables">
+<h2><span class="section-number">16.9. </span>SARIMAX モデル : 季節自己回帰和分移動平均モデル + 外生変数 : seasonal autoregressive integrated moving average model + exogeneous variables<a class="headerlink" href="#SARIMAX-モデル-:-季節自己回帰和分移動平均モデル-+-外生変数-:-seasonal-autoregressive-integrated-moving-average-model-+-exogeneous-variables" title="Permalink to this heading"></a></h2>
 <p>SARIMAX モデルは SARIMA モデルに外生変数を考慮させたモデルです。主に<strong>外因性を考慮させたモデル</strong>になります。外生変数を組み込むイメージとしては以下です。</p>
 <p><strong>1 次の ARMA モデル (ARMA(1, 1)) に組み込む場合</strong></p>
 <div class="math notranslate nohighlight">
@@ -1588,11 +1587,11 @@ Warnings:
 </div>
 </div>
 <p>今回はもともとの予測精度が高かっため、あまり変化は見られませんでした。</p>
-</section>
-<section id="ワーク">
-<h2><span class="section-number">15.10. </span>ワーク<a class="headerlink" href="#ワーク" title="この見出しへのパーマリンク"></a></h2>
-<section id="ワーク-1">
-<h3>ワーク 1<a class="headerlink" href="#ワーク-1" title="この見出しへのパーマリンク"></a></h3>
+</div>
+<div class="section" id="ワーク">
+<h2><span class="section-number">16.10. </span>ワーク<a class="headerlink" href="#ワーク" title="Permalink to this heading"></a></h2>
+<div class="section" id="ワーク-1">
+<h3>ワーク 1<a class="headerlink" href="#ワーク-1" title="Permalink to this heading"></a></h3>
 <p>Github レポジトリ (<a class="reference external" href="https://github.com/owid/covid-19-data/tree/master/public/data">https://github.com/owid/covid-19-data/tree/master/public/data</a>) にあるコロナウイルスに関するデータを使用して時系列解析を行ってください。</p>
 <p>データセットの各カラムに関する詳細はこちら(<a class="reference external" href="https://github.com/owid/covid-19-data/tree/master/public/data#the-complete-our-world-in-data-covid-19-dataset">https://github.com/owid/covid-19-data/tree/master/public/data#the-complete-our-world-in-data-covid-19-dataset</a>)を参照してください。</p>
 <p>本の新規感染者数を予測できるモデルを作成してください。 データを読み込むコードは以下を参考にしてください。</p>
@@ -1757,21 +1756,21 @@ Warnings:
 <p>3 rows × 66 columns</p>
 </div></div>
 </div>
-</section>
-<section id="発展ワーク">
-<h3>発展ワーク<a class="headerlink" href="#発展ワーク" title="この見出しへのパーマリンク"></a></h3>
+</div>
+<div class="section" id="発展ワーク">
+<h3>発展ワーク<a class="headerlink" href="#発展ワーク" title="Permalink to this heading"></a></h3>
 <p>米国_個人消費支出.xlsx を用いて以下のワークに取り組んで下さい。</p>
 <p><img alt="03_11" src="../_images/work.png" /> <img alt="image1" src="../_images/work2.png" /></p>
-</section>
-</section>
-</section>
+</div>
+</div>
+</div>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="03_01_timeseries_basic.html" class="btn btn-neutral float-left" title="14. 時系列データの取り扱い方" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="03_03_feature_enigineering.html" class="btn btn-neutral float-right" title="16. 【補足】特徴量エンジニアリング" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="03_01_timeseries_basic.html" class="btn btn-neutral float-left" title="15. 時系列データの取り扱い方" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="03_03_feature_enigineering.html" class="btn btn-neutral float-right" title="17. 【補足】特徴量エンジニアリング" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

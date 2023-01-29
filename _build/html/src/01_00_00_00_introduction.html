@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>10. ー データの前処理と機械学習モデルの構築 ー &mdash; 応用講座コース  ドキュメント</title>
+  <title>1. – イントロダクション – &mdash; 応用講座コース  ドキュメント</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -22,8 +22,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="検索" href="../search.html" />
-    <link rel="next" title="11. モデル構築のための特徴量作成" href="02_01_create_feature.html" />
-    <link rel="prev" title="9. 実装例" href="01_05_bankmarketing.html" /> 
+    <link rel="next" title="2. – Python 速習とテーブルデータの操作 –" href="01_00_00_01title.html" />
+    <link rel="prev" title="講義資料名" href="../index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -43,7 +43,10 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="01_00_00_00_introduction.html">1. – イントロダクション –</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">1. – イントロダクション –</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#研修スケジュール">1.1. 研修スケジュール</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="01_00_00_01title.html">2. – Python 速習とテーブルデータの操作 –</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01_00_colab.html">3. Google Colaboratory 実習</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01_01_00_data.html">4. データの理解</a></li>
@@ -52,7 +55,7 @@
 <li class="toctree-l1"><a class="reference internal" href="01_02_preprocessing_advanced.html">7. 【補足】データ前処理 応用</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01_04_exercise_classification.html">8. 問題設定：Bank Marketing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01_05_bankmarketing.html">9. 実装例</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">10. ー データの前処理と機械学習モデルの構築 ー</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_00title.html">10. ー データの前処理と機械学習モデルの構築 ー</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02_01_create_feature.html">11. モデル構築のための特徴量作成</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02_02_K-Fold.html">12. モデルの精度を保証する実装</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02_03_XAI.html">13. 説明可能な AI (XAI)</a></li>
@@ -83,9 +86,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li><span class="section-number">10. </span>ー データの前処理と機械学習モデルの構築 ー</li>
+      <li><span class="section-number">1. </span>– イントロダクション –</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/src/02_00title.ipynb.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/src/01_00_00_00_introduction.ipynb.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -117,20 +120,22 @@
     text-align: unset;
 }
 </style>
-<div class="section" id="ー-データの前処理と機械学習モデルの構築-ー">
-<h1><span class="section-number">10. </span>ー データの前処理と機械学習モデルの構築 ー<a class="headerlink" href="#ー-データの前処理と機械学習モデルの構築-ー" title="Permalink to this heading"></a></h1>
-<p>本パートで使用する資料</p>
-<ul class="simple">
-<li><p><a class="reference external" href="data/スライド資料.pdf">講義資料</a></p></li>
-</ul>
+<div class="section" id="–-イントロダクション-–">
+<h1><span class="section-number">1. </span>– イントロダクション –<a class="headerlink" href="#–-イントロダクション-–" title="Permalink to this heading"></a></h1>
+<div class="section" id="研修スケジュール">
+<h2><span class="section-number">1.1. </span>研修スケジュール<a class="headerlink" href="#研修スケジュール" title="Permalink to this heading"></a></h2>
+<p><strong>Day1</strong> | 時程 | 章節 | | —- | —- | | 9:30 〜 9:50 | 0. イントロダクション | | 9:50 〜 10:20 | 2. Google Colaboratory 実習 | | 10:20 〜 10:30 | 3. データの理解 | | 10:30 〜 12:00 | 4. Python 速習とテーブルデータの基本操作 | | 12:00 〜 13:00 | 昼休憩 | | 13:00 〜 13:20 | 5. 演習問題 | | 13:20 〜 14:30 | 7. 問題設定：Bank Marketing | | 14:30 〜 15:40 | 10. モデル構築のための特徴量作成 | | 15:40 〜 16:30 | 11. モデルの精度を保証する実装 | | 16:30 〜 17:30 | 12.
+説明可能な AI (XAI) |</p>
+<p><strong>Day2</strong> | 時程 | 章節 | | —- | —- | | 9:30 〜 9:40 | 0. イントロダクション | | 9:40 〜 11:00 | 14. 時系列データの取り扱い方 | | 11:00 〜 12:00 | 15. 自己回帰型モデル | | 12:00 〜 13:00 | 昼休憩 | | 13:00 〜 14:00 | 15. 自己回帰型モデル | | 14:00 〜 14:40 | 18. 異常検知とは | | 14:40 〜 15:40 | 19. 外れ値検知入門 | | 15:40 〜 16:30 | 21. 機械学習を用いた異常検知入門 | | 16:30 〜 17:20 | 23. 変化点検知入門 | | 17:20 〜 17:30 | アウトロダクション |</p>
+</div>
 </div>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="01_05_bankmarketing.html" class="btn btn-neutral float-left" title="9. 実装例" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="02_01_create_feature.html" class="btn btn-neutral float-right" title="11. モデル構築のための特徴量作成" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../index.html" class="btn btn-neutral float-left" title="講義資料名" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="01_00_00_01title.html" class="btn btn-neutral float-right" title="2. – Python 速習とテーブルデータの操作 –" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

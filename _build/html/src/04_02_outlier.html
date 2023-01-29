@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="ja" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>19. 外れ値検知入門 &mdash; 応用講座コース  ドキュメント</title>
+  <title>20. 外れ値検知入門 &mdash; 応用講座コース  ドキュメント</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -16,7 +15,6 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/translations.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -24,8 +22,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="検索" href="../search.html" />
-    <link rel="next" title="20. 【補足】 外れ値検知 - その他の手法" href="04_03_other_outlier.html" />
-    <link rel="prev" title="18. 異常検知とは" href="04_01.html" /> 
+    <link rel="next" title="21. 【補足】 外れ値検知 - その他の手法" href="04_03_other_outlier.html" />
+    <link rel="prev" title="19. 異常検知とは" href="04_01.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -45,30 +43,31 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="01_00_00_title.html">1. – Python 速習とテーブルデータの操作 –</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01_00_colab.html">2. Google Colaboratory 実習</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01_01_00_data.html">3. データの理解</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01_01_00_python_basic.html">4. Python 速習とテーブルデータの基本操作</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01_01_01_question.html">5. 演習問題</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01_02_preprocessing_advanced.html">6. 【補足】データ前処理 応用</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01_04_exercise_classification.html">7. 問題設定：Bank Marketing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01_05_bankmarketing.html">8. 実装例</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02_00title.html">9. ー データの前処理と機械学習モデルの構築 ー</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02_01_create_feature.html">10. モデル構築のための特徴量作成</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02_02_K-Fold.html">11. モデルの精度を保証する実装</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02_03_XAI.html">12. 説明可能な AI (XAI)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03_00title.html">13. ー 時系列解析 ー</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03_01_timeseries_basic.html">14. 時系列データの取り扱い方</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03_02_timeseries_analysis.html">15. 自己回帰型モデル</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03_03_feature_enigineering.html">16. 【補足】特徴量エンジニアリング</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_00title.html">17. ー 異常検知 ー</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_01.html">18. 異常検知とは</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">19. 外れ値検知入門</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#外れ値の原因">19.1. 外れ値の原因</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#外れ値検知の実装">19.2. 外れ値検知の実装</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#Z-score-method">19.3. Z-score method</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#Robust-Z-score">19.4. Robust Z-score</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#ホテリング-T^{2}-法">19.5. ホテリング <span class="math notranslate nohighlight">\(T^{2}\)</span> 法</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="01_00_00_00_introduction.html">1. – イントロダクション –</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_00_00_01title.html">2. – Python 速習とテーブルデータの操作 –</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_00_colab.html">3. Google Colaboratory 実習</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_01_00_data.html">4. データの理解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_01_00_python_basic.html">5. Python 速習とテーブルデータの基本操作</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_01_01_question.html">6. 演習問題</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_02_preprocessing_advanced.html">7. 【補足】データ前処理 応用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_04_exercise_classification.html">8. 問題設定：Bank Marketing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_05_bankmarketing.html">9. 実装例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_00title.html">10. ー データの前処理と機械学習モデルの構築 ー</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_01_create_feature.html">11. モデル構築のための特徴量作成</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_02_K-Fold.html">12. モデルの精度を保証する実装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_03_XAI.html">13. 説明可能な AI (XAI)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_00title.html">14. ー 時系列解析 ー</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_01_timeseries_basic.html">15. 時系列データの取り扱い方</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_02_timeseries_analysis.html">16. 自己回帰型モデル</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_03_feature_enigineering.html">17. 【補足】特徴量エンジニアリング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_00title.html">18. ー 異常検知 ー</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_01.html">19. 異常検知とは</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">20. 外れ値検知入門</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#外れ値の原因">20.1. 外れ値の原因</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#外れ値検知の実装">20.2. 外れ値検知の実装</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Z-score-method">20.3. Z-score method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Robust-Z-score">20.4. Robust Z-score</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ホテリング-T^{2}-法">20.5. ホテリング <span class="math notranslate nohighlight">\(T^{2}\)</span> 法</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#データの準備">データの準備</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#異常度を定義">異常度を定義</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#閾値の決定">閾値の決定</a></li>
@@ -76,10 +75,10 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="04_03_other_outlier.html">20. 【補足】 外れ値検知 - その他の手法</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_04_ml_base.html">21. 機械学習を用いた異常検知入門</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_05_other_ml_base.html">22. 【補足】機械学習を用いた異常検知 - その他の手法</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_13_nearest_neighbers.html">23. 変化点検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_03_other_outlier.html">21. 【補足】 外れ値検知 - その他の手法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_04_ml_base.html">22. 機械学習を用いた異常検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_05_other_ml_base.html">23. 【補足】機械学習を用いた異常検知 - その他の手法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_13_nearest_neighbers.html">24. 変化点検知入門</a></li>
 </ul>
 
         </div>
@@ -96,7 +95,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li><span class="section-number">19. </span>外れ値検知入門</li>
+      <li><span class="section-number">20. </span>外れ値検知入門</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/src/04_02_outlier.ipynb.txt" rel="nofollow"> View page source</a>
       </li>
@@ -384,8 +383,8 @@ div.rendered_html tbody tr:hover {
     text-align: unset;
 }
 </style>
-<section id="外れ値検知入門">
-<h1><span class="section-number">19. </span>外れ値検知入門<a class="headerlink" href="#外れ値検知入門" title="この見出しへのパーマリンク"></a></h1>
+<div class="section" id="外れ値検知入門">
+<h1><span class="section-number">20. </span>外れ値検知入門<a class="headerlink" href="#外れ値検知入門" title="Permalink to this heading"></a></h1>
 <p>外れ値とは他のデータから数値的に離れている観測値です。簡単に言えば<strong>範囲外の値</strong>のことです。外れ値のあるデータセットと無いデータセットで何が起こるか例を上げて確認してみましょう。</p>
 <table class="docutils align-default">
 <colgroup>
@@ -430,8 +429,8 @@ div.rendered_html tbody tr:hover {
 <div class="line">しかし、中央値を取ると、30 万円となり平均値よりも意味のある結論になります。</div>
 <div class="line">このため、平均値よりも中央値のほうが適切な指標となります。</div>
 </div>
-<section id="外れ値の原因">
-<h2><span class="section-number">19.1. </span>外れ値の原因<a class="headerlink" href="#外れ値の原因" title="この見出しへのパーマリンク"></a></h2>
+<div class="section" id="外れ値の原因">
+<h2><span class="section-number">20.1. </span>外れ値の原因<a class="headerlink" href="#外れ値の原因" title="Permalink to this heading"></a></h2>
 <p>外れ値が発生する原因は様々考えられますが、一例として</p>
 <ul class="simple">
 <li><p>データ入力ミス：データの収集・記録・入力時等に発生するヒューマンエラー</p></li>
@@ -439,9 +438,9 @@ div.rendered_html tbody tr:hover {
 <li><p>自然外れ値：外れ値が人為的なもの・機器のエラーによるものでない場合に発生する。現実のデータのほとんどはこのカテゴリに属する</p></li>
 </ul>
 <p>などが考えられます。</p>
-</section>
-<section id="外れ値検知の実装">
-<h2><span class="section-number">19.2. </span>外れ値検知の実装<a class="headerlink" href="#外れ値検知の実装" title="この見出しへのパーマリンク"></a></h2>
+</div>
+<div class="section" id="外れ値検知の実装">
+<h2><span class="section-number">20.2. </span>外れ値検知の実装<a class="headerlink" href="#外れ値検知の実装" title="Permalink to this heading"></a></h2>
 <div class="line-block">
 <div class="line">ここからは外れ値検知の実装を行います。</div>
 <div class="line">本章では以下の 2 つについて触れます。</div>
@@ -451,9 +450,9 @@ div.rendered_html tbody tr:hover {
 <li><p>（補足）Robust Z-score</p></li>
 <li><p>ホテリング <span class="math notranslate nohighlight">\(T^{2}\)</span> 法</p></li>
 </ol>
-</section>
-<section id="Z-score-method">
-<h2><span class="section-number">19.3. </span>Z-score method<a class="headerlink" href="#Z-score-method" title="この見出しへのパーマリンク"></a></h2>
+</div>
+<div class="section" id="Z-score-method">
+<h2><span class="section-number">20.3. </span>Z-score method<a class="headerlink" href="#Z-score-method" title="Permalink to this heading"></a></h2>
 <p><span class="math notranslate nohighlight">\(Z\)</span> スコア法はいわゆる 3σ 法を流用した外れ値検知手法です。これは、データの平均から 3σ 内に含まれるデータは全体の分布の 99.7% が含まれるという理論からできており、この方法の外れ値検知でわかることは、平均値から何標準偏差分離れているかを知ることができます。</p>
 <img alt="02" src="../_images/02.jpeg" />
 <div class="math notranslate nohighlight">
@@ -596,9 +595,9 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <p>このようにいくつかのデータが外れ値検知されていることがわかります。個の結果からも、データの真ん中（縦軸の 0）より一定区間上下に離れている点が検出されており、これが 3σ を超えたものであることがわかります。</p>
-</section>
-<section id="Robust-Z-score">
-<h2><span class="section-number">19.4. </span>Robust Z-score<a class="headerlink" href="#Robust-Z-score" title="この見出しへのパーマリンク"></a></h2>
+</div>
+<div class="section" id="Robust-Z-score">
+<h2><span class="section-number">20.4. </span>Robust Z-score<a class="headerlink" href="#Robust-Z-score" title="Permalink to this heading"></a></h2>
 <p>先程実装したものによく似た手法として、Robust Z-score method があります。別名、Median absolute deviation 法とも呼ばれます。</p>
 <p><span class="math notranslate nohighlight">\(Z\)</span> スコア法と似ていますが、用いている中央の値が異なります。平均値と標準偏差は外れ値に大きく影響される特徴がありますが、その点を考慮し中央値と中央値からの絶対偏差を使用したものがこちらの手法です。数式が少し変わった程度であるため押さえておきましょう。</p>
 <div class="math notranslate nohighlight">
@@ -683,17 +682,17 @@ div.rendered_html tbody tr:hover {
 <img alt="../_images/src_04_02_outlier_35_0.png" src="../_images/src_04_02_outlier_35_0.png" />
 </div>
 </div>
-</section>
-<section id="ホテリング-T^{2}-法">
-<h2><span class="section-number">19.5. </span>ホテリング <span class="math notranslate nohighlight">\(T^{2}\)</span> 法<a class="headerlink" href="#ホテリング-T^{2}-法" title="この見出しへのパーマリンク"></a></h2>
+</div>
+<div class="section" id="ホテリング-T^{2}-法">
+<h2><span class="section-number">20.5. </span>ホテリング <span class="math notranslate nohighlight">\(T^{2}\)</span> 法<a class="headerlink" href="#ホテリング-T^{2}-法" title="Permalink to this heading"></a></h2>
 <p>統計モデルに基づく異常検知技術(外れ値検知)で有名なものとして ホテリング <span class="math notranslate nohighlight">\(T^{2}\)</span> 法があります。ホテリング <span class="math notranslate nohighlight">\(T^{2}\)</span> 法ではデータの分布として<strong>単一の正規分布にしたがっていると仮定のもと</strong>で、異常度と閾値を定義します。この手法が有効に適用されるには、</p>
 <ol class="arabic simple">
 <li><p>データが単一の正規分布から発生している</p></li>
 <li><p>データ中に異常な値を含まないか、含んでいたとしてもごくわずか</p></li>
 </ol>
 <p>という制約が存在しますが、製造業などの単一の精度が求められる場面で多くの実績があります。</p>
-<section id="データの準備">
-<h3>データの準備<a class="headerlink" href="#データの準備" title="この見出しへのパーマリンク"></a></h3>
+<div class="section" id="データの準備">
+<h3>データの準備<a class="headerlink" href="#データの準備" title="Permalink to this heading"></a></h3>
 <p>それでは、扱うデータを準備します。今回は、NumPy を使ってデータを作成します。</p>
 <p>NumPy では乱数を生成する際に便利な関数を用意してくれています。 正規分布に従うデータを生成したいので、 <code class="docutils literal notranslate"><span class="pre">np.random.normal</span></code> を使用します。関数の内部にランダムな要素を含む場合は、必ず実行前に乱数のシードの固定 <code class="docutils literal notranslate"><span class="pre">np.random.seed</span></code> を忘れないようにしておきましょう。</p>
 <div class="nbinput nblast docutils container">
@@ -758,9 +757,9 @@ div.rendered_html tbody tr:hover {
 <img alt="../_images/src_04_02_outlier_42_0.png" src="../_images/src_04_02_outlier_42_0.png" />
 </div>
 </div>
-</section>
-<section id="異常度を定義">
-<h3>異常度を定義<a class="headerlink" href="#異常度を定義" title="この見出しへのパーマリンク"></a></h3>
+</div>
+<div class="section" id="異常度を定義">
+<h3>異常度を定義<a class="headerlink" href="#異常度を定義" title="Permalink to this heading"></a></h3>
 <p>異常度 <span class="math notranslate nohighlight">\(a(X)\)</span> を定義し、そこから人間側で設定した閾値によって異常を検知する必要があります。ホテリング<span class="math notranslate nohighlight">\(T^2\)</span> 法では異常度にマハラノビス距離を使用することで、各特徴量の分散を考慮しながら距離を算出することができます。</p>
 <div class="math notranslate nohighlight">
 \[a(X) = (X-\mu)^{T} \sum^{-1} (X-\mu)\]</div>
@@ -844,9 +843,9 @@ div.rendered_html tbody tr:hover {
 <img alt="../_images/src_04_02_outlier_48_0.png" src="../_images/src_04_02_outlier_48_0.png" />
 </div>
 </div>
-</section>
-<section id="閾値の決定">
-<h3>閾値の決定<a class="headerlink" href="#閾値の決定" title="この見出しへのパーマリンク"></a></h3>
+</div>
+<div class="section" id="閾値の決定">
+<h3>閾値の決定<a class="headerlink" href="#閾値の決定" title="Permalink to this heading"></a></h3>
 <p>上記の異常度のグラフの右側何 % を異常値にするのかを手動で決めます。</p>
 <p>より多くのデータを異常と判断させたければ異常発生の確率値を高くし、より多くの正常なデータを残しておきたいのであれば確率値を低くします。この異常なデータを排除することと正常なデータを残すことの間にはトレードオフの関係があり、どのように確率値を設定するかの判断は難しいですが、0.05 や 0.01 などの値がよく使用されます。</p>
 <p>確率値を設定し、データ量が十分ある状態であれば、近似的に χ（カイ）二乗検定を用いて閾値を設定することができます。これは、ホテリング法の理論上、異常度が自由度が次元数でスケール因子 1 の χ（カイ）二乗検定に従うと数学的に証明できるためです 。具体的な証明などは省きますが、他の検定方法ではなく、χ（カイ）二乗検定を用いるのはこのためです。</p>
@@ -908,16 +907,16 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
-</section>
-</section>
-</section>
+</div>
+</div>
+</div>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="04_01.html" class="btn btn-neutral float-left" title="18. 異常検知とは" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="04_03_other_outlier.html" class="btn btn-neutral float-right" title="20. 【補足】 外れ値検知 - その他の手法" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="04_01.html" class="btn btn-neutral float-left" title="19. 異常検知とは" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="04_03_other_outlier.html" class="btn btn-neutral float-right" title="21. 【補足】 外れ値検知 - その他の手法" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

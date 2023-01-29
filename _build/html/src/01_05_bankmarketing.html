@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="ja" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>8. 実装例 &mdash; 応用講座コース  ドキュメント</title>
+  <title>9. 実装例 &mdash; 応用講座コース  ドキュメント</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -16,7 +15,6 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/translations.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -24,8 +22,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="検索" href="../search.html" />
-    <link rel="next" title="9. ー データの前処理と機械学習モデルの構築 ー" href="02_00title.html" />
-    <link rel="prev" title="7. 問題設定：Bank Marketing" href="01_04_exercise_classification.html" /> 
+    <link rel="next" title="10. ー データの前処理と機械学習モデルの構築 ー" href="02_00title.html" />
+    <link rel="prev" title="8. 問題設定：Bank Marketing" href="01_04_exercise_classification.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -45,15 +43,16 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="01_00_00_title.html">1. – Python 速習とテーブルデータの操作 –</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01_00_colab.html">2. Google Colaboratory 実習</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01_01_00_data.html">3. データの理解</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01_01_00_python_basic.html">4. Python 速習とテーブルデータの基本操作</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01_01_01_question.html">5. 演習問題</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01_02_preprocessing_advanced.html">6. 【補足】データ前処理 応用</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01_04_exercise_classification.html">7. 問題設定：Bank Marketing</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">8. 実装例</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#ベースモデルの構築">8.1. ベースモデルの構築</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="01_00_00_00_introduction.html">1. – イントロダクション –</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_00_00_01title.html">2. – Python 速習とテーブルデータの操作 –</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_00_colab.html">3. Google Colaboratory 実習</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_01_00_data.html">4. データの理解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_01_00_python_basic.html">5. Python 速習とテーブルデータの基本操作</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_01_01_question.html">6. 演習問題</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_02_preprocessing_advanced.html">7. 【補足】データ前処理 応用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_04_exercise_classification.html">8. 問題設定：Bank Marketing</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">9. 実装例</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#ベースモデルの構築">9.1. ベースモデルの構築</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#データの前処理">データの前処理</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#欠損値処理">欠損値処理</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#カテゴリカル変数">カテゴリカル変数</a></li>
@@ -63,7 +62,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#Feature-Importance-の確認">Feature Importance の確認</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#データへのアプローチ">8.2. データへのアプローチ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#データへのアプローチ">9.2. データへのアプローチ</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#欠損値補完">欠損値補完</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#Job-の欠損値補完">Job の欠損値補完</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#Age-の欠損値補完">Age の欠損値補完</a></li>
@@ -83,38 +82,38 @@
 <li class="toctree-l3"><a class="reference internal" href="#精度の検証(2)">精度の検証(2)</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#モデルへのアプローチ">8.3. モデルへのアプローチ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#モデルへのアプローチ">9.3. モデルへのアプローチ</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#Grid-Search-の適用">Grid Search の適用</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#手法へのアプローチ">8.4. 手法へのアプローチ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#手法へのアプローチ">9.4. 手法へのアプローチ</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#サポートベクターマシン">サポートベクターマシン</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#XGBoost">XGBoost</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#ハイパーパラメータのチューニング：XGBoost">ハイパーパラメータのチューニング：XGBoost</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#ハイパーパラメータチューニング：SVM">ハイパーパラメータチューニング：SVM</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#テストデータで評価">8.5. テストデータで評価</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#テストデータで評価">9.5. テストデータで評価</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#Accuracy-の確認">Accuracy の確認</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="02_00title.html">9. ー データの前処理と機械学習モデルの構築 ー</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02_01_create_feature.html">10. モデル構築のための特徴量作成</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02_02_K-Fold.html">11. モデルの精度を保証する実装</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02_03_XAI.html">12. 説明可能な AI (XAI)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03_00title.html">13. ー 時系列解析 ー</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03_01_timeseries_basic.html">14. 時系列データの取り扱い方</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03_02_timeseries_analysis.html">15. 自己回帰型モデル</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03_03_feature_enigineering.html">16. 【補足】特徴量エンジニアリング</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_00title.html">17. ー 異常検知 ー</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_01.html">18. 異常検知とは</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_02_outlier.html">19. 外れ値検知入門</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_03_other_outlier.html">20. 【補足】 外れ値検知 - その他の手法</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_04_ml_base.html">21. 機械学習を用いた異常検知入門</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_05_other_ml_base.html">22. 【補足】機械学習を用いた異常検知 - その他の手法</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_13_nearest_neighbers.html">23. 変化点検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_00title.html">10. ー データの前処理と機械学習モデルの構築 ー</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_01_create_feature.html">11. モデル構築のための特徴量作成</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_02_K-Fold.html">12. モデルの精度を保証する実装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_03_XAI.html">13. 説明可能な AI (XAI)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_00title.html">14. ー 時系列解析 ー</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_01_timeseries_basic.html">15. 時系列データの取り扱い方</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_02_timeseries_analysis.html">16. 自己回帰型モデル</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_03_feature_enigineering.html">17. 【補足】特徴量エンジニアリング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_00title.html">18. ー 異常検知 ー</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_01.html">19. 異常検知とは</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_02_outlier.html">20. 外れ値検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_03_other_outlier.html">21. 【補足】 外れ値検知 - その他の手法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_04_ml_base.html">22. 機械学習を用いた異常検知入門</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_05_other_ml_base.html">23. 【補足】機械学習を用いた異常検知 - その他の手法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_13_nearest_neighbers.html">24. 変化点検知入門</a></li>
 </ul>
 
         </div>
@@ -131,7 +130,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li><span class="section-number">8. </span>実装例</li>
+      <li><span class="section-number">9. </span>実装例</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/src/01_05_bankmarketing.ipynb.txt" rel="nofollow"> View page source</a>
       </li>
@@ -419,8 +418,8 @@ div.rendered_html tbody tr:hover {
     text-align: unset;
 }
 </style>
-<section id="実装例">
-<h1><span class="section-number">8. </span>実装例<a class="headerlink" href="#実装例" title="この見出しへのパーマリンク"></a></h1>
+<div class="section" id="実装例">
+<h1><span class="section-number">9. </span>実装例<a class="headerlink" href="#実装例" title="Permalink to this heading"></a></h1>
 <p>▼ 本章で使用するデータセット</p>
 <p>学習と検証用のデータセットはこちらから<a class="reference external" href="https://drive.google.com/file/d/12ASy6rFUxeko2qWix2wKl-mYkCLJ--bK/view?usp=sharing">bank_train.csv</a>を使用してください。</p>
 <p>ここまでのデータの前処理や操作の実装を生かして、実際の問題設定において分類モデルを構築してみましょう。 今回の問題設定では、リクルーティングが成功（success）するか失敗（fail）するかを予測する二値分類モデルとなります。</p>
@@ -437,10 +436,10 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
-<section id="ベースモデルの構築">
-<h2><span class="section-number">8.1. </span>ベースモデルの構築<a class="headerlink" href="#ベースモデルの構築" title="この見出しへのパーマリンク"></a></h2>
-<section id="データの前処理">
-<h3>データの前処理<a class="headerlink" href="#データの前処理" title="この見出しへのパーマリンク"></a></h3>
+<div class="section" id="ベースモデルの構築">
+<h2><span class="section-number">9.1. </span>ベースモデルの構築<a class="headerlink" href="#ベースモデルの構築" title="Permalink to this heading"></a></h2>
+<div class="section" id="データの前処理">
+<h3>データの前処理<a class="headerlink" href="#データの前処理" title="Permalink to this heading"></a></h3>
 <p>まずは必要な前処理のみを適用して、ベースラインとなる学習済みモデルを構築していきます。</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
@@ -659,8 +658,8 @@ Name: result, dtype: int64
 </pre></div>
 </div>
 </div>
-<section id="欠損値処理">
-<h4>欠損値処理<a class="headerlink" href="#欠損値処理" title="この見出しへのパーマリンク"></a></h4>
+<div class="section" id="欠損値処理">
+<h4>欠損値処理<a class="headerlink" href="#欠損値処理" title="Permalink to this heading"></a></h4>
 <p><strong>欠損値の確認</strong></p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
@@ -721,9 +720,9 @@ result       0
 dtype: int64
 </pre></div></div>
 </div>
-</section>
-<section id="カテゴリカル変数">
-<h4>カテゴリカル変数<a class="headerlink" href="#カテゴリカル変数" title="この見出しへのパーマリンク"></a></h4>
+</div>
+<div class="section" id="カテゴリカル変数">
+<h4>カテゴリカル変数<a class="headerlink" href="#カテゴリカル変数" title="Permalink to this heading"></a></h4>
 <p>カテゴリカル変数もひとまず、全てOne-Hot Encodingを適用します。</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
@@ -935,10 +934,10 @@ dtype: int64
     </div>
   </div></div>
 </div>
-</section>
-</section>
-<section id="モデルの構築">
-<h3>モデルの構築<a class="headerlink" href="#モデルの構築" title="この見出しへのパーマリンク"></a></h3>
+</div>
+</div>
+<div class="section" id="モデルの構築">
+<h3>モデルの構築<a class="headerlink" href="#モデルの構築" title="Permalink to this heading"></a></h3>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -1004,9 +1003,9 @@ DecisionTreeClassifier(random_state=0)
 0.8114419147694104
 </pre></div></div>
 </div>
-</section>
-<section id="Feature-Importance-の確認">
-<h3>Feature Importance の確認<a class="headerlink" href="#Feature-Importance-の確認" title="この見出しへのパーマリンク"></a></h3>
+</div>
+<div class="section" id="Feature-Importance-の確認">
+<h3>Feature Importance の確認<a class="headerlink" href="#Feature-Importance-の確認" title="Permalink to this heading"></a></h3>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -1043,10 +1042,10 @@ DecisionTreeClassifier(random_state=0)
 <li><p>モデルへのアプローチ（ハイパーパラメータのチューニング）</p></li>
 <li><p>手法へのアプローチ（手法の選択）</p></li>
 </ul>
-</section>
-</section>
-<section id="データへのアプローチ">
-<h2><span class="section-number">8.2. </span>データへのアプローチ<a class="headerlink" href="#データへのアプローチ" title="この見出しへのパーマリンク"></a></h2>
+</div>
+</div>
+<div class="section" id="データへのアプローチ">
+<h2><span class="section-number">9.2. </span>データへのアプローチ<a class="headerlink" href="#データへのアプローチ" title="Permalink to this heading"></a></h2>
 <div class="line-block">
 <div class="line">欠損値やカテゴリカル変数へのアプローチを工夫して、精度がどのように変化するのか確認します。</div>
 <div class="line">実問題では、基本的には欠損値が含まれていたとしても、推論する必要があります。</div>
@@ -1226,8 +1225,8 @@ DecisionTreeClassifier(random_state=0)
     </div>
   </div></div>
 </div>
-<section id="欠損値補完">
-<h3>欠損値補完<a class="headerlink" href="#欠損値補完" title="この見出しへのパーマリンク"></a></h3>
+<div class="section" id="欠損値補完">
+<h3>欠損値補完<a class="headerlink" href="#欠損値補完" title="Permalink to this heading"></a></h3>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -1258,8 +1257,8 @@ result         0
 dtype: int64
 </pre></div></div>
 </div>
-<section id="Job-の欠損値補完">
-<h4>Job の欠損値補完<a class="headerlink" href="#Job-の欠損値補完" title="この見出しへのパーマリンク"></a></h4>
+<div class="section" id="Job-の欠損値補完">
+<h4>Job の欠損値補完<a class="headerlink" href="#Job-の欠損値補完" title="Permalink to this heading"></a></h4>
 <p>職業を表す、 <code class="docutils literal notranslate"><span class="pre">job</span></code> の欠損値補完を行います。 まずはデータを確認しましょう。</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
@@ -1324,9 +1323,9 @@ result         0
 dtype: int64
 </pre></div></div>
 </div>
-</section>
-<section id="Age-の欠損値補完">
-<h4>Age の欠損値補完<a class="headerlink" href="#Age-の欠損値補完" title="この見出しへのパーマリンク"></a></h4>
+</div>
+<div class="section" id="Age-の欠損値補完">
+<h4>Age の欠損値補完<a class="headerlink" href="#Age-の欠損値補完" title="Permalink to this heading"></a></h4>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -1424,9 +1423,9 @@ result         0
 dtype: int64
 </pre></div></div>
 </div>
-</section>
-<section id="Marital-の欠損値補完">
-<h4>Marital の欠損値補完<a class="headerlink" href="#Marital-の欠損値補完" title="この見出しへのパーマリンク"></a></h4>
+</div>
+<div class="section" id="Marital-の欠損値補完">
+<h4>Marital の欠損値補完<a class="headerlink" href="#Marital-の欠損値補完" title="Permalink to this heading"></a></h4>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -2304,9 +2303,9 @@ result         0
 dtype: int64
 </pre></div></div>
 </div>
-</section>
-<section id="Default-の欠損値補完">
-<h4>Default の欠損値補完<a class="headerlink" href="#Default-の欠損値補完" title="この見出しへのパーマリンク"></a></h4>
+</div>
+<div class="section" id="Default-の欠損値補完">
+<h4>Default の欠損値補完<a class="headerlink" href="#Default-の欠損値補完" title="Permalink to this heading"></a></h4>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -2394,9 +2393,9 @@ result         0
 dtype: int64
 </pre></div></div>
 </div>
-</section>
-<section id="Housing-の欠損値補完">
-<h4>Housing の欠損値補完<a class="headerlink" href="#Housing-の欠損値補完" title="この見出しへのパーマリンク"></a></h4>
+</div>
+<div class="section" id="Housing-の欠損値補完">
+<h4>Housing の欠損値補完<a class="headerlink" href="#Housing-の欠損値補完" title="Permalink to this heading"></a></h4>
 <div class="line-block">
 <div class="line"><code class="docutils literal notranslate"><span class="pre">Housing</span></code> が表すのは家のローンの有無です。</div>
 <div class="line">こちらも年齢と職業が大きく関連していると考えられます。</div>
@@ -3410,9 +3409,9 @@ result         0
 dtype: int64
 </pre></div></div>
 </div>
-</section>
-<section id="PDays-の欠損値補完">
-<h4>PDays の欠損値補完<a class="headerlink" href="#PDays-の欠損値補完" title="この見出しへのパーマリンク"></a></h4>
+</div>
+<div class="section" id="PDays-の欠損値補完">
+<h4>PDays の欠損値補完<a class="headerlink" href="#PDays-の欠損値補完" title="Permalink to this heading"></a></h4>
 <div class="line-block">
 <div class="line"><code class="docutils literal notranslate"><span class="pre">pdays</span></code> が表しているのは前回のキャンペーンで通話してからの経過日数（単位：日）です。</div>
 <div class="line">まずは分布を確認してみます。</div>
@@ -3512,9 +3511,9 @@ result         0
 dtype: int64
 </pre></div></div>
 </div>
-</section>
-<section id="Poutcome-の欠損値補完">
-<h4>Poutcome の欠損値補完<a class="headerlink" href="#Poutcome-の欠損値補完" title="この見出しへのパーマリンク"></a></h4>
+</div>
+<div class="section" id="Poutcome-の欠損値補完">
+<h4>Poutcome の欠損値補完<a class="headerlink" href="#Poutcome-の欠損値補完" title="Permalink to this heading"></a></h4>
 <div class="line-block">
 <div class="line"><code class="docutils literal notranslate"><span class="pre">poutcome</span></code> は前回キャンペーンの成約状況を表す変数です。</div>
 <div class="line">中身を確認し、アプローチを確認します。</div>
@@ -3608,9 +3607,9 @@ result         0
 dtype: int64
 </pre></div></div>
 </div>
-</section>
-<section id="Loan-の欠損値補完">
-<h4>Loan の欠損値補完<a class="headerlink" href="#Loan-の欠損値補完" title="この見出しへのパーマリンク"></a></h4>
+</div>
+<div class="section" id="Loan-の欠損値補完">
+<h4>Loan の欠損値補完<a class="headerlink" href="#Loan-の欠損値補完" title="Permalink to this heading"></a></h4>
 <p>中身を確認し、アプローチを方法を考えます。</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
@@ -3681,10 +3680,10 @@ dtype: int64
 <div class="line">欠損値の補完が完了しました。</div>
 <div class="line">ここで精度が出るか確認してみましょう。</div>
 </div>
-</section>
-</section>
-<section id="精度の検証（1）">
-<h3>精度の検証（1）<a class="headerlink" href="#精度の検証（1）" title="この見出しへのパーマリンク"></a></h3>
+</div>
+</div>
+<div class="section" id="精度の検証（1）">
+<h3>精度の検証（1）<a class="headerlink" href="#精度の検証（1）" title="Permalink to this heading"></a></h3>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -3774,11 +3773,11 @@ DecisionTreeClassifier(random_state=0)
 <div class="line">全体のサンプル数に対して、欠損値の数が多くなかった為影響が大きくなかったことが推測されます。</div>
 <div class="line">続いてはEncodingの方法について確認します。</div>
 </div>
-</section>
-<section id="カテゴリカル変数へのアプローチ">
-<h3>カテゴリカル変数へのアプローチ<a class="headerlink" href="#カテゴリカル変数へのアプローチ" title="この見出しへのパーマリンク"></a></h3>
-<section id="Label-Encoding">
-<h4>Label Encoding<a class="headerlink" href="#Label-Encoding" title="この見出しへのパーマリンク"></a></h4>
+</div>
+<div class="section" id="カテゴリカル変数へのアプローチ">
+<h3>カテゴリカル変数へのアプローチ<a class="headerlink" href="#カテゴリカル変数へのアプローチ" title="Permalink to this heading"></a></h3>
+<div class="section" id="Label-Encoding">
+<h4>Label Encoding<a class="headerlink" href="#Label-Encoding" title="Permalink to this heading"></a></h4>
 <p>まずは2値のものに関してはLabel Encodingを適用させます。</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
@@ -4268,10 +4267,10 @@ array([&#39;no&#39;, &#39;yes&#39;], dtype=object)
     </div>
   </div></div>
 </div>
-</section>
-</section>
-<section id="精度の検証(2)">
-<h3>精度の検証(2)<a class="headerlink" href="#精度の検証(2)" title="この見出しへのパーマリンク"></a></h3>
+</div>
+</div>
+<div class="section" id="精度の検証(2)">
+<h3>精度の検証(2)<a class="headerlink" href="#精度の検証(2)" title="Permalink to this heading"></a></h3>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -4508,10 +4507,10 @@ array([&#39;no&#39;, &#39;yes&#39;], dtype=object)
 <div class="line">Encodingの方法はアルゴリズムによって、変更すると精度にも影響が出るため、検証する上で複数のEncodingを行うことをオススメします。</div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">df3</span></code> のデータを用いてハイパーパラメータの調整を行います。</p>
-</section>
-</section>
-<section id="モデルへのアプローチ">
-<h2><span class="section-number">8.3. </span>モデルへのアプローチ<a class="headerlink" href="#モデルへのアプローチ" title="この見出しへのパーマリンク"></a></h2>
+</div>
+</div>
+<div class="section" id="モデルへのアプローチ">
+<h2><span class="section-number">9.3. </span>モデルへのアプローチ<a class="headerlink" href="#モデルへのアプローチ" title="Permalink to this heading"></a></h2>
 <div class="line-block">
 <div class="line">ハイパーパラメータのチューニングを行なっていきます。</div>
 <div class="line">今回はグリッドサーチを用います。</div>
@@ -4734,8 +4733,8 @@ array([&#39;no&#39;, &#39;yes&#39;], dtype=object)
 </div>
 </div>
 <p>K-分割交差検証を用いて精度を計測するため、データはこのまま使用します。</p>
-<section id="Grid-Search-の適用">
-<h3>Grid Search の適用<a class="headerlink" href="#Grid-Search-の適用" title="この見出しへのパーマリンク"></a></h3>
+<div class="section" id="Grid-Search-の適用">
+<h3>Grid Search の適用<a class="headerlink" href="#Grid-Search-の適用" title="Permalink to this heading"></a></h3>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -5682,17 +5681,17 @@ max_depth:[ 2  6 10], min_samples_leaf:[2 3 5], cv:5
 <div class="line">いくつかの特徴量が強い効果がある事が確認できます。</div>
 <div class="line">この結果から特徴量エンジニアリングを行い、新たな特徴量の作成など行う事ができそうです。</div>
 </div>
-</section>
-</section>
-<section id="手法へのアプローチ">
-<h2><span class="section-number">8.4. </span>手法へのアプローチ<a class="headerlink" href="#手法へのアプローチ" title="この見出しへのパーマリンク"></a></h2>
+</div>
+</div>
+<div class="section" id="手法へのアプローチ">
+<h2><span class="section-number">9.4. </span>手法へのアプローチ<a class="headerlink" href="#手法へのアプローチ" title="Permalink to this heading"></a></h2>
 <p>先ほどまでは決定木のみで精度がどのようになるのか確認してきました。 他の手法でもどのように変化が出るのか確認してみます。 試行する手法は下記の 2 つを使用します。</p>
 <ul class="simple">
 <li><p>サポートベクターマシン（SVM）</p></li>
 <li><p>XGBoost</p></li>
 </ul>
-<section id="サポートベクターマシン">
-<h3>サポートベクターマシン<a class="headerlink" href="#サポートベクターマシン" title="この見出しへのパーマリンク"></a></h3>
+<div class="section" id="サポートベクターマシン">
+<h3>サポートベクターマシン<a class="headerlink" href="#サポートベクターマシン" title="Permalink to this heading"></a></h3>
 <p>データを標準化して、学習を行います。</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
@@ -5734,9 +5733,9 @@ max_depth:[ 2  6 10], min_samples_leaf:[2 3 5], cv:5
 <div class="line">先ほどの決定木よりいい精度が出ました。</div>
 <div class="line">チューニングを行う前に XGBoost の結果も確認しておきます。</div>
 </div>
-</section>
-<section id="XGBoost">
-<h3>XGBoost<a class="headerlink" href="#XGBoost" title="この見出しへのパーマリンク"></a></h3>
+</div>
+<div class="section" id="XGBoost">
+<h3>XGBoost<a class="headerlink" href="#XGBoost" title="Permalink to this heading"></a></h3>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -5762,9 +5761,9 @@ max_depth:[ 2  6 10], min_samples_leaf:[2 3 5], cv:5
 <div class="line">こちらもいい精度が出ている事が確認できました。</div>
 <div class="line">まだチューニングを行なっていないので、まだ精度向上の余地がありそうです。</div>
 </div>
-</section>
-<section id="ハイパーパラメータのチューニング：XGBoost">
-<h3>ハイパーパラメータのチューニング：XGBoost<a class="headerlink" href="#ハイパーパラメータのチューニング：XGBoost" title="この見出しへのパーマリンク"></a></h3>
+</div>
+<div class="section" id="ハイパーパラメータのチューニング：XGBoost">
+<h3>ハイパーパラメータのチューニング：XGBoost<a class="headerlink" href="#ハイパーパラメータのチューニング：XGBoost" title="Permalink to this heading"></a></h3>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -5814,9 +5813,9 @@ max_depth:[ 2  8 15], n_estimators:[ 80 140 200], cv:5
 {&#39;max_depth&#39;: 8, &#39;n_estimators&#39;: 80} 0.8947940113101354
 </pre></div></div>
 </div>
-</section>
-<section id="ハイパーパラメータチューニング：SVM">
-<h3>ハイパーパラメータチューニング：SVM<a class="headerlink" href="#ハイパーパラメータチューニング：SVM" title="この見出しへのパーマリンク"></a></h3>
+</div>
+<div class="section" id="ハイパーパラメータチューニング：SVM">
+<h3>ハイパーパラメータチューニング：SVM<a class="headerlink" href="#ハイパーパラメータチューニング：SVM" title="Permalink to this heading"></a></h3>
 <div class="line-block">
 <div class="line">ハイパーパラメータの探索する範囲が広いので、ベイズ最適化を使用します。</div>
 <div class="line">試行する回数はある一定数必要となるので、学習には時間がかかります。</div>
@@ -6026,10 +6025,10 @@ SVC(C=0.5, random_state=0)
 <div class="line">しかし、あくまでモデルの作成意義は新たなデータに対して、正しく推論できる事です。</div>
 </div>
 <p>モデルのチューニングも重要ですが、過学習が起きていないかも注意しましょう。</p>
-</section>
-</section>
-<section id="テストデータで評価">
-<h2><span class="section-number">8.5. </span>テストデータで評価<a class="headerlink" href="#テストデータで評価" title="この見出しへのパーマリンク"></a></h2>
+</div>
+</div>
+<div class="section" id="テストデータで評価">
+<h2><span class="section-number">9.5. </span>テストデータで評価<a class="headerlink" href="#テストデータで評価" title="Permalink to this heading"></a></h2>
 <p>テストデータに対して、どれくらいの精度になっていることを確認しましょう。</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
@@ -6328,8 +6327,8 @@ False
 array([0, 1])
 </pre></div></div>
 </div>
-<section id="Accuracy-の確認">
-<h3>Accuracy の確認<a class="headerlink" href="#Accuracy-の確認" title="この見出しへのパーマリンク"></a></h3>
+<div class="section" id="Accuracy-の確認">
+<h3>Accuracy の確認<a class="headerlink" href="#Accuracy-の確認" title="Permalink to this heading"></a></h3>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -6352,16 +6351,16 @@ array([0, 1])
 <div class="line">この講義が終わった後も、色々試行錯誤して見てください。</div>
 </div>
 <p>これで演習課題は終了です。お疲れ様でした。</p>
-</section>
-</section>
-</section>
+</div>
+</div>
+</div>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="01_04_exercise_classification.html" class="btn btn-neutral float-left" title="7. 問題設定：Bank Marketing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="02_00title.html" class="btn btn-neutral float-right" title="9. ー データの前処理と機械学習モデルの構築 ー" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="01_04_exercise_classification.html" class="btn btn-neutral float-left" title="8. 問題設定：Bank Marketing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="02_00title.html" class="btn btn-neutral float-right" title="10. ー データの前処理と機械学習モデルの構築 ー" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
